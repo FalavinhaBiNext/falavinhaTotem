@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { Fragment, useContext, useEffect } from "react";
 import { GlobalContext } from "../context/GlobalContextProvider";
 import { useNavigate } from "react-router-dom";
+import Botoes from "./Botoes";
 
 export default function SurveyEmpresarial({ questions }) {
   const { answers, setAnswers } = useContext(GlobalContext);
@@ -52,20 +53,12 @@ export default function SurveyEmpresarial({ questions }) {
       ))}
 
       {isAllQuestionsAnswered() && (
-        <button
+        <Botoes
           onClick={() => navigate("/resposta-questionario")}
-          style={{
-            padding: "10px 20px",
-            backgroundColor: "blue",
-            color: "#fff",
-            border: "none",
-            outline: "none",
-            cursor: "pointer",
-            textTransform: "uppercase",
-          }}
+          className="opcoes"
         >
           Ver resultado
-        </button>
+        </Botoes>
       )}
     </ul>
   );

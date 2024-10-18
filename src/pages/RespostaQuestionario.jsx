@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import HeroApp from "../components/Hero";
 import { GlobalContext } from "../context/GlobalContextProvider";
 import FramerMotion from "../components/FramerMotion";
+import ResultSurvey from "../components/ResultSurvey";
+import imagem from "../assets/image/AssessoriaTributaria.png";
 
 const resultMessages = [
   {
@@ -53,15 +55,11 @@ export default function RespostaQuestionario() {
         </Botoes>
       </HeaderApp>
 
-      <HeroApp>
+      <HeroApp fundo={imagem}>
         <FramerMotion>
-          <h1>Resultado</h1>
-          {title && resultMessage && (
-            <div className="result-message">
-              <h2>{title}</h2>
-              <p>{resultMessage}</p>
-            </div>
-          )}
+          <h1 className="title">Resultado</h1>
+
+          <ResultSurvey title={title} message={resultMessage} />
         </FramerMotion>
       </HeroApp>
     </>

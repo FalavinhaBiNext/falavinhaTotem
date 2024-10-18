@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 import FramerMotion from "../components/FramerMotion";
 import SurveyEmpresarial from "../components/SurveyEmpresarial";
+import imagem from "../assets/image/Servicos.png";
 
 const perguntas = [
   {
@@ -110,7 +111,7 @@ export default function Questionario() {
         </Botoes>
       </HeaderApp>
 
-      <HeroApp>
+      <HeroApp fundo={imagem}>
         <FramerMotion>
           <h1 className="title">Faça uma pesquisa sobre sua empresa</h1>
 
