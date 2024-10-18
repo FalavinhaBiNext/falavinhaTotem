@@ -1,0 +1,287 @@
+@font-face {
+  font-family: "Gilroy-light";
+  src: url("/src/fonts/Gilroy-Light.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy-thin";
+  src: url("/src/fonts/Gilroy-Thin.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy-bold";
+  src: url("/src/fonts/Gilroy-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+*,
+body {
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+#root,
+body,
+.motion-element {
+  background-color: #009499;
+  font-family: "Gilroy-light";
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column;
+}
+
+li {
+  list-style: none;
+}
+
+.base_container {
+  max-width: 992px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+}
+
+/*  HEADER   */
+header .logo > img {
+  width: 100%;
+  max-width: 120px;
+}
+
+.header {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  position: relative;
+  z-index: 100;
+}
+
+.header__background {
+  background-color: #009499;
+}
+
+/* MAIN */
+.hero {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+  text-align: center;
+  min-height: calc(100vh - 150px);
+}
+
+.explorationContainer .exploration {
+  height: 60vh !important;
+}
+
+.motion-element {
+  display: flex;
+  flex-flow: column;
+}
+
+.fundoGeral {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.icon {
+  height: 35px;
+  width: 35px;
+  color: #fff;
+}
+
+/* FOOTER */
+.footer {
+  padding: 0;
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 100;
+  min-height: 40px;
+}
+
+.copyright {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: #fff;
+  padding: 10px 0;
+}
+
+/* SEÇÃO DO IFRAME */
+.iframeDash {
+  width: 100%;
+  min-height: 80vh;
+  position: relative;
+}
+
+.iframe-content {
+  min-height: inherit;
+  width: inherit;
+  position: relative;
+  border-radius: 20px 20px 0px 0px;
+}
+
+.iframeDash::before {
+  content: "";
+  position: absolute;
+  bottom: 65px;
+  margin: auto;
+  left: 0;
+  right: 0;
+  height: 100px;
+  width: 100%;
+  background: transparent;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 0 50px 0 0 #009499;
+  z-index: 100;
+}
+
+.iframeDash::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  margin: auto;
+  left: 0;
+  right: 0;
+  height: 60px;
+  width: 100%;
+  background: transparent;
+  background-color: #009499;
+  z-index: 99;
+}
+
+.iframe-border {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(100% - 65px);
+  width: 100%;
+  border: 3px solid rgb(255, 255, 255);
+  border-radius: 20px;
+  z-index: 98;
+  pointer-events: none;
+}
+
+iframe {
+  width: 94%;
+  height: 100%;
+}
+
+/*  BOTÃO */
+.opcoes {
+  padding: 5px;
+  height: 55px;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 93, 96, 0.1);
+  border-radius: 30px;
+  border: none;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);
+  letter-spacing: 2px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btnVoltar {
+  width: 35px;
+  height: 35px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  border-radius: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 100;
+  text-decoration: none;
+  font-family: "Gilroy-light";
+  cursor: pointer;
+}
+
+/* CONTEÚDO GERAL DAS PÁGINAS */
+.title {
+  font-family: "Gilroy-light";
+  font-size: 20px;
+  color: #fff;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  padding-bottom: 10px;
+}
+
+.subtitulo {
+  color: #fff;
+  font-size: 12px;
+  font-family: "Gilroy-thin";
+  letter-spacing: 3px;
+}
+
+.paragraph {
+  font-size: 14px;
+  font-family: "Gilroy-thin";
+  color: #fff;
+  letter-spacing: 1px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.textoMain {
+  font-family: "Gilroy-thin";
+  font-size: 20px;
+  color: #fff;
+  font-style: italic;
+  padding: 30px 0;
+}
+
+.links {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.teste {
+  display: flex;
+  flex: 1;
+  height: 100vh;
+  width: 100%;
+  background-image: linear-gradient(
+    to right top,
+    #582b6f,
+    #354e92,
+    #006ba5,
+    #0085a8,
+    #009ca1
+  );
+}
