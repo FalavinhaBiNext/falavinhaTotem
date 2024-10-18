@@ -1,35 +1,43 @@
-import React from 'react';
-import HeaderApp from '../components/Header';
-import HeroApp from '../components/Hero';
-import FooterApp from '../components/Footer';
-import { motion } from 'framer-motion';
-import {useNavigate} from 'react-router-dom';
-import Botoes from '../components/Botoes';
-import fundo from '../assets/video/GifVideoTotem.gif';
-import routes from '../routes';
+import HeaderApp from "../components/Header";
+import HeroApp from "../components/Hero";
+import FooterApp from "../components/Footer";
+import { useNavigate } from "react-router-dom";
+import Botoes from "../components/Botoes";
+import fundo from "../assets/video/video-demo.mp4";
+import routes from "../routes";
 
 function HomePage() {
-  
   const navigate = useNavigate();
 
+  const homepageButtonStyle = {
+    display: "flex",
+    justifyContent: "center",
+    position: "relative",
+    zIndex: 50,
+    width: "100%",
+    marginTop: "auto",
+  };
+
   return (
-
-    <motion.div
-      // className='fundoInicial' -- Fundo com video
-      style={{backgroundImage: `url(${fundo})`}}
-      className='fundoGeral'
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ type: 'spring', stiffness: 50, damping: 20 }}
-    >
+    <>
       <HeaderApp />
-      <HeroApp />
-      <FooterApp className="footerInicio">
-          <Botoes onClick={() => navigate(routes.servicos)} className='opcoes'>CONHEÇA NOSSOS SERVIÇOS</Botoes>
-      </FooterApp>
+      <HeroApp>
+        <video autoPlay muted loop className="home-video">
+          <source className="home-video__video" src={fundo} type="video/mp4" />
+        </video>
 
-    </motion.div>
+        <div style={homepageButtonStyle}>
+          <Botoes onClick={() => navigate(routes.servicos)} className="opcoes">
+            CONHEÇA NOSSOS SERVIÇOS
+          </Botoes>
+        </div>
+      </HeroApp>
+
+      <FooterApp />
+    </>
   );
 }
 
 export default HomePage;
+
+// home-video

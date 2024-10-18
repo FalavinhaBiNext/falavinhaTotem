@@ -1,0 +1,14 @@
+.home-video {
+  position: fixed;
+  inset: 0;
+  width: inherit;
+  height: 100vh;
+  object-fit: cover;
+  margin: auto;
+  max-width: 992px;
+}
+
+.home-video__video {
+  width: inherit;
+  height: inherit;
+}
