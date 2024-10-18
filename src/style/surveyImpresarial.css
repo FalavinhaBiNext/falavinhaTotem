@@ -25,7 +25,7 @@
 .survey__list--question {
   display: flex;
   flex-flow: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .survey__list--radios {

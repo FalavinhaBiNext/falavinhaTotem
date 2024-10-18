@@ -73,10 +73,10 @@ header .logo > img {
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  gap: 15px;
   width: 100%;
   text-align: center;
   min-height: calc(100vh - 150px);
+  margin-top: 30px;
 }
 
 .explorationContainer .exploration {
@@ -208,6 +208,7 @@ iframe {
   letter-spacing: 2px;
   color: #fff;
   cursor: pointer;
+  text-transform: uppercase;
 }
 
 .btnVoltar {
@@ -284,4 +285,38 @@ iframe {
     #0085a8,
     #009ca1
   );
+}
+
+/* PÁGINA DE RESULTADO DO SURVEY */
+.result-survey {
+  font-family: "Gilroy-thin";
+  font-size: 20px;
+  color: #fff;
+  padding: 50px 0 30px;
+}
+
+.result-survey__title {
+  font-family: "Gilroy-light";
+  font-size: 1.5rem;
+  color: #fff;
+  letter-spacing: 2px;
+  padding-bottom: 20px;
+}
+
+.result-survey__message {
+  font-size: 1rem;
+  font-family: "Gilroy-thin";
+  color: #fff;
+  letter-spacing: 1px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.paragraph-result {
+  font-size: 1rem;
+  color: #fff;
+  padding-bottom: 10px;
+  letter-spacing: 1px;
+  line-height: 20px;
+  text-align: start;
 }
