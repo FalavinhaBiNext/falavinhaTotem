@@ -16,7 +16,7 @@ const Cigam = () => {
   // links dos botões
   const options = [
     { name: "DASHBOARD BI CIGAM", route: routes.dashboardGestor },
-    { name: "FAÇA UMA SIMULAÇÃO", route: routes.powerapps },
+    { name: "FAÇA UMA SIMULAÇÃO", route: routes.questionarioCigam },
   ];
 
   return (

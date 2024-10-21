@@ -40,7 +40,7 @@ const resultMessages = [
   },
 ];
 
-export default function RespostaQuestionario() {
+export default function ResultadoRH() {
   const { calculateTotalScore } = useContext(GlobalContext);
 
   const navigate = useNavigate();

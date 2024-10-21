@@ -12,6 +12,7 @@ const routes = {
   powerapps: "/powerapps",
 
   questionarioRH: "/questionario-rh",
+  questionarioCigam: "/questionario-cigam",
 
   teste: "/teste",
 };

@@ -7,7 +7,9 @@ import { IoArrowBackCircleOutline } from "react-icons/io5";
 import FramerMotion from "../components/FramerMotion";
 import SurveyEmpresarial from "../components/SurveyEmpresarial";
 import imagem from "../assets/image/Servicos.png";
-import Formulario from "../components/Formulario";
+import { useContext } from "react";
+import { GlobalContext } from "../context/GlobalContextProvider";
+import ElementoInput from "../components/ElementoInput";
 
 const perguntas = [
   {
@@ -140,8 +142,51 @@ const perguntasAlternativas = [
   },
 ];
 
-export default function Questionario() {
+export default function QuestionarioRH() {
   const navigate = useNavigate();
+  const {
+    errors,
+    touched,
+    handleBlur,
+    handleChange,
+    getUserContact,
+    inputVal,
+  } = useContext(GlobalContext);
+  const inputs = [
+    {
+      title: "Nome",
+      nome: "nome",
+      type: "text",
+      id: "nome",
+      value: inputVal.nome || "",
+      onChange: handleChange,
+      error: errors.nome,
+      touched: touched.nome,
+      onBlur: handleBlur,
+    },
+    {
+      title: "Telefone",
+      nome: "telefone",
+      type: "tel",
+      id: "telefone",
+      value: inputVal.telefone || "",
+      onChange: handleChange,
+      error: errors.telefone,
+      touched: touched.telefone,
+      onBlur: handleBlur,
+    },
+    {
+      title: "Email",
+      nome: "email",
+      type: "email",
+      id: "email",
+      value: inputVal.email || "",
+      onChange: handleChange,
+      error: errors.email,
+      touched: touched.email,
+      onBlur: handleBlur,
+    },
+  ];
 
   return (
     <>
@@ -155,7 +200,11 @@ export default function Questionario() {
         <FramerMotion>
           <h1 className="title">Faça uma pesquisa sobre sua empresa</h1>
 
-          <Formulario />
+          <form className="form" onSubmit={getUserContact}>
+            {inputs.map((input) => (
+              <ElementoInput {...input} key={input.id} />
+            ))}
+          </form>
 
           <SurveyEmpresarial
             perguntas={perguntas}

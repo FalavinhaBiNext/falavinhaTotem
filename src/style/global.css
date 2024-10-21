@@ -40,6 +40,12 @@ li {
   list-style: none;
 }
 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .base_container {
   max-width: 992px;
   margin: 0 auto;

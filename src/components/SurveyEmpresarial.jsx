@@ -36,7 +36,7 @@ export default function SurveyEmpresarial({
 
   const handleSubmitSurvey = () => {
     getUserContact();
-    navigate("/resposta-questionario");
+    navigate("/resultado-rh");
   };
 
   const handleChangeAlt = (questionId, answerValue) => {
