@@ -42,6 +42,7 @@ const resultMessages = [
 
 export default function RespostaQuestionario() {
   const { calculateTotalScore } = useContext(GlobalContext);
+
   const navigate = useNavigate();
   const result = calculateTotalScore();
 

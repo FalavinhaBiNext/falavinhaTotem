@@ -101,6 +101,45 @@ const perguntas = [
   },
 ];
 
+const perguntasAlternativas = [
+  {
+    id: 1,
+    text: `Você acredita que treinamentos de liderança podem impactar positivamente o desempenho da sua equipe?`,
+    options: [
+      {
+        label: "Sim",
+        id: 11,
+      },
+      {
+        label: "Não",
+        id: 12,
+      },
+      {
+        label: "Não tenho certeza",
+        id: 13,
+      },
+    ],
+  },
+  {
+    id: 2,
+    text: `Você estaria interessado em participar de uma pesquisa de clima organizacional para melhorar o ambiente de trabalho?`,
+    options: [
+      {
+        label: "Sim",
+        id: 21,
+      },
+      {
+        label: "Não",
+        id: 22,
+      },
+      {
+        label: "Não tenho certeza",
+        id: 23,
+      },
+    ],
+  },
+];
+
 export default function Questionario() {
   const navigate = useNavigate();
 
@@ -118,7 +157,10 @@ export default function Questionario() {
 
           <Formulario />
 
-          <SurveyEmpresarial questions={perguntas} />
+          <SurveyEmpresarial
+            perguntas={perguntas}
+            perguntasAlternativas={perguntasAlternativas}
+          />
         </FramerMotion>
       </HeroApp>
 
