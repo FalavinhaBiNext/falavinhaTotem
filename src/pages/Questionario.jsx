@@ -7,6 +7,7 @@ import { IoArrowBackCircleOutline } from "react-icons/io5";
 import FramerMotion from "../components/FramerMotion";
 import SurveyEmpresarial from "../components/SurveyEmpresarial";
 import imagem from "../assets/image/Servicos.png";
+import Formulario from "../components/Formulario";
 
 const perguntas = [
   {
@@ -114,6 +115,8 @@ export default function Questionario() {
       <HeroApp fundo={imagem}>
         <FramerMotion>
           <h1 className="title">Faça uma pesquisa sobre sua empresa</h1>
+
+          <Formulario />
 
           <SurveyEmpresarial questions={perguntas} />
         </FramerMotion>
