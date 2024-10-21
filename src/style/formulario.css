@@ -1,0 +1,48 @@
+/* FORMULÁRO */
+.form {
+  display: flex;
+  flex-flow: column;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+/* INPUTS */
+.input-label {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  width: 100%;
+  font-size: 1rem;
+  color: #fff;
+  letter-spacing: 1px;
+  line-height: 20px;
+  font-weight: 600;
+}
+
+.input-element {
+  width: inherit;
+  height: 45px;
+  border-radius: 50px;
+  border: 2px solid #b4b4b4;
+  transition: all 250ms ease;
+  padding: 0 20px;
+  font-size: 1rem;
+  color: #582b6f;
+  font-weight: 400;
+}
+
+.input-element:focus {
+  outline: none;
+  border: 2px solid #582b6f;
+}
+
+.input-element::placeholder {
+  color: #b4b4b4;
+}
+
+.error-message {
+  font-size: 0.8rem;
+  color: #ff0000;
+  font-family: inherit;
+  line-height: 14px;
+}
