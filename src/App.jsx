@@ -12,9 +12,11 @@ import ConsultoriaEmpresarial from "./pages/ConsultoriaEmpresarial";
 import Testes from "./pages/teste";
 import { AnimatePresence } from "framer-motion";
 import NotFound from "./pages/NotFound";
-import Questionario from "./pages/Questionario";
-import RespostaQuestionario from "./pages/RespostaQuestionario";
+import QuestionarioRH from "./pages/QuestionarioRH";
+import ResultadoRH from "./pages/ResultadoRH";
 import StayOnTop from "./components/StayOnTop";
+import QuestionarioCigam from "./pages/QuestionarioCigam";
+import ResultadoCigam from "./pages/ResultadoCigam";
 
 function App() {
   return (
@@ -42,12 +44,12 @@ function App() {
             element={<DashboardFinanceiro />}
           />
           <Route path="/teste" element={<Testes />} />
-          <Route path="/questionario-rh" element={<Questionario />} />
+          <Route path="/questionario-rh" element={<QuestionarioRH />} />
 
-          <Route
-            path="/resposta-questionario"
-            element={<RespostaQuestionario />}
-          />
+          <Route path="/resultado-rh" element={<ResultadoRH />} />
+          <Route path="/questionario-cigam" element={<QuestionarioCigam />} />
+          <Route path="/resultado-cigam" element={<ResultadoCigam />} />
+
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </Router>
