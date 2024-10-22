@@ -186,7 +186,7 @@ export default function QuestionarioCigam() {
                 name="roi_mensal"
                 id="roi_mensal"
                 placeholder="R$ 0,00"
-                value={isValidValue(roiMensal)}
+                value={moneyConverter(isValidValue(roiMensal))}
                 readOnly
               />
             </label>
