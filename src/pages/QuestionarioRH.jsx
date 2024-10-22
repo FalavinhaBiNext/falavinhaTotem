@@ -152,6 +152,7 @@ export default function QuestionarioRH() {
     getUserContact,
     inputVal,
   } = useContext(GlobalContext);
+
   const inputs = [
     {
       title: "Nome",

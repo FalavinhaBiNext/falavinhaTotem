@@ -6,6 +6,7 @@ import * as Yup from "yup";
 export const GlobalContext = createContext();
 export default function GlobalContextProvider({ children }) {
   const [answers, setAnswers] = useState({});
+  const [submitROIValues, setSubmitRoIValues] = useState(null);
 
   const calculateTotalScore = () => {
     return Object.values(answers).reduce(
@@ -66,6 +67,7 @@ export default function GlobalContextProvider({ children }) {
   async function getUserContact() {
     try {
       console.log(inputVal);
+
       resetForm();
     } catch (error) {
       console.log(error);
@@ -84,6 +86,8 @@ export default function GlobalContextProvider({ children }) {
     getUserContact,
     phoneMask,
     moneyConverter,
+    submitROIValues,
+    setSubmitRoIValues,
   };
   return (
     <GlobalContext.Provider value={values}>{children}</GlobalContext.Provider>

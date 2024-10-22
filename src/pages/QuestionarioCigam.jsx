@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { useContext, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
@@ -11,27 +10,63 @@ import fundo from "../assets/image/Cigam.png";
 import { GlobalContext } from "../context/GlobalContextProvider";
 
 export default function QuestionarioCigam() {
-  const { moneyConverter } = useContext(GlobalContext);
+  const { moneyConverter, setSubmitRoIValues } = useContext(GlobalContext);
   const navigate = useNavigate();
 
-  const initialValues = {
+  const [values, setValues] = useState({
     usuarios: "",
     salario_medio: "",
     implementacao: "",
-  };
+    situacao_atual: "",
+  });
+  const isValidValue = (val) => (isNaN(val) || !isFinite(val) ? "" : val);
+  const emptyValueFields =
+    values.usuarios === "" ||
+    values.salario_medio === "" ||
+    values.implementacao === "" ||
+    values.situacao_atual === "";
 
-  const [values, setValues] = useState(initialValues);
-  const [submittedValues, setSubmittedValues] = useState(null);
-
-  const result = useMemo(
-    () =>
-      (Number(values.usuarios) * Number(values.salario_medio)) /
-      Number(values.implementacao),
-    [values]
+  // FOLHA DE PAGAMENTO
+  const folha_pagamento = useMemo(
+    () => values.usuarios * values.salario_medio,
+    [values.usuarios, values.salario_medio]
   );
 
-  const isValidValue = (val) =>
-    isNaN(val) || !isFinite(val) ? "" : moneyConverter(val);
+  // SALARIO HORA
+  const salario_hora = useMemo(
+    () => values.salario_medio / 160,
+    [values.salario_medio]
+  );
+
+  // GANHO PRODUTIVIDADE MENSAL
+  const produtividade_mensal = useMemo(
+    () => folha_pagamento * (values.situacao_atual / 100),
+    [folha_pagamento, values.situacao_atual]
+  );
+
+  // GANHO PRODUTIVIDADE HORA
+  const produtividade_hora = useMemo(
+    () => values.usuarios * 160 * (values.situacao_atual / 100),
+    [values.usuarios, values.situacao_atual]
+  );
+
+  // GANHO PRODUTIVIDADE FINACEIRA
+  const produtividade_financeira = useMemo(
+    () => produtividade_mensal * 12,
+    [produtividade_mensal]
+  );
+
+  // ROI MENSAL
+  const roiMensal = produtividade_mensal;
+
+  // ROI ANUAL
+  const roiAnual = roiMensal * 12;
+
+  // ANO/MES PARA O ROI
+  const roi_meses_ano = useMemo(
+    () => values.implementacao / roiAnual,
+    [values.implementacao, roiAnual]
+  );
 
   const handleChange = (event) => {
     const { id, value } = event.target;
@@ -41,10 +76,26 @@ export default function QuestionarioCigam() {
     }));
   };
 
-  const handleSumbitValues = (e) => {
+  const handleSubmitValues = (e) => {
     e.preventDefault();
-    setSubmittedValues({ ...values, result });
-    setValues(initialValues);
+    if (emptyValueFields) return;
+
+    setSubmitRoIValues({
+      ...values,
+      folha_pagamento,
+      salario_hora,
+      produtividade_hora,
+      produtividade_mensal,
+      produtividade_financeira,
+      roi_meses_ano,
+    });
+    setValues({
+      usuarios: "",
+      salario_medio: "",
+      implementacao: "",
+      situacao_atual: "",
+    });
+    navigate("/resultado-cigam");
   };
 
   return (
@@ -58,7 +109,11 @@ export default function QuestionarioCigam() {
         <FramerMotion>
           <h1 className="title">Faça uma pesquisa sobre sua empresa</h1>
 
-          <form className="form" onSubmit={handleSumbitValues}>
+          <form
+            className="form"
+            onSubmit={handleSubmitValues}
+            style={{ marginBottom: "60px" }}
+          >
             <label htmlFor="usuarios" className="input-label">
               Usuários:
               <input
@@ -87,48 +142,51 @@ export default function QuestionarioCigam() {
               />
             </label>
 
-            <label htmlFor="situacao_atual" className="input-label">
+            <label
+              htmlFor="situacao_atual"
+              className="input-label input-label__select"
+            >
               Situação atual
               <select
                 className="input-element"
                 name="situacao_atual"
                 id="situacao_atual"
-                defaultValue=""
-                onChange={() => {}}
+                value={values.situacao_atual}
+                onChange={handleChange}
               >
                 <option value="" disabled>
                   Situação atual da empresa
                 </option>
-                <option value="Boa">Boa</option>
-                <option value="Excelente">Excelente</option>
-                <option value="Muito boa">Muito boa</option>
-                <option value="Muito ruim">Muito ruim</option>
+                <option value={15}>ERP Grande porte</option>
+                <option value={20}>ERP Pequeno porte</option>
+                <option value={30}>Não possui ERP/Micro ERP</option>
               </select>
             </label>
 
             <label htmlFor="implementacao" className="input-label">
-              Implementacao:
+              Implementação:
               <input
                 className="input-element"
                 type="number"
                 name="implementacao"
                 id="implementacao"
-                placeholder="Valor de implementacao"
+                placeholder="Valor de implementação"
                 autoComplete="off"
                 onChange={handleChange}
                 value={values.implementacao}
               />
             </label>
 
+            {/* OUTPUTS */}
             <label htmlFor="roi_mensal" className="input-label">
               ROI mensal:
               <input
-                className="input-element"
+                className="input-element input-element__output"
                 type="text"
                 name="roi_mensal"
                 id="roi_mensal"
-                placeholder="R$0,00"
-                value={isValidValue(result)}
+                placeholder="R$ 0,00"
+                value={isValidValue(roiMensal)}
                 readOnly
               />
             </label>
@@ -136,12 +194,12 @@ export default function QuestionarioCigam() {
             <label htmlFor="roi_anual" className="input-label">
               ROI anual - GP:
               <input
-                className="input-element"
+                className="input-element input-element__output"
                 type="text"
                 name="roi_anual"
                 id="roi_anual"
-                placeholder="R$0,00"
-                value={isValidValue(result)}
+                placeholder="R$ 0,00"
+                value={moneyConverter(isValidValue(roiAnual))}
                 readOnly
               />
             </label>
@@ -149,12 +207,12 @@ export default function QuestionarioCigam() {
             <label htmlFor="folha_pagamento" className="input-label">
               Folha de pagamento(apenas usuários):
               <input
-                className="input-element"
+                className="input-element input-element__output"
                 type="text"
                 name="folha_pagamento"
                 id="folha_pagamento"
-                placeholder="R$0,00"
-                value={isValidValue(result)}
+                placeholder="R$ 0,00"
+                value={moneyConverter(isValidValue(folha_pagamento))}
                 readOnly
               />
             </label>
@@ -162,193 +220,39 @@ export default function QuestionarioCigam() {
             <label htmlFor="salario_hora" className="input-label">
               Salário/Hora:
               <input
-                className="input-element"
+                className="input-element input-element__output"
                 type="text"
                 name="salario_hora"
                 id="salario_hora"
-                placeholder="R$0,00"
-                value={isValidValue(result)}
+                placeholder="R$ 0,00"
+                value={moneyConverter(isValidValue(salario_hora))}
+                readOnly
+              />
+            </label>
+
+            <label htmlFor="tempo_roi" className="input-label">
+              Ano/Meses para ROI:
+              <input
+                className="input-element input-element__output"
+                type="number"
+                name="tempo_roi"
+                id="tempo_roi"
+                placeholder="Tempo para ROI"
+                autoComplete="off"
+                onChange={handleChange}
+                value={isValidValue(roi_meses_ano.toFixed(1))}
                 readOnly
               />
             </label>
             <br />
 
-            <Botoes
-              onClick={() => navigate("/resultado-cigam")}
-              type="submit"
-              className="opcoes"
-            >
+            <Botoes type="submit" className="opcoes">
               Calcular
             </Botoes>
           </form>
-
-          {/* Display submitted values */}
-          {submittedValues && (
-            <div style={{ marginTop: "60px" }}>
-              <h2>Resultado: {submittedValues.result}</h2>
-            </div>
-          )}
         </FramerMotion>
       </HeroApp>
       <FooterApp />
     </>
   );
 }
-
-// export default function QuestionarioCigam() {
-
-//   const [values, setValues] = useState({
-//     usuarios: "",
-//     colaborador: "",
-//     implementacao: "",
-//     roi_mensal: "",
-//     roi_anual: "",
-//     folha_pagamento: "",
-//     salario_hora: "",
-//   });
-
-//   const inputFields = useMemo(
-//     () => [
-//       {
-//         title: "Usuários:",
-//         name: "usuarios",
-//         placeholder: "Número de usuários",
-//       },
-//       {
-//         title: "Salário médio:",
-//         name: "colaborador",
-//         placeholder: "Salário médio do colaborador",
-//       },
-//       {
-//         title: "Implementação:",
-//         name: "implementacao",
-//         placeholder: "Valor da implementação",
-//       },
-//       {
-//         title: "ROI mensal:",
-//         name: "roi_mensal",
-//         placeholder: "R$ 0,00",
-//       },
-//       {
-//         title: "ROI anual - GP:",
-//         name: "roi_anual",
-//         placeholder: "R$ 0,00",
-//       },
-//       {
-//         title: "Folha de pagamento (apenas usuários):",
-//         name: "folha_pagamento",
-//         placeholder: "R$ 0,00",
-//       },
-//       {
-//         title: "Salário/Hora:",
-//         name: "salario_hora",
-//         placeholder: "R$ 0,00",
-//       },
-//     ],
-//     []
-//   );
-
-//   const handleChange = (event) => {
-//     const { id, value } = event.target;
-//   };
-
-//   const handleSumitData = () => {};
-
-//   return (
-//     <>
-//       <HeaderApp>
-//         <Botoes onClick={() => navigate(-1)} className="btnVoltar">
-//           <IoArrowBackCircleOutline className="icon" />
-//         </Botoes>
-//       </HeaderApp>
-//       <HeroApp fundo={fundo}>
-//         <FramerMotion>
-//           <h1 className="title">Faça uma pesquisa sobre sua empresa</h1>
-
-//           <form className="form">
-//             {inputFields.map((field, index) => {
-//               if (index === 2) {
-//                 return (
-//                   <QuestionatioSelect
-//                     key={field.name}
-//                     title={field.title}
-//                     name={field.name}
-//                     placeholder={field.placeholder}
-//                     onChange={handleChange}
-//                   />
-//                 );
-//               }
-//               return (
-//                 <QuestionarioInput
-//                   key={field.name}
-//                   title={field.title}
-//                   name={field.name}
-//                   placeholder={field.placeholder}
-//                   onChange={handleChange}
-//                   value={field.value}
-//                 />
-//               );
-//             })}
-
-//             <Botoes onClick={() => handleSumitData()} className="opcoes">
-//               Calcular
-//             </Botoes>
-//           </form>
-//         </FramerMotion>
-//       </HeroApp>
-//       <FooterApp />
-//     </>
-//   );
-// }
-
-// const QuestionarioInput = ({ name, placeholder, title, value, onChange }) => (
-//   <label htmlFor={name} className="input-label">
-//     {title}
-//     <input
-//       className="input-element"
-//       type="text"
-//       name={name}
-//       id={name}
-//       placeholder={placeholder}
-//       autoComplete="off"
-//       onChange={onChange}
-//       value={value}
-//     />
-//   </label>
-// );
-
-// QuestionarioInput.propTypes = {
-//   name: PropTypes.string.isRequired,
-//   placeholder: PropTypes.string.isRequired,
-//   title: PropTypes.string.isRequired,
-//   onChange: PropTypes.func.isRequired,
-//   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-// };
-
-// const QuestionatioSelect = ({ name, placeholder, title, onChange }) => (
-//   <label htmlFor={name} className="input-label">
-//     {title}
-//     <select
-//       className="input-element"
-//       name={name}
-//       id={name}
-//       defaultValue=""
-//       onChange={onChange}
-//     >
-//       <option value="" disabled>
-//         {placeholder}
-//       </option>
-//       <option value="Boa">Boa</option>
-//       <option value="Excelente">Excelente</option>
-//       <option value="Muito boa">Muito boa</option>
-//       <option value="Muito ruim">Muito ruim</option>
-//     </select>
-//   </label>
-// );
-
-// QuestionatioSelect.propTypes = {
-//   name: PropTypes.string.isRequired,
-//   placeholder: PropTypes.string.isRequired,
-//   title: PropTypes.string.isRequired,
-//   onChange: PropTypes.func.isRequired,
-// };

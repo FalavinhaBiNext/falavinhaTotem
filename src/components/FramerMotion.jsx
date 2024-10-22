@@ -11,6 +11,7 @@ export default function FramerMotion({ children }) {
         display: "flex",
         flexDirection: "column",
         minHeight: "inherit",
+        width: "inherit",
       }}
     >
       {children}
