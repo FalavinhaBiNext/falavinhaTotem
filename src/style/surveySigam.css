@@ -1,0 +1,31 @@
+.roi-list {
+  display: flex;
+  flex-flow: column;
+  gap: 15px;
+  padding: 50px 0 30px;
+}
+
+.roi-list__item {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  border-radius: 10px;
+  min-height: 120px;
+  background-color: rgba(0, 93, 96, 0.1);
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-family: inherit;
+  letter-spacing: 1.2px;
+}
+
+.roi-list__title {
+  font-size: 2rem;
+}
+
+.roi-list__value {
+  font-size: 1rem;
+}

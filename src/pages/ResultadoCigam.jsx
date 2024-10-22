@@ -1,73 +1,57 @@
 import { useContext } from "react";
-import HeaderApp from "../components/Header";
-import Botoes from "../components/Botoes";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import HeroApp from "../components/Hero";
 import { GlobalContext } from "../context/GlobalContextProvider";
+import HeaderApp from "../components/Header";
+import Botoes from "../components/Botoes";
+import HeroApp from "../components/Hero";
 import FramerMotion from "../components/FramerMotion";
 import imagem from "../assets/image/AssessoriaTributaria.png";
 
 export default function ResultadoCigam() {
-  const { moneyConverter } = useContext(GlobalContext);
-
+  const { moneyConverter, submitROIValues: data } = useContext(GlobalContext);
   const navigate = useNavigate();
 
-  const list = {
-    display: "flex",
-    flexFlow: "column",
-    gap: "15px",
-    marginBottom: "60px",
-  };
+  const roiData = data
+    ? [
+        { value: data?.usuarios, title: "Usuários" },
+        {
+          value: moneyConverter(data?.salario_medio),
+          title: "Salário Médio",
+        },
+        {
+          value: moneyConverter(data?.folha_pagamento),
+          title: "Folha de Pagamento",
+        },
+        {
+          value: moneyConverter(data?.salario_hora),
+          title: "Salário/Hora/Colaborador",
+        },
+        {
+          value: moneyConverter(data?.produtividade_hora),
+          title: "Ganho de Produtividade em Horas/Mês",
+        },
+        {
+          value: moneyConverter(data?.produtividade_mensal),
+          title: "Ganho de Produtividade Mensal",
+        },
+        {
+          value: moneyConverter(data?.produtividade_financeira),
+          title: "Ganho de Produtividade Financeira/Ano",
+        },
+        {
+          value: data?.roi_meses_ano.toFixed(1).replace(".", ","),
+          title: "Retorno do Investimento/Anos/Meses",
+        },
+      ]
+    : [];
 
-  const listItem = {
-    width: "100%",
-    display: "flex",
-    flexFlow: "column",
-    justifyContent: "flex-end",
-    alignItems: "center",
-    gap: "15px",
-    padding: "15px",
-    border: "2px solid #582b6f",
-    borderRadius: "10px",
-    minHeight: "120px",
+  const noDataToShowStyle = {
+    textAlign: "center",
     color: "#fff",
+    fontSize: "1.5rem",
+    marginTop: "100px",
   };
-
-  const mockdata = [
-    {
-      value: 5,
-      title: "Usuários",
-    },
-    {
-      value: moneyConverter(3000000),
-      title: "Salário Médio",
-    },
-    {
-      value: moneyConverter(1500000),
-      title: "Folha de pagamento",
-    },
-    {
-      value: moneyConverter(1875),
-      title: "Salario/Hora/Colaborador",
-    },
-    {
-      value: 160,
-      title: "Ganho de produtividade em horas/mês",
-    },
-    {
-      value: moneyConverter(300000),
-      title: "Ganho de produtividade mensal",
-    },
-    {
-      value: moneyConverter(3600000),
-      title: "Ganho de produtividade financeira/ano",
-    },
-    {
-      value: 4 / 100,
-      title: "Retorno do investimento/anos/meses",
-    },
-  ];
 
   return (
     <>
@@ -81,16 +65,18 @@ export default function ResultadoCigam() {
         <FramerMotion>
           <h1 className="title">Resultado CIGAM</h1>
 
-          <div>
-            <ul style={list}>
-              {mockdata.map((item, index) => (
-                <li key={index} style={listItem}>
-                  <h2>{item.title}</h2>
-                  <h3>{item.value}</h3>
+          {roiData.length > 0 ? (
+            <ul className="roi-list">
+              {roiData.map((item, index) => (
+                <li className="roi-list__item" key={index}>
+                  <h2 className="roi-list__title">{item.value}</h2>
+                  <h3 className="roi-list__value">{item.title}</h3>
                 </li>
               ))}
             </ul>
-          </div>
+          ) : (
+            <h2 style={noDataToShowStyle}>Sem dados para exibir</h2>
+          )}
         </FramerMotion>
       </HeroApp>
     </>
