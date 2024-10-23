@@ -9,13 +9,6 @@ export default function GlobalContextProvider({ children }) {
   const [surveyMsg, setSurveyMsg] = useState({});
   const [submitROIValues, setSubmitRoIValues] = useState(null);
 
-  const calculateTotalScore = () => {
-    return Object.values(answers).reduce(
-      (total, answer) => total + parseInt(answer, 10),
-      0
-    );
-  };
-
   const {
     values: inputVal,
     errors,
@@ -29,7 +22,7 @@ export default function GlobalContextProvider({ children }) {
       telefone: "",
       email: "",
       origem: "RH",
-      surveyMessage: surveyMsg,
+      surveyMessage: {},
     },
     validationSchema,
     onSubmit: getUserContact,
@@ -42,7 +35,7 @@ export default function GlobalContextProvider({ children }) {
         email: inputVal.email,
         telefone: inputVal.telefone,
         origem: inputVal.origem,
-        surveyMessage: inputVal.surveyMessage,
+        surveyMessage: inputVal.surveyMsg,
       });
 
       resetForm();
@@ -50,6 +43,13 @@ export default function GlobalContextProvider({ children }) {
       console.error("Error saving user info:", error);
     }
   }
+
+  const calculateTotalScore = () => {
+    return Object.values(answers).reduce(
+      (total, answer) => total + parseInt(answer, 10),
+      0
+    );
+  };
 
   const values = {
     answers,

@@ -1,24 +1,18 @@
-import { useNavigate } from "react-router-dom";
 import HeaderApp from "../components/Header";
 import HeroApp from "../components/Hero";
-import { IoArrowBackCircleOutline } from "react-icons/io5";
 import fundo from "../assets/image/TestePowerApps.png";
 import FooterApp from "../components/Footer";
-import Botoes from "../components/Botoes";
+import FramerMotion from "../components/FramerMotion";
 
 function Dashboard() {
-  const navigate = useNavigate();
-
   return (
-    <div className="fundoGeral" style={{ backgroundImage: `url(${fundo})` }}>
+    <>
       <HeaderApp>
-        <Botoes onClick={() => navigate(-1)} className="btnVoltar">
-          <IoArrowBackCircleOutline className="icon" />
-        </Botoes>
-      </HeaderApp>
-      <HeroApp>
         <h1 className="title">FAÇA UMA SIMULAÇÃO</h1>
-        <div className="hero">
+      </HeaderApp>
+
+      <HeroApp fundo={fundo}>
+        <FramerMotion>
           <iframe
             title="PowerApps RH"
             width="100%"
@@ -27,8 +21,9 @@ function Dashboard() {
             frameBorder="1"
             allowFullScreen="true"
           ></iframe>
-        </div>
+        </FramerMotion>
       </HeroApp>
+
       <FooterApp>
         <a href="https://app.powerbi.com/view?r=eyJrIjoiMGM5Y2VhYTUtMTdhMS00MmM0LWFmOTMtYTY4Njc2ZjMwYzQwIiwidCI6Ijk2ZjUxYjBhLTMwNDAtNDgzZi04Yjc2LTExODQ4YmZkZTRmYiJ9">
           App Dashboard
@@ -37,7 +32,7 @@ function Dashboard() {
           appsheet
         </a>
       </FooterApp>
-    </div>
+    </>
   );
 }
 export default Dashboard;

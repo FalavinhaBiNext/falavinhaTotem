@@ -1,8 +1,5 @@
 import { useContext } from "react";
 import HeaderApp from "../components/Header";
-import Botoes from "../components/Botoes";
-import { IoArrowBackCircleOutline } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
 import HeroApp from "../components/Hero";
 import { GlobalContext } from "../context/GlobalContextProvider";
 import FramerMotion from "../components/FramerMotion";
@@ -43,7 +40,6 @@ const resultMessages = [
 export default function ResultadoRH() {
   const { calculateTotalScore, setSurveyMsg } = useContext(GlobalContext);
 
-  const navigate = useNavigate();
   const result = calculateTotalScore();
 
   const { title, message: resultMessage } =
@@ -51,15 +47,11 @@ export default function ResultadoRH() {
   return (
     <>
       <HeaderApp>
-        <Botoes onClick={() => navigate(-1)} className="btnVoltar">
-          <IoArrowBackCircleOutline className="icon" />
-        </Botoes>
+        <h1 className="title">Resultado</h1>
       </HeaderApp>
 
       <HeroApp fundo={imagem}>
         <FramerMotion>
-          <h1 className="title">Resultado</h1>
-
           <ResultSurvey
             title={title}
             message={resultMessage}

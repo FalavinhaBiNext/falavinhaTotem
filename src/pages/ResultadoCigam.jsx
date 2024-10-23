@@ -1,16 +1,12 @@
 import { useContext } from "react";
-import { IoArrowBackCircleOutline } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../context/GlobalContextProvider";
 import HeaderApp from "../components/Header";
-import Botoes from "../components/Botoes";
 import HeroApp from "../components/Hero";
 import FramerMotion from "../components/FramerMotion";
 import imagem from "../assets/image/AssessoriaTributaria.png";
 
 export default function ResultadoCigam() {
   const { moneyConverter, submitROIValues: data } = useContext(GlobalContext);
-  const navigate = useNavigate();
 
   const roiData = data
     ? [
@@ -56,15 +52,11 @@ export default function ResultadoCigam() {
   return (
     <>
       <HeaderApp>
-        <Botoes onClick={() => navigate(-1)} className="btnVoltar">
-          <IoArrowBackCircleOutline className="icon" />
-        </Botoes>
+        <h1 className="title">Resultado CIGAM</h1>
       </HeaderApp>
 
       <HeroApp fundo={imagem}>
         <FramerMotion>
-          <h1 className="title">Resultado CIGAM</h1>
-
           {roiData.length > 0 ? (
             <ul className="roi-list">
               {roiData.map((item, index) => (

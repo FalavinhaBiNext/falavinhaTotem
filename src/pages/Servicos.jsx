@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import HeaderApp from "../components/Header";
 import HeroApp from "../components/Hero";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
@@ -10,8 +9,6 @@ import FramerMotion from "../components/FramerMotion";
 import ButtonLinks from "../components/ButtonLinks";
 
 function SecondPage() {
-  const navigate = useNavigate();
-
   // links dos botões
   const options = [
     { name: "DASHBOARDS BI", route: routes.bi },
@@ -28,15 +25,19 @@ function SecondPage() {
   return (
     <>
       <HeaderApp>
-        <Botoes onClick={() => navigate(routes.home)} className="btnVoltar">
-          <IoArrowBackCircleOutline className="icon" />
-        </Botoes>
+        <h1 className="title">NOSSAS SOLUÇÕES</h1>
       </HeaderApp>
 
       <HeroApp fundo={imagem}>
         <FramerMotion>
-          <h1 className="title">NOSSAS SOLUÇÕES</h1>
-          {/* <span className='textoMain'>A Falavinha Next oferece uma ampla gama de serviços para otimizar a gestão de sua empresa. Entre eles estão: soluções contábeis, gestão financeira, consultoria tributária, consultoria em RH, além da criação de dashboards personalizados de Business Intelligence (BI). Somos parceiros da Cigam, proporcionando ainda mais integração e eficiência para o seu negócio.</span> */}
+          <span className="textoMain">
+            A Falavinha Next oferece uma ampla gama de serviços para otimizar a
+            gestão de sua empresa. Entre eles estão: soluções contábeis, gestão
+            financeira, consultoria tributária, consultoria em RH, além da
+            criação de dashboards personalizados de Business Intelligence (BI).
+            Somos parceiros da Cigam, proporcionando ainda mais integração e
+            eficiência para o seu negócio.
+          </span>
           <ButtonLinks options={options} />
 
           <div

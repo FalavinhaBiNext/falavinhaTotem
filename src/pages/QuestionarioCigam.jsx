@@ -1,6 +1,5 @@
 import { useContext, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { IoArrowBackCircleOutline } from "react-icons/io5";
 import HeaderApp from "../components/Header";
 import Botoes from "../components/Botoes";
 import HeroApp from "../components/Hero";
@@ -105,24 +104,17 @@ export default function QuestionarioCigam() {
   return (
     <>
       <HeaderApp>
-        <Botoes onClick={() => navigate(-1)} className="btnVoltar">
-          <IoArrowBackCircleOutline className="icon" />
-        </Botoes>
+        <h1 className="title">Faça uma pesquisa sobre sua empresa</h1>
       </HeaderApp>
+
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <h1 className="title">Faça uma pesquisa sobre sua empresa</h1>
-
-          <form
-            className="form"
-            onSubmit={handleSubmitValues}
-            style={{ marginBottom: "60px" }}
-          >
+          <form className="form" style={{ marginBottom: "60px" }}>
             <label htmlFor="usuarios" className="input-label">
               Usuários:
               <input
                 className="input-element"
-                type="number"
+                type="text"
                 name="usuarios"
                 id="usuarios"
                 placeholder="Número de usuários"
@@ -136,7 +128,7 @@ export default function QuestionarioCigam() {
               Salário médio:
               <input
                 className="input-element"
-                type="number"
+                type="text"
                 name="salario_medio"
                 id="salario_medio"
                 placeholder="Salário médio do colaborador"
@@ -171,7 +163,7 @@ export default function QuestionarioCigam() {
               Implementação:
               <input
                 className="input-element"
-                type="number"
+                type="text"
                 name="implementacao"
                 id="implementacao"
                 placeholder="Valor de implementação"
@@ -238,7 +230,7 @@ export default function QuestionarioCigam() {
               Ano/Meses para ROI:
               <input
                 className="input-element input-element__output"
-                type="number"
+                type="text"
                 name="tempo_roi"
                 id="tempo_roi"
                 placeholder="Tempo para ROI"
@@ -249,14 +241,15 @@ export default function QuestionarioCigam() {
               />
             </label>
             <br />
-
-            <Botoes type="submit" className="opcoes">
-              Calcular
-            </Botoes>
           </form>
         </FramerMotion>
       </HeroApp>
-      <FooterApp />
+
+      <FooterApp footerFixed>
+        <Botoes type="button" className="opcoes" onClick={handleSubmitValues}>
+          Calcular
+        </Botoes>
+      </FooterApp>
     </>
   );
 }

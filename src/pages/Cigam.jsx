@@ -1,9 +1,7 @@
-import { useNavigate } from "react-router-dom";
 import HeaderApp from "../components/Header";
 import HeroApp from "../components/Hero";
-import { IoArrowBackCircleOutline } from "react-icons/io5";
+
 import fundo from "../assets/image/Cigam.png";
-import Botoes from "../components/Botoes";
 import FooterApp from "../components/Footer";
 import routes from "../routes";
 import textos from "../components/textos";
@@ -11,8 +9,6 @@ import FramerMotion from "../components/FramerMotion";
 import ButtonLinks from "../components/ButtonLinks";
 
 const Cigam = () => {
-  const navigate = useNavigate();
-
   // links dos botões
   const options = [
     { name: "DASHBOARD BI CIGAM", route: routes.dashboardGestor },
@@ -21,11 +17,7 @@ const Cigam = () => {
 
   return (
     <>
-      <HeaderApp>
-        <Botoes onClick={() => navigate(-1)} className="btnVoltar">
-          <IoArrowBackCircleOutline className="icon" />
-        </Botoes>
-      </HeaderApp>
+      <HeaderApp />
       <HeroApp fundo={fundo}>
         <FramerMotion>
           <div>
