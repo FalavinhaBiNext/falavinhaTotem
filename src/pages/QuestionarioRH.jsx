@@ -1,9 +1,6 @@
 import HeaderApp from "../components/Header";
 import HeroApp from "../components/Hero";
-import Botoes from "../components/Botoes";
 import FooterApp from "../components/Footer";
-import { useNavigate } from "react-router-dom";
-import { IoArrowBackCircleOutline } from "react-icons/io5";
 import FramerMotion from "../components/FramerMotion";
 import SurveyEmpresarial from "../components/SurveyEmpresarial";
 import imagem from "../assets/image/Servicos.png";
@@ -143,7 +140,6 @@ const perguntasAlternativas = [
 ];
 
 export default function QuestionarioRH() {
-  const navigate = useNavigate();
   const {
     errors,
     touched,
@@ -192,15 +188,11 @@ export default function QuestionarioRH() {
   return (
     <>
       <HeaderApp>
-        <Botoes onClick={() => navigate(-1)} className="btnVoltar">
-          <IoArrowBackCircleOutline className="icon" />
-        </Botoes>
+        <h1 className="title">Faça uma pesquisa sobre sua empresa</h1>
       </HeaderApp>
 
       <HeroApp fundo={imagem}>
         <FramerMotion>
-          <h1 className="title">Faça uma pesquisa sobre sua empresa</h1>
-
           <form className="form" onSubmit={getUserContact}>
             {inputs.map((input) => (
               <ElementoInput {...input} key={input.id} />

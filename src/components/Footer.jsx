@@ -1,9 +1,17 @@
 import PropTypes from "prop-types";
-export default function FooterApp(props) {
+export default function FooterApp({ children, footerFixed }) {
+  const fixed = {
+    position: "fixed",
+    bottom: 0,
+    width: "100%",
+    zIndex: 100,
+    backgroundColor: "#009499",
+    padding: "0 20px",
+  };
+
   return (
-    <footer className="footer">
-      {props.children}
-      {/* <div className={props.className}>{props.children}</div> */}
+    <footer className="footer" style={footerFixed ? fixed : {}}>
+      <div className="footer__element">{children}</div>
     </footer>
   );
 }
@@ -11,4 +19,5 @@ export default function FooterApp(props) {
 FooterApp.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  footerFixed: PropTypes.bool,
 };

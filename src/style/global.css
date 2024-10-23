@@ -62,7 +62,7 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 100%;
   text-align: center;
   min-height: calc(100vh - 150px);
-  padding-top: 90px;
+  padding-top: 120px;
 }
 
 .explorationContainer .exploration {
@@ -130,11 +130,12 @@ input[type="number"]::-webkit-outer-spin-button {
 /* CONTEÚDO GERAL DAS PÁGINAS */
 .title {
   font-family: "Gilroy-light";
-  font-size: 20px;
+  font-size: 1.2rem;
   color: #fff;
   letter-spacing: 5px;
   text-transform: uppercase;
   padding-bottom: 10px;
+  text-align: center;
 }
 
 .subtitulo {
@@ -155,7 +156,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .textoMain {
   font-family: "Gilroy-thin";
-  font-size: 20px;
+  font-size: 1.25rem;
   color: #fff;
   font-style: italic;
   padding: 30px 0;

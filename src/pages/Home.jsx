@@ -9,15 +9,6 @@ import routes from "../routes";
 function HomePage() {
   const navigate = useNavigate();
 
-  const homepageButtonStyle = {
-    display: "flex",
-    justifyContent: "center",
-    position: "relative",
-    zIndex: 50,
-    width: "100%",
-    marginTop: "auto",
-  };
-
   return (
     <>
       <HeaderApp />
@@ -25,15 +16,13 @@ function HomePage() {
         <video autoPlay muted loop className="home-video">
           <source className="home-video__video" src={fundo} type="video/mp4" />
         </video>
-
-        <div style={homepageButtonStyle}>
-          <Botoes onClick={() => navigate(routes.servicos)} className="opcoes">
-            CONHEÇA NOSSOS SERVIÇOS
-          </Botoes>
-        </div>
       </HeroApp>
 
-      <FooterApp />
+      <FooterApp>
+        <Botoes onClick={() => navigate(routes.servicos)} className="opcoes">
+          CONHEÇA NOSSOS SERVIÇOS
+        </Botoes>
+      </FooterApp>
     </>
   );
 }

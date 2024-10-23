@@ -25,7 +25,7 @@ export default function NotFound() {
           </Botoes>
         </div>
       </Main>
-      <FooterApp></FooterApp>
+      <FooterApp />
     </>
   );
 }

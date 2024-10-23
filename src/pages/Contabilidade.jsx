@@ -1,9 +1,6 @@
-import { useNavigate } from "react-router-dom";
 import HeaderApp from "../components/Header";
 import HeroApp from "../components/Hero";
-import { IoArrowBackCircleOutline } from "react-icons/io5";
 import fundo from "../assets/image/ContabilidadeTotem.png";
-import Botoes from "../components/Botoes";
 import FooterApp from "../components/Footer";
 import routes from "../routes";
 import textos from "../components/textos";
@@ -11,8 +8,6 @@ import ButtonLinks from "../components/ButtonLinks";
 import FramerMotion from "../components/FramerMotion";
 
 function Contabilidade() {
-  const navigate = useNavigate();
-
   // links dos botões
   const options = [
     { name: "FAÇA UMA SIMULAÇÃO", route: routes.dashboardGestor },
@@ -21,11 +16,7 @@ function Contabilidade() {
 
   return (
     <>
-      <HeaderApp>
-        <Botoes onClick={() => navigate(-1)} className="btnVoltar">
-          <IoArrowBackCircleOutline className="icon" />
-        </Botoes>
-      </HeaderApp>
+      <HeaderApp />
 
       <HeroApp fundo={fundo}>
         <FramerMotion>

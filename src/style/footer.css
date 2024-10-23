@@ -10,6 +10,14 @@
   min-height: 40px;
 }
 
+.footer__element {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+}
+
 .copyright {
   width: 100%;
   text-align: center;
