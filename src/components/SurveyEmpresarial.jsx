@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { GlobalContext } from "../context/GlobalContextProvider";
 import { useNavigate } from "react-router-dom";
 import Botoes from "./Botoes";
@@ -13,10 +13,6 @@ export default function SurveyEmpresarial({
   const { answers, setAnswers, getUserContact, inputVal, errors } =
     useContext(GlobalContext);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setAnswers({});
-  }, [setAnswers]);
 
   const handleChange = (questionId, answerValue) => {
     setAnswers((prevAnswers) => ({

@@ -1,6 +1,20 @@
 import PropTypes from "prop-types";
+import { useEffect } from "react";
 
-export default function ResultSurvey({ title, message: resultMessage }) {
+export default function ResultSurvey({
+  title,
+  message: resultMessage,
+  setSurveyMsg,
+}) {
+  useEffect(() => {
+    if (resultMessage) {
+      setSurveyMsg({
+        titulo: title,
+        mensagem: resultMessage,
+      });
+    }
+  }, [resultMessage, setSurveyMsg, title]);
+
   return (
     title &&
     resultMessage && (
@@ -15,4 +29,5 @@ export default function ResultSurvey({ title, message: resultMessage }) {
 ResultSurvey.propTypes = {
   title: PropTypes.string,
   message: PropTypes.string,
+  setSurveyMsg: PropTypes.func,
 };

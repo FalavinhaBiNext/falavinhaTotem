@@ -36,7 +36,14 @@ function SecondPage() {
       <HeroApp fundo={imagem}>
         <FramerMotion>
           <h1 className="title">NOSSAS SOLUÇÕES</h1>
-          {/* <span className='textoMain'>A Falavinha Next oferece uma ampla gama de serviços para otimizar a gestão de sua empresa. Entre eles estão: soluções contábeis, gestão financeira, consultoria tributária, consultoria em RH, além da criação de dashboards personalizados de Business Intelligence (BI). Somos parceiros da Cigam, proporcionando ainda mais integração e eficiência para o seu negócio.</span> */}
+          <span className="textoMain">
+            A Falavinha Next oferece uma ampla gama de serviços para otimizar a
+            gestão de sua empresa. Entre eles estão: soluções contábeis, gestão
+            financeira, consultoria tributária, consultoria em RH, além da
+            criação de dashboards personalizados de Business Intelligence (BI).
+            Somos parceiros da Cigam, proporcionando ainda mais integração e
+            eficiência para o seu negócio.
+          </span>
           <ButtonLinks options={options} />
 
           <div

@@ -1,51 +1,13 @@
 import PropTypes from "prop-types";
 import { createContext, useState } from "react";
 import { useFormik } from "formik";
-import * as Yup from "yup";
+import { phoneMask, moneyConverter, validationSchema } from "../utils";
 
 export const GlobalContext = createContext();
 export default function GlobalContextProvider({ children }) {
   const [answers, setAnswers] = useState({});
+  const [surveyMsg, setSurveyMsg] = useState({});
   const [submitROIValues, setSubmitRoIValues] = useState(null);
-
-  const calculateTotalScore = () => {
-    return Object.values(answers).reduce(
-      (total, answer) => total + parseInt(answer, 10),
-      0
-    );
-  };
-
-  const phoneMask = (value) => {
-    if (!value) return "";
-    value = value.replace(/\D/g, "");
-    value = value.replace(/(\d{2})(\d)/, "($1) $2");
-    value = value.replace(/(\d)(\d{4})$/, "$1-$2");
-    return value;
-  };
-
-  const moneyConverter = (number) => {
-    const options = {
-      style: "currency",
-      currency: "BRL",
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 3,
-    };
-    return new Intl.NumberFormat("pt-BR", options).format(number);
-  };
-
-  const requiredField = "Campo obrigatório!";
-  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const validationSchema = Yup.object().shape({
-    nome: Yup.string()
-      .min(5, "Nome muito curto")
-      .max(30, "Nome muito longo")
-      .required(requiredField),
-    telefone: Yup.string().required(requiredField).min(14, "Telefone inválido"),
-    email: Yup.string()
-      .email("Email inválido")
-      .matches(regex, "Email incompleto!")
-      .required(requiredField),
-  });
 
   const {
     values: inputVal,
@@ -59,6 +21,8 @@ export default function GlobalContextProvider({ children }) {
       nome: "",
       telefone: "",
       email: "",
+      origem: "RH",
+      surveyMessage: {},
     },
     validationSchema,
     onSubmit: getUserContact,
@@ -66,13 +30,26 @@ export default function GlobalContextProvider({ children }) {
 
   async function getUserContact() {
     try {
-      console.log(inputVal);
+      console.log({
+        nome: inputVal.nome,
+        email: inputVal.email,
+        telefone: inputVal.telefone,
+        origem: inputVal.origem,
+        surveyMessage: inputVal.surveyMsg,
+      });
 
       resetForm();
     } catch (error) {
-      console.log(error);
+      console.error("Error saving user info:", error);
     }
   }
+
+  const calculateTotalScore = () => {
+    return Object.values(answers).reduce(
+      (total, answer) => total + parseInt(answer, 10),
+      0
+    );
+  };
 
   const values = {
     answers,
@@ -88,6 +65,7 @@ export default function GlobalContextProvider({ children }) {
     moneyConverter,
     submitROIValues,
     setSubmitRoIValues,
+    setSurveyMsg,
   };
   return (
     <GlobalContext.Provider value={values}>{children}</GlobalContext.Provider>
