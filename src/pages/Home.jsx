@@ -3,7 +3,7 @@ import HeroApp from "../components/Hero";
 import FooterApp from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import Botoes from "../components/Botoes";
-import fundo from "../assets/video/video-demo.mp4";
+import fundo from "../assets/video/vídeoTotem.mp4";
 import routes from "../routes";
 
 function HomePage() {

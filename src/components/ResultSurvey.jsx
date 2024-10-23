@@ -13,7 +13,7 @@ export default function ResultSurvey({
         mensagem: resultMessage,
       });
     }
-  }, [resultMessage]);
+  }, [resultMessage, setSurveyMsg, title]);
 
   return (
     title &&
