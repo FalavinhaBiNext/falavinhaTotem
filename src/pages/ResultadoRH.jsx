@@ -41,7 +41,7 @@ const resultMessages = [
 ];
 
 export default function ResultadoRH() {
-  const { calculateTotalScore } = useContext(GlobalContext);
+  const { calculateTotalScore, setSurveyMsg } = useContext(GlobalContext);
 
   const navigate = useNavigate();
   const result = calculateTotalScore();
@@ -60,7 +60,11 @@ export default function ResultadoRH() {
         <FramerMotion>
           <h1 className="title">Resultado</h1>
 
-          <ResultSurvey title={title} message={resultMessage} />
+          <ResultSurvey
+            title={title}
+            message={resultMessage}
+            setSurveyMsg={setSurveyMsg}
+          />
         </FramerMotion>
       </HeroApp>
     </>

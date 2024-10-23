@@ -70,9 +70,13 @@ export default function QuestionarioCigam() {
 
   const handleChange = (event) => {
     const { id, value } = event.target;
+    // Permite apenas números
+    const numericValue = value.replace(/[^0-9]/g, "");
+    const parsedValue = numericValue === "" ? "" : parseInt(numericValue, 10);
     setValues((prevValues) => ({
       ...prevValues,
-      [id]: value === "" ? "" : +value,
+      [id]:
+        parsedValue > 0 || numericValue === "" ? numericValue : prevValues[id],
     }));
   };
 
