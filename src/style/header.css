@@ -9,14 +9,19 @@
   width: 100%;
   top: 0;
   left: 0;
+  right: 0;
   z-index: 100;
-  background-color: #009499;
-  transition: box-shadow 0.5s ease;
-  padding: 10px 20px;
+  transition: all 0.2s ease;
+  padding: 10px clamp(4vw, calc((100% - 992px) / 2), 4vw);
 }
 
-.header .logo > img {
-  width: 40vw;
+.header .logo img {
+  max-width: 40vw;
+}
+@media (min-width: 768px) {
+  .header .logo img {
+    max-width: 250px;
+  }
 }
 
 .header__content {

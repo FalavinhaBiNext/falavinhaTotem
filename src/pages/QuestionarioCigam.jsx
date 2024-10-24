@@ -7,9 +7,11 @@ import FramerMotion from "../components/FramerMotion";
 import FooterApp from "../components/Footer";
 import fundo from "../assets/image/Cigam.png";
 import { GlobalContext } from "../context/GlobalContextProvider";
+import Formulario from "../components/Formulario";
 
 export default function QuestionarioCigam() {
-  const { moneyConverter, setSubmitRoIValues } = useContext(GlobalContext);
+  const { moneyConverter, setSubmitRoIValues, getUserData } =
+    useContext(GlobalContext);
   const navigate = useNavigate();
 
   const [values, setValues] = useState({
@@ -79,9 +81,14 @@ export default function QuestionarioCigam() {
     }));
   };
 
+  const [hasUserData, setHasUserData] = useState(
+    !!localStorage.getItem("userInfo")
+  );
+
   const handleSubmitValues = (e) => {
     e.preventDefault();
     if (emptyValueFields) return;
+    if (!hasUserData) getUserData();
 
     setSubmitRoIValues({
       ...values,
@@ -109,7 +116,14 @@ export default function QuestionarioCigam() {
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <form className="form" style={{ marginBottom: "60px" }}>
+          <Formulario />
+
+          <form
+            className="form"
+            style={{
+              marginBottom: "60px",
+            }}
+          >
             <label htmlFor="usuarios" className="input-label">
               Usuários:
               <input
@@ -246,7 +260,7 @@ export default function QuestionarioCigam() {
       </HeroApp>
 
       <FooterApp footerFixed>
-        <Botoes type="button" className="opcoes" onClick={handleSubmitValues}>
+        <Botoes type="button" className="botao" onClick={handleSubmitValues}>
           Calcular
         </Botoes>
       </FooterApp>

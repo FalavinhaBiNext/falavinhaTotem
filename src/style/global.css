@@ -62,7 +62,7 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 100%;
   text-align: center;
   min-height: calc(100vh - 150px);
-  padding-top: 120px;
+  padding-top: 160px;
 }
 
 .explorationContainer .exploration {
@@ -92,22 +92,34 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 /*  BOTÃO */
-.opcoes {
-  padding: 5px 30px;
-  height: 50px;
+.links {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
   width: 100%;
-  max-width: 400px;
+  margin: 20px 0;
+}
+
+.botao {
+  padding: 5px 30px;
+  min-height: 50px;
+  width: 100%;
+  max-width: 992px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 93, 96, 0.1);
+  background-color: rgba(0, 93, 96, 0.6);
   border-radius: 50px;
   border: none;
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   color: #fff;
   cursor: pointer;
   text-transform: uppercase;
+  font-size: 0.875rem;
+  line-height: 18px;
 }
 
 .btnVoltar {
@@ -159,17 +171,6 @@ input[type="number"]::-webkit-outer-spin-button {
   font-size: 1.25rem;
   color: #fff;
   font-style: italic;
-  padding: 30px 0;
-}
-
-.links {
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  margin: 20px 0;
 }
 
 .teste {

@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 export default function FramerMotion({ children }) {
   return (
     <motion.div
-      initial={{ y: -100 }}
+      initial={{ y: -50 }}
       animate={{ y: 0 }}
-      transition={{ type: "spring", stiffness: 50, damping: 20 }}
+      transition={{ type: "spring", stiffness: 80, damping: 30 }}
       style={{
         display: "flex",
         flexDirection: "column",
