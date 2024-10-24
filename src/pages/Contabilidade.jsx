@@ -16,12 +16,13 @@ function Contabilidade() {
 
   return (
     <>
-      <HeaderApp />
+      <HeaderApp>
+        <h1 className="title">{textos.contabilidade.Titulo}</h1>
+      </HeaderApp>
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
           <div>
-            <h1 className="title">{textos.contabilidade.Titulo}</h1>
             <h2 className="subtitulo">{textos.contabilidade.Subtitulo}</h2>
           </div>
           <div className="textoMain">

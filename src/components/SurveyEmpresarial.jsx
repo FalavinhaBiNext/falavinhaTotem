@@ -1,18 +1,20 @@
 import PropTypes from "prop-types";
-import { useContext, useState } from "react";
+import { useContext, useEffect } from "react";
 import { GlobalContext } from "../context/GlobalContextProvider";
 import { useNavigate } from "react-router-dom";
 import Botoes from "./Botoes";
+import { perguntasSurveyRh } from "../services/db";
 
-export default function SurveyEmpresarial({
-  perguntas,
-  perguntasAlternativas,
-}) {
-  const [altAnswers, setAltAnswers] = useState({});
-
-  const { answers, setAnswers, getUserContact, inputVal, errors } =
+export default function SurveyEmpresarial({ hasUserData }) {
+  const { answers, setAnswers, getUserData, hasInputErrors } =
     useContext(GlobalContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (Object.keys(answers).length > 0) {
+      setAnswers({});
+    }
+  });
 
   const handleChange = (questionId, answerValue) => {
     setAnswers((prevAnswers) => ({
@@ -21,30 +23,20 @@ export default function SurveyEmpresarial({
     }));
   };
 
-  const hasEmptyInputs =
-    inputVal.email === "" || inputVal.telefone === "" || inputVal.nome === "";
-  const hasErrors = errors.nome || errors.email || errors.telefone;
-  const hasAltAnswers = Object.keys(altAnswers).length === 2;
-
   function isAllQuestionsAnswered() {
-    return Object.keys(answers).length === perguntas.length;
+    return Object.keys(answers).length === perguntasSurveyRh.length;
   }
 
   const handleSubmitSurvey = () => {
-    getUserContact();
+    if (!isAllQuestionsAnswered() || hasInputErrors) return;
+    if (!hasUserData) getUserData();
     navigate("/resultado-rh");
-  };
-
-  const handleChangeAlt = (questionId, answerValue) => {
-    setAltAnswers((prevAnswers) => ({
-      ...prevAnswers,
-      [questionId]: answerValue,
-    }));
+    getUserData();
   };
 
   return (
     <ul className="survey">
-      {perguntas.map((question, questionIndex) => (
+      {perguntasSurveyRh.map((question, questionIndex) => (
         <li className="survey__list" key={question.id}>
           <h2 className="survey__list--title">{question.text}</h2>
           <ul className="survey__list--question">
@@ -70,40 +62,9 @@ export default function SurveyEmpresarial({
         </li>
       ))}
 
-      {perguntasAlternativas.map((question) => (
-        <li className="survey__list" key={question.id}>
-          <h2 className="survey__list--title">{question.text}</h2>
-          <ul className="survey__list--question">
-            {question.options.map((option) => (
-              <li className="survey__list--radios" key={option.id}>
-                <input
-                  type="radio"
-                  name={`question-${option.id}`}
-                  id={`question-${option.id}`}
-                  value={option.id}
-                  checked={altAnswers[question.id] === option.id}
-                  onChange={() => handleChangeAlt(question.id, option.id)}
-                />
-                <label
-                  className="radio-label"
-                  htmlFor={`question-${option.id}`}
-                >
-                  {option.label}
-                </label>
-              </li>
-            ))}
-          </ul>
-        </li>
-      ))}
-
-      {isAllQuestionsAnswered() &&
-        !hasEmptyInputs &&
-        !hasErrors &&
-        hasAltAnswers && (
-          <Botoes onClick={handleSubmitSurvey} className="opcoes">
-            Ver resultado
-          </Botoes>
-        )}
+      <Botoes className="botao" onClick={handleSubmitSurvey}>
+        Ver resultado
+      </Botoes>
     </ul>
   );
 }
@@ -111,4 +72,5 @@ export default function SurveyEmpresarial({
 SurveyEmpresarial.propTypes = {
   perguntas: PropTypes.array,
   perguntasAlternativas: PropTypes.array,
+  hasUserData: PropTypes.bool,
 };

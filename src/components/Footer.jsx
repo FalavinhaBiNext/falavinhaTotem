@@ -10,7 +10,7 @@ export default function FooterApp({ children, footerFixed }) {
   };
 
   return (
-    <footer className="footer" style={footerFixed ? fixed : {}}>
+    <footer className="footer">
       <div className="footer__element">{children}</div>
     </footer>
   );
