@@ -7,6 +7,7 @@ import routes from "../routes";
 import textos from "../components/textos";
 import FramerMotion from "../components/FramerMotion";
 import ButtonLinks from "../components/ButtonLinks";
+import PalavraChave from "../components/PalavraChave";
 
 const Cigam = () => {
   // links dos botões
@@ -25,15 +26,9 @@ const Cigam = () => {
           <div>
             <h2 className="subtitulo">
               {textos.cigam.Subtitulo}{" "}
-              <span
-                style={{
-                  color: "#FE710E",
-                  fontFamily: "Gilroy-bold",
-                  fontSize: 14,
-                }}
-              >
+              <PalavraChave color="#FE710E">
                 completamente integrado!
-              </span>
+              </PalavraChave>
             </h2>
           </div>
           <div className="textoMain">

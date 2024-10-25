@@ -9,23 +9,23 @@ export default function Formulario() {
     handleBlur,
     handleChange,
     getUserData,
-    inputVal,
+    inputValue,
     phoneMask,
   } = useContext(GlobalContext);
 
   const [hasUserData, setHasUserData] = useState(() => {
-    const storedData = localStorage.getItem("userInfo");
+    const storedData = sessionStorage.getItem("userInfo");
     return storedData ? JSON.parse(storedData) : {};
   });
-  const userDatAvailable = Object.keys(hasUserData).length > 0;
 
+  // dados dos inputs
   const inputs = [
     {
       title: "Nome",
       nome: "nome",
       type: "text",
       id: "nome",
-      value: inputVal.nome || "",
+      value: inputValue.nome || "",
       onChange: handleChange,
       error: errors.nome,
       touched: touched.nome,
@@ -36,7 +36,7 @@ export default function Formulario() {
       nome: "telefone",
       type: "tel",
       id: "telefone",
-      value: inputVal.telefone || "",
+      value: inputValue.telefone || "",
       onChange: handleChange,
       error: errors.telefone,
       touched: touched.telefone,
@@ -47,7 +47,7 @@ export default function Formulario() {
       nome: "email",
       type: "email",
       id: "email",
-      value: inputVal.email || "",
+      value: inputValue.email || "",
       onChange: handleChange,
       error: errors.email,
       touched: touched.email,
@@ -55,7 +55,7 @@ export default function Formulario() {
     },
   ];
 
-  return !userDatAvailable ? (
+  return !Object.keys(hasUserData).length > 0 ? (
     <form
       className="form"
       onSubmit={getUserData}
@@ -82,6 +82,16 @@ const ElementoInput = (props) => {
     phoneMask,
   } = props;
 
+  // altera a primeira letra do input para maiúscula
+  const handleInputChange = (e) => {
+    let updatedValue = e.target.value;
+    if (type === "text") {
+      updatedValue =
+        updatedValue.charAt(0).toUpperCase() + updatedValue.slice(1);
+    }
+    onChange({ target: { name: nome, value: updatedValue } });
+  };
+
   return (
     <label htmlFor={id} className="input-label" key={id}>
       <input
@@ -93,7 +103,7 @@ const ElementoInput = (props) => {
         autoComplete="off"
         value={type === "tel" ? phoneMask(value) : value}
         maxLength={type === "tel" ? 15 : undefined}
-        onChange={onChange}
+        onChange={handleInputChange}
         onBlur={onBlur}
         style={{
           borderColor: error && touched ? "#ff0000" : "",
@@ -115,5 +125,4 @@ ElementoInput.propTypes = {
   nome: PropTypes.string,
   type: PropTypes.string,
   id: PropTypes.string,
-  hasUserData: PropTypes.object,
 };

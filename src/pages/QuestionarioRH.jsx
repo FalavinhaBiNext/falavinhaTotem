@@ -11,11 +11,16 @@ import { perguntasSurveyRh } from "../services/db";
 import Botoes from "../components/Botoes";
 
 export default function QuestionarioRH() {
-  const { answers, setAnswers, getUserData, hasInputErrors } =
-    useContext(GlobalContext);
+  const {
+    answers,
+    setAnswers,
+    getUserData,
+    hasInputErrors,
+    handleSubmitCigamSurvey,
+  } = useContext(GlobalContext);
   const navigate = useNavigate();
   const [hasUserData, setHasUserData] = useState(() => {
-    const storedData = localStorage.getItem("userInfo");
+    const storedData = sessionStorage.getItem("userInfo");
     return storedData ? JSON.parse(storedData) : {};
   });
 
@@ -32,15 +37,17 @@ export default function QuestionarioRH() {
     }));
   };
 
-  function isAllQuestionsAnswered() {
-    return Object.keys(answers).length === perguntasSurveyRh.length;
-  }
+  // Apenas certifica se todos os checkboxes foram marcados
+  const isAllInputsChecked = () => {
+    return (
+      Object.keys(answers).length === perguntasSurveyRh.length || hasInputErrors
+    );
+  };
 
   const handleSubmitSurvey = () => {
-    if (!isAllQuestionsAnswered() || hasInputErrors) return;
-    if (!hasUserData) getUserData();
+    if (!Object.keys(hasUserData).length) getUserData();
     navigate("/resultado-rh");
-    getUserData();
+    handleSubmitCigamSurvey("rh");
   };
 
   return (
@@ -80,7 +87,11 @@ export default function QuestionarioRH() {
               </li>
             ))}
 
-            <Botoes className="botao" onClick={handleSubmitSurvey}>
+            <Botoes
+              className="botao"
+              onClick={handleSubmitSurvey}
+              disabled={!isAllInputsChecked()}
+            >
               Ver resultado
             </Botoes>
           </ul>

@@ -16,6 +16,8 @@ export const moneyConverter = (number) => {
   return new Intl.NumberFormat("pt-BR", options).format(number);
 };
 
+export const numberValueFormatter = (value) => value && value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
 
 import * as Yup from "yup";
 const requiredField = "Campo obrigatório!";

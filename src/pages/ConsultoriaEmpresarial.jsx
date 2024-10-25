@@ -6,6 +6,7 @@ import routes from "../routes";
 import textos from "../components/textos";
 import FramerMotion from "../components/FramerMotion";
 import ButtonLinks from "../components/ButtonLinks";
+import PalavraChave from "../components/PalavraChave";
 
 function ConsultoriaEmpresarial() {
   // links dos botões
@@ -33,16 +34,10 @@ function ConsultoriaEmpresarial() {
 
           <div className="textoMain">
             <p className="paragraph">
-              A
-              <span
-                style={{
-                  color: "#0E2350",
-                  fontSize: 24,
-                  fontFamily: "Gilroy-bold",
-                }}
-              >
+              A{" "}
+              <PalavraChave color="#0E2350">
                 {textos.consultoriaEmpresarial.palavraChave}
-              </span>
+              </PalavraChave>
               {textos.consultoriaEmpresarial.texto}
             </p>
           </div>
