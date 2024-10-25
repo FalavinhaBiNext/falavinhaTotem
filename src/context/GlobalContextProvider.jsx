@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
-import { createContext, useState } from "react";
+import { createContext, useState, useMemo } from "react";
 import { useFormik } from "formik";
 import { phoneMask, moneyConverter, validationSchema } from "../utils";
+import { respostasSurveyRh } from "../services/db";
 
 export const GlobalContext = createContext();
 export default function GlobalContextProvider({ children }) {
   const [answers, setAnswers] = useState({});
-  const [surveyMsg, setSurveyMsg] = useState({});
   const [submitROIValues, setSubmitRoIValues] = useState(null);
 
   const {
@@ -25,18 +25,26 @@ export default function GlobalContextProvider({ children }) {
       surveyMessage: {},
     },
     validationSchema,
-    onSubmit: getUserContact,
+    onSubmit: getUserData,
   });
 
-  async function getUserContact() {
+  async function getUserData() {
     try {
-      console.log({
+      const userData = {
         nome: inputVal.nome,
         email: inputVal.email,
         telefone: inputVal.telefone,
         origem: inputVal.origem,
         surveyMessage: inputVal.surveyMsg,
-      });
+      };
+      const userContact = {
+        nome: inputVal.nome,
+        email: inputVal.email,
+        telefone: inputVal.telefone,
+      };
+      localStorage.setItem("userInfo", JSON.stringify(userContact));
+      console.log("APENAS O CONTATO DO USUÁRIO:", userData);
+      console.log("APENAS O CONTATO DO USUÁRIO:", userContact);
 
       resetForm();
     } catch (error) {
@@ -44,28 +52,39 @@ export default function GlobalContextProvider({ children }) {
     }
   }
 
-  const calculateTotalScore = () => {
-    return Object.values(answers).reduce(
+  const resultadoSurveyRh = useMemo(() => {
+    const totalScore = Object.values(answers).reduce(
       (total, answer) => total + parseInt(answer, 10),
       0
     );
-  };
+    return (
+      respostasSurveyRh.find(
+        ({ min, max }) => totalScore >= min && totalScore <= max
+      ) || {}
+    );
+  }, [answers]);
+
+  // Certifica se os campos do input estão com erros ou vazios
+  const hasEmptyInputs =
+    inputVal.email === "" || inputVal.telefone === "" || inputVal.nome === "";
+  const hasInputErrors = errors.nome || errors.email || errors.telefone;
 
   const values = {
     answers,
     setAnswers,
-    calculateTotalScore,
+    resultadoSurveyRh,
     errors,
     touched,
     handleBlur,
     handleChange,
     inputVal,
-    getUserContact,
+    getUserData,
     phoneMask,
     moneyConverter,
     submitROIValues,
     setSubmitRoIValues,
-    setSurveyMsg,
+    hasEmptyInputs,
+    hasInputErrors,
   };
   return (
     <GlobalContext.Provider value={values}>{children}</GlobalContext.Provider>

@@ -17,11 +17,12 @@ const Cigam = () => {
 
   return (
     <>
-      <HeaderApp />
+      <HeaderApp redirect={"/servicos"}>
+        <h1 className="title">{textos.cigam.Titulo}</h1>
+      </HeaderApp>
       <HeroApp fundo={fundo}>
         <FramerMotion>
           <div>
-            <h1 className="title">{textos.cigam.Titulo}</h1>
             <h2 className="subtitulo">
               {textos.cigam.Subtitulo}{" "}
               <span

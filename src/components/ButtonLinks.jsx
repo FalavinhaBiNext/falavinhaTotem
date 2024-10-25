@@ -11,7 +11,7 @@ export default function ButtonLinks({ options, style }) {
         <Botoes
           key={index}
           onClick={() => navigate(option.route)}
-          className="opcoes"
+          className="botao"
         >
           {option.name}
         </Botoes>

@@ -24,7 +24,7 @@ export default function ResultadoCigam() {
           title: "Salário/Hora/Colaborador",
         },
         {
-          value: moneyConverter(data?.produtividade_hora),
+          value: data?.produtividade_hora,
           title: "Ganho de Produtividade em Horas/Mês",
         },
         {
@@ -51,7 +51,7 @@ export default function ResultadoCigam() {
 
   return (
     <>
-      <HeaderApp>
+      <HeaderApp redirect={"/cigam"}>
         <h1 className="title">Resultado CIGAM</h1>
       </HeaderApp>
 

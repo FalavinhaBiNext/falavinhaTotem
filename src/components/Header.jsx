@@ -5,40 +5,44 @@ import logo from "../assets/image/LogoFalavinha.png";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 import Botoes from "./Botoes";
 
-const HeaderApp = ({ children }) => {
+const HeaderApp = ({ children, redirect }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [headerScroll, setHeaderScroll] = useState(false);
 
-  const handleScroll = () => setHeaderScroll(window.scrollY > 0);
+  const handleClearUserData = () => localStorage.clear();
 
+  const handleScroll = () => setHeaderScroll(window.scrollY > 0);
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const hederBoxShadow = headerScroll ? "0 0 36px rgba(0, 0, 0, 0.2)" : "none";
+  const hederBoxShadow = headerScroll ? "0 0 36px rgba(0, 0, 0, 0.2) " : "none";
   const getPath = location.pathname !== "/";
+  const standardNavigate = () => navigate(redirect || -1);
 
   return (
     <header
-      className="header base_container"
+      className="header"
       style={{
         boxShadow: hederBoxShadow,
-        backgroundColor: getPath ? "#009499" : "transparent",
+        backgroundColor: headerScroll ? "#009499" : "transparent",
       }}
     >
       <div className="header__content">
-        <Link to="/" className="logo">
+        <Link to="/" className="logo" onClick={handleClearUserData}>
           <img src={logo} alt="Logo Falavinha" />
         </Link>
 
         {getPath ? (
-          <Botoes onClick={() => navigate(-1)} className="btnVoltar">
+          <Botoes onClick={standardNavigate} className="btnVoltar">
             <IoArrowBackCircleOutline className="icon" />
           </Botoes>
         ) : null}
       </div>
+
+      {/* titulo da página */}
       {children}
     </header>
   );
@@ -46,6 +50,7 @@ const HeaderApp = ({ children }) => {
 
 HeaderApp.propTypes = {
   children: PropTypes.node,
+  redirect: PropTypes.string,
 };
 
 export default HeaderApp;

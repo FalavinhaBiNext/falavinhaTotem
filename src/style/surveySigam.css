@@ -2,7 +2,7 @@
   display: flex;
   flex-flow: column;
   gap: 15px;
-  padding: 50px 0 30px;
+  padding-bottom: 30px;
 }
 
 .roi-list__item {

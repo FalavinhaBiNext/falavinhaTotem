@@ -15,7 +15,7 @@ function ConsultoriaRH() {
   ];
   return (
     <>
-      <HeaderApp>
+      <HeaderApp redirect={"/servicos"}>
         <h1 className="title">{textos.consultoriaRh.Titulo}</h1>
       </HeaderApp>
 
@@ -30,7 +30,7 @@ function ConsultoriaRH() {
               <span
                 style={{
                   color: "#582B6F",
-                  fontSize: 24,
+                  fontSize: 16,
                   fontFamily: "Gilroy-bold",
                 }}
               >
@@ -43,7 +43,7 @@ function ConsultoriaRH() {
           <ButtonLinks options={options} />
         </FramerMotion>
       </HeroApp>
-      <FooterApp></FooterApp>
+      <FooterApp />
     </>
   );
 }
