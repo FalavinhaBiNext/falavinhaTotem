@@ -56,7 +56,7 @@ export default function QuestionarioTributario() {
 
   const handleSubmitValues = (e) => {
     e.preventDefault();
-    if (!hasUserData) getUserData();
+    if (!hasUserData) getUserData("tributário");
     setSubmitTotalValues({
       ...taxationValues,
     });

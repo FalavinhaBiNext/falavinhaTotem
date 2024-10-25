@@ -11,10 +11,10 @@ import { perguntasSurveyRh } from "../../services/db";
 import Botoes from "../../components/Botoes";
 
 export default function QuestionarioRH() {
-  const { answers, setAnswers, getUserData, hasInputErrors, getUserFullData } =
+  const { answers, setAnswers, getUserData, hasInputErrors } =
     useContext(GlobalContext);
   const navigate = useNavigate();
-  const [hasUserData, setHasUserData] = useState(() => {
+  const [hasUserData] = useState(() => {
     const storedData = sessionStorage.getItem("userInfo");
     return storedData ? JSON.parse(storedData) : {};
   });
@@ -40,9 +40,8 @@ export default function QuestionarioRH() {
   };
 
   const handleSubmitSurvey = () => {
-    if (!Object.keys(hasUserData).length) getUserData();
+    if (!Object.keys(hasUserData).length) getUserData("rh");
     navigate("/resultado-rh");
-    getUserFullData("rh");
   };
 
   return (
