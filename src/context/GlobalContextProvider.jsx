@@ -3,6 +3,8 @@ import { createContext, useState, useMemo } from "react";
 import { useFormik } from "formik";
 import { phoneMask, moneyConverter, validationSchema } from "../utils";
 import { respostasSurveyRh } from "../services/db";
+import axios from "axios";
+import { API_URL } from "../services/api";
 
 export const GlobalContext = createContext();
 export default function GlobalContextProvider({ children }) {
@@ -31,7 +33,7 @@ export default function GlobalContextProvider({ children }) {
     onSubmit: getUserData,
   });
 
-  // Coleta os dados do usuário e salva no localStorage
+  // Salva os dados do usuário no servidor
   async function getUserData() {
     try {
       const userContact = {
@@ -39,11 +41,22 @@ export default function GlobalContextProvider({ children }) {
         email: inputValue.email,
         telefone: inputValue.telefone,
       };
-      sessionStorage.setItem("userInfo", JSON.stringify(userContact));
+      // Destructuring para maior legibilidade na requisição
+      const { nome, email, telefone } = userContact;
+      await axios.post(
+        `${API_URL}/user`,
+        { nome, email, telefone },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       console.log("CONTATO DO USUÁRIO:", userContact);
+      sessionStorage.setItem("userInfo", JSON.stringify(userContact));
       resetForm();
     } catch (error) {
-      console.error("Error saving user info:", error);
+      console.error("Erro ao salvar o usuário:", error);
     }
   }
 

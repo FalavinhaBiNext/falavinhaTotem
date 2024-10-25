@@ -84,7 +84,10 @@ export default function QuestionarioTributario() {
             <SelectInput
               label="Tributação:"
               name="tributacao"
-              options={[{ value: "", label: "Selecione" }, ...selectTributacao]}
+              options={[
+                { value: "", label: "Selecione (obrigatório)" },
+                ...selectTributacao,
+              ]}
               value={taxationValues.tributacao}
               onChange={handleChange}
             />
@@ -92,52 +95,62 @@ export default function QuestionarioTributario() {
             <SelectInput
               label="Atividade:"
               name="atividade"
-              options={[{ value: "", label: "Selecione" }, ...selectAtividads]}
+              options={[
+                { value: "", label: "Selecione (obrigatório)" },
+                ...selectAtividads,
+              ]}
               value={taxationValues.atividade}
               onChange={handleChange}
             />
 
             <TextInput
-              title="Faturamento mensal"
+              title="Faturamento mensal:"
               nome="faturamento_mensal"
               value={taxationValues.faturamento_mensal}
               onChange={handleChange}
+              placeholder="Digite um valor (obrigatório)"
             />
             <TextInput
-              title="Número de funcionários"
+              title="Número de funcionários:"
               nome="numero_funcionarios"
               value={taxationValues.numero_funcionarios}
               onChange={handleChange}
+              placeholder="Digite um valor (opcional)"
             />
             <TextInput
-              title="Valor da folha de pagamento"
+              title="Valor da folha de pagamento:"
               nome="folha_pagamento"
               value={taxationValues.folha_pagamento}
               onChange={handleChange}
+              placeholder="Digite um valor (opcional)"
             />
             <TextInput
-              title="Médias das dispensas anuais"
+              title="Médias das dispensas anuais:"
               nome="dispensa_anual"
               value={taxationValues.dispensa_anual}
               onChange={handleChange}
+              placeholder="Digite um valor (opcional)"
             />
             <TextInput
-              title="Patrimônio líquido"
+              title="Patrimônio líquido:"
               nome="patrimonio_liquido"
               value={taxationValues.patrimonio_liquido}
               onChange={handleChange}
+              placeholder="Digite um valor (opcional)"
             />
             <TextInput
-              title="Lucro da empresa"
+              title="Lucro da empresa:"
               nome="lucro_empresa"
               value={taxationValues.lucro_empresa}
               onChange={handleChange}
+              placeholder="Digite um valor (opcional)"
             />
             <TextInput
-              title="Gastos com inovação e tecnologia"
+              title="Gastos com inovação e tecnologia:"
               nome="gastos_inovacao"
               value={taxationValues.gastos_inovacao}
               onChange={handleChange}
+              placeholder="Digite um valor (opcional)"
             />
           </form>
         </FramerMotion>
@@ -189,7 +202,7 @@ SelectInput.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-const TextInput = ({ title, nome, value, onChange }) => (
+const TextInput = ({ title, nome, value, onChange, placeholder }) => (
   <label htmlFor={nome} className="input-label">
     {title}
     <input
@@ -197,7 +210,7 @@ const TextInput = ({ title, nome, value, onChange }) => (
       type="text"
       name={nome}
       id={nome}
-      placeholder="Digite um valor"
+      placeholder={placeholder}
       autoComplete="off"
       value={numberValueFormatter(value)}
       onChange={onChange}
@@ -210,4 +223,5 @@ TextInput.propTypes = {
   nome: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
 };
