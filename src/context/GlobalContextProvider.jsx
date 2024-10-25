@@ -7,7 +7,7 @@ import { respostasSurveyRh } from "../services/db";
 export const GlobalContext = createContext();
 export default function GlobalContextProvider({ children }) {
   const [answers, setAnswers] = useState({});
-  const [submitROIValues, setSubmitRoIValues] = useState(null);
+  const [submitTotalValues, setSubmitTotalValues] = useState(null);
   const [hasUserData, setHasUserData] = useState(() => {
     const storedData = sessionStorage.getItem("userInfo");
     return storedData ? JSON.parse(storedData) : {};
@@ -48,7 +48,7 @@ export default function GlobalContextProvider({ children }) {
   }
 
   // Coleta os dados do usuário e a mensagem resultado do survey da CIGAM
-  const handleSubmitCigamSurvey = (origemUsuario) => {
+  const getUserFullData = (origemUsuario) => {
     const userData = {
       nome: inputValue.nome || hasUserData.nome || "",
       email: inputValue.email || hasUserData.email || "",
@@ -91,11 +91,11 @@ export default function GlobalContextProvider({ children }) {
     getUserData,
     phoneMask,
     moneyConverter,
-    submitROIValues,
-    setSubmitRoIValues,
+    submitTotalValues,
+    setSubmitTotalValues,
     hasEmptyInputs,
     hasInputErrors,
-    handleSubmitCigamSurvey,
+    getUserFullData,
   };
   return (
     <GlobalContext.Provider value={values}>{children}</GlobalContext.Provider>

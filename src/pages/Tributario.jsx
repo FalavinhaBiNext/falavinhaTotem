@@ -13,12 +13,12 @@ function Tributario() {
   // links dos botões
   const options = [
     { name: "DASHBOARD BI TRIBUTÁRIO", route: routes.dashboardFinanceiro },
-    { name: "FAÇA UMA SIMULAÇÃO", route: routes.powerapps },
+    { name: "FAÇA UMA SIMULAÇÃO", route: routes.questionarioTributario },
   ];
 
   return (
     <>
-      <HeaderApp>
+      <HeaderApp redirect={"/servicos"}>
         <h1 className="title">{textos.tributario.Titulo}</h1>
       </HeaderApp>
 
