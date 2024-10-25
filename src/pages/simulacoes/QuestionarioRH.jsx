@@ -1,23 +1,18 @@
 import { useContext, useEffect, useState } from "react";
-import HeaderApp from "../components/Header";
-import HeroApp from "../components/Hero";
-import FooterApp from "../components/Footer";
-import FramerMotion from "../components/FramerMotion";
-import imagem from "../assets/image/Servicos.png";
-import Formulario from "../components/Formulario";
-import { GlobalContext } from "../context/GlobalContextProvider";
+import HeaderApp from "../../components/Header";
+import HeroApp from "../../components/Hero";
+import FooterApp from "../../components/Footer";
+import FramerMotion from "../../components/FramerMotion";
+import imagem from "../../assets/image/Servicos.png";
+import Formulario from "../../components/Formulario";
+import { GlobalContext } from "../../context/GlobalContextProvider";
 import { useNavigate } from "react-router-dom";
-import { perguntasSurveyRh } from "../services/db";
-import Botoes from "../components/Botoes";
+import { perguntasSurveyRh } from "../../services/db";
+import Botoes from "../../components/Botoes";
 
 export default function QuestionarioRH() {
-  const {
-    answers,
-    setAnswers,
-    getUserData,
-    hasInputErrors,
-    handleSubmitCigamSurvey,
-  } = useContext(GlobalContext);
+  const { answers, setAnswers, getUserData, hasInputErrors, getUserFullData } =
+    useContext(GlobalContext);
   const navigate = useNavigate();
   const [hasUserData, setHasUserData] = useState(() => {
     const storedData = sessionStorage.getItem("userInfo");
@@ -47,7 +42,7 @@ export default function QuestionarioRH() {
   const handleSubmitSurvey = () => {
     if (!Object.keys(hasUserData).length) getUserData();
     navigate("/resultado-rh");
-    handleSubmitCigamSurvey("rh");
+    getUserFullData("rh");
   };
 
   return (

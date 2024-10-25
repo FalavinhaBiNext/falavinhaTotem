@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import HeaderApp from "../components/Header";
-import HeroApp from "../components/Hero";
-import { GlobalContext } from "../context/GlobalContextProvider";
-import FramerMotion from "../components/FramerMotion";
-import imagem from "../assets/image/AssessoriaTributaria.png";
+import HeaderApp from "../../components/Header";
+import HeroApp from "../../components/Hero";
+import { GlobalContext } from "../../context/GlobalContextProvider";
+import FramerMotion from "../../components/FramerMotion";
+import imagem from "../../assets/image/AssessoriaTributaria.png";
 
 export default function ResultadoRH() {
   const { resultadoSurveyRh } = useContext(GlobalContext);
