@@ -3,7 +3,7 @@ import { GlobalContext } from "../context/GlobalContextProvider";
 import HeaderApp from "../components/Header";
 import HeroApp from "../components/Hero";
 import FramerMotion from "../components/FramerMotion";
-import imagem from "../assets/image/AssessoriaTributaria.png";
+import imagem from "../assets/image/RespostaQuestionarioCigam.png";
 
 export default function ResultadoCigam() {
   const { moneyConverter, submitROIValues: data } = useContext(GlobalContext);
