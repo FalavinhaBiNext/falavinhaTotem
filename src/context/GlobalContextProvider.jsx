@@ -34,24 +34,25 @@ export default function GlobalContextProvider({ children }) {
   });
 
   // Salva os dados do usuário no servidor
-  async function getUserData() {
+  async function getUserData(origemUsuario) {
     try {
       const userContact = {
         nome: inputValue.nome,
         email: inputValue.email,
         telefone: inputValue.telefone,
+        origem: origemUsuario,
+        resultadoEnquete: resultadoSurveyRh,
       };
       // Destructuring para maior legibilidade na requisição
-      const { nome, email, telefone } = userContact;
-      await axios.post(
-        `${API_URL}/user`,
-        { nome, email, telefone },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      // await axios.post(
+      //   `${API_URL}/user`,
+      //   userContact,
+      //   {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //   }
+      // );
       console.log("CONTATO DO USUÁRIO:", userContact);
       sessionStorage.setItem("userInfo", JSON.stringify(userContact));
       resetForm();
@@ -59,18 +60,6 @@ export default function GlobalContextProvider({ children }) {
       console.error("Erro ao salvar o usuário:", error);
     }
   }
-
-  // Coleta os dados do usuário e a mensagem resultado do survey da CIGAM
-  const getUserFullData = (origemUsuario) => {
-    const userData = {
-      nome: inputValue.nome || hasUserData.nome || "",
-      email: inputValue.email || hasUserData.email || "",
-      telefone: inputValue.telefone || hasUserData.telefone || "",
-      origem: origemUsuario,
-      resultadoEnquete: resultadoSurveyRh,
-    };
-    console.log("APENAS DADOS DO USUÁRIO:", userData);
-  };
 
   // Coleta a mensagem resultado do survey da CIGAM
   const resultadoSurveyRh = useMemo(() => {
@@ -108,7 +97,6 @@ export default function GlobalContextProvider({ children }) {
     setSubmitTotalValues,
     hasEmptyInputs,
     hasInputErrors,
-    getUserFullData,
   };
   return (
     <GlobalContext.Provider value={values}>{children}</GlobalContext.Provider>

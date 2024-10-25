@@ -11,7 +11,7 @@ import Formulario from "../../components/Formulario";
 import { numberValueFormatter } from "../../utils";
 
 export default function QuestionarioCigam() {
-  const { moneyConverter, setSubmitTotalValues, getUserData, getUserFullData } =
+  const { moneyConverter, setSubmitTotalValues, getUserData } =
     useContext(GlobalContext);
   const navigate = useNavigate();
 
@@ -91,7 +91,7 @@ export default function QuestionarioCigam() {
   const handleSubmitValues = (e) => {
     e.preventDefault();
     if (emptyValueFields) return;
-    if (!hasUserData) getUserData();
+    if (!hasUserData) getUserData("CIGAM");
 
     setSubmitTotalValues({
       ...values,
@@ -109,7 +109,6 @@ export default function QuestionarioCigam() {
       situacao_atual: "",
     });
     navigate("/resultado-cigam");
-    getUserFullData("CIGAM");
   };
 
   return (
