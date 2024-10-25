@@ -8,10 +8,15 @@ import FooterApp from "../components/Footer";
 import fundo from "../assets/image/Cigam.png";
 import { GlobalContext } from "../context/GlobalContextProvider";
 import Formulario from "../components/Formulario";
+import { numberValueFormatter } from "../utils";
 
 export default function QuestionarioCigam() {
-  const { moneyConverter, setSubmitRoIValues, getUserData } =
-    useContext(GlobalContext);
+  const {
+    moneyConverter,
+    setSubmitRoIValues,
+    getUserData,
+    handleSubmitCigamSurvey,
+  } = useContext(GlobalContext);
   const navigate = useNavigate();
 
   const [values, setValues] = useState({
@@ -82,7 +87,7 @@ export default function QuestionarioCigam() {
   };
 
   const [hasUserData, setHasUserData] = useState(
-    !!localStorage.getItem("userInfo")
+    !!sessionStorage.getItem("userInfo")
   );
 
   const handleSubmitValues = (e) => {
@@ -106,6 +111,7 @@ export default function QuestionarioCigam() {
       situacao_atual: "",
     });
     navigate("/resultado-cigam");
+    handleSubmitCigamSurvey("CIGAM");
   };
 
   return (
@@ -134,7 +140,7 @@ export default function QuestionarioCigam() {
                 placeholder="Número de usuários"
                 autoComplete="off"
                 onChange={handleChange}
-                value={values.usuarios}
+                value={numberValueFormatter(values.usuarios)}
               />
             </label>
 
@@ -148,7 +154,7 @@ export default function QuestionarioCigam() {
                 placeholder="Salário médio do colaborador"
                 autoComplete="off"
                 onChange={handleChange}
-                value={values.salario_medio}
+                value={numberValueFormatter(values.salario_medio)}
               />
             </label>
 
@@ -183,7 +189,7 @@ export default function QuestionarioCigam() {
                 placeholder="Valor de implementação"
                 autoComplete="off"
                 onChange={handleChange}
-                value={values.implementacao}
+                value={numberValueFormatter(values.implementacao)}
               />
             </label>
 
@@ -260,7 +266,12 @@ export default function QuestionarioCigam() {
       </HeroApp>
 
       <FooterApp footerFixed>
-        <Botoes type="button" className="botao" onClick={handleSubmitValues}>
+        <Botoes
+          type="button"
+          className="botao"
+          onClick={handleSubmitValues}
+          disabled={emptyValueFields}
+        >
           Calcular
         </Botoes>
       </FooterApp>

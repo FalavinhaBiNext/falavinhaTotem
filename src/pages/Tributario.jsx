@@ -7,6 +7,7 @@ import routes from "../routes";
 import textos from "../components/textos";
 import FramerMotion from "../components/FramerMotion";
 import ButtonLinks from "../components/ButtonLinks";
+import PalavraChave from "../components/PalavraChave";
 
 function Tributario() {
   // links dos botões
@@ -29,15 +30,9 @@ function Tributario() {
           <div className="textoMain">
             <p className="paragraph">
               A{" "}
-              <span
-                style={{
-                  color: "#C48322",
-                  fontFamily: "Gilroy-bold",
-                  fontSize: 24,
-                }}
-              >
+              <PalavraChave color="#C48322">
                 {textos.tributario.PalavraChave}
-              </span>{" "}
+              </PalavraChave>
               {textos.tributario.Texto}
             </p>
           </div>

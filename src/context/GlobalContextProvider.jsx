@@ -8,9 +8,13 @@ export const GlobalContext = createContext();
 export default function GlobalContextProvider({ children }) {
   const [answers, setAnswers] = useState({});
   const [submitROIValues, setSubmitRoIValues] = useState(null);
+  const [hasUserData, setHasUserData] = useState(() => {
+    const storedData = sessionStorage.getItem("userInfo");
+    return storedData ? JSON.parse(storedData) : {};
+  });
 
   const {
-    values: inputVal,
+    values: inputValue,
     errors,
     touched,
     handleBlur,
@@ -21,37 +25,41 @@ export default function GlobalContextProvider({ children }) {
       nome: "",
       telefone: "",
       email: "",
-      origem: "RH",
-      surveyMessage: {},
+      resultadoEnquete: {},
     },
     validationSchema,
     onSubmit: getUserData,
   });
 
+  // Coleta os dados do usuário e salva no localStorage
   async function getUserData() {
     try {
-      const userData = {
-        nome: inputVal.nome,
-        email: inputVal.email,
-        telefone: inputVal.telefone,
-        origem: inputVal.origem,
-        surveyMessage: inputVal.surveyMsg,
-      };
       const userContact = {
-        nome: inputVal.nome,
-        email: inputVal.email,
-        telefone: inputVal.telefone,
+        nome: inputValue.nome,
+        email: inputValue.email,
+        telefone: inputValue.telefone,
       };
-      localStorage.setItem("userInfo", JSON.stringify(userContact));
-      console.log("APENAS O CONTATO DO USUÁRIO:", userData);
-      console.log("APENAS O CONTATO DO USUÁRIO:", userContact);
-
+      sessionStorage.setItem("userInfo", JSON.stringify(userContact));
+      console.log("CONTATO DO USUÁRIO:", userContact);
       resetForm();
     } catch (error) {
       console.error("Error saving user info:", error);
     }
   }
 
+  // Coleta os dados do usuário e a mensagem resultado do survey da CIGAM
+  const handleSubmitCigamSurvey = (origemUsuario) => {
+    const userData = {
+      nome: inputValue.nome || hasUserData.nome || "",
+      email: inputValue.email || hasUserData.email || "",
+      telefone: inputValue.telefone || hasUserData.telefone || "",
+      origem: origemUsuario,
+      resultadoEnquete: resultadoSurveyRh,
+    };
+    console.log("APENAS DADOS DO USUÁRIO:", userData);
+  };
+
+  // Coleta a mensagem resultado do survey da CIGAM
   const resultadoSurveyRh = useMemo(() => {
     const totalScore = Object.values(answers).reduce(
       (total, answer) => total + parseInt(answer, 10),
@@ -66,7 +74,9 @@ export default function GlobalContextProvider({ children }) {
 
   // Certifica se os campos do input estão com erros ou vazios
   const hasEmptyInputs =
-    inputVal.email === "" || inputVal.telefone === "" || inputVal.nome === "";
+    inputValue.email === "" ||
+    inputValue.telefone === "" ||
+    inputValue.nome === "";
   const hasInputErrors = errors.nome || errors.email || errors.telefone;
 
   const values = {
@@ -77,7 +87,7 @@ export default function GlobalContextProvider({ children }) {
     touched,
     handleBlur,
     handleChange,
-    inputVal,
+    inputValue,
     getUserData,
     phoneMask,
     moneyConverter,
@@ -85,6 +95,7 @@ export default function GlobalContextProvider({ children }) {
     setSubmitRoIValues,
     hasEmptyInputs,
     hasInputErrors,
+    handleSubmitCigamSurvey,
   };
   return (
     <GlobalContext.Provider value={values}>{children}</GlobalContext.Provider>
