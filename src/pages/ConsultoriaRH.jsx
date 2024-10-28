@@ -39,7 +39,9 @@ function ConsultoriaRH() {
               {textos.consultoriaRh.Texto}
             </p>
           </div>
-
+          <div>
+            <h2>TÓPICOS CONSULTORIA RH</h2>
+          </div>
           <ButtonLinks options={options} />
         </FramerMotion>
       </HeroApp>
