@@ -9,7 +9,7 @@ import FooterApp from "../../components/Footer";
 import fundo from "../../assets/image/Cigam.png";
 import { GlobalContext } from "../../context/GlobalContextProvider";
 import Formulario from "../../components/Formulario";
-import { moneyFormatter, numberFormatter } from "../../utils";
+import { numberFormatter } from "../../utils";
 
 export default function QuestionarioCigam() {
   const { moneyConverter, setSubmitTotalValues, getUserData } =
@@ -63,15 +63,15 @@ export default function QuestionarioCigam() {
   );
 
   // ROI MENSAL
-  const roiMensal = produtividade_mensal;
+  const roi_mensal = produtividade_mensal;
 
   // ROI ANUAL
-  const roiAnual = roiMensal * 12;
+  const roi_anual = roi_mensal * 12;
 
   // ANO/MES PARA O ROI
   const roi_meses_ano = useMemo(
-    () => values.implementacao / roiAnual,
-    [values.implementacao, roiAnual]
+    () => values.implementacao / roi_anual,
+    [values.implementacao, roi_anual]
   );
 
   const handleChange = (event) => {
@@ -143,7 +143,7 @@ export default function QuestionarioCigam() {
               id="salario_medio"
               value={
                 values.salario_medio &&
-                `R$ ${moneyFormatter(values.salario_medio)}`
+                `R$ ${numberFormatter(values.salario_medio)}`
               }
               onChange={handleChange}
               placeholder="Salário médio do colaborador"
@@ -177,7 +177,7 @@ export default function QuestionarioCigam() {
               id="implementacao"
               value={
                 values.implementacao &&
-                `R$ ${moneyFormatter(values.implementacao)}`
+                `R$ ${numberFormatter(values.implementacao)}`
               }
               onChange={handleChange}
               placeholder="Valor de implementação"
@@ -189,7 +189,7 @@ export default function QuestionarioCigam() {
               nome="roi_mensal"
               type="text"
               id="roi_mensal"
-              value={moneyConverter(isValidValue(roiMensal))}
+              value={moneyConverter(isValidValue(roi_mensal))}
               onChange={handleChange}
               placeholder="R$ 0,00"
               newClassName="input-element__output"
@@ -201,7 +201,7 @@ export default function QuestionarioCigam() {
               nome="roi_anual"
               type="text"
               id="roi_anual"
-              value={moneyConverter(isValidValue(roiAnual))}
+              value={moneyConverter(isValidValue(roi_anual))}
               onChange={handleChange}
               placeholder="R$ 0,00"
               newClassName="input-element__output"

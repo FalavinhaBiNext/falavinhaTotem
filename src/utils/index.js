@@ -10,27 +10,13 @@ export const phoneMask = (value) => {
 // conversão de moeda
 export const moneyConverter = (number) => {
   const options = {
-    style: "currency",
-    currency: "BRL",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 3,
+    style: 'currency',
+    currency: 'BRL',
+    currencyDisplay: 'code'
   };
   return new Intl.NumberFormat("pt-BR", options).format(number);
 };
 
-// Formatação de moeda
-export const moneyFormatter = (value) => {
-  if (!value) return;
-
-  value = value + '';
-  value = parseInt(value.replace(/[\D]+/g, ''));
-  value = value + '';
-  value = value.replace(/([0-9]{2})$/g, ",$1");
-  if (value.length > 6) {
-    value = value.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
-  }
-  return value
-};
 
 
 // Formatação de números
