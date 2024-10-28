@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../context/GlobalContextProvider";
-import { numberValueFormatter } from "../../utils";
+import { numberFormatter, moneyFormatter } from "../../utils";
 import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import FramerMotion from "../../components/FramerMotion";
@@ -70,7 +70,7 @@ export default function QuestionarioTributario() {
 
   return (
     <>
-      <HeaderApp>
+      <HeaderApp redirect={"/servicos"}>
         <h1 className="title">Questionário Tributario</h1>
       </HeaderApp>
       <HeroApp>
@@ -85,7 +85,7 @@ export default function QuestionarioTributario() {
               label="Tributação:"
               name="tributacao"
               options={[
-                { value: "", label: "Selecione (obrigatório)" },
+                { value: "", label: "Selecione (Obrigatório)" },
                 ...selectTributacao,
               ]}
               value={taxationValues.tributacao}
@@ -96,7 +96,7 @@ export default function QuestionarioTributario() {
               label="Atividade:"
               name="atividade"
               options={[
-                { value: "", label: "Selecione (obrigatório)" },
+                { value: "", label: "Selecione (Obrigatório)" },
                 ...selectAtividads,
               ]}
               value={taxationValues.atividade}
@@ -106,51 +106,76 @@ export default function QuestionarioTributario() {
             <TextInput
               title="Faturamento mensal:"
               nome="faturamento_mensal"
-              value={taxationValues.faturamento_mensal}
+              value={
+                taxationValues.faturamento_mensal &&
+                `R$ ${moneyFormatter(taxationValues.faturamento_mensal)}`
+              }
               onChange={handleChange}
-              placeholder="Digite um valor (obrigatório)"
+              type="number"
+              placeholder="Digite um valor (Obrigatório)"
             />
             <TextInput
               title="Número de funcionários:"
               nome="numero_funcionarios"
-              value={taxationValues.numero_funcionarios}
+              value={numberFormatter(taxationValues.numero_funcionarios)}
               onChange={handleChange}
-              placeholder="Digite um valor (opcional)"
+              type="number"
+              placeholder="Digite um valor (Opcional)"
             />
             <TextInput
               title="Valor da folha de pagamento:"
               nome="folha_pagamento"
-              value={taxationValues.folha_pagamento}
+              value={
+                taxationValues.folha_pagamento &&
+                `R$ ${moneyFormatter(taxationValues.folha_pagamento)}`
+              }
               onChange={handleChange}
-              placeholder="Digite um valor (opcional)"
+              type="number"
+              placeholder="Digite um valor (Opcional)"
             />
             <TextInput
               title="Médias das dispensas anuais:"
               nome="dispensa_anual"
-              value={taxationValues.dispensa_anual}
+              type="number"
+              value={
+                taxationValues.dispensa_anual &&
+                `R$ ${moneyFormatter(taxationValues.dispensa_anual)}`
+              }
               onChange={handleChange}
-              placeholder="Digite um valor (opcional)"
+              placeholder="Digite um valor (Opcional)"
             />
             <TextInput
               title="Patrimônio líquido:"
               nome="patrimonio_liquido"
-              value={taxationValues.patrimonio_liquido}
+              type="number"
+              value={
+                taxationValues.patrimonio_liquido &&
+                `R$ ${moneyFormatter(taxationValues.patrimonio_liquido)}`
+              }
               onChange={handleChange}
-              placeholder="Digite um valor (opcional)"
+              placeholder="Digite um valor (Opcional)"
             />
             <TextInput
               title="Lucro da empresa:"
               nome="lucro_empresa"
-              value={taxationValues.lucro_empresa}
+              type="number"
+              value={
+                taxationValues.lucro_empresa &&
+                `R$ ${moneyFormatter(taxationValues.lucro_empresa)}`
+              }
               onChange={handleChange}
-              placeholder="Digite um valor (opcional)"
+              placeholder="Digite um valor (Opcional)"
             />
             <TextInput
               title="Gastos com inovação e tecnologia:"
               nome="gastos_inovacao"
-              value={taxationValues.gastos_inovacao}
+              type="number"
+              value={
+                taxationValues.gastos_inovacao &&
+                `R$ ${moneyFormatter(taxationValues.gastos_inovacao)}`
+              }
               onChange={handleChange}
-              placeholder="Digite um valor (opcional)"
+              placeholder="Digite um valor (Opcional)"
             />
           </form>
         </FramerMotion>
@@ -207,21 +232,20 @@ const TextInput = ({ title, nome, value, onChange, placeholder }) => (
     {title}
     <input
       className="input-element"
-      type="text"
       name={nome}
       id={nome}
       placeholder={placeholder}
       autoComplete="off"
-      value={numberValueFormatter(value)}
+      value={value || ""}
       onChange={onChange}
     />
   </label>
 );
 
 TextInput.propTypes = {
-  title: PropTypes.string.isRequired,
-  nome: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  title: PropTypes.string,
+  nome: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
   placeholder: PropTypes.string,
 };

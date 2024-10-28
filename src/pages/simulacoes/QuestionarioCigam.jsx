@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useContext, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HeaderApp from "../../components/Header";
@@ -8,7 +9,7 @@ import FooterApp from "../../components/Footer";
 import fundo from "../../assets/image/Cigam.png";
 import { GlobalContext } from "../../context/GlobalContextProvider";
 import Formulario from "../../components/Formulario";
-import { numberValueFormatter } from "../../utils";
+import { moneyFormatter, numberFormatter } from "../../utils";
 
 export default function QuestionarioCigam() {
   const { moneyConverter, setSubmitTotalValues, getUserData } =
@@ -22,9 +23,7 @@ export default function QuestionarioCigam() {
     situacao_atual: "",
   });
 
-  const [hasUserData, setHasUserData] = useState(
-    !!sessionStorage.getItem("userInfo")
-  );
+  const [hasUserData] = useState(!!sessionStorage.getItem("userInfo"));
 
   const isValidValue = (val) => (isNaN(val) || !isFinite(val) ? "" : val);
   const emptyValueFields =
@@ -127,33 +126,28 @@ export default function QuestionarioCigam() {
               marginBottom: "60px",
             }}
           >
-            <label htmlFor="usuarios" className="input-label">
-              Usuários:
-              <input
-                className="input-element"
-                type="text"
-                name="usuarios"
-                id="usuarios"
-                placeholder="Número de usuários"
-                autoComplete="off"
-                onChange={handleChange}
-                value={numberValueFormatter(values.usuarios)}
-              />
-            </label>
+            <TextInput
+              title="Usuários:"
+              nome="usuarios"
+              type="text"
+              id="usuarios"
+              value={numberFormatter(values.usuarios)}
+              onChange={handleChange}
+              placeholder="Número de usuários"
+            />
 
-            <label htmlFor="salario_medio" className="input-label">
-              Salário médio:
-              <input
-                className="input-element"
-                type="text"
-                name="salario_medio"
-                id="salario_medio"
-                placeholder="Salário médio do colaborador"
-                autoComplete="off"
-                onChange={handleChange}
-                value={numberValueFormatter(values.salario_medio)}
-              />
-            </label>
+            <TextInput
+              title="Salário médio:"
+              nome="salario_medio"
+              type="text"
+              id="salario_medio"
+              value={
+                values.salario_medio &&
+                `R$ ${moneyFormatter(values.salario_medio)}`
+              }
+              onChange={handleChange}
+              placeholder="Salário médio do colaborador"
+            />
 
             <label
               htmlFor="situacao_atual"
@@ -176,87 +170,79 @@ export default function QuestionarioCigam() {
               </select>
             </label>
 
-            <label htmlFor="implementacao" className="input-label">
-              Implementação:
-              <input
-                className="input-element"
-                type="text"
-                name="implementacao"
-                id="implementacao"
-                placeholder="Valor de implementação"
-                autoComplete="off"
-                onChange={handleChange}
-                value={numberValueFormatter(values.implementacao)}
-              />
-            </label>
+            <TextInput
+              title="Implementação:"
+              nome="implementacao"
+              type="text"
+              id="implementacao"
+              value={
+                values.implementacao &&
+                `R$ ${moneyFormatter(values.implementacao)}`
+              }
+              onChange={handleChange}
+              placeholder="Valor de implementação"
+            />
 
             {/* OUTPUTS */}
-            <label htmlFor="roi_mensal" className="input-label">
-              ROI mensal:
-              <input
-                className="input-element input-element__output"
-                type="text"
-                name="roi_mensal"
-                id="roi_mensal"
-                placeholder="R$ 0,00"
-                value={moneyConverter(isValidValue(roiMensal))}
-                readOnly
-              />
-            </label>
+            <TextInput
+              title="ROI mensal:"
+              nome="roi_mensal"
+              type="text"
+              id="roi_mensal"
+              value={moneyConverter(isValidValue(roiMensal))}
+              onChange={handleChange}
+              placeholder="R$ 0,00"
+              newClassName="input-element__output"
+              isReadOnly={true}
+            />
 
-            <label htmlFor="roi_anual" className="input-label">
-              ROI anual - GP:
-              <input
-                className="input-element input-element__output"
-                type="text"
-                name="roi_anual"
-                id="roi_anual"
-                placeholder="R$ 0,00"
-                value={moneyConverter(isValidValue(roiAnual))}
-                readOnly
-              />
-            </label>
+            <TextInput
+              title="ROI anual - GP:"
+              nome="roi_anual"
+              type="text"
+              id="roi_anual"
+              value={moneyConverter(isValidValue(roiAnual))}
+              onChange={handleChange}
+              placeholder="R$ 0,00"
+              newClassName="input-element__output"
+              isReadOnly={true}
+            />
 
-            <label htmlFor="folha_pagamento" className="input-label">
-              Folha de pagamento(apenas usuários):
-              <input
-                className="input-element input-element__output"
-                type="text"
-                name="folha_pagamento"
-                id="folha_pagamento"
-                placeholder="R$ 0,00"
-                value={moneyConverter(isValidValue(folha_pagamento))}
-                readOnly
-              />
-            </label>
+            <TextInput
+              title="ROI anual - GP:"
+              nome="folha_pagamento"
+              type="text"
+              id="folha_pagamento"
+              value={moneyConverter(isValidValue(folha_pagamento))}
+              onChange={handleChange}
+              placeholder="R$ 0,00"
+              newClassName="input-element__output"
+              isReadOnly={true}
+            />
 
-            <label htmlFor="salario_hora" className="input-label">
-              Salário/Hora:
-              <input
-                className="input-element input-element__output"
-                type="text"
-                name="salario_hora"
-                id="salario_hora"
-                placeholder="R$ 0,00"
-                value={moneyConverter(isValidValue(salario_hora))}
-                readOnly
-              />
-            </label>
+            <TextInput
+              title="Salário/Hora:"
+              nome="salario_hora"
+              type="text"
+              id="salario_hora"
+              value={moneyConverter(isValidValue(salario_hora))}
+              onChange={handleChange}
+              placeholder="R$ 0,00"
+              newClassName="input-element__output"
+              isReadOnly={true}
+            />
 
-            <label htmlFor="tempo_roi" className="input-label">
-              Ano/Meses para ROI:
-              <input
-                className="input-element input-element__output"
-                type="text"
-                name="tempo_roi"
-                id="tempo_roi"
-                placeholder="Tempo para ROI"
-                autoComplete="off"
-                onChange={handleChange}
-                value={isValidValue(roi_meses_ano.toFixed(1))}
-                readOnly
-              />
-            </label>
+            <TextInput
+              title="Ano/Meses para ROI:"
+              nome="tempo_roi"
+              type="text"
+              id="tempo_roi"
+              value={isValidValue(roi_meses_ano.toFixed(1)).replace(".", ",")}
+              onChange={handleChange}
+              placeholder="Tempo para ROI"
+              newClassName="input-element__output"
+              isReadOnly={true}
+            />
             <br />
           </form>
         </FramerMotion>
@@ -275,3 +261,38 @@ export default function QuestionarioCigam() {
     </>
   );
 }
+
+const TextInput = ({
+  title,
+  nome,
+  value,
+  onChange,
+  placeholder,
+  newClassName,
+  isReadOnly,
+}) => (
+  <label htmlFor={nome} className="input-label">
+    {title}
+    <input
+      className={`input-element ${newClassName}`}
+      name={nome}
+      placeholder={placeholder}
+      autoComplete="off"
+      value={value || ""}
+      id={nome}
+      onChange={onChange}
+      readOnly={isReadOnly}
+    />
+  </label>
+);
+
+TextInput.propTypes = {
+  title: PropTypes.string,
+  nome: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  placeholder: PropTypes.string,
+  id: PropTypes.string,
+  newClassName: PropTypes.string,
+  isReadOnly: PropTypes.bool,
+};

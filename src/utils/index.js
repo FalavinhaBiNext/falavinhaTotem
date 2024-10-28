@@ -1,3 +1,4 @@
+// Máscara para telefone
 export const phoneMask = (value) => {
   if (!value) return "";
   value = value.replace(/\D/g, "");
@@ -6,6 +7,7 @@ export const phoneMask = (value) => {
   return value;
 };
 
+// conversão de moeda
 export const moneyConverter = (number) => {
   const options = {
     style: "currency",
@@ -16,9 +18,27 @@ export const moneyConverter = (number) => {
   return new Intl.NumberFormat("pt-BR", options).format(number);
 };
 
-export const numberValueFormatter = (value) => value && value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+// Formatação de moeda
+export const moneyFormatter = (value) => {
+  if (!value) return;
+
+  value = value + '';
+  value = parseInt(value.replace(/[\D]+/g, ''));
+  value = value + '';
+  value = value.replace(/([0-9]{2})$/g, ",$1");
+  if (value.length > 6) {
+    value = value.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+  }
+  return value
+};
 
 
+// Formatação de números
+export const numberFormatter = (value) =>
+  value && value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+
+
+// validação de email do formulário 
 import * as Yup from "yup";
 const requiredField = "Campo obrigatório!";
 const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
