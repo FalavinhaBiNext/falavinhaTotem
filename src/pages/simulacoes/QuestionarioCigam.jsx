@@ -1,16 +1,17 @@
 import { useContext, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import HeaderApp from "../components/Header";
-import Botoes from "../components/Botoes";
-import HeroApp from "../components/Hero";
-import FramerMotion from "../components/FramerMotion";
-import FooterApp from "../components/Footer";
-import fundo from "../assets/image/Cigam.png";
-import { GlobalContext } from "../context/GlobalContextProvider";
-import Formulario from "../components/Formulario";
+import HeaderApp from "../../components/Header";
+import Botoes from "../../components/Botoes";
+import HeroApp from "../../components/Hero";
+import FramerMotion from "../../components/FramerMotion";
+import FooterApp from "../../components/Footer";
+import fundo from "../../assets/image/Cigam.png";
+import { GlobalContext } from "../../context/GlobalContextProvider";
+import Formulario from "../../components/Formulario";
+import { numberValueFormatter } from "../../utils";
 
 export default function QuestionarioCigam() {
-  const { moneyConverter, setSubmitRoIValues, getUserData } =
+  const { moneyConverter, setSubmitTotalValues, getUserData } =
     useContext(GlobalContext);
   const navigate = useNavigate();
 
@@ -20,6 +21,11 @@ export default function QuestionarioCigam() {
     implementacao: "",
     situacao_atual: "",
   });
+
+  const [hasUserData, setHasUserData] = useState(
+    !!sessionStorage.getItem("userInfo")
+  );
+
   const isValidValue = (val) => (isNaN(val) || !isFinite(val) ? "" : val);
   const emptyValueFields =
     values.usuarios === "" ||
@@ -81,16 +87,13 @@ export default function QuestionarioCigam() {
     }));
   };
 
-  const [hasUserData, setHasUserData] = useState(
-    !!localStorage.getItem("userInfo")
-  );
-
+  // Envia dados para o servidor
   const handleSubmitValues = (e) => {
     e.preventDefault();
     if (emptyValueFields) return;
-    if (!hasUserData) getUserData();
+    if (!hasUserData) getUserData("CIGAM");
 
-    setSubmitRoIValues({
+    setSubmitTotalValues({
       ...values,
       folha_pagamento,
       salario_hora,
@@ -134,7 +137,7 @@ export default function QuestionarioCigam() {
                 placeholder="Número de usuários"
                 autoComplete="off"
                 onChange={handleChange}
-                value={values.usuarios}
+                value={numberValueFormatter(values.usuarios)}
               />
             </label>
 
@@ -148,7 +151,7 @@ export default function QuestionarioCigam() {
                 placeholder="Salário médio do colaborador"
                 autoComplete="off"
                 onChange={handleChange}
-                value={values.salario_medio}
+                value={numberValueFormatter(values.salario_medio)}
               />
             </label>
 
@@ -165,7 +168,7 @@ export default function QuestionarioCigam() {
                 onChange={handleChange}
               >
                 <option value="" disabled>
-                  Situação atual da empresa
+                  Selecione
                 </option>
                 <option value={15}>ERP Grande porte</option>
                 <option value={20}>ERP Pequeno porte</option>
@@ -183,7 +186,7 @@ export default function QuestionarioCigam() {
                 placeholder="Valor de implementação"
                 autoComplete="off"
                 onChange={handleChange}
-                value={values.implementacao}
+                value={numberValueFormatter(values.implementacao)}
               />
             </label>
 
@@ -260,7 +263,12 @@ export default function QuestionarioCigam() {
       </HeroApp>
 
       <FooterApp footerFixed>
-        <Botoes type="button" className="botao" onClick={handleSubmitValues}>
+        <Botoes
+          type="button"
+          className="botao"
+          onClick={handleSubmitValues}
+          disabled={emptyValueFields}
+        >
           Calcular
         </Botoes>
       </FooterApp>

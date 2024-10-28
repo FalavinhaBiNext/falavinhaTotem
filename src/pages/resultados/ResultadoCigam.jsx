@@ -1,12 +1,21 @@
-import { useContext } from "react";
-import { GlobalContext } from "../context/GlobalContextProvider";
-import HeaderApp from "../components/Header";
-import HeroApp from "../components/Hero";
-import FramerMotion from "../components/FramerMotion";
-import imagem from "../assets/image/RespostaQuestionarioCigam.png";
+import { useContext, useEffect } from "react";
+import { GlobalContext } from "../../context/GlobalContextProvider";
+import { useNavigate } from "react-router-dom";
+import HeaderApp from "../../components/Header";
+import HeroApp from "../../components/Hero";
+import FramerMotion from "../../components/FramerMotion";
+import imagem from "../../assets/image/AssessoriaTributaria.png";
+import FooterApp from "../../components/Footer";
 
 export default function ResultadoCigam() {
-  const { moneyConverter, submitROIValues: data } = useContext(GlobalContext);
+  const { moneyConverter, submitTotalValues: data } = useContext(GlobalContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!data) {
+      navigate("/questionario-cigam");
+    }
+  }, [data, navigate]);
 
   const roiData = data
     ? [
@@ -71,6 +80,8 @@ export default function ResultadoCigam() {
           )}
         </FramerMotion>
       </HeroApp>
+
+      <FooterApp />
     </>
   );
 }

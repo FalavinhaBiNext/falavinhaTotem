@@ -6,6 +6,7 @@ import routes from "../routes";
 import textos from "../components/textos";
 import FramerMotion from "../components/FramerMotion";
 import ButtonLinks from "../components/ButtonLinks";
+import PalavraChave from "../components/PalavraChave";
 
 function ConsultoriaRH() {
   // links dos botões
@@ -27,15 +28,9 @@ function ConsultoriaRH() {
           <div className="textoMain">
             <p className="paragraph">
               A{" "}
-              <span
-                style={{
-                  color: "#582B6F",
-                  fontSize: 16,
-                  fontFamily: "Gilroy-bold",
-                }}
-              >
+              <PalavraChave color="#582B6F">
                 {textos.consultoriaRh.PalavraChave}
-              </span>{" "}
+              </PalavraChave>
               {textos.consultoriaRh.Texto}
             </p>
           </div>

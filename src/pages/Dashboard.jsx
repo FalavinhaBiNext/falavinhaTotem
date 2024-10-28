@@ -8,6 +8,7 @@ import FooterApp from "../components/Footer";
 import routes from "../routes";
 import textos from "../components/textos";
 import ButtonLinks from "../components/ButtonLinks";
+import PalavraChave from "../components/PalavraChave";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -61,9 +62,9 @@ const Dashboard = () => {
           <div className="textoMain">
             <p className="paragraph">
               O{" "}
-              <span style={{ fontFamily: "Gilroy-bold" }}>
+              <PalavraChave color="#fff">
                 {textos.Business.PalavraChave}
-              </span>
+              </PalavraChave>
               {textos.Business.Texto}
             </p>
           </div>

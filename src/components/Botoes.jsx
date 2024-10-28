@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 
 export default function Botoes(props) {
-  const { onClick, type, className, children } = props;
+  const { onClick, type, className, children, disabled } = props;
 
   return (
     <motion.button
@@ -11,6 +11,7 @@ export default function Botoes(props) {
       whileHover={{ scale: 1.05, boxShadow: "0px 5px 15px rgba(0,0,0,0.4)" }}
       onClick={onClick}
       type={type}
+      disabled={disabled}
     >
       {children}
     </motion.button>
@@ -22,4 +23,5 @@ Botoes.propTypes = {
   onClick: PropTypes.func,
   children: PropTypes.node,
   type: PropTypes.string,
+  disabled: PropTypes.bool,
 };

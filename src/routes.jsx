@@ -13,6 +13,7 @@ const routes = {
 
   questionarioRH: "/questionario-rh",
   questionarioCigam: "/questionario-cigam",
+  questionarioTributario: "/questionario-tributario",
 
   teste: "/teste",
 };

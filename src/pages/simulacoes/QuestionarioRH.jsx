@@ -1,21 +1,21 @@
 import { useContext, useEffect, useState } from "react";
-import HeaderApp from "../components/Header";
-import HeroApp from "../components/Hero";
-import FooterApp from "../components/Footer";
-import FramerMotion from "../components/FramerMotion";
-import imagem from "../assets/image/RespostaQuestionarioRH.png";
-import Formulario from "../components/Formulario";
-import { GlobalContext } from "../context/GlobalContextProvider";
+import HeaderApp from "../../components/Header";
+import HeroApp from "../../components/Hero";
+import FooterApp from "../../components/Footer";
+import FramerMotion from "../../components/FramerMotion";
+import imagem from "../../assets/image/RespostaQuestionarioRH.png";
+import Formulario from "../../components/Formulario";
+import { GlobalContext } from "../../context/GlobalContextProvider";
 import { useNavigate } from "react-router-dom";
-import { perguntasSurveyRh } from "../services/db";
-import Botoes from "../components/Botoes";
+import { perguntasSurveyRh } from "../../services/db";
+import Botoes from "../../components/Botoes";
 
 export default function QuestionarioRH() {
   const { answers, setAnswers, getUserData, hasInputErrors } =
     useContext(GlobalContext);
   const navigate = useNavigate();
-  const [hasUserData, setHasUserData] = useState(() => {
-    const storedData = localStorage.getItem("userInfo");
+  const [hasUserData] = useState(() => {
+    const storedData = sessionStorage.getItem("userInfo");
     return storedData ? JSON.parse(storedData) : {};
   });
 
@@ -32,15 +32,16 @@ export default function QuestionarioRH() {
     }));
   };
 
-  function isAllQuestionsAnswered() {
-    return Object.keys(answers).length === perguntasSurveyRh.length;
-  }
+  // Apenas certifica se todos os checkboxes foram marcados
+  const isAllInputsChecked = () => {
+    return (
+      Object.keys(answers).length === perguntasSurveyRh.length || hasInputErrors
+    );
+  };
 
   const handleSubmitSurvey = () => {
-    if (!isAllQuestionsAnswered() || hasInputErrors) return;
-    if (!hasUserData) getUserData();
+    if (!Object.keys(hasUserData).length) getUserData("rh");
     navigate("/resultado-rh");
-    getUserData();
   };
 
   return (
@@ -76,12 +77,16 @@ export default function QuestionarioRH() {
                       </label>
                     </li>
                   ))}
-                  <img style={{position: "absolute", zIndex: 0, height: 160, width: 160, right: 10, opacity: 0.07}} src="/src/assets/image/MinilogoBlack.png" alt="Resposta" />
                 </ul>
+                <img style={{position: "absolute", height: 200, width: 200, right: 20, opacity: 0.07}} src="/src/assets/image/MinilogoBlack.png" alt="Resposta" />
               </li>
             ))}
 
-            <Botoes className="botao" onClick={handleSubmitSurvey}>
+            <Botoes
+              className="botao"
+              onClick={handleSubmitSurvey}
+              disabled={!isAllInputsChecked()}
+            >
               Ver resultado
             </Botoes>
           </ul>

@@ -3,14 +3,20 @@ import { createContext, useState, useMemo } from "react";
 import { useFormik } from "formik";
 import { phoneMask, moneyConverter, validationSchema } from "../utils";
 import { respostasSurveyRh } from "../services/db";
+import axios from "axios";
+import { API_URL } from "../services/api";
 
 export const GlobalContext = createContext();
 export default function GlobalContextProvider({ children }) {
   const [answers, setAnswers] = useState({});
-  const [submitROIValues, setSubmitRoIValues] = useState(null);
+  const [submitTotalValues, setSubmitTotalValues] = useState(null);
+  const [hasUserData, setHasUserData] = useState(() => {
+    const storedData = sessionStorage.getItem("userInfo");
+    return storedData ? JSON.parse(storedData) : {};
+  });
 
   const {
-    values: inputVal,
+    values: inputValue,
     errors,
     touched,
     handleBlur,
@@ -21,37 +27,41 @@ export default function GlobalContextProvider({ children }) {
       nome: "",
       telefone: "",
       email: "",
-      origem: "RH",
-      surveyMessage: {},
+      resultadoEnquete: {},
     },
     validationSchema,
     onSubmit: getUserData,
   });
 
-  async function getUserData() {
+  // Salva os dados do usuário no servidor
+  async function getUserData(origemUsuario) {
     try {
-      const userData = {
-        nome: inputVal.nome,
-        email: inputVal.email,
-        telefone: inputVal.telefone,
-        origem: inputVal.origem,
-        surveyMessage: inputVal.surveyMsg,
-      };
       const userContact = {
-        nome: inputVal.nome,
-        email: inputVal.email,
-        telefone: inputVal.telefone,
+        nome: inputValue.nome,
+        email: inputValue.email,
+        telefone: inputValue.telefone,
+        origem: origemUsuario,
+        resultadoEnquete: resultadoSurveyRh,
       };
-      localStorage.setItem("userInfo", JSON.stringify(userContact));
-      console.log("APENAS O CONTATO DO USUÁRIO:", userData);
-      console.log("APENAS O CONTATO DO USUÁRIO:", userContact);
-
+      // Destructuring para maior legibilidade na requisição
+      // await axios.post(
+      //   `${API_URL}/user`,
+      //   userContact,
+      //   {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //   }
+      // );
+      console.log("CONTATO DO USUÁRIO:", userContact);
+      sessionStorage.setItem("userInfo", JSON.stringify(userContact));
       resetForm();
     } catch (error) {
-      console.error("Error saving user info:", error);
+      console.error("Erro ao salvar o usuário:", error);
     }
   }
 
+  // Coleta a mensagem resultado do survey da CIGAM
   const resultadoSurveyRh = useMemo(() => {
     const totalScore = Object.values(answers).reduce(
       (total, answer) => total + parseInt(answer, 10),
@@ -66,7 +76,9 @@ export default function GlobalContextProvider({ children }) {
 
   // Certifica se os campos do input estão com erros ou vazios
   const hasEmptyInputs =
-    inputVal.email === "" || inputVal.telefone === "" || inputVal.nome === "";
+    inputValue.email === "" ||
+    inputValue.telefone === "" ||
+    inputValue.nome === "";
   const hasInputErrors = errors.nome || errors.email || errors.telefone;
 
   const values = {
@@ -77,12 +89,12 @@ export default function GlobalContextProvider({ children }) {
     touched,
     handleBlur,
     handleChange,
-    inputVal,
+    inputValue,
     getUserData,
     phoneMask,
     moneyConverter,
-    submitROIValues,
-    setSubmitRoIValues,
+    submitTotalValues,
+    setSubmitTotalValues,
     hasEmptyInputs,
     hasInputErrors,
   };

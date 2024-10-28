@@ -75,9 +75,11 @@
 }
 
 .survey__list input[type="radio"]:checked + .radio-label {
-  color: #582b6f;
+  color: white;
   font-weight: 600;
   transition: all 200ms ease;
+  background-color: #582b6f;
+  border-radius: 10px;
 }
 
 .survey__list input[type="radio"]:checked + .radio-label:before {

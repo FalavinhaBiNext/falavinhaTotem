@@ -11,12 +11,16 @@ import DashboardFinanceiro from "./pages/Dashboard_Financeiro";
 import ConsultoriaEmpresarial from "./pages/ConsultoriaEmpresarial";
 import Testes from "./pages/teste";
 import { AnimatePresence } from "framer-motion";
-import NotFound from "./pages/NotFound";
-import QuestionarioRH from "./pages/QuestionarioRH";
-import ResultadoRH from "./pages/ResultadoRH";
+// páginas simulações
+import QuestionarioRH from "./pages/simulacoes/QuestionarioRH";
+import QuestionarioCigam from "./pages/simulacoes/QuestionarioCigam";
+import QuestionarioTributario from "./pages/simulacoes/QuestionarioTributario";
+// páginas resultados
+import ResultadoRH from "./pages/resultados/ResultadoRH";
 import StayOnTop from "./components/StayOnTop";
-import QuestionarioCigam from "./pages/QuestionarioCigam";
-import ResultadoCigam from "./pages/ResultadoCigam";
+import ResultadoCigam from "./pages/resultados/ResultadoCigam";
+import NotFound from "./pages/NotFound";
+import ResultadoTributario from "./pages/resultados/ResultadoTributario";
 
 function App() {
   return (
@@ -45,10 +49,17 @@ function App() {
           />
           <Route path="/teste" element={<Testes />} />
           <Route path="/questionario-rh" element={<QuestionarioRH />} />
-
           <Route path="/resultado-rh" element={<ResultadoRH />} />
           <Route path="/questionario-cigam" element={<QuestionarioCigam />} />
           <Route path="/resultado-cigam" element={<ResultadoCigam />} />
+          <Route
+            path="/questionario-tributario"
+            element={<QuestionarioTributario />}
+          />
+          <Route
+            path="/resultado-tributario"
+            element={<ResultadoTributario />}
+          />
 
           <Route path="/*" element={<NotFound />} />
         </Routes>

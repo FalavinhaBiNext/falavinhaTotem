@@ -10,7 +10,7 @@ const HeaderApp = ({ children, redirect }) => {
   const location = useLocation();
   const [headerScroll, setHeaderScroll] = useState(false);
 
-  const handleClearUserData = () => localStorage.clear();
+  const handleClearUserData = () => sessionStorage.clear();
 
   const handleScroll = () => setHeaderScroll(window.scrollY > 0);
   useEffect(() => {
