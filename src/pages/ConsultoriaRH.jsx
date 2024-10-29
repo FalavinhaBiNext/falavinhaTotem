@@ -7,9 +7,8 @@ import textos from "../components/textos";
 import FramerMotion from "../components/FramerMotion";
 import ButtonLinks from "../components/ButtonLinks";
 import PalavraChave from "../components/PalavraChave";
-import {FaRegChartBar} from "react-icons/fa"
+import {FaRegChartBar, FaFileInvoiceDollar} from "react-icons/fa"
 import { GiPodiumWinner } from "react-icons/gi"
-import { GoGear, GoAlert } from "react-icons/go"
 import {RiUserSearchFill} from "react-icons/ri"
 
 function ConsultoriaRH() {
@@ -39,7 +38,7 @@ function ConsultoriaRH() {
             </p>
           </div>
           <div style={{ display: "flex", gap: 2 }}>
-            <div className="container-topicos_servicos" >
+            <div className="container-topicos_rh" >
               <div className="element-topicos_rh">
                 <FaRegChartBar className="icon-topicos_rh" />
                 <p>FERRAMENTAS DE GESTÃO</p>
@@ -51,9 +50,9 @@ function ConsultoriaRH() {
                 </ul>
               </div>
             </div>
-            <div className="container-topicos_servicos">
+            <div className="container-topicos_rh">
               <div className="element-topicos_rh">
-                <GoAlert className="icon-topicos_rh" />
+                <FaFileInvoiceDollar className="icon-topicos_rh" />
                 <p>FOLHA DE PAGAMENTO</p>
                 <ul>
                   <li>BPO</li>
@@ -65,7 +64,7 @@ function ConsultoriaRH() {
             </div>
           </div>
           <div style={{ display: "flex", gap: 2}}>
-            <div className="container-topicos_servicos">
+            <div className="container-topicos_rh">
               <div className="element-topicos_rh">
                 <GiPodiumWinner className="icon-topicos_rh" />
                 <p>OUTSOURCING</p>
@@ -77,14 +76,13 @@ function ConsultoriaRH() {
                 </ul>
               </div>
             </div>
-            <div className="container-topicos_servicos">
+            <div className="container-topicos_rh">
               <div className="element-topicos_rh">
                 <RiUserSearchFill className="icon-topicos_rh" />
                 <p>DESENVOLVIMENTO ORGANIZACIONAL</p>
                 <ul>
                   <li>Psicologia Organizacional</li>
                   <li>Treinamento de Legislação Trabalhista e Previdenciária</li>
-                  <li>Treinamento Técnicos Relacionados a Processos Trabalhistas</li>
                   <li>Letramento em Diversidade</li>
                 </ul>
               </div>

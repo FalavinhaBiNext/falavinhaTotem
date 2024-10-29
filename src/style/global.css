@@ -149,7 +149,7 @@ input[type="number"]::-webkit-outer-spin-button {
 /* CONTEÚDO GERAL DAS PÁGINAS */
 .title {
   font-family: "Gilroy-light";
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: #fff;
   letter-spacing: 5px;
   text-transform: uppercase;
@@ -159,6 +159,8 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .subtitulo {
+  margin-top: 10px;
+  padding-bottom: 20px;
   color: #fff;
   font-size: 12px;
   font-family: "Gilroy-thin";
@@ -177,7 +179,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .textoMain {
   padding-top: 20px;
   font-family: "Gilroy-thin";
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   color: #fff;
   font-style: italic;
   letter-spacing: 1px;
@@ -235,18 +237,15 @@ input[type="number"]::-webkit-outer-spin-button {
 /*TOPICOS DA PAGINA SERVIÇOS*/
 
 .container-topicos_servicos {
-  flex-direction: column;
   gap: 20px;
-  padding: 20px;
+  padding: 10px;
   text-align: start;
   color: #fff;
   width: 50%;
-  justify-content: start;
-  align-items: center;
-  margin: 30px 20px 10px;
+  margin: 20px 20px 10px;
   border-radius: 20px;
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);
-  background-color: rgba(0, 93, 96, 0.4);
+  background-color: rgba(0, 93, 96, 0.6);
 }
 
 .element-topicos_servicos {
@@ -258,13 +257,13 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .icon-topicos_servicos {
-  height: 80px;
-  width: 80px;
+  height: 30px;
+  width: 30px;
 }
 
 .element-topicos_servicos > p {
   font-family: 'Gilroy-bold';
-  font-size: 1.5rem;
+  font-size: 1rem;
   text-align: center;
 }
 
@@ -277,6 +276,7 @@ input[type="number"]::-webkit-outer-spin-button {
   justify-content: start;
   align-items: start;
   color: #fff;
+  padding-bottom: 10px;
 }
 
 .icon-topicos_rh {
@@ -288,5 +288,20 @@ input[type="number"]::-webkit-outer-spin-button {
   font-family: 'Gilroy-bold';
   font-size: 1.2rem;
   text-align: start;
-  margin-top: 10px;
+  margin-top: 20px;
+}
+
+.container-topicos_rh {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  text-align: start;
+  color: #fff;
+  width: 50%;
+  margin: 20px 20px 10px;
+  border: 2px solid #007175;
+  border-radius: 20px;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);
+  background-color: transparent;
 }

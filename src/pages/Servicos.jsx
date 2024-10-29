@@ -73,7 +73,7 @@ function SecondPage() {
               justifyContent: "center",
               alignItems: "center",
               gap: 20,
-              marginTop: 50,
+              marginTop: 20,
             }}
           >
             <div
@@ -90,9 +90,9 @@ function SecondPage() {
                 style={{ cursor: "pointer", display: "block" }}
               >
                 <img
-                  style={{ height: 100, width: 100 }}
+                  style={{ height: 80, width: 80 }}
                   src="https://cdn.me-qr.com/qr/130261488.png?v=1729000579"
-                  alt="Create qr code for free"
+                  alt="Site Falavinha"
                 />
               </a>
             </div>
@@ -110,9 +110,9 @@ function SecondPage() {
                 style={{ cursor: "pointer", display: "block" }}
               >
                 <img
-                  style={{ height: 100, width: 100 }}
+                  style={{ height: 80, width: 80 }}
                   src="https://cdn.me-qr.com/qr/130259779.png?v=1728999910"
-                  alt="Create qr code for free"
+                  alt="Instagram Falavinha"
                 />
               </a>
             </div>

@@ -8,6 +8,8 @@ import ConsultoriaRH from "./pages/ConsultoriaRH";
 import Cigam from "./pages/Cigam";
 import Dashboard from "./pages/Dashboard";
 import DashboardFinanceiro from "./pages/Dashboard_Financeiro";
+import DashboardRH from "./pages/DashboardRH";
+import DashboardGestaoEstoque from "./pages/DashboardGestaoEstoque";
 import ConsultoriaEmpresarial from "./pages/ConsultoriaEmpresarial";
 import Testes from "./pages/teste";
 import { AnimatePresence } from "framer-motion";
@@ -47,6 +49,12 @@ function App() {
             path="/dashboard-financeiro"
             element={<DashboardFinanceiro />}
           />
+          <Route path="/dashboard-rh" element={<DashboardRH />} />
+          <Route
+            path="/dashboard-gestao-estoque"
+            element={<DashboardGestaoEstoque />}
+          />
+
           <Route path="/teste" element={<Testes />} />
           <Route path="/questionario-rh" element={<QuestionarioRH />} />
           <Route path="/resultado-rh" element={<ResultadoRH />} />

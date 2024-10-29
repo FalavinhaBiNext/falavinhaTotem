@@ -42,10 +42,9 @@ const Dashboard = () => {
   const options = [
     { name: "BI GESTOR 2.0", route: routes.dashboardGestor },
     { name: "BI FINANCEIRO", route: routes.dashboardFinanceiro },
-    { name: "BI GESTÃO DE ESTOQUE", route: routes.dashboardGestor },
-    { name: "BI RECURSOS HUMANOS", route: routes.powerapps },
-    { name: "BI TRIBUTÁRIO", route: routes.powerapps },
-    { name: " BI VENDAS", route: routes.powerapps },
+    { name: "BI GESTÃO DE ESTOQUE", route: routes.dashboardGestaoEstoque },
+    { name: "BI RECURSOS HUMANOS", route: routes.dashboardRH },
+    { name: "BI TRIBUTÁRIO", route: routes.powerapps }
   ];
 
   return (
