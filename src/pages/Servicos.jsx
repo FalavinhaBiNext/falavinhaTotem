@@ -1,7 +1,5 @@
 import HeaderApp from "../components/Header";
 import HeroApp from "../components/Hero";
-import { IoArrowBackCircleOutline } from "react-icons/io5";
-import Botoes from "../components/Botoes";
 import FooterApp from "../components/Footer";
 import imagem from "../assets/image/Servicos.png";
 import routes from "../routes";
@@ -22,10 +20,14 @@ function SecondPage() {
     },
   ];
 
+  const handleRediReactHome = () => sessionStorage.clear();
+
   return (
     <>
-      <HeaderApp>
-        <h1 className="title">NOSSAS SOLUÇÕES</h1>
+      <HeaderApp redirect={"/"}>
+        <h1 className="title" onClick={handleRediReactHome}>
+          NOSSAS SOLUÇÕES
+        </h1>
       </HeaderApp>
 
       <HeroApp fundo={imagem}>

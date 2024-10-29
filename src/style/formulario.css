@@ -18,6 +18,10 @@
   font-weight: 600;
 }
 
+.input-label > span {
+  padding-left: 20px;
+}
+
 .input-element {
   width: inherit;
   height: 50px;

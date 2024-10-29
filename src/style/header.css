@@ -12,7 +12,7 @@
   right: 0;
   z-index: 100;
   transition: all 0.2s ease;
-  padding: 10px clamp(4vw, calc((100% - 992px) / 2), 4vw);
+  padding: 10px clamp(5vw, calc((100% - 992px) / 2), 5vw);
 }
 
 .header .logo img {

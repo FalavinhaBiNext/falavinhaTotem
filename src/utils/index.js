@@ -7,16 +7,16 @@ export const phoneMask = (value) => {
   return value;
 };
 
-// conversão de moeda
+// conversão de moeda 
 export const moneyConverter = (number) => {
   const options = {
-    style: 'currency',
-    currency: 'BRL',
-    currencyDisplay: 'code'
+    style: "currency",
+    currency: "BRL",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 3,
   };
   return new Intl.NumberFormat("pt-BR", options).format(number);
 };
-
 
 
 // Formatação de números
