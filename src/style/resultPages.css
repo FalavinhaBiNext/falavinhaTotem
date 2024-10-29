@@ -53,8 +53,9 @@
 
 .topics-result h2 {
     font-family: 'Gilroy-thin';
-    font-size: 2rem;
+    font-size: 1rem;
     font-style: italic;
+    padding: 20px;
 }
 
 .topics-result div > svg {
@@ -69,7 +70,8 @@
 
 .topics-result div > ul {
     font-family: 'Gilroy-thin';
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     min-height: 18vh;
-    padding: 10px;
+    list-style: disc;
+    padding-left: 20px;
 }

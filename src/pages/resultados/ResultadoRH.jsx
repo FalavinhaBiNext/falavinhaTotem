@@ -40,6 +40,7 @@ export default function ResultadoRH() {
           )}
           <div className="topics-result">
             <div>
+              <h2>ESTRATÉGIA DE RETENÇÃO</h2>
               <PiUserSwitchThin/>
               <ul>
                 <li>Pesquisa de Clima</li>
@@ -49,6 +50,7 @@ export default function ResultadoRH() {
               </ul>
             </div>
             <div>
+              <h2>LGPD</h2>
               <BsShieldLock/>
               <ul>
                 <li>Implantação e Auditoria</li>

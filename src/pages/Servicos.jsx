@@ -1,12 +1,14 @@
 import HeaderApp from "../components/Header";
 import HeroApp from "../components/Hero";
-import { IoArrowBackCircleOutline } from "react-icons/io5";
-import Botoes from "../components/Botoes";
+import { BsRocketTakeoff, BsFillSuitcaseLgFill } from "react-icons/bs"
+import { GoGear } from "react-icons/go"
+import {RiTeamFill} from "react-icons/ri"
 import FooterApp from "../components/Footer";
-import imagem from "../assets/image/Servicos.png";
+import imagem from "../assets/image/Servicos2.png";
 import routes from "../routes";
 import FramerMotion from "../components/FramerMotion";
 import ButtonLinks from "../components/ButtonLinks";
+import textos from "../components/textos";
 
 function SecondPage() {
   // links dos botões
@@ -20,24 +22,49 @@ function SecondPage() {
       name: "CONSULTORIA EMPRESARIAL",
       route: routes.consultoriaEmpresarial,
     },
+    { name: "HOLDING", route: routes.holding },
+    { name: "TREINAMENTOS", route: routes.treinamentos },
   ];
 
   return (
     <>
       <HeaderApp>
-        <h1 className="title">NOSSAS SOLUÇÕES</h1>
+        <h1 className="title">{textos.Servicos.Titulo}</h1>
       </HeaderApp>
 
       <HeroApp fundo={imagem}>
         <FramerMotion>
           <span className="textoMain">
-            A Falavinha Next oferece uma ampla gama de serviços para otimizar a
-            gestão de sua empresa. Entre eles estão: soluções contábeis, gestão
-            financeira, consultoria tributária, consultoria em RH, além da
-            criação de dashboards personalizados de Business Intelligence (BI).
-            Somos parceiros da Cigam, proporcionando ainda mais integração e
-            eficiência para o seu negócio.
+            {textos.Servicos.Texto}
           </span>
+          <div style={{ display: "flex", gap: 2 }}>
+            <div className="container-topicos_servicos">
+              <div className="element-topicos_servicos">
+                <BsFillSuitcaseLgFill className="icon-topicos_servicos" />
+                <p>+ 47 ANOS DE HISTÓRIA</p>
+              </div>
+            </div>
+            <div className="container-topicos_servicos">
+              <div className="element-topicos_servicos">
+                <BsRocketTakeoff className="icon-topicos_servicos" />
+                <p>+ 15.000 CLIENTES ATENDIDOS</p>
+              </div>
+            </div>
+          </div>
+          <div style={{ display: "flex", gap: 2, textAlign: "start" }}>
+            <div className="container-topicos_servicos">
+              <div className="element-topicos_servicos">
+                <RiTeamFill className="icon-topicos_servicos" />
+                <p>+ 180 COLABORADORES</p>
+              </div>
+            </div>
+            <div className="container-topicos_servicos">
+              <div className="element-topicos_servicos">
+                <GoGear className="icon-topicos_servicos" />
+                <p>+ 15 SERVIÇOS</p>
+              </div>
+            </div>
+          </div>
           <ButtonLinks options={options} />
 
           <div
@@ -45,8 +72,8 @@ function SecondPage() {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              gap: 50,
-              marginTop: "auto",
+              gap: 20,
+              marginTop: 50,
             }}
           >
             <div
