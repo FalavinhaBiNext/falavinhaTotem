@@ -5,6 +5,8 @@ export const perguntasSurveyRh = [
     id: 1,
     text: `Você já está familiarizado com os conceitos de turnover e rotatividade, 
     mas sabe como a análise preditiva pode ajudar a reduzir essas taxas em até 30% em grandes empresas?`,
+    //TEXTO RESUMIDO PARA PERGUNTA
+    //Você sabe como a análise preditiva pode reduzir o turnover em até 30% nas empresas?
     options: [
       { value: 4, label: `Sim, usamos análise preditiva com sucesso.` },
       {
@@ -34,6 +36,9 @@ export const perguntasSurveyRh = [
     text: `Você já aplicou a análise de pessoas (people analytics) 
     para prever a retenção de talentos, ou ainda está usando métodos 
     tradicionais para tomar essas decisões?`,
+    // TEXO RESUMIDO PARA PERGUNTA
+    // Já usa people analytics para prever retenção de talentos ou ainda recorre a métodos tradicionais?
+
     options: [
       { value: 4, label: `Sim, usamos people analytics com sucesso.` },
       { value: 3, label: `Estamos começando a usar com alguns resultados.` },
@@ -100,6 +105,7 @@ export const respostasSurveyRh = [
     title: "Excelente Gestão!",
     message: `A empresa demonstra uma forte capacidade de integrar tecnologias avançadas e práticas modernas de RH, 
     garantindo eficiência e conformidade em todos os processos.`,
+    icon: 5,
   },
   {
     min: 12,
@@ -107,6 +113,7 @@ export const respostasSurveyRh = [
     title: "Boa Gestão",
     message: `A empresa está bem posicionada em termos de práticas de RH, 
     mas ainda pode melhorar em algumas informações para alcançar a excelência.`,
+    icon: 4,
   },
   {
     min: 6,
@@ -114,6 +121,7 @@ export const respostasSurveyRh = [
     title: "Gestão de RH Média",
     message: `A empresa possui práticas de RH que atendem aos requisitos básicos, 
     mas há várias áreas que necessitam de melhorias significativas.`,
+    icon: 3,
   },
   {
     min: 0,
@@ -121,5 +129,6 @@ export const respostasSurveyRh = [
     title: "Gestão de RH Deficitária",
     message: `A empresa enfrenta desafios consideráveis em suas práticas
     de RH e precisa de uma gestão mais eficiente.`,
+    icon: 2,
   },
 ];

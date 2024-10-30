@@ -1,10 +1,16 @@
 import HeaderApp from "../components/Header";
 import HeroApp from "../components/Hero";
+import { IoArrowBackCircleOutline } from "react-icons/io5";
+import Botoes from "../components/Botoes";
 import FooterApp from "../components/Footer";
-import imagem from "../assets/image/Servicos.png";
+import imagem from "../assets/image/Servicos2.png";
 import routes from "../routes";
 import FramerMotion from "../components/FramerMotion";
 import ButtonLinks from "../components/ButtonLinks";
+import textos from "../components/textos";
+import { RiTeamFill } from "react-icons/ri";
+import { BsFillSuitcaseLgFill, BsRocketTakeoff } from "react-icons/bs";
+import { GoGear } from "react-icons/go";
 
 function SecondPage() {
   // links dos botões
@@ -18,28 +24,48 @@ function SecondPage() {
       name: "CONSULTORIA EMPRESARIAL",
       route: routes.consultoriaEmpresarial,
     },
+    { name: "HOLDING", route: routes.holding },
+    { name: "TREINAMENTOS", route: routes.treinamentos },
   ];
 
-  const handleRediReactHome = () => sessionStorage.clear();
+  // DADOS DOS TÓPICOS
+  const nossaHistoria = [
+    {
+      icon: <BsFillSuitcaseLgFill className="icon-topicos_servicos" />,
+      texto: "+ 47 ANOS DE HISTÓRIA",
+    },
+    {
+      icon: <BsRocketTakeoff className="icon-topicos_servicos" />,
+      texto: "+ 15.000 CLIENTES ATENDIDOS",
+    },
+    {
+      icon: <RiTeamFill className="icon-topicos_servicos" />,
+      texto: "+ 180 COLABORADORES",
+    },
+    {
+      icon: <GoGear className="icon-topicos_servicos" />,
+      texto: "+ 15 SERVIÇOS",
+    },
+  ];
 
   return (
     <>
-      <HeaderApp redirect={"/"}>
-        <h1 className="title" onClick={handleRediReactHome}>
-          NOSSAS SOLUÇÕES
-        </h1>
+      <HeaderApp>
+        <h1 className="title">NOSSAS SOLUÇÕES</h1>
       </HeaderApp>
 
       <HeroApp fundo={imagem}>
         <FramerMotion>
-          <span className="textoMain">
-            A Falavinha Next oferece uma ampla gama de serviços para otimizar a
-            gestão de sua empresa. Entre eles estão: soluções contábeis, gestão
-            financeira, consultoria tributária, consultoria em RH, além da
-            criação de dashboards personalizados de Business Intelligence (BI).
-            Somos parceiros da Cigam, proporcionando ainda mais integração e
-            eficiência para o seu negócio.
-          </span>
+          <span className="textoMain">{textos.Servicos.Texto}</span>
+          <ul className="container-topicos">
+            {nossaHistoria.map((item, index) => (
+              <li className="container-topicos_servicos" key={index}>
+                {item.icon}
+                <p>{item.texto}</p>
+              </li>
+            ))}
+          </ul>
+
           <ButtonLinks options={options} />
 
           <div
@@ -47,8 +73,8 @@ function SecondPage() {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              gap: 50,
-              marginTop: "auto",
+              gap: 20,
+              marginTop: 20,
             }}
           >
             <div
@@ -65,9 +91,9 @@ function SecondPage() {
                 style={{ cursor: "pointer", display: "block" }}
               >
                 <img
-                  style={{ height: 100, width: 100 }}
+                  style={{ height: 80, width: 80 }}
                   src="https://cdn.me-qr.com/qr/130261488.png?v=1729000579"
-                  alt="Create qr code for free"
+                  alt="Site Falavinha"
                 />
               </a>
             </div>
@@ -85,9 +111,9 @@ function SecondPage() {
                 style={{ cursor: "pointer", display: "block" }}
               >
                 <img
-                  style={{ height: 100, width: 100 }}
+                  style={{ height: 80, width: 80 }}
                   src="https://cdn.me-qr.com/qr/130259779.png?v=1728999910"
-                  alt="Create qr code for free"
+                  alt="Instagram Falavinha"
                 />
               </a>
             </div>

@@ -51,11 +51,17 @@ const textos = {
   },
 
   Servicos: {
-    Titulo: "NOSSOS SERVIÇOS",
+    Titulo: "NOSSAS SOLUÇÕES",
     Subtitulo: "",
     PalavraChave: "",
     Texto:
       "A Falavinha Next oferece uma ampla gama de serviços para otimizar a gestão de sua empresa. Entre eles estão: soluções contábeis, gestão financeira, consultoria tributária, consultoria em RH, além da criação de dashboards personalizados de Business Intelligence (BI). Somos parceiros da Cigam, proporcionando ainda mais integração e eficiência para o seu negócio.",
+    Topicos: {
+    item1: "+ 47 ANOS DE HISTÓRIA",
+    item2: "+ 15.000 CLIENTES ATENDIDOS",
+    item3: "+ 180 COLABORADORES",
+    item4: "+ 15 SERVIÇOS"
+    }
   },
 };
 

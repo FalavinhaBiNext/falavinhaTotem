@@ -7,8 +7,12 @@ const routes = {
   consultoriRh: "/consultoriaRH",
   cigam: "/cigam",
   consultoriaEmpresarial: "/consultoria-empresarial",
+  holding: "/holding",
+  treinamentos: "/treinamentos",
   dashboardGestor: "/dashboard-contabilidade",
   dashboardFinanceiro: "/dashboard-financeiro",
+  dashboardRH: "/dashboard-rh",
+  dashboardGestaoEstoque: "/dashboard-gestao-estoque",
   powerapps: "/powerapps",
 
   questionarioRH: "/questionario-rh",

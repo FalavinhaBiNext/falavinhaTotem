@@ -3,19 +3,22 @@ import FooterApp from "../components/Footer";
 import HeroApp from "../components/Hero";
 import FramerMotion from "../components/FramerMotion";
 
-const biContent = `https://app.powerbi.com/view?r=eyJrIjoiMmIzNTQ4ZWItMTYzZS00M2Y1LTliNzQtNzlhNDZkOTZkMzQ0IiwidCI6Ijk2ZjUxYjBhLTMwNDAtNDgzZi04Yjc2LTExODQ4YmZkZTRmYiJ9&navContentPaneEnabled=false`;
+const biContent = `https://app.powerbi.com/view?r=eyJrIjoiNDAyM2RkYmQtOWM2Mi00NTljLWFiZjEtNmMwZWI2Y2IxYzU5IiwidCI6Ijk2ZjUxYjBhLTMwNDAtNDgzZi04Yjc2LTExODQ4YmZkZTRmYiJ9`;
 
 function Dashboard_Financeiro() {
+  // const motionStyle = {
+  //   backgroundColor: "#009499",
+  // };
 
   return (
     <>
       <HeaderApp>
-        <h1 className="title">DASHBOARD BI</h1>
+        <h1 className="title">DASHBOARD BI RH</h1>
       </HeaderApp>
 
       <HeroApp>
         <FramerMotion>
-          <h2 className="subtitulo">Financeiro</h2>
+          <h2 className="subtitulo">RECURSOS HUMANOS</h2>
           <div className="iframeDash">
             <iframe
               className="iframe-content"

@@ -4,20 +4,19 @@ import FramerMotion from "../components/FramerMotion";
 import HeroApp from "../components/Hero";
 import fundo from "../assets/image/BusinessIntelligence.png";
 
-// Link ao dashboard BI Gestor 2.0
-const biContent = `https://app.powerbi.com/view?r=eyJrIjoiMGM5Y2VhYTUtMTdhMS00MmM0LWFmOTMtYTY4Njc2ZjMwYz
-QwIiwidCI6Ijk2ZjUxYjBhLTMwNDAtNDgzZi04Yjc2LTExODQ4YmZkZTRmYiJ9&navContentPaneEnabled=false`;
+// Link ao dashboard BI Gestão de Estoque
+const biContent = `https://app.powerbi.com/view?r=eyJrIjoiZDM5MzlhZjQtNWFkNC00YjJlLTkxNWMtNDI5NTliYjFiNWJiIiwidCI6Ijk2ZjUxYjBhLTMwNDAtNDgzZi04Yjc2LTExODQ4YmZkZTRmYiJ9&navContentPaneEnabled=false`;
 
 function DashContabilidade() {
   return (
     <>
       <HeaderApp>
-        <h1 className="title">DASHBOARD BI</h1>
+        <h1 className="title">DASHBOARD GESTÃO DE ESTOQUE</h1>
       </HeaderApp>
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <h2 className="subtitulo">Gestor 2.0 | Contabilidade</h2>
+          <h2 className="subtitulo">Controle de Estoque</h2>
           <div className="iframeDash">
             <iframe
               className="iframe-content"

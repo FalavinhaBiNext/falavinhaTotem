@@ -3,7 +3,7 @@ import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import FooterApp from "../../components/Footer";
 import FramerMotion from "../../components/FramerMotion";
-import imagem from "../../assets/image/Servicos.png";
+import imagem from "../../assets/image/RespostaQuestionarioRH.png";
 import Formulario from "../../components/Formulario";
 import { GlobalContext } from "../../context/GlobalContextProvider";
 import { useNavigate } from "react-router-dom";
@@ -79,6 +79,7 @@ export default function QuestionarioRH() {
                     </li>
                   ))}
                 </ul>
+                <img style={{position: "absolute", height: 200, width: 200, right: 20, opacity: 0.07}} src="/src/assets/image/MinilogoBlack.png" alt="Resposta" />
               </li>
             ))}
 
