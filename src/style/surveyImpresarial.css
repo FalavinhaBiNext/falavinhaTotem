@@ -1,6 +1,5 @@
 .survey {
   margin-top: 30px;
-  margin: 20px;
 }
 
 .survey__list {
@@ -26,14 +25,14 @@
   padding-bottom: 10px;
   letter-spacing: 1px;
   line-height: 20px;
-  font-family: 'Gilroy-bold';
+  font-family: "Gilroy-bold";
 }
 
 .survey__list--question {
   display: flex;
   flex-flow: column;
   gap: 10px;
-  font-family: 'Gilroy-thin';
+  font-family: "Gilroy-thin";
 }
 
 .survey__list--radios {

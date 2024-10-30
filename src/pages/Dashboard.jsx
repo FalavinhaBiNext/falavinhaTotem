@@ -106,9 +106,9 @@ const Dashboard = () => {
               {textos.Business.Texto}
             </p>
           </div>
-          <div style={{ display: "flex", gap: 2 }}>
-            <div className="container-topicos_rh" >
-              <div className="element-topicos_rh">
+          <div className="container-topicos">
+            <div className="consultoria-rh" >
+              <div className="consultoria-rh__item">
                 <img
                   src={gifCoins}
                   alt=""
@@ -124,8 +124,8 @@ const Dashboard = () => {
                 </ul>
               </div>
             </div>
-            <div className="container-topicos_rh" >
-              <div className="element-topicos_rh">
+            <div className="consultoria-rh" >
+              <div className="consultoria-rh__item">
                 <img
                   src={gifMoeda}
                   alt=""
@@ -142,9 +142,9 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-          <div style={{ display: "flex", gap: 2 }}>
-            <div className="container-topicos_rh" >
-              <div className="element-topicos_rh">
+          <div className="container-topicos">
+            <div className="consultoria-rh" >
+              <div className="consultoria-rh__item">
                 <img
                   src={gifAvatar}
                   alt=""
@@ -160,8 +160,8 @@ const Dashboard = () => {
                 </ul>
               </div>
             </div>
-            <div className="container-topicos_rh" >
-              <div className="element-topicos_rh">
+            <div className="consultoria-rh" >
+              <div className="consultoria-rh__item">
                 <img
                   src={gifGrafico}
                   alt=""

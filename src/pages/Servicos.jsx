@@ -27,7 +27,25 @@ function SecondPage() {
     { name: "TREINAMENTOS", route: routes.treinamentos },
   ];
 
-  const handleRediReactHome = () => sessionStorage.clear();
+  // DADOS DOS TÓPICOS
+  // const nossaHistoria = [
+  //   {
+  //     icon: <BsFillSuitcaseLgFill className="icon-topicos_servicos" />,
+  //     texto: "+ 47 ANOS DE HISTÓRIA",
+  //   },
+  //   {
+  //     icon: <BsRocketTakeoff className="icon-topicos_servicos" />,
+  //     texto: "+ 15.000 CLIENTES ATENDIDOS",
+  //   },
+  //   {
+  //     icon: <RiTeamFill className="icon-topicos_servicos" />,
+  //     texto: "+ 180 COLABORADORES",
+  //   },
+  //   {
+  //     icon: <GoGear className="icon-topicos_servicos" />,
+  //     texto: "+ 15 SERVIÇOS",
+  //   },
+  // ];
 
   return (
     <>
@@ -41,13 +59,13 @@ function SecondPage() {
           <div style={{ display: "flex", gap: 2 }}>
             <div className="container-topicos_servicos">
               <div className="element-topicos_servicos">
-                <img src={gifMala} alt="" id="gif"/>
+                <img src={gifMala} alt="" className="icon-topicos_servicos"/>
                 <p>+ 47 ANOS DE HISTÓRIA</p>
               </div>
             </div>
             <div className="container-topicos_servicos">
               <div className="element-topicos_servicos">
-                <img src={gifCoins} alt="" id="gif"/>
+                <img src={gifCoins} alt="" className="icon-topicos_servicos"/>
                 <p>+ 15.000 CLIENTES ATENDIDOS</p>
               </div>
             </div>
@@ -55,13 +73,13 @@ function SecondPage() {
           <div style={{ display: "flex", gap: 2, textAlign: "start" }}>
             <div className="container-topicos_servicos">
               <div className="element-topicos_servicos">
-                <img src={gifAvatar} alt="" id="gif"/>
+                <img src={gifAvatar} alt="" className="icon-topicos_servicos"/>
                 <p>+ 180 COLABORADORES</p>
               </div>
             </div>
             <div className="container-topicos_servicos">
               <div className="element-topicos_servicos">
-                <img src={gifService} alt="" id="gif"/>
+                <img src={gifService} alt="" className="icon-topicos_servicos"/>
                 <p>+ 15 SERVIÇOS</p>
               </div>
             </div>

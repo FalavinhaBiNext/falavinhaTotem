@@ -14,6 +14,25 @@ import gifWinner from "../assets/gifs/winner.gif"
 
 
 function ConsultoriaRH() {
+  // const topicosRH = [
+  //   {
+  //     icon: <FaRegChartBar className="icon-topicos_rh" />,
+  //     texto: "FERRAMENTAS DE GESTÃO",
+  //   },
+  //   {
+  //     icon: <FaFileInvoiceDollar className="icon-topicos_rh" />,
+  //     texto: "FOLHA DE PAGAMENTO",
+  //   },
+  //   {
+  //     icon: <GiPodiumWinner className="icon-topicos_rh" />,
+  //     texto: "OUTSOURCING",
+  //   },
+  //   {
+  //     icon: <RiUserSearchFill className="icon-topicos_rh" />,
+  //     texto: "DESENVOLVIMENTO ORGANIZACIONAL",
+  //   },
+  // ];
+
   // links dos botões
   const options = [
     { name: "DASHBOARD BI CONSULTORIA RH", route: routes.dashboardFinanceiro },
@@ -55,7 +74,7 @@ function ConsultoriaRH() {
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <div style={{marginTop: "20px"}}>
+          <div style={{ marginTop: "20px" }}>
             <h2 className="subtitulo">{textos.consultoriaRh.Subtitulo}</h2>
           </div>
           <div className="textoMain">
@@ -67,9 +86,9 @@ function ConsultoriaRH() {
               {textos.consultoriaRh.Texto}
             </p>
           </div>
-          <div style={{ display: "flex", gap: 2 }}>
-            <div className="container-topicos_rh" >
-              <div className="element-topicos_rh">
+          <div className="container-topicos">
+            <div className="consultoria-rh" >
+              <div className="consultoria-rh__item">
                 <img 
                   src={gifGrafico}
                   alt=""
@@ -85,8 +104,8 @@ function ConsultoriaRH() {
                 </ul>
               </div>
             </div>
-            <div className="container-topicos_rh">
-              <div className="element-topicos_rh">
+            <div className="consultoria-rh">
+              <div className="consultoria-rh__item">
                 <img src={gifDocumento} alt="" className="icon-topicos_rh"/>
                 <p>FOLHA DE PAGAMENTO</p>
                 <ul>
@@ -97,9 +116,9 @@ function ConsultoriaRH() {
               </div>
             </div>
           </div>
-          <div style={{ display: "flex", gap: 2}}>
-            <div className="container-topicos_rh">
-              <div className="element-topicos_rh">
+          <div className="container-topicos">
+            <div className="consultoria-rh">
+              <div className="consultoria-rh__item">
                 <GiPodiumWinner className="icon-topicos_rh" />
                 <p>OUTSOURCING</p>
                 <ul>
@@ -109,8 +128,8 @@ function ConsultoriaRH() {
                 </ul>
               </div>
             </div>
-            <div className="container-topicos_rh">
-              <div className="element-topicos_rh">
+            <div className="consultoria-rh">
+              <div className="consultoria-rh__item">
                 <img src={gifWinner} alt="" className="icon-topicos_rh" />
                 <p>DESENVOLVIMENTO ORGANIZACIONAL</p>
                 <ul>
@@ -122,6 +141,7 @@ function ConsultoriaRH() {
             </div>
           </div>
           <ButtonLinks options={options} />
+          <br />
         </FramerMotion>
       </HeroApp>
       <FooterApp />
