@@ -7,31 +7,53 @@ import textos from "../components/textos";
 import FramerMotion from "../components/FramerMotion";
 import ButtonLinks from "../components/ButtonLinks";
 import PalavraChave from "../components/PalavraChave";
-import { GiPodiumWinner } from "react-icons/gi"
-import gifGrafico from "../assets/gifs/grafico.gif"
-import gifDocumento from "../assets/gifs/documento.gif"
-import gifWinner from "../assets/gifs/winner.gif"
-
+import gifGrafico from "../assets/gifs/grafico.gif";
+import gifDocumento from "../assets/gifs/documento.gif";
+import gifWinner from "../assets/gifs/winner.gif";
+import gitComputador from "../assets/gifs/computer.gif";
 
 function ConsultoriaRH() {
-  // const topicosRH = [
-  //   {
-  //     icon: <FaRegChartBar className="icon-topicos_rh" />,
-  //     texto: "FERRAMENTAS DE GESTÃO",
-  //   },
-  //   {
-  //     icon: <FaFileInvoiceDollar className="icon-topicos_rh" />,
-  //     texto: "FOLHA DE PAGAMENTO",
-  //   },
-  //   {
-  //     icon: <GiPodiumWinner className="icon-topicos_rh" />,
-  //     texto: "OUTSOURCING",
-  //   },
-  //   {
-  //     icon: <RiUserSearchFill className="icon-topicos_rh" />,
-  //     texto: "DESENVOLVIMENTO ORGANIZACIONAL",
-  //   },
-  // ];
+  const topicosRH = [
+    {
+      icone: gifGrafico,
+      texto: "Ferramentas de Gestão",
+      conteudo: [
+        "Holerite Online com Assinatura Digital(epays)",
+        "Ponto Digital(epays)",
+        "ERP",
+        "Indicadores",
+      ],
+    },
+    {
+      icone: gifDocumento,
+      texto: "Folha de Pagamento",
+      conteudo: [
+        "BPO",
+        "Auditoria da Folha",
+        "Relações Sindicais e Trabalhistas",
+        "Treinamento in Company",
+      ],
+    },
+    {
+      icone: gitComputador,
+      texto: "Outsourcing",
+      conteudo: [
+        "Departamento Pessoal",
+        "Recursos Humanos",
+        "Gestão de Pessoas",
+        "Folha de Pagamento",
+      ],
+    },
+    {
+      icone: gifWinner,
+      texto: "Desenvolvimento Organizacional",
+      conteudo: [
+        "Psicologia Organizacional",
+        "Treinamento de Legislação Trabalhista e Previdenciária",
+        "Letramento em Diversidade",
+      ],
+    },
+  ];
 
   // links dos botões
   const options = [
@@ -39,32 +61,32 @@ function ConsultoriaRH() {
     { name: "FAÇA UMA SIMULAÇÃO", route: routes.questionarioRH },
   ];
 
-  const ferramentas = [
-    'Holerite Online com Assinatura Digital(epays)',
-    'Ponto Digital(epays)',
-    'ERP',
-    'Indicadores',
-  ]
+  // const ferramentas = [
+  //   "Holerite Online com Assinatura Digital(epays)",
+  //   "Ponto Digital(epays)",
+  //   "ERP",
+  //   "Indicadores",
+  // ];
 
-  const folha = [
-    'BPO',
-    'Auditoria da Folha',
-    'Relações Sindicais e Trabalhistas',
-    'Treinamento in Company',
-  ]
+  // const folha = [
+  //   "BPO",
+  //   "Auditoria da Folha",
+  //   "Relações Sindicais e Trabalhistas",
+  //   "Treinamento in Company",
+  // ];
 
-  const outsourcing = [
-    'Departamento Pessoal',
-    'Recursos Humanos',
-    'Gestão de Pessoas',
-    'Folha de Pagamento',
-  ]
+  // const outsourcing = [
+  //   "Departamento Pessoal",
+  //   "Recursos Humanos",
+  //   "Gestão de Pessoas",
+  //   "Folha de Pagamento",
+  // ];
 
-  const desenvolvimento = [
-    'Psicologia Organizacional',
-    'Treinamento de Legislação Trabalhista e Previdenciária',
-    'Letramento em Diversidade',
-  ]
+  // const desenvolvimento = [
+  //   "Psicologia Organizacional",
+  //   "Treinamento de Legislação Trabalhista e Previdenciária",
+  //   "Letramento em Diversidade",
+  // ];
 
   return (
     <>
@@ -87,58 +109,19 @@ function ConsultoriaRH() {
             </p>
           </div>
           <div className="container-topicos">
-            <div className="consultoria-rh" >
-              <div className="consultoria-rh__item">
-                <img 
-                  src={gifGrafico}
-                  alt=""
-                  className="icon-topicos_rh"
-                />
-                <p>
-                  FERRAMENTAS DE GESTÃO
-                </p>
-                <ul>
-                  {ferramentas.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
+            {topicosRH.map(({ icone, texto, conteudo }, index) => (
+              <div className="consultoria-rh" key={index}>
+                <div className="consultoria-rh__item">
+                  <img src={icone} alt="" className="icon-topicos_rh" />
+                  <p>{texto}</p>
+                  <ul>
+                    {conteudo.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
-            <div className="consultoria-rh">
-              <div className="consultoria-rh__item">
-                <img src={gifDocumento} alt="" className="icon-topicos_rh"/>
-                <p>FOLHA DE PAGAMENTO</p>
-                <ul>
-                  {folha.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="container-topicos">
-            <div className="consultoria-rh">
-              <div className="consultoria-rh__item">
-                <GiPodiumWinner className="icon-topicos_rh" />
-                <p>OUTSOURCING</p>
-                <ul>
-                 {outsourcing.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <div className="consultoria-rh">
-              <div className="consultoria-rh__item">
-                <img src={gifWinner} alt="" className="icon-topicos_rh" />
-                <p>DESENVOLVIMENTO ORGANIZACIONAL</p>
-                <ul>
-                  {desenvolvimento.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            ))}
           </div>
           <ButtonLinks options={options} />
           <br />
