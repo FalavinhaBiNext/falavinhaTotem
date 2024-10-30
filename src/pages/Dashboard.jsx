@@ -9,10 +9,11 @@ import routes from "../routes";
 import textos from "../components/textos";
 import ButtonLinks from "../components/ButtonLinks";
 import PalavraChave from "../components/PalavraChave";
-
-import { GiPodiumWinner } from "react-icons/gi"
+//Import dos gifs
 import gifGrafico from "../assets/gifs/grafico.gif"
-import gifDocumento from "../assets/gifs/documento.gif"
+import gifMoeda from "../assets/gifs/moedas.gif"
+import gifCoins from "../assets/gifs/coins1.gif";
+import gifAvatar from "../assets/gifs/avatar.gif";
 import gifWinner from "../assets/gifs/winner.gif"
 
 const Dashboard = () => {
@@ -59,7 +60,31 @@ const Dashboard = () => {
     'Fluxo de Caixa',
     'Análise Vertical e Horizontal',
     'PMP x PMR'
-  ]
+  ];
+
+  const contabil = [
+    'EBITDA', 
+    'Indice de Liquidez',
+    'Indicador de Resultado',
+    'Indicadores Patrimoniais',
+    'Análise Vertical e Horizontal'
+  ];
+
+  const rh = [
+    'Turnover',
+    'Headcount',
+    'Custo Folha por Departamento',
+    'Cálculo de Férias',
+    'Controle de Banco de Horas'
+  ];
+
+  const comercial = [
+    'Ticket Médio',
+    'Taxa de Conversão',
+    'Vendas por Cliente',
+    'Venda por Filial/Região/Cidade',
+    'Desempenho por Vendedor'
+  ];
 
   return (
     <>
@@ -85,7 +110,7 @@ const Dashboard = () => {
             <div className="container-topicos_rh" >
               <div className="element-topicos_rh">
                 <img
-                  src={gifGrafico}
+                  src={gifCoins}
                   alt=""
                   className="icon-topicos_rh"
                 />
@@ -102,15 +127,15 @@ const Dashboard = () => {
             <div className="container-topicos_rh" >
               <div className="element-topicos_rh">
                 <img
-                  src={gifGrafico}
+                  src={gifMoeda}
                   alt=""
                   className="icon-topicos_rh"
                 />
                 <p>
-                  FINANCEIRO
+                  CONTÁBIL
                 </p>
                 <ul>
-                  {financeiro.map((item, index) => (
+                  {contabil.map((item, index) => (
                     <li key={index}>{item}</li>
                   ))}
                 </ul>
@@ -121,15 +146,15 @@ const Dashboard = () => {
             <div className="container-topicos_rh" >
               <div className="element-topicos_rh">
                 <img
-                  src={gifGrafico}
+                  src={gifAvatar}
                   alt=""
                   className="icon-topicos_rh"
                 />
                 <p>
-                  FINANCEIRO
+                  RH
                 </p>
                 <ul>
-                  {financeiro.map((item, index) => (
+                  {rh.map((item, index) => (
                     <li key={index}>{item}</li>
                   ))}
                 </ul>
@@ -143,10 +168,10 @@ const Dashboard = () => {
                   className="icon-topicos_rh"
                 />
                 <p>
-                  FINANCEIRO
+                  COMERCIAL
                 </p>
                 <ul>
-                  {financeiro.map((item, index) => (
+                  {comercial.map((item, index) => (
                     <li key={index}>{item}</li>
                   ))}
                 </ul>

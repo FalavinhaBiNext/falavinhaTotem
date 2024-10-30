@@ -47,7 +47,7 @@ const textos = {
     Subtitulo: "Transformando dados em insights poderosos",
     PalavraChave: " Grupo Falavinha Next ",
     Texto:
-      "oferece um serviço especializado no desenvolvimento de dashboards BI personalizados, focados em atender as necessidades específicas de cada empresa. Nossos dashboards são projetados para transformar dados em insights estratégicos, facilitando a visualização clara e objetiva das informações essenciais para o seu negócio. Analisamos as principais dores e desafios da sua empresa, criando soluções visuais interativas que otimizam a tomada de decisões e aumentam a eficiência operacional. Com nossa expertise em Business Intelligence, você terá uma ferramenta poderosa e personalizada para impulsionar seu crescimento com base em dados concretos e confiáveis.",
+      "oferece um serviço especializado no desenvolvimento de dashboards BI personalizados, transformando os dados gerados pela sua empresa em uma análise precisa e informativa sob às áreas CONTÁBIL, TRIBUTÁRIA, FINANCEIRA, RH, COMERCIAL, PRODUÇÃO, LOGÍSTICA, CONSTRUTORAS, desenvolvendo excelentes indicadores para melhoria de performance."
   },
 
   Servicos: {

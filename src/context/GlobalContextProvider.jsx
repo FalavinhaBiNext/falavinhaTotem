@@ -3,17 +3,17 @@ import { createContext, useState, useMemo } from "react";
 import { useFormik } from "formik";
 import { phoneMask, moneyConverter, validationSchema } from "../utils";
 import { respostasSurveyRh } from "../services/db";
-import axios from "axios";
-import { API_URL } from "../services/api";
+// import axios from "axios";
+// import { API_URL } from "../services/api";
 
 export const GlobalContext = createContext();
 export default function GlobalContextProvider({ children }) {
   const [answers, setAnswers] = useState({});
   const [submitTotalValues, setSubmitTotalValues] = useState(null);
-  const [hasUserData, setHasUserData] = useState(() => {
-    const storedData = sessionStorage.getItem("userInfo");
-    return storedData ? JSON.parse(storedData) : {};
-  });
+  // const [hasUserData, setHasUserData] = useState(() => {
+  //   const storedData = sessionStorage.getItem("userInfo");
+  //   return storedData ? JSON.parse(storedData) : {};
+  // });
 
   const {
     values: inputValue,
@@ -33,6 +33,12 @@ export default function GlobalContextProvider({ children }) {
     onSubmit: getUserData,
   });
 
+  const hasEnquete = (val) => {
+    if (val === "rh") {
+      return true;
+    }
+  };
+
   // Salva os dados do usuário no servidor
   async function getUserData(origemUsuario) {
     try {
@@ -41,7 +47,7 @@ export default function GlobalContextProvider({ children }) {
         email: inputValue.email,
         telefone: inputValue.telefone,
         origem: origemUsuario,
-        resultadoEnquete: resultadoSurveyRh,
+        resultadoEnquete: hasEnquete(origemUsuario) ? resultadoSurveyRh : null,
       };
       // Destructuring para maior legibilidade na requisição
       // await axios.post(

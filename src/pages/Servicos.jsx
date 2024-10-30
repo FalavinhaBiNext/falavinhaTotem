@@ -1,8 +1,5 @@
 import HeaderApp from "../components/Header";
 import HeroApp from "../components/Hero";
-import { BsRocketTakeoff, BsFillSuitcaseLgFill } from "react-icons/bs"
-import { GoGear } from "react-icons/go"
-import {RiTeamFill} from "react-icons/ri"
 import FooterApp from "../components/Footer";
 import imagem from "../assets/image/Servicos2.png";
 import routes from "../routes";
@@ -30,17 +27,17 @@ function SecondPage() {
     { name: "TREINAMENTOS", route: routes.treinamentos },
   ];
 
+  const handleRediReactHome = () => sessionStorage.clear();
+
   return (
     <>
       <HeaderApp>
-        <h1 className="title">{textos.Servicos.Titulo}</h1>
+        <h1 className="title">NOSSAS SOLUÇÕES</h1>
       </HeaderApp>
 
       <HeroApp fundo={imagem}>
         <FramerMotion>
-          <span className="textoMain">
-            {textos.Servicos.Texto}
-          </span>
+          <span className="textoMain">{textos.Servicos.Texto}</span>
           <div style={{ display: "flex", gap: 2 }}>
             <div className="container-topicos_servicos">
               <div className="element-topicos_servicos">
