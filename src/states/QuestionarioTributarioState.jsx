@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useMemo } from "react";
 
 export default function QuestionarioTributarioState() {
@@ -15,111 +16,127 @@ export default function QuestionarioTributarioState() {
     exportacoes_anuais: "",
   });
 
-  // CÁCULO DE 'EXLUSÃO DO ICMS'
+  const tributacao = taxValues.tributacao;
+  const faturamentoMensal = parseFloat(taxValues.faturamento_mensal);
+  const folhaPagamento = parseFloat(taxValues.folha_pagamento);
+  const dispesaAnual = parseFloat(taxValues.dispesa_anual);
+  const patrimonioLiquido = parseFloat(taxValues.patrimonio_liquido);
+  const lucroEmpresa = parseFloat(taxValues.lucro_empresa);
+  const gastosInovacao = parseFloat(taxValues.gastos_inovacao);
+  const importacoesAnuais = parseFloat(taxValues.importacoes_anuais);
+  const exportacoesAnuais = parseFloat(taxValues.exportacoes_anuais);
+
+  // Definição dos multiplicadores fora do switch
+  const multipliers = {
+    1: 0.0925,
+    2: 0.0365,
+  };
+
+  // CÁLCULO DE 'EXLUSÃO DO ICMS'
   const exclusao_icms = useMemo(() => {
-    switch (taxValues.tributacao) {
-      case "1":
-        return taxValues.faturamento_mensal * 0.1 * 0.0925 * 60;
-      case "2":
-        return taxValues.faturamento_mensal * 0.1 * 0.0365 * 60;
-      case "0":
-        return "0";
-      default:
-        return null;
+    if (tributacao in multipliers) {
+      return faturamentoMensal * 0.1 * multipliers[tributacao] * 60;
     }
-  }, [taxValues.tributacao, taxValues.faturamento_mensal]);
+    return tributacao === "0" ? "0" : null;
+  }, [tributacao, faturamentoMensal]);
 
-  // CÁCULO DE 'PIS/COFINS'
+  // CÁLCULO DE 'PIS/COFINS'
   const exclusao_pis = useMemo(() => {
-    switch (taxValues.tributacao) {
-      case "1":
-        return taxValues.faturamento_mensal * 0.0925 * 0.0925 * 60;
-      case "2":
-        return taxValues.faturamento_mensal * 0.0365 * 0.0365 * 60;
-      case "0":
-        return "0";
-      default:
-        return null;
+    if (tributacao in multipliers) {
+      return (
+        faturamentoMensal *
+        multipliers[tributacao] *
+        multipliers[tributacao] *
+        60
+      );
     }
-  }, [taxValues.tributacao, taxValues.faturamento_mensal]);
+    return tributacao === "0" ? "0" : null;
+  }, [tributacao, faturamentoMensal]);
 
-  // CÁCULO DE 'ISS'
+  // CÁLCULO DE 'ISS'
   const exclusao_iss = useMemo(() => {
-    switch (taxValues.tributacao) {
-      case "1":
-        return taxValues.faturamento_mensal * 0.05 * 0.0925 * 60;
-      case "2":
-        return taxValues.faturamento_mensal * 0.05 * 0.0365 * 60;
-      case "0":
-        return "0";
-      default:
-        return null;
+    if (tributacao in multipliers) {
+      return faturamentoMensal * 0.05 * multipliers[tributacao] * 60;
     }
-  }, [taxValues.tributacao, taxValues.faturamento_mensal]);
+    return tributacao === "0" ? "0" : null;
+  }, [tributacao, faturamentoMensal]);
 
-  // CÁCULO DE 'AFASTAMENTO DE VERBAS INDENIZATÓRIAS'
+  // Calculations for tributacao 1 or 2
+  const tributacao1or2 = tributacao === "1" || tributacao === "2";
+
+  // CÁLCULO DE 'AFASTAMENTO DE VERBAS INDENIZATÓRIAS'
   const afastamento_verbas = useMemo(() => {
-    if (taxValues.tributacao === "1" || taxValues.tributacao === "2") {
-      return taxValues.folha_pagamento * 0.005 * 60;
-    }
-    return taxValues.tributacao === "0" ? "0" : null;
-  }, [taxValues.tributacao, taxValues.folha_pagamento]);
+    return tributacao1or2
+      ? folhaPagamento * 0.005 * 60
+      : tributacao === "0"
+      ? "0"
+      : null;
+  }, [tributacao, folhaPagamento]);
 
-  // CÁCULO DE 'RECUPERAÇÃO TAXAS SISCOMEX'
+  // CÁLCULO DE 'RECUPERAÇÃO TAXAS SISCOMEX'
   const taxa_siscomex = useMemo(() => {
-    if (taxValues.tributacao === "1" || taxValues.tributacao === "2") {
-      return taxValues.importacoes_anuais * (214.5 - 30) * 5;
-    }
-    return taxValues.tributacao === "0" ? "0" : null;
-  }, [taxValues.tributacao, taxValues.importacoes_anuais]);
+    return tributacao1or2
+      ? importacoesAnuais * 184.5 * 5
+      : tributacao === "0"
+      ? "0"
+      : null;
+  }, [tributacao, importacoesAnuais]);
 
-  // CÁCULO DE 'INSS SOBRE TERCEIROS'
+  // CÁLCULO DE 'INSS SOBRE TERCEIROS'
   const inss_terceiros = useMemo(() => {
-    if (taxValues.tributacao === "1" || taxValues.tributacao === "2") {
-      return (taxValues.folha_pagamento - 20000) * 0.058 * 60;
-    }
-    return taxValues.tributacao === "0" ? "0" : null;
-  }, [taxValues.tributacao, taxValues.folha_pagamento]);
+    return tributacao1or2
+      ? (folhaPagamento - 20000) * 0.058 * 60
+      : tributacao === "0"
+      ? "0"
+      : null;
+  }, [tributacao, folhaPagamento]);
 
-  // CÁCULO DE 'AMPLIAÇÕES DE CONCEITO DE INSUMOS PIS/COFINS'
+  // CÁLCULO DE 'REINTEGRAÇÃO'
+  const reintegracao = useMemo(() => {
+    return tributacao1or2 ? exportacoesAnuais * 0.03 * 5 : null;
+  }, [tributacao, exportacoesAnuais]);
+
+  // Pre-calculate constants
+  const CREDITOS_SIMPLES_MULTIPLIER = 0.0108 * 0.05;
+
+  // CÁLCULO DE 'RECUPERAÇÃO DE CRÉDITOS SIMPLES NACIONAL (RESTAURANTES)'
+  const creditos_simples1 = useMemo(() => {
+    return tributacao === "0"
+      ? faturamentoMensal * 0.15 * CREDITOS_SIMPLES_MULTIPLIER
+      : null;
+  }, [tributacao, faturamentoMensal]);
+
+  // CÁLCULO DE 'RECUPERAÇÃO DE CRÉDITOS SIMPLES NACIONAL (AUTO-PEÇAS)'
+  const creditos_simples2 = useMemo(() => {
+    return tributacao === "0"
+      ? faturamentoMensal * 0.8 * CREDITOS_SIMPLES_MULTIPLIER
+      : null;
+  }, [tributacao, faturamentoMensal]);
+
+  // CÁLCULO DE 'AMPLIAÇÕES DE CONCEITO DE INSUMOS PIS/COFINS'
   const conceito_insumos = useMemo(() => {
-    if (taxValues.tributacao === "1" || taxValues.tributacao === "2") {
-      return taxValues.dispesa_anual * 0.0925 * 5;
-    }
-    return taxValues.tributacao === "0" ? "0" : null;
-  }, [taxValues.tributacao, taxValues.dispesa_anual]);
+    return tributacao === "1" ? dispesaAnual * 0.0925 * 5 : null;
+  }, [tributacao, dispesaAnual]);
 
-  // CÁCULO DE 'REINTEGRAÇÃO'
-  const reitegracao = useMemo(() => {
-    if (taxValues.tributacao === "1" || taxValues.tributacao === "2") {
-      return taxValues.exportacoes_anuais * 0.03 * 5;
-    }
-    return taxValues.tributacao === "0" ? "0" : null;
-  }, [taxValues.tributacao, taxValues.exportacoes_anuais]);
+  // CÁLCULO DE 'NÃO INCIÊNCIA DO ICMS E ISS'
+  const incidencia_icms = useMemo(() => {
+    return tributacao === "2" ? faturamentoMensal * 0.017 : null;
+  }, [tributacao, faturamentoMensal]);
 
-  // CÁCULO DE 'LEI DO BEM'
+  // CÁLCULO DE 'LEI DO BEM'
   const lei_do_bem = useMemo(() => {
-    if (taxValues.tributacao === "1" || taxValues.tributacao === "2") {
-      return taxValues.gastos_inovacao * 0.34;
-    }
-    return taxValues.tributacao === "0" ? "0" : null;
-  }, [taxValues.tributacao, taxValues.gastos_inovacao]);
+    return tributacao === "1" ? gastosInovacao * 0.34 : null;
+  }, [tributacao, gastosInovacao]);
 
-  // CÁCULO DE 'JUROS SOBRE CAPITAL PRÓPRIO'
+  // CÁLCULO DE 'JUROS SOBRE CAPITAL PRÓPRIO'
   const capital_proprio = useMemo(() => {
-    if (taxValues.tributacao === "1" || taxValues.tributacao === "2") {
-      return taxValues.patrimonio_liquido * 0.06 * 0.19;
-    }
-    return taxValues.tributacao === "0" ? "0" : null;
-  }, [taxValues.tributacao, taxValues.patrimonio_liquido]);
+    return tributacao === "1" ? patrimonioLiquido * 0.06 * 0.19 : null;
+  }, [tributacao, patrimonioLiquido]);
 
   // CÁLCULO DA 'REDUÇÃO DO IRPJ'
   const deducao_irpj = useMemo(() => {
-    if (taxValues.tributacao === "1" || taxValues.tributacao === "2") {
-      return taxValues.lucro_empresa * 0.15 * 0.04;
-    }
-    return taxValues.tributacao === "0" ? "0" : null;
-  }, [taxValues.tributacao, taxValues.lucro_empresa]);
+    return tributacao === "1" ? lucroEmpresa * 0.15 * 0.04 : null;
+  }, [tributacao, lucroEmpresa]);
 
   return {
     taxValues,
@@ -131,9 +148,12 @@ export default function QuestionarioTributarioState() {
     conceito_insumos,
     afastamento_verbas,
     inss_terceiros,
-    reitegracao,
+    reintegracao,
     lei_do_bem,
     capital_proprio,
     deducao_irpj,
+    creditos_simples1,
+    creditos_simples2,
+    incidencia_icms,
   };
 }

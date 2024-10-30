@@ -21,7 +21,6 @@ const selectAtividades = [
   { value: 7, label: "Auto-peças" },
   { value: 8, label: "Posto de combustíveis" },
   { value: 9, label: "Farmácias" },
-  { value: 10, label: "Todas as atividades" },
 ];
 
 export default function QuestionarioTributario() {
@@ -37,14 +36,17 @@ export default function QuestionarioTributario() {
     conceito_insumos,
     afastamento_verbas,
     inss_terceiros,
-    reitegracao,
+    reintegracao,
     lei_do_bem,
     capital_proprio,
     deducao_irpj,
+    creditos_simples1,
+    creditos_simples2,
+    incidencia_icms,
   } = QuestionarioTributarioState();
   const navigate = useNavigate();
   const [hasUserData] = useState(!!sessionStorage.getItem("userInfo"));
-  const [exportImport, setExportImport] = useState("");
+  const [importOrExport, setImportOrExport] = useState("");
   const [isFormVisible, setisFormVisible] = useState(false);
 
   const handleChange = (event) => {
@@ -66,12 +68,15 @@ export default function QuestionarioTributario() {
       conceito_insumos,
       afastamento_verbas,
       inss_terceiros,
-      reitegracao,
+      reintegracao,
       lei_do_bem,
       capital_proprio,
       deducao_irpj,
-      atividade: taxValues.atividade,
-      exportImport,
+      creditos_simples1,
+      creditos_simples2,
+      incidencia_icms,
+      atividades: taxValues.atividade,
+      importacoes: taxValues.importacoes_anuais,
     });
     navigate("/resultado-tributario");
   };
@@ -172,16 +177,16 @@ export default function QuestionarioTributario() {
             />
 
             <label
-              htmlFor="exportImport"
+              htmlFor="importOrExport"
               className="input-label input-label__select"
             >
               <span>Se importa ou exporta:</span>
               <select
                 className="input-element"
-                name="exportImport"
-                id="exportImport"
-                value={exportImport}
-                onChange={(e) => setExportImport(e.target.value === "true")}
+                name="importOrExport"
+                id="importOrExport"
+                value={importOrExport}
+                onChange={(e) => setImportOrExport(e.target.value === "true")}
               >
                 <option value={false}>Selecione (Opcional)</option>
                 <option value={true}>Sim</option>
@@ -199,7 +204,7 @@ export default function QuestionarioTributario() {
               onChange={handleChange}
               type="number"
               placeholder="Digite um valor (Opcional)"
-              disabled={!exportImport}
+              disabled={!importOrExport}
             />
 
             <TextInput
@@ -212,7 +217,7 @@ export default function QuestionarioTributario() {
               onChange={handleChange}
               type="number"
               placeholder="Digite um valor (Opcional)"
-              disabled={!exportImport}
+              disabled={!importOrExport}
             />
 
             <TextInput
