@@ -9,6 +9,10 @@ import routes from "../routes";
 import FramerMotion from "../components/FramerMotion";
 import ButtonLinks from "../components/ButtonLinks";
 import textos from "../components/textos";
+import gifCoins from "../assets/gifs/coins1.gif";
+import gifMala from "../assets/gifs/mala.gif";
+import gifAvatar from "../assets/gifs/avatar.gif";
+import gifService from "../assets/gifs/servicos.gif";
 
 function SecondPage() {
   // links dos botões
@@ -40,13 +44,13 @@ function SecondPage() {
           <div style={{ display: "flex", gap: 2 }}>
             <div className="container-topicos_servicos">
               <div className="element-topicos_servicos">
-                <BsFillSuitcaseLgFill className="icon-topicos_servicos" />
+                <img src={gifMala} alt="" id="gif"/>
                 <p>+ 47 ANOS DE HISTÓRIA</p>
               </div>
             </div>
             <div className="container-topicos_servicos">
               <div className="element-topicos_servicos">
-                <BsRocketTakeoff className="icon-topicos_servicos" />
+                <img src={gifCoins} alt="" id="gif"/>
                 <p>+ 15.000 CLIENTES ATENDIDOS</p>
               </div>
             </div>
@@ -54,13 +58,13 @@ function SecondPage() {
           <div style={{ display: "flex", gap: 2, textAlign: "start" }}>
             <div className="container-topicos_servicos">
               <div className="element-topicos_servicos">
-                <RiTeamFill className="icon-topicos_servicos" />
+                <img src={gifAvatar} alt="" id="gif"/>
                 <p>+ 180 COLABORADORES</p>
               </div>
             </div>
             <div className="container-topicos_servicos">
               <div className="element-topicos_servicos">
-                <GoGear className="icon-topicos_servicos" />
+                <img src={gifService} alt="" id="gif"/>
                 <p>+ 15 SERVIÇOS</p>
               </div>
             </div>

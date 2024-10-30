@@ -1,15 +1,17 @@
 import HeaderApp from "../components/Header";
 import HeroApp from "../components/Hero";
-import fundo from "../assets/image/ConsultoriaRHTotem.png";
+import fundo from "../assets/image/ConsultoriaRH.png";
 import FooterApp from "../components/Footer";
 import routes from "../routes";
 import textos from "../components/textos";
 import FramerMotion from "../components/FramerMotion";
 import ButtonLinks from "../components/ButtonLinks";
 import PalavraChave from "../components/PalavraChave";
-import {FaRegChartBar, FaFileInvoiceDollar} from "react-icons/fa"
 import { GiPodiumWinner } from "react-icons/gi"
-import {RiUserSearchFill} from "react-icons/ri"
+import gifGrafico from "../assets/gifs/grafico.gif"
+import gifDocumento from "../assets/gifs/documento.gif"
+import gifWinner from "../assets/gifs/winner.gif"
+
 
 function ConsultoriaRH() {
   // links dos botões
@@ -17,6 +19,34 @@ function ConsultoriaRH() {
     { name: "DASHBOARD BI CONSULTORIA RH", route: routes.dashboardFinanceiro },
     { name: "FAÇA UMA SIMULAÇÃO", route: routes.questionarioRH },
   ];
+
+  const ferramentas = [
+    'Holerite Online com Assinatura Digital(epays)',
+    'Ponto Digital(epays)',
+    'ERP',
+    'Indicadores',
+  ]
+
+  const folha = [
+    'BPO',
+    'Auditoria da Folha',
+    'Relações Sindicais e Trabalhistas',
+    'Treinamento in Company',
+  ]
+
+  const outsourcing = [
+    'Departamento Pessoal',
+    'Recursos Humanos',
+    'Gestão de Pessoas',
+    'Folha de Pagamento',
+  ]
+
+  const desenvolvimento = [
+    'Psicologia Organizacional',
+    'Treinamento de Legislação Trabalhista e Previdenciária',
+    'Letramento em Diversidade',
+  ]
+
   return (
     <>
       <HeaderApp redirect={"/servicos"}>
@@ -31,7 +61,7 @@ function ConsultoriaRH() {
           <div className="textoMain">
             <p className="paragraph">
               A{" "}
-              <PalavraChave color="#582B6F">
+              <PalavraChave color="#fff">
                 {textos.consultoriaRh.PalavraChave}
               </PalavraChave>
               {textos.consultoriaRh.Texto}
@@ -40,25 +70,29 @@ function ConsultoriaRH() {
           <div style={{ display: "flex", gap: 2 }}>
             <div className="container-topicos_rh" >
               <div className="element-topicos_rh">
-                <FaRegChartBar className="icon-topicos_rh" />
-                <p>FERRAMENTAS DE GESTÃO</p>
+                <img 
+                  src={gifGrafico}
+                  alt=""
+                  className="icon-topicos_rh"
+                />
+                <p>
+                  FERRAMENTAS DE GESTÃO
+                </p>
                 <ul>
-                  <li>Holerite Online com Assinatura Digital(epays)</li>
-                  <li>Ponto Digital(epays)</li>
-                  <li>ERP</li>
-                  <li>Indicadores</li>
+                  {ferramentas.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
                 </ul>
               </div>
             </div>
             <div className="container-topicos_rh">
               <div className="element-topicos_rh">
-                <FaFileInvoiceDollar className="icon-topicos_rh" />
+                <img src={gifDocumento} alt="" className="icon-topicos_rh"/>
                 <p>FOLHA DE PAGAMENTO</p>
                 <ul>
-                  <li>BPO</li>
-                  <li>Auditoria da Folha</li>
-                  <li>Relações Sindicais e Trabalhistas</li>
-                  <li>Treinamento in Company</li>
+                  {folha.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -69,21 +103,20 @@ function ConsultoriaRH() {
                 <GiPodiumWinner className="icon-topicos_rh" />
                 <p>OUTSOURCING</p>
                 <ul>
-                  <li>Departamento Pessoal</li>
-                  <li>Recursos Humanos</li>
-                  <li>Gestão de Pessoas</li>
-                  <li>Folha de Pagamento</li>
+                 {outsourcing.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
                 </ul>
               </div>
             </div>
             <div className="container-topicos_rh">
               <div className="element-topicos_rh">
-                <RiUserSearchFill className="icon-topicos_rh" />
+                <img src={gifWinner} alt="" className="icon-topicos_rh" />
                 <p>DESENVOLVIMENTO ORGANIZACIONAL</p>
                 <ul>
-                  <li>Psicologia Organizacional</li>
-                  <li>Treinamento de Legislação Trabalhista e Previdenciária</li>
-                  <li>Letramento em Diversidade</li>
+                  {desenvolvimento.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
                 </ul>
               </div>
             </div>

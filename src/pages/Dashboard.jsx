@@ -3,12 +3,17 @@ import { useNavigate } from "react-router-dom";
 import HeaderApp from "../components/Header";
 import HeroApp from "../components/Hero";
 import FramerMotion from "../components/FramerMotion";
-import fundo from "../assets/image/BITotem.png";
+import fundo from "../assets/image/BusinessIntelligence.png";
 import FooterApp from "../components/Footer";
 import routes from "../routes";
 import textos from "../components/textos";
 import ButtonLinks from "../components/ButtonLinks";
 import PalavraChave from "../components/PalavraChave";
+
+import { GiPodiumWinner } from "react-icons/gi"
+import gifGrafico from "../assets/gifs/grafico.gif"
+import gifDocumento from "../assets/gifs/documento.gif"
+import gifWinner from "../assets/gifs/winner.gif"
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -47,6 +52,15 @@ const Dashboard = () => {
     { name: "BI TRIBUTÁRIO", route: routes.powerapps }
   ];
 
+  //Dados Tópicos
+  const financeiro = [
+    'Indicadoresa Financeiros',
+    'Contas a Pagar e a Receber',
+    'Fluxo de Caixa',
+    'Análise Vertical e Horizontal',
+    'PMP x PMR'
+  ]
+
   return (
     <>
       <HeaderApp>
@@ -67,7 +81,78 @@ const Dashboard = () => {
               {textos.Business.Texto}
             </p>
           </div>
-
+          <div style={{ display: "flex", gap: 2 }}>
+            <div className="container-topicos_rh" >
+              <div className="element-topicos_rh">
+                <img
+                  src={gifGrafico}
+                  alt=""
+                  className="icon-topicos_rh"
+                />
+                <p>
+                  FINANCEIRO
+                </p>
+                <ul>
+                  {financeiro.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className="container-topicos_rh" >
+              <div className="element-topicos_rh">
+                <img
+                  src={gifGrafico}
+                  alt=""
+                  className="icon-topicos_rh"
+                />
+                <p>
+                  FINANCEIRO
+                </p>
+                <ul>
+                  {financeiro.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div style={{ display: "flex", gap: 2 }}>
+            <div className="container-topicos_rh" >
+              <div className="element-topicos_rh">
+                <img
+                  src={gifGrafico}
+                  alt=""
+                  className="icon-topicos_rh"
+                />
+                <p>
+                  FINANCEIRO
+                </p>
+                <ul>
+                  {financeiro.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className="container-topicos_rh" >
+              <div className="element-topicos_rh">
+                <img
+                  src={gifGrafico}
+                  alt=""
+                  className="icon-topicos_rh"
+                />
+                <p>
+                  FINANCEIRO
+                </p>
+                <ul>
+                  {financeiro.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
           <ButtonLinks options={options} style={{ marginBottom: "50px" }} />
         </FramerMotion>
       </HeroApp>
