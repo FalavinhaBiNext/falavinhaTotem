@@ -3,12 +3,18 @@ import { useNavigate } from "react-router-dom";
 import HeaderApp from "../components/Header";
 import HeroApp from "../components/Hero";
 import FramerMotion from "../components/FramerMotion";
-import fundo from "../assets/image/BITotem.png";
+import fundo from "../assets/image/BusinessIntelligence.png";
 import FooterApp from "../components/Footer";
 import routes from "../routes";
 import textos from "../components/textos";
 import ButtonLinks from "../components/ButtonLinks";
 import PalavraChave from "../components/PalavraChave";
+//Import dos gifs
+import gifGrafico from "../assets/gifs/grafico.gif"
+import gifMoeda from "../assets/gifs/moedas.gif"
+import gifCoins from "../assets/gifs/coins1.gif";
+import gifAvatar from "../assets/gifs/avatar.gif";
+import gifWinner from "../assets/gifs/winner.gif"
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -47,6 +53,39 @@ const Dashboard = () => {
     { name: "BI TRIBUTÁRIO", route: routes.powerapps }
   ];
 
+  //Dados Tópicos
+  const financeiro = [
+    'Indicadoresa Financeiros',
+    'Contas a Pagar e a Receber',
+    'Fluxo de Caixa',
+    'Análise Vertical e Horizontal',
+    'PMP x PMR'
+  ];
+
+  const contabil = [
+    'EBITDA', 
+    'Indice de Liquidez',
+    'Indicador de Resultado',
+    'Indicadores Patrimoniais',
+    'Análise Vertical e Horizontal'
+  ];
+
+  const rh = [
+    'Turnover',
+    'Headcount',
+    'Custo Folha por Departamento',
+    'Cálculo de Férias',
+    'Controle de Banco de Horas'
+  ];
+
+  const comercial = [
+    'Ticket Médio',
+    'Taxa de Conversão',
+    'Vendas por Cliente',
+    'Venda por Filial/Região/Cidade',
+    'Desempenho por Vendedor'
+  ];
+
   return (
     <>
       <HeaderApp>
@@ -67,7 +106,78 @@ const Dashboard = () => {
               {textos.Business.Texto}
             </p>
           </div>
-
+          <div className="container-topicos">
+            <div className="consultoria-rh" >
+              <div className="consultoria-rh__item">
+                <img
+                  src={gifCoins}
+                  alt=""
+                  className="icon-topicos_rh"
+                />
+                <p>
+                  FINANCEIRO
+                </p>
+                <ul>
+                  {financeiro.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className="consultoria-rh" >
+              <div className="consultoria-rh__item">
+                <img
+                  src={gifMoeda}
+                  alt=""
+                  className="icon-topicos_rh"
+                />
+                <p>
+                  CONTÁBIL
+                </p>
+                <ul>
+                  {contabil.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className="container-topicos">
+            <div className="consultoria-rh" >
+              <div className="consultoria-rh__item">
+                <img
+                  src={gifAvatar}
+                  alt=""
+                  className="icon-topicos_rh"
+                />
+                <p>
+                  RH
+                </p>
+                <ul>
+                  {rh.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className="consultoria-rh" >
+              <div className="consultoria-rh__item">
+                <img
+                  src={gifGrafico}
+                  alt=""
+                  className="icon-topicos_rh"
+                />
+                <p>
+                  COMERCIAL
+                </p>
+                <ul>
+                  {comercial.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
           <ButtonLinks options={options} style={{ marginBottom: "50px" }} />
         </FramerMotion>
       </HeroApp>

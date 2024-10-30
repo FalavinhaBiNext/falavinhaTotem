@@ -6,9 +6,10 @@ import routes from "../routes";
 import FramerMotion from "../components/FramerMotion";
 import ButtonLinks from "../components/ButtonLinks";
 import textos from "../components/textos";
-import { RiTeamFill } from "react-icons/ri";
-import { BsFillSuitcaseLgFill, BsRocketTakeoff } from "react-icons/bs";
-import { GoGear } from "react-icons/go";
+import gifCoins from "../assets/gifs/coins1.gif";
+import gifMala from "../assets/gifs/mala.gif";
+import gifAvatar from "../assets/gifs/avatar.gif";
+import gifService from "../assets/gifs/servicos.gif";
 
 function SecondPage() {
   // links dos botões
@@ -27,24 +28,24 @@ function SecondPage() {
   ];
 
   // DADOS DOS TÓPICOS
-  const nossaHistoria = [
-    {
-      icon: <BsFillSuitcaseLgFill className="icon-topicos_servicos" />,
-      texto: "+ 47 ANOS DE HISTÓRIA",
-    },
-    {
-      icon: <BsRocketTakeoff className="icon-topicos_servicos" />,
-      texto: "+ 15.000 CLIENTES ATENDIDOS",
-    },
-    {
-      icon: <RiTeamFill className="icon-topicos_servicos" />,
-      texto: "+ 180 COLABORADORES",
-    },
-    {
-      icon: <GoGear className="icon-topicos_servicos" />,
-      texto: "+ 15 SERVIÇOS",
-    },
-  ];
+  // const nossaHistoria = [
+  //   {
+  //     icon: <BsFillSuitcaseLgFill className="icon-topicos_servicos" />,
+  //     texto: "+ 47 ANOS DE HISTÓRIA",
+  //   },
+  //   {
+  //     icon: <BsRocketTakeoff className="icon-topicos_servicos" />,
+  //     texto: "+ 15.000 CLIENTES ATENDIDOS",
+  //   },
+  //   {
+  //     icon: <RiTeamFill className="icon-topicos_servicos" />,
+  //     texto: "+ 180 COLABORADORES",
+  //   },
+  //   {
+  //     icon: <GoGear className="icon-topicos_servicos" />,
+  //     texto: "+ 15 SERVIÇOS",
+  //   },
+  // ];
 
   return (
     <>
@@ -55,15 +56,34 @@ function SecondPage() {
       <HeroApp fundo={imagem}>
         <FramerMotion>
           <span className="textoMain">{textos.Servicos.Texto}</span>
-          <ul className="container-topicos">
-            {nossaHistoria.map((item, index) => (
-              <li className="container-topicos_servicos" key={index}>
-                {item.icon}
-                <p>{item.texto}</p>
-              </li>
-            ))}
-          </ul>
-
+          <div style={{ display: "flex", gap: 2 }}>
+            <div className="container-topicos_servicos">
+              <div className="element-topicos_servicos">
+                <img src={gifMala} alt="" className="icon-topicos_servicos"/>
+                <p>+ 47 ANOS DE HISTÓRIA</p>
+              </div>
+            </div>
+            <div className="container-topicos_servicos">
+              <div className="element-topicos_servicos">
+                <img src={gifCoins} alt="" className="icon-topicos_servicos"/>
+                <p>+ 15.000 CLIENTES ATENDIDOS</p>
+              </div>
+            </div>
+          </div>
+          <div style={{ display: "flex", gap: 2, textAlign: "start" }}>
+            <div className="container-topicos_servicos">
+              <div className="element-topicos_servicos">
+                <img src={gifAvatar} alt="" className="icon-topicos_servicos"/>
+                <p>+ 180 COLABORADORES</p>
+              </div>
+            </div>
+            <div className="container-topicos_servicos">
+              <div className="element-topicos_servicos">
+                <img src={gifService} alt="" className="icon-topicos_servicos"/>
+                <p>+ 15 SERVIÇOS</p>
+              </div>
+            </div>
+          </div>
           <ButtonLinks options={options} />
 
           <div

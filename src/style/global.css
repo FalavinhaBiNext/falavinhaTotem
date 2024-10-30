@@ -239,7 +239,7 @@ input[type="number"]::-webkit-outer-spin-button {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 20px;
-  margin: 20px 0 10px 0;
+  margin: 20px 0px 0px 0px;
 }
 
 .container-topicos_servicos {
@@ -254,7 +254,9 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 100%;
   border-radius: 20px;
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);
-  background-color: rgba(0, 93, 96, 0.6);
+  background-color: transparent;
+  border: 1px solid #007175;
+  margin: 10px 5px;
 }
 
 .element-topicos_servicos {
@@ -278,41 +280,32 @@ input[type="number"]::-webkit-outer-spin-button {
 
 /*PAGINA RH*/
 
-.element-topicos_rh {
-  display: flex;
-  flex-direction: column;
-  gap: px;
-  justify-content: start;
-  align-items: start;
-  color: #fff;
-  padding-bottom: 10px;
-}
 
 .icon-topicos_rh {
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
 }
 
-.element-topicos_rh > p {
+.consultoria-rh__item > p {
   font-family: "Gilroy-bold";
   font-size: 1.2rem;
   text-align: start;
   margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 /*  CONSULTORIA RH */
 .consultoria-rh {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  margin: 20px 0 10px 0;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .consultoria-rh__item {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 20px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 10px 15px;
   text-align: start;
   color: #fff;
   width: 100%;
@@ -320,4 +313,10 @@ input[type="number"]::-webkit-outer-spin-button {
   border-radius: 20px;
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);
   background-color: transparent;
+}
+
+.container-topicos_rh {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

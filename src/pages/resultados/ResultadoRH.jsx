@@ -4,7 +4,7 @@ import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import { GlobalContext } from "../../context/GlobalContextProvider";
 import FramerMotion from "../../components/FramerMotion";
-import imagem from "../../assets/image/RespostaQuestionarioRH.png";
+import imagem from "../../assets/image/ConsultoriaRH.png";
 import "../../style/resultPages.css";
 import { IoStar } from "react-icons/io5";
 import { PiUserSwitchThin } from "react-icons/pi";

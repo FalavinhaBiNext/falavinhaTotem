@@ -3,7 +3,7 @@ import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import FooterApp from "../../components/Footer";
 import FramerMotion from "../../components/FramerMotion";
-import imagem from "../../assets/image/RespostaQuestionarioRH.png";
+import imagem from "../../assets/image/ConsultoriaRH.png";
 import Formulario from "../../components/Formulario";
 import { GlobalContext } from "../../context/GlobalContextProvider";
 import { useNavigate } from "react-router-dom";

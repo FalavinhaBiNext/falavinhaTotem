@@ -2,6 +2,7 @@ import HeaderApp from "../components/Header";
 import FooterApp from "../components/Footer";
 import HeroApp from "../components/Hero";
 import FramerMotion from "../components/FramerMotion";
+import fundo from "../assets/image/BusinessIntelligence.png";
 
 const biContent = `https://app.powerbi.com/view?r=eyJrIjoiNDAyM2RkYmQtOWM2Mi00NTljLWFiZjEtNmMwZWI2Y2IxYzU5IiwidCI6Ijk2ZjUxYjBhLTMwNDAtNDgzZi04Yjc2LTExODQ4YmZkZTRmYiJ9`;
 
@@ -16,7 +17,7 @@ function Dashboard_Financeiro() {
         <h1 className="title">DASHBOARD BI RH</h1>
       </HeaderApp>
 
-      <HeroApp>
+      <HeroApp fundo={fundo}>
         <FramerMotion>
           <h2 className="subtitulo">RECURSOS HUMANOS</h2>
           <div className="iframeDash">
