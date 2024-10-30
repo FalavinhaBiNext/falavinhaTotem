@@ -7,11 +7,30 @@ import textos from "../components/textos";
 import FramerMotion from "../components/FramerMotion";
 import ButtonLinks from "../components/ButtonLinks";
 import PalavraChave from "../components/PalavraChave";
-import {FaRegChartBar, FaFileInvoiceDollar} from "react-icons/fa"
-import { GiPodiumWinner } from "react-icons/gi"
-import {RiUserSearchFill} from "react-icons/ri"
+import { FaRegChartBar, FaFileInvoiceDollar } from "react-icons/fa";
+import { GiPodiumWinner } from "react-icons/gi";
+import { RiUserSearchFill } from "react-icons/ri";
 
 function ConsultoriaRH() {
+  const topicosRH = [
+    {
+      icon: <FaRegChartBar className="icon-topicos_rh" />,
+      texto: "FERRAMENTAS DE GESTÃO",
+    },
+    {
+      icon: <FaFileInvoiceDollar className="icon-topicos_rh" />,
+      texto: "FOLHA DE PAGAMENTO",
+    },
+    {
+      icon: <GiPodiumWinner className="icon-topicos_rh" />,
+      texto: "OUTSOURCING",
+    },
+    {
+      icon: <RiUserSearchFill className="icon-topicos_rh" />,
+      texto: "DESENVOLVIMENTO ORGANIZACIONAL",
+    },
+  ];
+
   // links dos botões
   const options = [
     { name: "DASHBOARD BI CONSULTORIA RH", route: routes.dashboardFinanceiro },
@@ -25,7 +44,7 @@ function ConsultoriaRH() {
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <div style={{marginTop: "20px"}}>
+          <div style={{ marginTop: "20px" }}>
             <h2 className="subtitulo">{textos.consultoriaRh.Subtitulo}</h2>
           </div>
           <div className="textoMain">
@@ -37,58 +56,23 @@ function ConsultoriaRH() {
               {textos.consultoriaRh.Texto}
             </p>
           </div>
-          <div style={{ display: "flex", gap: 2 }}>
-            <div className="container-topicos_rh" >
-              <div className="element-topicos_rh">
-                <FaRegChartBar className="icon-topicos_rh" />
-                <p>FERRAMENTAS DE GESTÃO</p>
+
+          <ul className="consultoria-rh">
+            {topicosRH.map((item, index) => (
+              <li className="consultoria-rh__item" key={index}>
+                {item.icon}
+                <p>{item.texto}</p>
                 <ul>
                   <li>Holerite Online com Assinatura Digital(epays)</li>
                   <li>Ponto Digital(epays)</li>
                   <li>ERP</li>
                   <li>Indicadores</li>
                 </ul>
-              </div>
-            </div>
-            <div className="container-topicos_rh">
-              <div className="element-topicos_rh">
-                <FaFileInvoiceDollar className="icon-topicos_rh" />
-                <p>FOLHA DE PAGAMENTO</p>
-                <ul>
-                  <li>BPO</li>
-                  <li>Auditoria da Folha</li>
-                  <li>Relações Sindicais e Trabalhistas</li>
-                  <li>Treinamento in Company</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div style={{ display: "flex", gap: 2}}>
-            <div className="container-topicos_rh">
-              <div className="element-topicos_rh">
-                <GiPodiumWinner className="icon-topicos_rh" />
-                <p>OUTSOURCING</p>
-                <ul>
-                  <li>Departamento Pessoal</li>
-                  <li>Recursos Humanos</li>
-                  <li>Gestão de Pessoas</li>
-                  <li>Folha de Pagamento</li>
-                </ul>
-              </div>
-            </div>
-            <div className="container-topicos_rh">
-              <div className="element-topicos_rh">
-                <RiUserSearchFill className="icon-topicos_rh" />
-                <p>DESENVOLVIMENTO ORGANIZACIONAL</p>
-                <ul>
-                  <li>Psicologia Organizacional</li>
-                  <li>Treinamento de Legislação Trabalhista e Previdenciária</li>
-                  <li>Letramento em Diversidade</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+              </li>
+            ))}
+          </ul>
           <ButtonLinks options={options} />
+          <br />
         </FramerMotion>
       </HeroApp>
       <FooterApp />

@@ -8,6 +8,9 @@ import routes from "../routes";
 import FramerMotion from "../components/FramerMotion";
 import ButtonLinks from "../components/ButtonLinks";
 import textos from "../components/textos";
+import { RiTeamFill } from "react-icons/ri";
+import { BsFillSuitcaseLgFill, BsRocketTakeoff } from "react-icons/bs";
+import { GoGear } from "react-icons/go";
 
 function SecondPage() {
   // links dos botões
@@ -25,7 +28,25 @@ function SecondPage() {
     { name: "TREINAMENTOS", route: routes.treinamentos },
   ];
 
-  const handleRediReactHome = () => sessionStorage.clear();
+  // DADOS DOS TÓPICOS
+  const nossaHistoria = [
+    {
+      icon: <BsFillSuitcaseLgFill className="icon-topicos_servicos" />,
+      texto: "+ 47 ANOS DE HISTÓRIA",
+    },
+    {
+      icon: <BsRocketTakeoff className="icon-topicos_servicos" />,
+      texto: "+ 15.000 CLIENTES ATENDIDOS",
+    },
+    {
+      icon: <RiTeamFill className="icon-topicos_servicos" />,
+      texto: "+ 180 COLABORADORES",
+    },
+    {
+      icon: <GoGear className="icon-topicos_servicos" />,
+      texto: "+ 15 SERVIÇOS",
+    },
+  ];
 
   return (
     <>
@@ -36,34 +57,15 @@ function SecondPage() {
       <HeroApp fundo={imagem}>
         <FramerMotion>
           <span className="textoMain">{textos.Servicos.Texto}</span>
-          <div style={{ display: "flex", gap: 2 }}>
-            <div className="container-topicos_servicos">
-              <div className="element-topicos_servicos">
-                <BsFillSuitcaseLgFill className="icon-topicos_servicos" />
-                <p>+ 47 ANOS DE HISTÓRIA</p>
-              </div>
-            </div>
-            <div className="container-topicos_servicos">
-              <div className="element-topicos_servicos">
-                <BsRocketTakeoff className="icon-topicos_servicos" />
-                <p>+ 15.000 CLIENTES ATENDIDOS</p>
-              </div>
-            </div>
-          </div>
-          <div style={{ display: "flex", gap: 2, textAlign: "start" }}>
-            <div className="container-topicos_servicos">
-              <div className="element-topicos_servicos">
-                <RiTeamFill className="icon-topicos_servicos" />
-                <p>+ 180 COLABORADORES</p>
-              </div>
-            </div>
-            <div className="container-topicos_servicos">
-              <div className="element-topicos_servicos">
-                <GoGear className="icon-topicos_servicos" />
-                <p>+ 15 SERVIÇOS</p>
-              </div>
-            </div>
-          </div>
+          <ul className="container-topicos">
+            {nossaHistoria.map((item, index) => (
+              <li className="container-topicos_servicos" key={index}>
+                {item.icon}
+                <p>{item.texto}</p>
+              </li>
+            ))}
+          </ul>
+
           <ButtonLinks options={options} />
 
           <div
