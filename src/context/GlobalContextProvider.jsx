@@ -3,17 +3,11 @@ import { createContext, useState, useMemo } from "react";
 import { useFormik } from "formik";
 import { phoneMask, moneyConverter, validationSchema } from "../utils";
 import { respostasSurveyRh } from "../services/db";
-// import axios from "axios";
-// import { API_URL } from "../services/api";
 
 export const GlobalContext = createContext();
 export default function GlobalContextProvider({ children }) {
   const [answers, setAnswers] = useState({});
   const [submitTotalValues, setSubmitTotalValues] = useState(null);
-  // const [hasUserData, setHasUserData] = useState(() => {
-  //   const storedData = sessionStorage.getItem("userInfo");
-  //   return storedData ? JSON.parse(storedData) : {};
-  // });
 
   const {
     values: inputValue,
@@ -47,18 +41,8 @@ export default function GlobalContextProvider({ children }) {
         email: inputValue.email,
         telefone: inputValue.telefone,
         origem: origemUsuario,
-        resultadoEnquete: hasEnquete(origemUsuario) ? resultadoSurveyRh : null,
+        resultadoEnquete: hasEnquete(origemUsuario) ? resultadoSurveyRh : {},
       };
-      // Destructuring para maior legibilidade na requisição
-      // await axios.post(
-      //   `${API_URL}/user`,
-      //   userContact,
-      //   {
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //   }
-      // );
       console.log("CONTATO DO USUÁRIO:", userContact);
       sessionStorage.setItem("userInfo", JSON.stringify(userContact));
       resetForm();
@@ -67,8 +51,11 @@ export default function GlobalContextProvider({ children }) {
     }
   }
 
-  // Coleta a mensagem resultado do survey da CIGAM
+  // Coleta a mensagem resultado do survey do RH
   const resultadoSurveyRh = useMemo(() => {
+    if (Object.keys(answers).length === 0) {
+      return {};
+    }
     const totalScore = Object.values(answers).reduce(
       (total, answer) => total + parseInt(answer, 10),
       0
