@@ -9,19 +9,12 @@ import "../../style/resultPages.css";
 import { IoStar } from "react-icons/io5";
 import { PiUserSwitchThin } from "react-icons/pi";
 import { BsShieldLock } from "react-icons/bs";
+import ConfettiAnimation from "../../components/ConfettiAnimation";
 
 export default function ResultadoRH() {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Make useNavigate available for future use
   const { resultadoSurveyRh } = useContext(GlobalContext);
   const { title, message: resultMessage, icon } = resultadoSurveyRh;
-
-  const rendeStars = (icon) => {
-    const maxStars = 5;
-    const starCount = Math.min(Math.max(icon, 1), maxStars);
-    return Array(starCount)
-      .fill(null)
-      .map((_, index) => <IoStar key={index} />);
-  };
 
   useEffect(() => {
     if (!resultadoSurveyRh || Object.keys(resultadoSurveyRh).length === 0) {
@@ -29,21 +22,29 @@ export default function ResultadoRH() {
     }
   }, [resultadoSurveyRh, navigate]);
 
+  const renderStars = (icon) => {
+    const starCount = Math.min(Math.max(icon, 1), 5);
+    return Array.from({ length: starCount }, (_, index) => (
+      <IoStar key={index} />
+    ));
+  };
   return (
     <>
-      <HeaderApp>
+      <ConfettiAnimation />
+
+      <HeaderApp redirect={"/consultoriaRH"}>
         <h1 className="title-result">Resultado</h1>
       </HeaderApp>
 
       <HeroApp fundo={imagem}>
         <FramerMotion>
-          {title && resultMessage && (
-            <article className="result-survey">
-              <h2 className="title_result_page">{title}</h2>
-              <div className="icon-result-container">{rendeStars(icon)}</div>
-              <p className="message_result_page">{resultMessage}</p>
-            </article>
-          )}
+          <article className="result-survey">
+            <h2 className="title_result_page">{title}</h2>
+            <div className="icon-result-container">
+              {renderStars(icon)}
+            </div>{" "}
+            <p className="message_result_page">{resultMessage}</p>
+          </article>
 
           <div className="topics-result">
             <div>

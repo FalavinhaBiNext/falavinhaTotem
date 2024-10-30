@@ -13,6 +13,7 @@ import DashboardGestaoEstoque from "./pages/DashboardGestaoEstoque";
 import ConsultoriaEmpresarial from "./pages/ConsultoriaEmpresarial";
 import Testes from "./pages/teste";
 import { AnimatePresence } from "framer-motion";
+import useIdleRedirect from "./hooks/useIdleRedirect";
 // páginas simulações
 import QuestionarioRH from "./pages/simulacoes/QuestionarioRH";
 import QuestionarioCigam from "./pages/simulacoes/QuestionarioCigam";
@@ -25,10 +26,12 @@ import NotFound from "./pages/NotFound";
 import ResultadoTributario from "./pages/resultados/ResultadoTributario";
 
 function App() {
+  const RedirectHomepage = () => useIdleRedirect("/");
   return (
     <AnimatePresence>
       <Router>
         <StayOnTop />
+        <RedirectHomepage />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/servicos" element={<Servicos />} />

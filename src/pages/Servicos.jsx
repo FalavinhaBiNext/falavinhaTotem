@@ -1,7 +1,5 @@
 import HeaderApp from "../components/Header";
 import HeroApp from "../components/Hero";
-import { IoArrowBackCircleOutline } from "react-icons/io5";
-import Botoes from "../components/Botoes";
 import FooterApp from "../components/Footer";
 import imagem from "../assets/image/Servicos2.png";
 import routes from "../routes";
