@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 
@@ -23,5 +24,4 @@ Botoes.propTypes = {
   onClick: PropTypes.func,
   children: PropTypes.node,
   type: PropTypes.string,
-  disabled: PropTypes.bool,
 };

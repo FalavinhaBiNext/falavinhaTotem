@@ -20,7 +20,14 @@ const HeaderApp = ({ children, redirect }) => {
 
   const hederBoxShadow = headerScroll ? "0 0 36px rgba(0, 0, 0, 0.2) " : "none";
   const getPath = location.pathname !== "/";
-  const standardNavigate = () => navigate(redirect || -1);
+  const standardNavigate = () => {
+    if (location.pathname === "/servicos") {
+      handleClearUserData();
+      navigate("/");
+    } else {
+      navigate(redirect || -1);
+    }
+  };
 
   return (
     <header

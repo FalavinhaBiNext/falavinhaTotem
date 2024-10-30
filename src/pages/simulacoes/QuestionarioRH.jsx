@@ -11,9 +11,10 @@ import { perguntasSurveyRh } from "../../services/db";
 import Botoes from "../../components/Botoes";
 
 export default function QuestionarioRH() {
-  const { answers, setAnswers, getUserData, hasInputErrors } =
+  const { answers, setAnswers, getUserData, hasInputErrors, hasEmptyInputs } =
     useContext(GlobalContext);
   const navigate = useNavigate();
+  const [isFormVisible, setisFormVisible] = useState(false);
   const [hasUserData] = useState(() => {
     const storedData = sessionStorage.getItem("userInfo");
     return storedData ? JSON.parse(storedData) : {};
@@ -52,7 +53,7 @@ export default function QuestionarioRH() {
 
       <HeroApp fundo={imagem}>
         <FramerMotion>
-          <Formulario />
+          <Formulario setisFormVisible={setisFormVisible} />
 
           <ul className="survey">
             {perguntasSurveyRh.map((question, questionIndex) => (
@@ -85,7 +86,11 @@ export default function QuestionarioRH() {
             <Botoes
               className="botao"
               onClick={handleSubmitSurvey}
-              disabled={!isAllInputsChecked()}
+              disabled={
+                (isFormVisible && hasEmptyInputs) ||
+                hasInputErrors ||
+                !isAllInputsChecked()
+              }
             >
               Ver resultado
             </Botoes>

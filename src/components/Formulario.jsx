@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../context/GlobalContextProvider";
 
-export default function Formulario() {
+export default function Formulario({ setisFormVisible }) {
   const {
     errors,
     touched,
@@ -13,7 +13,7 @@ export default function Formulario() {
     phoneMask,
   } = useContext(GlobalContext);
 
-  const [hasUserData, setHasUserData] = useState(() => {
+  const [hasUserData] = useState(() => {
     const storedData = sessionStorage.getItem("userInfo");
     return storedData ? JSON.parse(storedData) : {};
   });
@@ -55,6 +55,12 @@ export default function Formulario() {
     },
   ];
 
+  useEffect(() => {
+    if (!Object.keys(hasUserData).length > 0) {
+      setisFormVisible(true);
+    }
+  });
+
   return !Object.keys(hasUserData).length > 0 ? (
     <form
       className="form"
@@ -67,6 +73,10 @@ export default function Formulario() {
     </form>
   ) : null;
 }
+
+Formulario.propTypes = {
+  setisFormVisible: PropTypes.func,
+};
 
 const ElementoInput = (props) => {
   const {
@@ -85,9 +95,17 @@ const ElementoInput = (props) => {
   // altera a primeira letra do input para maiúscula
   const handleInputChange = (e) => {
     let updatedValue = e.target.value;
-    if (type === "text") {
+    if (updatedValue.includes(" ")) {
+      const words = updatedValue.split(" ");
+      updatedValue = words
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+    } else {
       updatedValue =
         updatedValue.charAt(0).toUpperCase() + updatedValue.slice(1);
+    }
+    if (type === "email") {
+      updatedValue = updatedValue.toLowerCase();
     }
     onChange({ target: { name: nome, value: updatedValue } });
   };
