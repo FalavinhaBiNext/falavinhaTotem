@@ -28,12 +28,12 @@ import QuestionarioEmpresarial from "./pages/simulacoes/QuestionarioEmpresarial"
 import ResultadoEmpresarial from "./pages/resultados/ResultadoEmpresarial";
 
 function App() {
-  // const RedirectHomepage = () => useIdleRedirect("/");
+  const RedirectHomepage = () => useIdleRedirect("/");
   return (
     <AnimatePresence>
       <Router>
         <StayOnTop />
-        {/* <RedirectHomepage /> */}
+        <RedirectHomepage />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/servicos" element={<Servicos />} />
