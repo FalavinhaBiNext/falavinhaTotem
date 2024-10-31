@@ -268,8 +268,8 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .icon-topicos_servicos {
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 40px;
 }
 
 .element-topicos_servicos > p {
@@ -286,18 +286,13 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 50px;
 }
 
-.consultoria-rh__item > p {
-  font-family: "Gilroy-bold";
-  font-size: 1.2rem;
-  text-align: start;
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
 
 /*  CONSULTORIA RH */
 .consultoria-rh {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 10px;
 }
 
 .consultoria-rh__item {
@@ -315,6 +310,13 @@ input[type="number"]::-webkit-outer-spin-button {
   background-color: transparent;
 }
 
+.consultoria-rh__item > p {
+  font-family: "Gilroy-bold";
+  font-size: 1.2rem;
+  text-align: start;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
 .container-topicos_rh {
   display: flex;
   justify-content: center;

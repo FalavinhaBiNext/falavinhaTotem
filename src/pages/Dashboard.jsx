@@ -10,7 +10,7 @@ import textos from "../components/textos";
 import ButtonLinks from "../components/ButtonLinks";
 import PalavraChave from "../components/PalavraChave";
 //Import dos gifs
-import gifGrafico from "../assets/gifs/grafico.gif"
+import gifComunicacao from "../assets/gifs/comunicacao.gif";
 import gifMoeda from "../assets/gifs/moedas.gif"
 import gifCoins from "../assets/gifs/coins1.gif";
 import gifAvatar from "../assets/gifs/avatar.gif";
@@ -163,7 +163,7 @@ const Dashboard = () => {
             <div className="consultoria-rh" >
               <div className="consultoria-rh__item">
                 <img
-                  src={gifGrafico}
+                  src={gifComunicacao}
                   alt=""
                   className="icon-topicos_rh"
                 />
