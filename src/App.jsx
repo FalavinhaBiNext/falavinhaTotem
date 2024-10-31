@@ -25,6 +25,7 @@ import ResultadoCigam from "./pages/resultados/ResultadoCigam";
 import NotFound from "./pages/NotFound";
 import ResultadoTributario from "./pages/resultados/ResultadoTributario";
 import QuestionarioEmpresarial from "./pages/simulacoes/QuestionarioEmpresarial";
+import ResultadoEmpresarial from "./pages/resultados/ResultadoEmpresarial";
 
 function App() {
   // const RedirectHomepage = () => useIdleRedirect("/");
@@ -75,6 +76,10 @@ function App() {
           <Route
             path="/questionario-empresarial"
             element={<QuestionarioEmpresarial />}
+          />
+          <Route
+            path="/resultado-empresarial"
+            element={<ResultadoEmpresarial />}
           />
 
           <Route path="/*" element={<NotFound />} />

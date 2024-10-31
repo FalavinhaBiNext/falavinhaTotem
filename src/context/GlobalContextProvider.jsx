@@ -10,7 +10,14 @@ import { useGetSurvey } from "../hooks/useGetSurvey";
 export const GlobalContext = createContext();
 export default function GlobalContextProvider({ children }) {
   const [submitTotalValues, setSubmitTotalValues] = useState(null);
-  const { respostasRh, setRespostasRh, handleGetSurveyRh } = useGetSurvey();
+  const {
+    respostasRh,
+    setRespostasRh,
+    handleGetSurveyRh,
+    respostasEmp,
+    setRespostasEmp,
+    handleGetSurveyEmpresarial,
+  } = useGetSurvey();
 
   const {
     values: inputValue,
@@ -74,6 +81,9 @@ export default function GlobalContextProvider({ children }) {
     respostasRh,
     setRespostasRh,
     handleGetSurveyRh,
+    handleGetSurveyEmpresarial,
+    respostasEmp,
+    setRespostasEmp,
     errors,
     touched,
     handleBlur,

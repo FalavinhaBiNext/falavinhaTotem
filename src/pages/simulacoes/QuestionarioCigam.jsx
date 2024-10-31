@@ -86,12 +86,7 @@ export default function QuestionarioCigam() {
       <HeroApp fundo={fundo}>
         <FramerMotion>
           <Formulario setisFormVisible={setisFormVisible} />
-          <form
-            className="form"
-            style={{
-              marginBottom: "60px",
-            }}
-          >
+          <form className="form">
             <TextInput
               title="Usuários:"
               nome="usuarios"

@@ -9,7 +9,7 @@ import { GlobalContext } from "../../context/GlobalContextProvider";
 import { useNavigate } from "react-router-dom";
 import { perguntasSurveyRh } from "../../services/db";
 import Botoes from "../../components/Botoes";
-import QuestionarioElemento from "../../components/QuestionarioElemento";
+import { QuestionarioElementoMultiplo } from "../../components/QuestionarioElemento";
 
 export default function QuestionarioRH() {
   const {
@@ -27,6 +27,7 @@ export default function QuestionarioRH() {
     return storedData ? JSON.parse(storedData) : {};
   });
 
+  // Limpa a respostas do survey do RH ao carregar a página
   useEffect(() => {
     if (Object.keys(respostasRh).length > 0) {
       setRespostasRh({});
@@ -54,8 +55,6 @@ export default function QuestionarioRH() {
     navigate("/resultado-rh");
   };
 
-  console.log(respostasRh);
-
   return (
     <>
       <HeaderApp redirect={"/servicos"}>
@@ -66,7 +65,7 @@ export default function QuestionarioRH() {
         <FramerMotion>
           <Formulario setisFormVisible={setisFormVisible} />
 
-          <QuestionarioElemento
+          <QuestionarioElementoMultiplo
             perguntas={perguntasSurveyRh}
             respostas={respostasRh}
             handleChange={handleChange}
@@ -83,7 +82,7 @@ export default function QuestionarioRH() {
             >
               Ver resultado
             </Botoes>
-          </QuestionarioElemento>
+          </QuestionarioElementoMultiplo>
 
           {/* <ul className="survey">
             {perguntasSurveyRh.map((question, questionIndex) => (

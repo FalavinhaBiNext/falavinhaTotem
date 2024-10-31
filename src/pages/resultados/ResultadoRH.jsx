@@ -10,11 +10,12 @@ import { IoStar } from "react-icons/io5";
 import { PiUserSwitchThin } from "react-icons/pi";
 import { BsShieldLock } from "react-icons/bs";
 import ConfettiAnimation from "../../components/ConfettiAnimation";
+import FooterApp from "../../components/Footer";
 
 export default function ResultadoRH() {
   const navigate = useNavigate();
   const { handleGetSurveyRh } = useContext(GlobalContext);
-  const { title, message: resultMessage, icon } = handleGetSurveyRh;
+  const { title, mensagem: resultMessage, icon } = handleGetSurveyRh;
 
   useEffect(() => {
     if (!handleGetSurveyRh || Object.keys(handleGetSurveyRh).length === 0) {
@@ -70,6 +71,8 @@ export default function ResultadoRH() {
           </div>
         </FramerMotion>
       </HeroApp>
+
+      <FooterApp />
     </>
   );
 }
