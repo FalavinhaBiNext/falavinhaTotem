@@ -20,7 +20,7 @@ function ConsultoriaEmpresarial() {
 
   return (
     <>
-      <HeaderApp>
+      <HeaderApp redirect={"/servicos"}>
         <h1 className="title">{textos.consultoriaEmpresarial.Titulo}</h1>
       </HeaderApp>
 
