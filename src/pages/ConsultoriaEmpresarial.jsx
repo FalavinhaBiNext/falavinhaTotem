@@ -15,7 +15,7 @@ function ConsultoriaEmpresarial() {
       name: " DASHBOARD BI CONSULTORIA EMPRESARIAL",
       route: routes.dashboardGestor,
     },
-    { name: "FAÇA UMA SIMULAÇÃO", route: routes.powerapps },
+    { name: "FAÇA UMA SIMULAÇÃO", route: routes.questionarioEmpresarial },
   ];
 
   return (

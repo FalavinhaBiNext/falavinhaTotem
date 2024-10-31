@@ -9,10 +9,17 @@ import { GlobalContext } from "../../context/GlobalContextProvider";
 import { useNavigate } from "react-router-dom";
 import { perguntasSurveyRh } from "../../services/db";
 import Botoes from "../../components/Botoes";
+import QuestionarioElemento from "../../components/QuestionarioElemento";
 
 export default function QuestionarioRH() {
-  const { answers, setAnswers, getUserData, hasInputErrors, hasEmptyInputs } =
-    useContext(GlobalContext);
+  const {
+    respostasRh,
+    setRespostasRh,
+    getUserData,
+    hasInputErrors,
+    hasEmptyInputs,
+  } = useContext(GlobalContext);
+
   const navigate = useNavigate();
   const [isFormVisible, setisFormVisible] = useState(false);
   const [hasUserData] = useState(() => {
@@ -21,13 +28,14 @@ export default function QuestionarioRH() {
   });
 
   useEffect(() => {
-    if (Object.keys(answers).length > 0) {
-      setAnswers({});
+    if (Object.keys(respostasRh).length > 0) {
+      setRespostasRh({});
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = (questionId, answerValue) => {
-    setAnswers((prevAnswers) => ({
+    setRespostasRh((prevAnswers) => ({
       ...prevAnswers,
       [questionId]: answerValue,
     }));
@@ -36,7 +44,8 @@ export default function QuestionarioRH() {
   // Apenas certifica se todos os checkboxes foram marcados
   const isAllInputsChecked = () => {
     return (
-      Object.keys(answers).length === perguntasSurveyRh.length || hasInputErrors
+      Object.keys(respostasRh).length === perguntasSurveyRh.length ||
+      hasInputErrors
     );
   };
 
@@ -44,6 +53,8 @@ export default function QuestionarioRH() {
     if (!Object.keys(hasUserData).length) getUserData("rh");
     navigate("/resultado-rh");
   };
+
+  console.log(respostasRh);
 
   return (
     <>
@@ -55,7 +66,26 @@ export default function QuestionarioRH() {
         <FramerMotion>
           <Formulario setisFormVisible={setisFormVisible} />
 
-          <ul className="survey">
+          <QuestionarioElemento
+            perguntas={perguntasSurveyRh}
+            respostas={respostasRh}
+            handleChange={handleChange}
+          >
+            {/* botões inseridos como children */}
+            <Botoes
+              className="botao"
+              onClick={handleSubmitSurvey}
+              disabled={
+                (isFormVisible && hasEmptyInputs) ||
+                hasInputErrors ||
+                !isAllInputsChecked()
+              }
+            >
+              Ver resultado
+            </Botoes>
+          </QuestionarioElemento>
+
+          {/* <ul className="survey">
             {perguntasSurveyRh.map((question, questionIndex) => (
               <li className="survey__list" key={question.id}>
                 <h2 className="survey__list--title">{question.text}</h2>
@@ -67,7 +97,7 @@ export default function QuestionarioRH() {
                         name={`question-${questionIndex}`}
                         id={`${questionIndex}-${option.value}`}
                         value={option.value}
-                        checked={answers[question.id] === option.value}
+                        checked={respostasRh[question.id] === option.value}
                         onChange={() => handleChange(question.id, option.value)}
                       />
                       <label
@@ -79,7 +109,17 @@ export default function QuestionarioRH() {
                     </li>
                   ))}
                 </ul>
-                <img style={{position: "absolute", height: 200, width: 200, right: 20, opacity: 0.07}} src="/src/assets/image/MinilogoBlack.png" alt="Resposta" />
+                <img
+                  style={{
+                    position: "absolute",
+                    height: 200,
+                    width: 200,
+                    right: 20,
+                    opacity: 0.07,
+                  }}
+                  src="/src/assets/image/MinilogoBlack.png"
+                  alt="Resposta"
+                />
               </li>
             ))}
 
@@ -94,7 +134,7 @@ export default function QuestionarioRH() {
             >
               Ver resultado
             </Botoes>
-          </ul>
+          </ul> */}
         </FramerMotion>
       </HeroApp>
 

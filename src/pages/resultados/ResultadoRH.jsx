@@ -12,15 +12,15 @@ import { BsShieldLock } from "react-icons/bs";
 import ConfettiAnimation from "../../components/ConfettiAnimation";
 
 export default function ResultadoRH() {
-  const navigate = useNavigate(); // Make useNavigate available for future use
-  const { resultadoSurveyRh } = useContext(GlobalContext);
-  const { title, message: resultMessage, icon } = resultadoSurveyRh;
+  const navigate = useNavigate();
+  const { handleGetSurveyRh } = useContext(GlobalContext);
+  const { title, message: resultMessage, icon } = handleGetSurveyRh;
 
   useEffect(() => {
-    if (!resultadoSurveyRh || Object.keys(resultadoSurveyRh).length === 0) {
+    if (!handleGetSurveyRh || Object.keys(handleGetSurveyRh).length === 0) {
       navigate("/consultoriaRH");
     }
-  }, [resultadoSurveyRh, navigate]);
+  }, [handleGetSurveyRh, navigate]);
 
   const renderStars = (icon) => {
     const starCount = Math.min(Math.max(icon, 1), 5);

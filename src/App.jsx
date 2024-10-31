@@ -24,14 +24,15 @@ import StayOnTop from "./components/StayOnTop";
 import ResultadoCigam from "./pages/resultados/ResultadoCigam";
 import NotFound from "./pages/NotFound";
 import ResultadoTributario from "./pages/resultados/ResultadoTributario";
+import QuestionarioEmpresarial from "./pages/simulacoes/QuestionarioEmpresarial";
 
 function App() {
-  const RedirectHomepage = () => useIdleRedirect("/");
+  // const RedirectHomepage = () => useIdleRedirect("/");
   return (
     <AnimatePresence>
       <Router>
         <StayOnTop />
-        <RedirectHomepage />
+        {/* <RedirectHomepage /> */}
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/servicos" element={<Servicos />} />
@@ -70,6 +71,10 @@ function App() {
           <Route
             path="/resultado-tributario"
             element={<ResultadoTributario />}
+          />
+          <Route
+            path="/questionario-empresarial"
+            element={<QuestionarioEmpresarial />}
           />
 
           <Route path="/*" element={<NotFound />} />

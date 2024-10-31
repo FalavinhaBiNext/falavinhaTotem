@@ -18,6 +18,7 @@ const routes = {
   questionarioRH: "/questionario-rh",
   questionarioCigam: "/questionario-cigam",
   questionarioTributario: "/questionario-tributario",
+  questionarioEmpresarial: "/questionario-empresarial",
 
   teste: "/teste",
 };

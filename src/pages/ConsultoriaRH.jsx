@@ -61,33 +61,6 @@ function ConsultoriaRH() {
     { name: "FAÇA UMA SIMULAÇÃO", route: routes.questionarioRH },
   ];
 
-  // const ferramentas = [
-  //   "Holerite Online com Assinatura Digital(epays)",
-  //   "Ponto Digital(epays)",
-  //   "ERP",
-  //   "Indicadores",
-  // ];
-
-  // const folha = [
-  //   "BPO",
-  //   "Auditoria da Folha",
-  //   "Relações Sindicais e Trabalhistas",
-  //   "Treinamento in Company",
-  // ];
-
-  // const outsourcing = [
-  //   "Departamento Pessoal",
-  //   "Recursos Humanos",
-  //   "Gestão de Pessoas",
-  //   "Folha de Pagamento",
-  // ];
-
-  // const desenvolvimento = [
-  //   "Psicologia Organizacional",
-  //   "Treinamento de Legislação Trabalhista e Previdenciária",
-  //   "Letramento em Diversidade",
-  // ];
-
   return (
     <>
       <HeaderApp redirect={"/servicos"}>

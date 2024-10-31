@@ -1,13 +1,16 @@
 import PropTypes from "prop-types";
-import { createContext, useState, useMemo } from "react";
+import { createContext, useState } from "react";
 import { useFormik } from "formik";
 import { phoneMask, moneyConverter, validationSchema } from "../utils";
 import { respostasSurveyRh } from "../services/db";
+import { BASE_URL } from "../services/api";
+import { axiosInstance } from "../services/api";
+import { useGetSurvey } from "../hooks/useGetSurvey";
 
 export const GlobalContext = createContext();
 export default function GlobalContextProvider({ children }) {
-  const [answers, setAnswers] = useState({});
   const [submitTotalValues, setSubmitTotalValues] = useState(null);
+  const { respostasRh, setRespostasRh, handleGetSurveyRh } = useGetSurvey();
 
   const {
     values: inputValue,
@@ -41,31 +44,24 @@ export default function GlobalContextProvider({ children }) {
         email: inputValue.email,
         telefone: inputValue.telefone,
         origem: origemUsuario,
-        resultadoEnquete: hasEnquete(origemUsuario) ? resultadoSurveyRh : {},
+        resultadoEnquete: hasEnquete(origemUsuario) ? handleGetSurveyRh : {},
       };
-      console.log("CONTATO DO USUÁRIO:", userContact);
+      // const response = await axiosInstance.post(
+      //   `${BASE_URL}/users`,
+      //   userContact,
+      //   {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //   }
+      // );
+      // console.log("Resposta do servidor:", response);
       sessionStorage.setItem("userInfo", JSON.stringify(userContact));
       resetForm();
     } catch (error) {
-      console.error("Erro ao salvar o usuário:", error);
+      console.log("Erro ao salvar o usuário:", error);
     }
   }
-
-  // Coleta a mensagem resultado do survey do RH
-  const resultadoSurveyRh = useMemo(() => {
-    if (Object.keys(answers).length === 0) {
-      return {};
-    }
-    const totalScore = Object.values(answers).reduce(
-      (total, answer) => total + parseInt(answer, 10),
-      0
-    );
-    return (
-      respostasSurveyRh.find(
-        ({ min, max }) => totalScore >= min && totalScore <= max
-      ) || {}
-    );
-  }, [answers]);
 
   // Certifica se os campos do input estão com erros ou vazios
   const hasEmptyInputs =
@@ -75,9 +71,9 @@ export default function GlobalContextProvider({ children }) {
   const hasInputErrors = errors.nome || errors.email || errors.telefone;
 
   const values = {
-    answers,
-    setAnswers,
-    resultadoSurveyRh,
+    respostasRh,
+    setRespostasRh,
+    handleGetSurveyRh,
     errors,
     touched,
     handleBlur,
