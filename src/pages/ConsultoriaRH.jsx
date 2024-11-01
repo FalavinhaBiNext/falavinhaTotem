@@ -81,9 +81,8 @@ function ConsultoriaRH() {
               {textos.consultoriaRh.Texto}
             </p>
           </div>
-          <div className="container-topicos">
+          <div className="consultoria-rh">
             {topicosRH.map(({ icone, texto, conteudo }, index) => (
-              <div className="consultoria-rh" key={index}>
                 <div className="consultoria-rh__item">
                   <img src={icone} alt="" className="icon-topicos_rh" />
                   <p>{texto}</p>
@@ -93,7 +92,6 @@ function ConsultoriaRH() {
                     ))}
                   </ul>
                 </div>
-              </div>
             ))}
           </div>
           <ButtonLinks options={options} />

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import logo from "../assets/image/LogoFalavinha.png";
+import logo from "../assets/image/LogoFalavinhaCTT.png";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 import Botoes from "./Botoes";
 

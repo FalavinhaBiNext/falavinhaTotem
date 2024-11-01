@@ -6,12 +6,12 @@ import Tributario from "./pages/Tributario";
 import Contabilidade from "./pages/Contabilidade";
 import ConsultoriaRH from "./pages/ConsultoriaRH";
 import Cigam from "./pages/Cigam";
+import Holding from "./pages/Holding";
 import Dashboard from "./pages/Dashboard";
 import DashboardFinanceiro from "./pages/Dashboard_Financeiro";
 import DashboardRH from "./pages/DashboardRH";
 import DashboardGestaoEstoque from "./pages/DashboardGestaoEstoque";
 import ConsultoriaEmpresarial from "./pages/ConsultoriaEmpresarial";
-import Testes from "./pages/teste";
 import { AnimatePresence } from "framer-motion";
 import useIdleRedirect from "./hooks/useIdleRedirect";
 // páginas simulações
@@ -46,6 +46,7 @@ function App() {
             path="/consultoria-empresarial"
             element={<ConsultoriaEmpresarial />}
           />
+          <Route path="/holding" element={<Holding />} />
           <Route
             path="/dashboard-contabilidade"
             element={<DashContabilidade />}
@@ -60,7 +61,6 @@ function App() {
             element={<DashboardGestaoEstoque />}
           />
 
-          <Route path="/teste" element={<Testes />} />
           <Route path="/questionario-rh" element={<QuestionarioRH />} />
           <Route path="/resultado-rh" element={<ResultadoRH />} />
           <Route path="/questionario-cigam" element={<QuestionarioCigam />} />

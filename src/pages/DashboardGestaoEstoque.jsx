@@ -2,7 +2,7 @@ import HeaderApp from "../components/Header";
 import FooterApp from "../components/Footer";
 import FramerMotion from "../components/FramerMotion";
 import HeroApp from "../components/Hero";
-import fundo from "../assets/image/BusinessIntelligence.png";
+import fundo from "../assets/image/FundoBI.png";
 
 // Link ao dashboard BI Gestão de Estoque
 const biContent = `https://app.powerbi.com/view?r=eyJrIjoiZDM5MzlhZjQtNWFkNC00YjJlLTkxNWMtNDI5NTliYjFiNWJiIiwidCI6Ijk2ZjUxYjBhLTMwNDAtNDgzZi04Yjc2LTExODQ4YmZkZTRmYiJ9&navContentPaneEnabled=false`;
