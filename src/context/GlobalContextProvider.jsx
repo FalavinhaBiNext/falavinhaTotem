@@ -53,12 +53,12 @@ export default function GlobalContextProvider({ children }) {
         resultadoEmpresarial: handleGetSurveyEmpresarial,
         resultadoRH: handleGetSurveyRh,
       };
-
+      sessionStorage.setItem("userInfo", JSON.stringify(contatoUsuario));
       const response = await axiosInstance.post(
         `${BASE_URL}/survey`,
         {
-          ...dadosSurvey,
-          ...contatoUsuario,
+          dadosSurvey,
+          contatoUsuario,
         },
         {
           headers: {
@@ -68,7 +68,6 @@ export default function GlobalContextProvider({ children }) {
       );
 
       console.log("Resposta do servidor:", response.data);
-      sessionStorage.setItem("userInfo", JSON.stringify(contatoUsuario));
       resetForm();
     } catch (error) {
       console.error("Erro ao salvar o usuário:", error);
