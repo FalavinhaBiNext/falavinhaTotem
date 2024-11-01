@@ -7,20 +7,20 @@ import FramerMotion from "../../components/FramerMotion";
 import FooterApp from "../../components/Footer";
 
 export default function ResultadoTributario() {
-  const { moneyConverter, submitTotalValues: data } = useContext(GlobalContext);
+  const { moneyConverter, resultadoTributario, handleGetSurveyData } =
+    useContext(GlobalContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!data) {
+    if (!resultadoTributario) {
       navigate("/questionario-tributario");
+    } else {
+      handleGetSurveyData("tributário");
     }
-  }, [data, navigate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [resultadoTributario, navigate]);
 
-  if (!data) {
-    return null; // or a loading indicator
-  }
-
-  console.log(data);
+  if (!resultadoTributario) return null;
 
   const {
     exclusao_icms,
@@ -39,7 +39,7 @@ export default function ResultadoTributario() {
     atividades,
     importacoes,
     incidencia_icms,
-  } = data;
+  } = resultadoTributario;
 
   const hasActivities = (activitiesArray) =>
     activitiesArray.includes(atividades);
@@ -129,7 +129,11 @@ export default function ResultadoTributario() {
           <ul className="tributario-list">
             {resultList
               .filter(
-                ({ value }) => value !== 0 && value !== "0" && value !== null
+                ({ value }) =>
+                  value !== 0 &&
+                  value !== "0" &&
+                  value !== null &&
+                  !isNaN(value)
               )
               .map(({ title, value }, index) => (
                 <li className="tributario-list__item" key={index}>

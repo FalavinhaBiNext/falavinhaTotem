@@ -3,15 +3,8 @@ import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../context/GlobalContextProvider";
 
 export default function Formulario({ setisFormVisible }) {
-  const {
-    errors,
-    touched,
-    handleBlur,
-    handleChange,
-    getUserData,
-    inputValue,
-    phoneMask,
-  } = useContext(GlobalContext);
+  const { errors, touched, handleBlur, handleChange, inputValue, phoneMask } =
+    useContext(GlobalContext);
 
   const [hasUserData] = useState(() => {
     const storedData = sessionStorage.getItem("userInfo");
@@ -62,7 +55,7 @@ export default function Formulario({ setisFormVisible }) {
   });
 
   return !Object.keys(hasUserData).length > 0 ? (
-    <form className="form" onSubmit={getUserData}>
+    <form className="form">
       {inputs.map((input) => (
         <ElementoInput {...input} key={input.id} phoneMask={phoneMask} />
       ))}

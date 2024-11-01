@@ -25,8 +25,8 @@ const selectAtividades = [
 ];
 
 export default function QuestionarioTributario() {
-  const { getUserData, setSubmitTotalValues, hasEmptyInputs } =
-    useContext(GlobalContext);
+  const { hasEmptyInputs, setResultadoTributario } = useContext(GlobalContext);
+
   const {
     taxValues,
     setTaxValues,
@@ -46,7 +46,6 @@ export default function QuestionarioTributario() {
     incidencia_icms,
   } = QuestionarioTributarioState();
   const navigate = useNavigate();
-  const [hasUserData] = useState(!!sessionStorage.getItem("userInfo"));
   const [importOrExport, setImportOrExport] = useState("");
   const [isFormVisible, setisFormVisible] = useState(false);
 
@@ -58,10 +57,8 @@ export default function QuestionarioTributario() {
       [id]: numericValue,
     }));
   };
-  const handleSubmitValues = (e) => {
-    e.preventDefault();
-    if (!hasUserData) getUserData("tributário");
-    setSubmitTotalValues({
+  const handleSubmitValues = () => {
+    setResultadoTributario({
       exclusao_icms,
       exclusao_pis,
       taxa_siscomex,
@@ -95,6 +92,7 @@ export default function QuestionarioTributario() {
       <HeroApp fundo={fundo}>
         <FramerMotion>
           <Formulario setisFormVisible={setisFormVisible} />
+
           <form
             className="form"
             onSubmit={handleSubmitValues}

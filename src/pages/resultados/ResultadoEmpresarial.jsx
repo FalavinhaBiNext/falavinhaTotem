@@ -11,14 +11,18 @@ import { IoStar } from "react-icons/io5";
 
 export default function ResultadoEmpresarial() {
   const navigate = useNavigate();
-  const { handleGetSurveyEmpresarial } = useContext(GlobalContext);
-  const { result, percentageScore } = handleGetSurveyEmpresarial;
+  const { handleGetSurveyEmpresarial, handleGetSurveyData } =
+    useContext(GlobalContext);
+  const { resultado_pesquisa, porcentagem } = handleGetSurveyEmpresarial;
 
   useEffect(() => {
-    if (!result || !percentageScore) {
+    if (!resultado_pesquisa || !porcentagem) {
       navigate("/consultoria-empresarial");
+    } else {
+      handleGetSurveyData("empresarial");
     }
-  }, [result, percentageScore, navigate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [resultado_pesquisa, porcentagem, navigate]);
 
   const renderStars = (icon) => {
     const starCount = Math.min(Math.max(icon, 1), 5);
@@ -41,21 +45,21 @@ export default function ResultadoEmpresarial() {
             <h2 style={{ fontSize: "1.5rem", color: "#fff" }}>
               {" "}
               Sua pontuação é: {""}
-              {Math.round(percentageScore)}%
+              {Math.round(porcentagem)}%
             </h2>
             <h3>
               O nível de maturidade da empresa é{" "}
               <span style={{ fontSize: "1.5rem", textTransform: "uppercase" }}>
-                {result.maturidade}
+                {resultado_pesquisa.maturidade}
               </span>
             </h3>
             <div className="icon-result-container">
-              {renderStars(result.icon)}
+              {renderStars(resultado_pesquisa.icon)}
             </div>{" "}
             <p
               style={{ fontSize: "1rem", letterSpacing: "2px", color: "#fff" }}
             >
-              {result.mensagem}
+              {resultado_pesquisa.mensagem}
             </p>
           </article>
         </FramerMotion>

@@ -12,20 +12,11 @@ import Botoes from "../../components/Botoes";
 import { QuestionarioElementoMultiplo } from "../../components/QuestionarioElemento";
 
 export default function QuestionarioRH() {
-  const {
-    respostasRh,
-    setRespostasRh,
-    getUserData,
-    hasInputErrors,
-    hasEmptyInputs,
-  } = useContext(GlobalContext);
+  const { respostasRh, setRespostasRh, hasInputErrors, hasEmptyInputs } =
+    useContext(GlobalContext);
 
   const navigate = useNavigate();
   const [isFormVisible, setisFormVisible] = useState(false);
-  const [hasUserData] = useState(() => {
-    const storedData = sessionStorage.getItem("userInfo");
-    return storedData ? JSON.parse(storedData) : {};
-  });
 
   // Limpa a respostas do survey do RH ao carregar a página
   useEffect(() => {
@@ -50,11 +41,6 @@ export default function QuestionarioRH() {
     );
   };
 
-  const handleSubmitSurvey = () => {
-    if (!Object.keys(hasUserData).length) getUserData("rh");
-    navigate("/resultado-rh");
-  };
-
   return (
     <>
       <HeaderApp redirect={"/servicos"}>
@@ -73,7 +59,7 @@ export default function QuestionarioRH() {
             {/* botões inseridos como children */}
             <Botoes
               className="botao"
-              onClick={handleSubmitSurvey}
+              onClick={() => navigate("/resultado-rh")}
               disabled={
                 (isFormVisible && hasEmptyInputs) ||
                 hasInputErrors ||
@@ -83,57 +69,6 @@ export default function QuestionarioRH() {
               Ver resultado
             </Botoes>
           </QuestionarioElementoMultiplo>
-
-          {/* <ul className="survey">
-            {perguntasSurveyRh.map((question, questionIndex) => (
-              <li className="survey__list" key={question.id}>
-                <h2 className="survey__list--title">{question.text}</h2>
-                <ul className="survey__list--question">
-                  {question.options.map((option) => (
-                    <li className="survey__list--radios" key={option.value}>
-                      <input
-                        type="radio"
-                        name={`question-${questionIndex}`}
-                        id={`${questionIndex}-${option.value}`}
-                        value={option.value}
-                        checked={respostasRh[question.id] === option.value}
-                        onChange={() => handleChange(question.id, option.value)}
-                      />
-                      <label
-                        className="radio-label"
-                        htmlFor={`${questionIndex}-${option.value}`}
-                      >
-                        {option.label}
-                      </label>
-                    </li>
-                  ))}
-                </ul>
-                <img
-                  style={{
-                    position: "absolute",
-                    height: 200,
-                    width: 200,
-                    right: 20,
-                    opacity: 0.07,
-                  }}
-                  src="/src/assets/image/MinilogoBlack.png"
-                  alt="Resposta"
-                />
-              </li>
-            ))}
-
-            <Botoes
-              className="botao"
-              onClick={handleSubmitSurvey}
-              disabled={
-                (isFormVisible && hasEmptyInputs) ||
-                hasInputErrors ||
-                !isAllInputsChecked()
-              }
-            >
-              Ver resultado
-            </Botoes>
-          </ul> */}
         </FramerMotion>
       </HeroApp>
 

@@ -8,13 +8,20 @@ import imagem from "../../assets/image/AssessoriaTributaria.png";
 import FooterApp from "../../components/Footer";
 
 export default function ResultadoCigam() {
-  const { moneyConverter, submitTotalValues: data } = useContext(GlobalContext);
+  const {
+    moneyConverter,
+    resultadoCigam: data,
+    handleGetSurveyData,
+  } = useContext(GlobalContext);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!data) {
       navigate("/questionario-cigam");
+    } else {
+      handleGetSurveyData("cigam");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, navigate]);
 
   const roiData = data

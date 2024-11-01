@@ -14,17 +14,8 @@ import { QuestionarioElementoBinario } from "../../components/QuestionarioElemen
 export default function QuestionarioEmpresarial() {
   const navigate = useNavigate();
   const [isFormVisible, setisFormVisible] = useState(false);
-  const [hasUserData] = useState(() => {
-    const storedData = sessionStorage.getItem("userInfo");
-    return storedData ? JSON.parse(storedData) : {};
-  });
-  const {
-    getUserData,
-    hasInputErrors,
-    hasEmptyInputs,
-    respostasEmp,
-    setRespostasEmp,
-  } = useContext(GlobalContext);
+  const { hasInputErrors, hasEmptyInputs, respostasEmp, setRespostasEmp } =
+    useContext(GlobalContext);
 
   // Limpa a respostas do survey do RH ao carregar a página
   useEffect(() => {
@@ -50,14 +41,9 @@ export default function QuestionarioEmpresarial() {
     return Object.keys(respostasEmp).length === totalNumberOfQuestions;
   };
 
-  const handleSubmitSurvey = () => {
-    if (!Object.keys(hasUserData).length) getUserData("empresarial");
-    navigate("/resultado-empresarial");
-  };
-
   return (
     <>
-      <HeaderApp redirect={"/consultoria-empresarial"}>
+      <HeaderApp redirect={"/servicosl"}>
         <h1 className="title">Faça uma pesquisa sobre sua empresa</h1>
       </HeaderApp>
 
@@ -72,7 +58,7 @@ export default function QuestionarioEmpresarial() {
             {/* botões inseridos como children */}
             <Botoes
               className="botao"
-              onClick={handleSubmitSurvey}
+              onClick={() => navigate("/resultado-empresarial")}
               disabled={
                 (isFormVisible && hasEmptyInputs) ||
                 hasInputErrors ||
