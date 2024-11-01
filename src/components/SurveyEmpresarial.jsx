@@ -6,7 +6,7 @@ import Botoes from "./Botoes";
 import { perguntasSurveyRh } from "../services/db";
 
 export default function SurveyEmpresarial({ hasUserData }) {
-  const { answers, setAnswers, getUserData, hasInputErrors } =
+  const { answers, setAnswers, handleGetSurveyData, hasInputErrors } =
     useContext(GlobalContext);
   const navigate = useNavigate();
 
@@ -29,9 +29,9 @@ export default function SurveyEmpresarial({ hasUserData }) {
 
   const handleSubmitSurvey = () => {
     if (!isAllQuestionsAnswered() || hasInputErrors) return;
-    if (!hasUserData) getUserData();
+    if (!hasUserData) handleGetSurveyData();
     navigate("/resultado-rh");
-    getUserData();
+    handleGetSurveyData();
   };
 
   return (

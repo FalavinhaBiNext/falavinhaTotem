@@ -29,7 +29,7 @@ export function useGetSurvey() {
   const handleGetSurveyEmpresarial = useMemo(() => {
     const respostasEmpKeys = Object.keys(respostasEmp);
     if (respostasEmpKeys.length === 0) {
-      return { percentageScore: 0, result: 0 };
+      return { porcentagem: 0, resultado_pesquisa: 0 };
     }
     const totalQuestions = perguntasSurveyEmpresarial.reduce(
       (count, section) => count + section.perguntas.length,
@@ -40,13 +40,13 @@ export function useGetSurvey() {
       0
     );
 
-    const percentageScore = (totalScore / totalQuestions) * 100;
-    const result =
+    const porcentagem = (totalScore / totalQuestions) * 100;
+    const resultado_pesquisa =
       respostasSurveyEmpresarial.find(
-        ({ min, max }) => percentageScore >= min && percentageScore <= max
+        ({ min, max }) => porcentagem >= min && porcentagem <= max
       ) || 0;
 
-    return { percentageScore, result };
+    return { porcentagem, resultado_pesquisa };
   }, [respostasEmp]);
 
   return {

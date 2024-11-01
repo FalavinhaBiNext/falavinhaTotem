@@ -2,22 +2,24 @@ import PropTypes from "prop-types";
 import { createContext, useState } from "react";
 import { useFormik } from "formik";
 import { phoneMask, moneyConverter, validationSchema } from "../utils";
-import { respostasSurveyRh } from "../services/db";
 import { BASE_URL } from "../services/api";
 import { axiosInstance } from "../services/api";
 import { useGetSurvey } from "../hooks/useGetSurvey";
 
 export const GlobalContext = createContext();
 export default function GlobalContextProvider({ children }) {
-  const [submitTotalValues, setSubmitTotalValues] = useState(null);
   const {
-    respostasRh,
     setRespostasRh,
     handleGetSurveyRh,
-    respostasEmp,
     setRespostasEmp,
     handleGetSurveyEmpresarial,
+    respostasRh,
+    respostasEmp,
   } = useGetSurvey();
+  const [resultadoCigam, setResultadoCigam] = useState(null);
+  const [resultadoTributario, setResultadoTributario] = useState({});
+  const sessionStorageData = sessionStorage.getItem("userInfo");
+  const saveData = sessionStorageData ? JSON.parse(sessionStorageData) : null;
 
   const {
     values: inputValue,
@@ -31,42 +33,45 @@ export default function GlobalContextProvider({ children }) {
       nome: "",
       telefone: "",
       email: "",
-      resultadoEnquete: {},
     },
     validationSchema,
-    onSubmit: getUserData,
+    onSubmit: handleGetSurveyData,
   });
 
-  const hasEnquete = (val) => {
-    if (val === "rh") {
-      return true;
-    }
-  };
-
   // Salva os dados do usuário no servidor
-  async function getUserData(origemUsuario) {
+  async function handleGetSurveyData(origemUsuario) {
     try {
-      const userContact = {
-        nome: inputValue.nome,
-        email: inputValue.email,
-        telefone: inputValue.telefone,
-        origem: origemUsuario,
-        resultadoEnquete: hasEnquete(origemUsuario) ? handleGetSurveyRh : {},
+      const contatoUsuario = {
+        name: inputValue.nome || saveData.name,
+        email: inputValue.email || saveData.email,
+        phone: inputValue.telefone || saveData.phone,
+        origin: origemUsuario || saveData.origin,
       };
-      // const response = await axiosInstance.post(
-      //   `${BASE_URL}/users`,
-      //   userContact,
-      //   {
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //   }
-      // );
-      // console.log("Resposta do servidor:", response);
-      sessionStorage.setItem("userInfo", JSON.stringify(userContact));
+      const dadosSurvey = {
+        resultadoCigam,
+        resultadoTributario,
+        resultadoEmpresarial: handleGetSurveyEmpresarial,
+        resultadoRH: handleGetSurveyRh,
+      };
+
+      const response = await axiosInstance.post(
+        `${BASE_URL}/survey`,
+        {
+          ...dadosSurvey,
+          ...contatoUsuario,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log("Resposta do servidor:", response.data);
+      sessionStorage.setItem("userInfo", JSON.stringify(contatoUsuario));
       resetForm();
     } catch (error) {
-      console.log("Erro ao salvar o usuário:", error);
+      console.error("Erro ao salvar o usuário:", error);
     }
   }
 
@@ -89,11 +94,13 @@ export default function GlobalContextProvider({ children }) {
     handleBlur,
     handleChange,
     inputValue,
-    getUserData,
+    handleGetSurveyData,
     phoneMask,
     moneyConverter,
-    submitTotalValues,
-    setSubmitTotalValues,
+    resultadoCigam,
+    setResultadoCigam,
+    resultadoTributario,
+    setResultadoTributario,
     hasEmptyInputs,
     hasInputErrors,
   };

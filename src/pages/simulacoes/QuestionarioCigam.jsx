@@ -14,13 +14,8 @@ import QuestionarioCigamState from "../../states/QuestionarioCigamState";
 
 export default function QuestionarioCigam() {
   const navigate = useNavigate();
-  const {
-    moneyConverter,
-    setSubmitTotalValues,
-    getUserData,
-    hasEmptyInputs,
-    hasInputErrors,
-  } = useContext(GlobalContext);
+  const { moneyConverter, hasEmptyInputs, hasInputErrors, setResultadoCigam } =
+    useContext(GlobalContext);
   const {
     cigamValues,
     setCigamValues,
@@ -33,7 +28,6 @@ export default function QuestionarioCigam() {
     salario_hora,
     folha_pagamento,
   } = QuestionarioCigamState();
-  const [hasUserData] = useState(sessionStorage.getItem("userInfo"));
   const isValidValue = (val) => (isNaN(val) || !isFinite(val) ? "" : val);
   const [isFormVisible, setisFormVisible] = useState(false);
   const emptyValueFields =
@@ -55,12 +49,9 @@ export default function QuestionarioCigam() {
   };
 
   // Envia dados para o servidor
-  const handleSubmitValues = (e) => {
-    e.preventDefault();
+  const handleSubmitValues = () => {
     if (emptyValueFields) return;
-    if (!hasUserData) getUserData("cigam");
-
-    setSubmitTotalValues({
+    setResultadoCigam({
       ...cigamValues,
       folha_pagamento,
       salario_hora,
@@ -69,24 +60,20 @@ export default function QuestionarioCigam() {
       produtividade_financeira,
       roi_meses_ano,
     });
-    setCigamValues({
-      usuarios: "",
-      salario_medio: "",
-      implementacao: "",
-      situacao_atual: "",
-    });
     navigate("/resultado-cigam");
   };
 
   return (
     <>
-      <HeaderApp>
+      <HeaderApp redirect={"/servicos"}>
         <h1 className="title">Faça uma pesquisa sobre sua empresa</h1>
       </HeaderApp>
+
       <HeroApp fundo={fundo}>
         <FramerMotion>
           <Formulario setisFormVisible={setisFormVisible} />
-          <form className="form">
+
+          <form className="form" style={{ margin: "40px 0 40px" }}>
             <TextInput
               title="Usuários:"
               nome="usuarios"
@@ -204,7 +191,6 @@ export default function QuestionarioCigam() {
               newClassName="input-element__output"
               isReadOnly={true}
             />
-            <br />
           </form>
         </FramerMotion>
       </HeroApp>

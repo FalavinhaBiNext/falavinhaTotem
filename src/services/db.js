@@ -102,7 +102,7 @@ export const respostasSurveyRh = [
   {
     min: 18,
     max: 24,
-    title: "Excelente Gestão!",
+    titulo: "Excelente Gestão!",
     mensagem: `A empresa demonstra uma forte capacidade de integrar tecnologias avançadas e práticas modernas de RH, 
     garantindo eficiência e conformidade em todos os processos.`,
     icon: 5,
@@ -110,7 +110,7 @@ export const respostasSurveyRh = [
   {
     min: 12,
     max: 17,
-    title: "Boa Gestão",
+    titulo: "Boa Gestão",
     mensagem: `A empresa está bem posicionada em termos de práticas de RH, 
     mas ainda pode melhorar em algumas informações para alcançar a excelência.`,
     icon: 4,
@@ -118,7 +118,7 @@ export const respostasSurveyRh = [
   {
     min: 6,
     max: 11,
-    title: "Gestão de RH Média",
+    titulo: "Gestão de RH Média",
     mensagem: `A empresa possui práticas de RH que atendem aos requisitos básicos, 
     mas há várias áreas que necessitam de melhorias significativas.`,
     icon: 3,
@@ -126,7 +126,7 @@ export const respostasSurveyRh = [
   {
     min: 0,
     max: 5,
-    title: "Gestão de RH Deficitária",
+    titulo: "Gestão de RH Deficitária",
     mensagem: `A empresa enfrenta desafios consideráveis em suas práticas
     de RH e precisa de uma gestão mais eficiente.`,
     icon: 2,
