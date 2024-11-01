@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const IDLE_TIMEOUT = 60000; // 1 minuto em milisegundos
+const IDLE_TIMEOUT = 120000 //60000; -> 1 minuto em milisegundos
 const CHECK_INTERVAL = 1000; // Faz uma checagem a cada segundo
 
 export default function useIdleRedirect(redirectPath) {

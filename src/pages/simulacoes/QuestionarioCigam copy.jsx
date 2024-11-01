@@ -11,7 +11,6 @@ import { GlobalContext } from "../../context/GlobalContextProvider";
 import Formulario from "../../components/Formulario";
 import { numberFormatter } from "../../utils";
 import QuestionarioCigamState from "../../states/QuestionarioCigamState";
-import gifWinner from "../../assets/gifs/winner.gif";
 
 export default function QuestionarioCigam() {
   const navigate = useNavigate();
@@ -88,25 +87,18 @@ export default function QuestionarioCigam() {
         <FramerMotion>
           <Formulario setisFormVisible={setisFormVisible} />
           <form className="form">
-            <div style={{ display: "flex", gap: 10, justifyContent: "center", alignItems: "center"
-             }}>
-              <p style={{backgroundColor: "#FE710E", padding: 15, borderRadius: 10, width: 200}}>Usuários:</p>
-              <TextInput
-                //title="Usuários:"
-                nome="usuarios"
-                type="text"
-                id="usuarios"
-                value={numberFormatter(cigamValues.usuarios)}
-                onChange={handleChange}
-                placeholder="Número de usuários"
-              />
-            </div>
-            
-            <div style={{ display: "flex", gap: 10, justifyContent: "center", alignItems: "center"
-             }}>
-              <p style={{backgroundColor: "#FE710E", padding: 15, borderRadius: 10, width: 200}}>Salário médio:</p>
             <TextInput
-              //title="Salário médio:"
+              title="Usuários:"
+              nome="usuarios"
+              type="text"
+              id="usuarios"
+              value={numberFormatter(cigamValues.usuarios)}
+              onChange={handleChange}
+              placeholder="Número de usuários"
+            />
+
+            <TextInput
+              title="Salário médio:"
               nome="salario_medio"
               type="text"
               id="salario_medio"
@@ -117,29 +109,12 @@ export default function QuestionarioCigam() {
               onChange={handleChange}
               placeholder="Salário médio do colaborador"
             />
-            </div>
 
-            <div style={{ display: "flex", gap: 10, justifyContent: "center", alignItems: "center"
-             }}>
-              <p style={{backgroundColor: "#FE710E", padding: 15, borderRadius: 10, width: 200}}>Implementação:</p>
-            <TextInput
-              //title="Implementação:"
-              nome="implementacao"
-              type="text"
-              id="implementacao"
-              value={
-                cigamValues.implementacao &&
-                `R$ ${numberFormatter(cigamValues.implementacao)}`
-              }
-              onChange={handleChange}
-              placeholder="Valor de implementação"
-            />
-            </div>
             <label
               htmlFor="situacao_atual"
               className="input-label input-label__select"
             >
-              <span >Situação atual:</span>
+              <span>Situação atual:</span>
               <select
                 className="input-element"
                 name="situacao_atual"
@@ -155,7 +130,21 @@ export default function QuestionarioCigam() {
                 <option value={30}>Não possui ERP/Micro ERP</option>
               </select>
             </label>
-            {/* OUTPUTS
+
+            <TextInput
+              title="Implementação:"
+              nome="implementacao"
+              type="text"
+              id="implementacao"
+              value={
+                cigamValues.implementacao &&
+                `R$ ${numberFormatter(cigamValues.implementacao)}`
+              }
+              onChange={handleChange}
+              placeholder="Valor de implementação"
+            />
+
+            {/* OUTPUTS */}
             <TextInput
               title="ROI mensal:"
               nome="roi_mensal"
@@ -214,19 +203,9 @@ export default function QuestionarioCigam() {
               placeholder="Tempo para ROI"
               newClassName="input-element__output"
               isReadOnly={true}
-            /> */}
+            />
             <br />
           </form>
-          <div className="consultoria-rh">
-            <div className="consultoria-rh__item">
-              <img src={gifWinner} alt="Winner" className="icon-topicos_rh"/>
-              <p>Premiado como Melhor ERP para médias e Grandes empresas pelo B2B STACK</p>
-            </div>
-            <div className="consultoria-rh__item">
-              <img src={gifWinner} alt="Winner" className="icon-topicos_rh"/>
-              <p>Único ERP de grande porte que usa tecnologia LOW CODE - à prova de futuro (Magic)</p>
-            </div>
-          </div>
         </FramerMotion>
       </HeroApp>
       <FooterApp footerFixed>

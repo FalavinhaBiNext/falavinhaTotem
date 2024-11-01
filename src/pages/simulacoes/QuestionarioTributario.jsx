@@ -10,6 +10,7 @@ import FooterApp from "../../components/Footer";
 import Formulario from "../../components/Formulario";
 import Botoes from "../../components/Botoes";
 import QuestionarioTributarioState from "../../states/QuestionarioTributarioState";
+import fundo from "../../assets/image/FundoTributario.png";
 
 const selectAtividades = [
   { value: 1, label: "Comércio" },
@@ -91,13 +92,13 @@ export default function QuestionarioTributario() {
       <HeaderApp redirect={"/servicos"}>
         <h1 className="title">Questionário Tributario</h1>
       </HeaderApp>
-      <HeroApp>
+      <HeroApp fundo={fundo}>
         <FramerMotion>
           <Formulario setisFormVisible={setisFormVisible} />
           <form
             className="form"
             onSubmit={handleSubmitValues}
-            style={{ marginBottom: "60px" }}
+            style={{ marginBottom: "60px", marginTop: "10px", padding: "15px" }}
           >
             <label
               htmlFor="tributacao"
