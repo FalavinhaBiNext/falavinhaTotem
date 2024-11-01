@@ -6,13 +6,14 @@ import Tributario from "./pages/Tributario";
 import Contabilidade from "./pages/Contabilidade";
 import ConsultoriaRH from "./pages/ConsultoriaRH";
 import Cigam from "./pages/Cigam";
+import Holding from "./pages/Holding";
 import Dashboard from "./pages/Dashboard";
 import DashboardFinanceiro from "./pages/Dashboard_Financeiro";
 import DashboardRH from "./pages/DashboardRH";
 import DashboardGestaoEstoque from "./pages/DashboardGestaoEstoque";
 import ConsultoriaEmpresarial from "./pages/ConsultoriaEmpresarial";
-import Testes from "./pages/teste";
 import { AnimatePresence } from "framer-motion";
+import useIdleRedirect from "./hooks/useIdleRedirect";
 // páginas simulações
 import QuestionarioRH from "./pages/simulacoes/QuestionarioRH";
 import QuestionarioCigam from "./pages/simulacoes/QuestionarioCigam";
@@ -23,12 +24,16 @@ import StayOnTop from "./components/StayOnTop";
 import ResultadoCigam from "./pages/resultados/ResultadoCigam";
 import NotFound from "./pages/NotFound";
 import ResultadoTributario from "./pages/resultados/ResultadoTributario";
+import QuestionarioEmpresarial from "./pages/simulacoes/QuestionarioEmpresarial";
+import ResultadoEmpresarial from "./pages/resultados/ResultadoEmpresarial";
 
 function App() {
+  const RedirectHomepage = () => useIdleRedirect("/");
   return (
     <AnimatePresence>
       <Router>
         <StayOnTop />
+        <RedirectHomepage />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/servicos" element={<Servicos />} />
@@ -41,6 +46,7 @@ function App() {
             path="/consultoria-empresarial"
             element={<ConsultoriaEmpresarial />}
           />
+          <Route path="/holding" element={<Holding />} />
           <Route
             path="/dashboard-contabilidade"
             element={<DashContabilidade />}
@@ -55,7 +61,6 @@ function App() {
             element={<DashboardGestaoEstoque />}
           />
 
-          <Route path="/teste" element={<Testes />} />
           <Route path="/questionario-rh" element={<QuestionarioRH />} />
           <Route path="/resultado-rh" element={<ResultadoRH />} />
           <Route path="/questionario-cigam" element={<QuestionarioCigam />} />
@@ -67,6 +72,14 @@ function App() {
           <Route
             path="/resultado-tributario"
             element={<ResultadoTributario />}
+          />
+          <Route
+            path="/questionario-empresarial"
+            element={<QuestionarioEmpresarial />}
+          />
+          <Route
+            path="/resultado-empresarial"
+            element={<ResultadoEmpresarial />}
           />
 
           <Route path="/*" element={<NotFound />} />

@@ -63,6 +63,14 @@ const textos = {
     item4: "+ 15 SERVIÇOS"
     }
   },
+
+  Holding: {
+    Titulo: "HOLDING",
+    Subtitulo: "Subtitulo para apresentação da holding",
+    PalavraChave: "",
+    Texto:
+      "Refere-se diretamente a um determinado tipo de empresa, que possui como principal objetivo a prestação de serviços que irão oferecer controle, gestão e segurança para demais empresas. Existe uma grande diversidade de empresas holding no mercado atualmente, já que inúmeras atividades são fundamentais para as empresas.",
+  }
 };
 
 export default textos;

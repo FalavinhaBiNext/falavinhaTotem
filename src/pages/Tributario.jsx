@@ -1,6 +1,6 @@
 import HeaderApp from "../components/Header";
 import HeroApp from "../components/Hero";
-import fundo from "../assets/image/AssessoriaTributaria.png";
+import fundo from "../assets/image/FundoTributario.png";
 
 import FooterApp from "../components/Footer";
 import routes from "../routes";

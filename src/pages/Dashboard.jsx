@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import HeaderApp from "../components/Header";
 import HeroApp from "../components/Hero";
 import FramerMotion from "../components/FramerMotion";
-import fundo from "../assets/image/BusinessIntelligence.png";
+import fundo from "../assets/image/FundoBI.png";
 import FooterApp from "../components/Footer";
 import routes from "../routes";
 import textos from "../components/textos";

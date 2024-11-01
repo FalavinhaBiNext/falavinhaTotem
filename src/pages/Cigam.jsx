@@ -1,7 +1,7 @@
 import HeaderApp from "../components/Header";
 import HeroApp from "../components/Hero";
 
-import fundo from "../assets/image/Cigam.png";
+import fundo from "../assets/image/FundoCigam.png";
 import FooterApp from "../components/Footer";
 import routes from "../routes";
 import textos from "../components/textos";

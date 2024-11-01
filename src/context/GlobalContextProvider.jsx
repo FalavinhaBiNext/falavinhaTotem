@@ -1,19 +1,23 @@
 import PropTypes from "prop-types";
-import { createContext, useState, useMemo } from "react";
+import { createContext, useState } from "react";
 import { useFormik } from "formik";
 import { phoneMask, moneyConverter, validationSchema } from "../utils";
 import { respostasSurveyRh } from "../services/db";
-// import axios from "axios";
-// import { API_URL } from "../services/api";
+import { BASE_URL } from "../services/api";
+import { axiosInstance } from "../services/api";
+import { useGetSurvey } from "../hooks/useGetSurvey";
 
 export const GlobalContext = createContext();
 export default function GlobalContextProvider({ children }) {
-  const [answers, setAnswers] = useState({});
   const [submitTotalValues, setSubmitTotalValues] = useState(null);
-  // const [hasUserData, setHasUserData] = useState(() => {
-  //   const storedData = sessionStorage.getItem("userInfo");
-  //   return storedData ? JSON.parse(storedData) : {};
-  // });
+  const {
+    respostasRh,
+    setRespostasRh,
+    handleGetSurveyRh,
+    respostasEmp,
+    setRespostasEmp,
+    handleGetSurveyEmpresarial,
+  } = useGetSurvey();
 
   const {
     values: inputValue,
@@ -47,11 +51,10 @@ export default function GlobalContextProvider({ children }) {
         email: inputValue.email,
         telefone: inputValue.telefone,
         origem: origemUsuario,
-        resultadoEnquete: hasEnquete(origemUsuario) ? resultadoSurveyRh : null,
+        resultadoEnquete: hasEnquete(origemUsuario) ? handleGetSurveyRh : {},
       };
-      // Destructuring para maior legibilidade na requisição
-      // await axios.post(
-      //   `${API_URL}/user`,
+      // const response = await axiosInstance.post(
+      //   `${BASE_URL}/users`,
       //   userContact,
       //   {
       //     headers: {
@@ -59,26 +62,13 @@ export default function GlobalContextProvider({ children }) {
       //     },
       //   }
       // );
-      console.log("CONTATO DO USUÁRIO:", userContact);
+      // console.log("Resposta do servidor:", response);
       sessionStorage.setItem("userInfo", JSON.stringify(userContact));
       resetForm();
     } catch (error) {
-      console.error("Erro ao salvar o usuário:", error);
+      console.log("Erro ao salvar o usuário:", error);
     }
   }
-
-  // Coleta a mensagem resultado do survey da CIGAM
-  const resultadoSurveyRh = useMemo(() => {
-    const totalScore = Object.values(answers).reduce(
-      (total, answer) => total + parseInt(answer, 10),
-      0
-    );
-    return (
-      respostasSurveyRh.find(
-        ({ min, max }) => totalScore >= min && totalScore <= max
-      ) || {}
-    );
-  }, [answers]);
 
   // Certifica se os campos do input estão com erros ou vazios
   const hasEmptyInputs =
@@ -88,9 +78,12 @@ export default function GlobalContextProvider({ children }) {
   const hasInputErrors = errors.nome || errors.email || errors.telefone;
 
   const values = {
-    answers,
-    setAnswers,
-    resultadoSurveyRh,
+    respostasRh,
+    setRespostasRh,
+    handleGetSurveyRh,
+    handleGetSurveyEmpresarial,
+    respostasEmp,
+    setRespostasEmp,
     errors,
     touched,
     handleBlur,

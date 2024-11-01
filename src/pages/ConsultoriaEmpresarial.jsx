@@ -20,7 +20,7 @@ function ConsultoriaEmpresarial() {
       name: " DASHBOARD BI CONSULTORIA EMPRESARIAL",
       route: routes.dashboardGestor,
     },
-    { name: "FAÇA UMA SIMULAÇÃO", route: routes.powerapps },
+    { name: "FAÇA UMA SIMULAÇÃO", route: routes.questionarioEmpresarial },
   ];
 
   const topicos =[
@@ -32,7 +32,7 @@ function ConsultoriaEmpresarial() {
 
   return (
     <>
-      <HeaderApp>
+      <HeaderApp redirect={"/servicos"}>
         <h1 className="title">{textos.consultoriaEmpresarial.Titulo}</h1>
       </HeaderApp>
 

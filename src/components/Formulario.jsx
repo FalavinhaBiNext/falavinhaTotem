@@ -62,11 +62,7 @@ export default function Formulario({ setisFormVisible }) {
   });
 
   return !Object.keys(hasUserData).length > 0 ? (
-    <form
-      className="form"
-      onSubmit={getUserData}
-      style={{ marginBottom: hasUserData ? "50px" : "0" }}
-    >
+    <form className="form" onSubmit={getUserData}>
       {inputs.map((input) => (
         <ElementoInput {...input} key={input.id} phoneMask={phoneMask} />
       ))}

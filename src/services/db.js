@@ -103,7 +103,7 @@ export const respostasSurveyRh = [
     min: 18,
     max: 24,
     title: "Excelente Gestão!",
-    message: `A empresa demonstra uma forte capacidade de integrar tecnologias avançadas e práticas modernas de RH, 
+    mensagem: `A empresa demonstra uma forte capacidade de integrar tecnologias avançadas e práticas modernas de RH, 
     garantindo eficiência e conformidade em todos os processos.`,
     icon: 5,
   },
@@ -111,7 +111,7 @@ export const respostasSurveyRh = [
     min: 12,
     max: 17,
     title: "Boa Gestão",
-    message: `A empresa está bem posicionada em termos de práticas de RH, 
+    mensagem: `A empresa está bem posicionada em termos de práticas de RH, 
     mas ainda pode melhorar em algumas informações para alcançar a excelência.`,
     icon: 4,
   },
@@ -119,7 +119,7 @@ export const respostasSurveyRh = [
     min: 6,
     max: 11,
     title: "Gestão de RH Média",
-    message: `A empresa possui práticas de RH que atendem aos requisitos básicos, 
+    mensagem: `A empresa possui práticas de RH que atendem aos requisitos básicos, 
     mas há várias áreas que necessitam de melhorias significativas.`,
     icon: 3,
   },
@@ -127,8 +127,166 @@ export const respostasSurveyRh = [
     min: 0,
     max: 5,
     title: "Gestão de RH Deficitária",
-    message: `A empresa enfrenta desafios consideráveis em suas práticas
+    mensagem: `A empresa enfrenta desafios consideráveis em suas práticas
     de RH e precisa de uma gestão mais eficiente.`,
     icon: 2,
+  },
+];
+
+
+// Perguntas para o survey do empresarial
+export const perguntasSurveyEmpresarial = [
+  {
+    id: 1,
+    titulo: "Estratégia",
+    perguntas: [
+      {
+        text: `Forças e fraquezas do negócio estão mapeados?`,
+        options: [
+          { value: 1, label: "Sim" },
+          { value: 0, label: "Não" },
+        ],
+      },
+      {
+        text: `Foram traçadas estratégias de curto prazo (próximos 3 meses)?`,
+        options: [
+          { value: 1, label: "Sim" },
+          { value: 0, label: "Não" },
+        ],
+      },
+    ],
+  },
+  {
+    id: 2,
+    titulo: "Finanças",
+    perguntas: [
+      {
+        text: `Capital de giro é controlado?`,
+        options: [
+          { value: 1, label: "Sim" },
+          { value: 0, label: "Não" },
+        ],
+      },
+      {
+        text: `O fluxo de caixa é controlado?`,
+        options: [
+          { value: 1, label: "Sim" },
+          { value: 0, label: "Não" },
+        ],
+      },
+    ],
+  },
+  {
+    id: 3,
+    titulo: "Marketing",
+    perguntas: [
+      {
+        text: `Existe um processo de vendas estruturado?`,
+        options: [
+          { value: 1, label: "Sim" },
+          { value: 0, label: "Não" },
+        ],
+      },
+      {
+        text: `Identidade visual é usada em todos os materiais da empresa?`,
+        options: [
+          { value: 1, label: "Sim" },
+          { value: 0, label: "Não" },
+        ],
+      },
+    ],
+  },
+  {
+    id: 4,
+    titulo: "Recursos Humanos",
+    perguntas: [
+      {
+        text: `São realizadas capacitações e treinamentos para novos contratados?`,
+        options: [
+          { value: 1, label: "Sim" },
+          { value: 0, label: "Não" },
+        ],
+      },
+      {
+        text: `Avaliação de desempenho é realizada periodicamente?`,
+        options: [
+          { value: 1, label: "Sim" },
+          { value: 0, label: "Não" },
+        ],
+      },
+    ],
+  },
+  {
+    id: 5,
+    titulo: "Operações",
+    perguntas: [
+      {
+        text: `Principais processos da empresa estão mapeados?`,
+        options: [
+          { value: 1, label: "Sim" },
+          { value: 0, label: "Não" },
+        ],
+      },
+      {
+        text: `Existe uma política de controle de qualidade de produtos ou serviços?`,
+        options: [
+          { value: 1, label: "Sim" },
+          { value: 0, label: "Não" },
+        ],
+      },
+    ],
+  },
+  {
+    id: 6, // Corrected duplicate id
+    titulo: "Tecnologia",
+    perguntas: [
+      {
+        text: `Existe um orçamento destinado para a transformação digital do negócio?`,
+        options: [
+          { value: 1, label: "Sim" },
+          { value: 0, label: "Não" },
+        ],
+      },
+      {
+        text: `Relatórios de indicadores importantes são gerados automaticamente?`,
+        options: [
+          { value: 1, label: "Sim" },
+          { value: 0, label: "Não" },
+        ],
+      },
+    ],
+  },
+];
+
+export const respostasSurveyEmpresarial = [
+  {
+    max: 100,
+    min: 75,
+    icon: 5,
+    maturidade: "Avançado",
+    mensagem: `Pela amostragem realizada, a empresa encontra-se em um nível avançado de maturidade 
+    no conjunto das áreas analisadas. Como se trata de uma pequena amostragem, o ideal é a aplicação de 
+    Diagnóstico na sua versão completa, realizada por um Consultor de Negócios para  entender quais áreas 
+    ainda podem ser melhoradas, para que a empresa de continuidade as boas práticas para condução dos negócios.`,
+  },
+  {
+    max: 75,
+    min: 41,
+    icon: 4,
+    maturidade: "Intermediário",
+    mensagem: `Pela amostragem realizada, a empresa encontra-se em um nível intermediário de maturidade no conjunto 
+    das áreas analisadas. Recomenda-se a aplicação de Diagnóstico na sua versão completa, para entender em que áreas 
+    estão as possibilidades de melhorias, realizada por um Consultor de Negócios. Uma consultoria pode ajudar a
+     empresa a melhorar seus níveis de maturidade, para que obtenha melhores resultados e possa expandir seus negócios`,
+  },
+  {
+    max: 40,
+    min: 0,
+    icon: 2,
+    maturidade: "Básico",
+    mensagem: `Pela amostragem realizada, a empresa encontra-se em um nível básico de maturidade no conjunto das áreas analisadas. 
+    Recomenda-se a aplicação de Diagnóstico na sua versão completa, para entender em que áreas estão os principais problemas, 
+    realizada por um Consultor de Negócios. Uma consultoria pode ajudar a empresa a melhorar seus níveis de maturidade, 
+    para que obtenha melhores resultados e possa expandir seus negócios`,
   },
 ];

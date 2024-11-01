@@ -13,13 +13,14 @@ const routes = {
   dashboardFinanceiro: "/dashboard-financeiro",
   dashboardRH: "/dashboard-rh",
   dashboardGestaoEstoque: "/dashboard-gestao-estoque",
-  powerapps: "/powerapps",
+ 
 
   questionarioRH: "/questionario-rh",
   questionarioCigam: "/questionario-cigam",
   questionarioTributario: "/questionario-tributario",
+  questionarioEmpresarial: "/questionario-empresarial",
 
-  teste: "/teste",
+ 
 };
 
 export default routes;
