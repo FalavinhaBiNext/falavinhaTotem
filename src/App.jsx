@@ -35,7 +35,7 @@ function App() {
     <AnimatePresence>
       <Router>
         <StayOnTop />
-        {/* <RedirectHomepage /> */}
+        <RedirectHomepage />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/servicos" element={<Servicos />} />

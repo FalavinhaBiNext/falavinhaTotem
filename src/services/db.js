@@ -272,7 +272,7 @@ export const respostasSurveyEmpresarial = [
   {
     max: 75,
     min: 41,
-    icon: 4,
+    icon: 3,
     maturidade: "Intermediário",
     mensagem: `Pela amostragem realizada, a empresa encontra-se em um nível intermediário de maturidade no conjunto 
     das áreas analisadas. Recomenda-se a aplicação de Diagnóstico na sua versão completa, para entender em que áreas 
@@ -282,7 +282,7 @@ export const respostasSurveyEmpresarial = [
   {
     max: 40,
     min: 0,
-    icon: 2,
+    icon: 1,
     maturidade: "Básico",
     mensagem: `Pela amostragem realizada, a empresa encontra-se em um nível básico de maturidade no conjunto das áreas analisadas. 
     Recomenda-se a aplicação de Diagnóstico na sua versão completa, para entender em que áreas estão os principais problemas, 

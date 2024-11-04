@@ -8,12 +8,25 @@ import textos from "../components/textos";
 import FramerMotion from "../components/FramerMotion";
 import ButtonLinks from "../components/ButtonLinks";
 import PalavraChave from "../components/PalavraChave";
+// Import dos Gifs
+import gifPuzzle from "../assets/gifs/puzzle.gif";
+import gifLine from "../assets/gifs/line.gif";
+import gifEditar from "../assets/gifs/editar.gif";
+import gifIntel from "../assets/gifs/intel.gif";
+
 
 const Cigam = () => {
   // links dos botões
   const options = [
     { name: "DASHBOARD BI CIGAM", route: routes.dashboardGestor },
     { name: "FAÇA UMA SIMULAÇÃO", route: routes.questionarioCigam },
+  ];
+
+  const topicos = [
+    {texto: "Integração do Ecossistema Empresarial ( Portais e IoT )", icone: gifPuzzle},
+    {texto: "Conhecimento e Agilidade em Inteligencia Artificial.", icone: gifLine},
+    {texto: "Personalização e Automação para acesso à informação.", icone: gifEditar},
+    {texto: "Inteligência de Negócio e Segurança Tributária.", icone: gifIntel}
   ];
 
   return (
@@ -33,6 +46,15 @@ const Cigam = () => {
           </div>
           <div className="textoMain">
             <p className="paragraph">{textos.cigam.texto}</p>
+          </div>
+          <div className="consultoria-rh">
+            {topicos.map((item, index) => (
+              <div key={index} className="consultoria-rh__item">
+                  <img src={item.icone} alt="" className="icon-topicos_rh"/>
+                  <p>{item.texto}</p>
+              </div>
+            ))}
+
           </div>
           <ButtonLinks options={options} />
         </FramerMotion>

@@ -1,12 +1,11 @@
 import HeaderApp from "../components/Header";
 import HeroApp from "../components/Hero";
-import fundo from "../assets/image/ContabilidadeTotem.png";
+import fundo from "../assets/image/FundoContabilidade.png";
 import FooterApp from "../components/Footer";
 import routes from "../routes";
 import textos from "../components/textos";
 import ButtonLinks from "../components/ButtonLinks";
 import FramerMotion from "../components/FramerMotion";
-import { div } from "framer-motion/client";
 // Import dos Gifs
 import gifTarget from "../assets/gifs/target.gif";
 import gifComunicacao from "../assets/gifs/comunicacao.gif";
@@ -16,8 +15,8 @@ import gifComputador from "../assets/gifs/computer.gif";
 function Contabilidade() {
   // links dos botões
   const options = [
-    { name: "FAÇA UMA SIMULAÇÃO", route: routes.dashboardGestor },
-    { name: "DASHBOARD BI CONTABILIDADE", route: routes.powerapps },
+    { name: "DASHBOARD BI CONTABILIDADE", route: routes.dashboardGestor },
+    { name: "FAÇA UMA SIMULAÇÃO", route: routes.powerapps },
   ];
 
   const topicos = [

@@ -31,3 +31,34 @@
 .tributario-list__title span {
   font-size: 1.5rem;
 }
+
+.page-tributario_paginacao {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20;
+  
+}
+
+.page-tributario_paginacao button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-family: 'Gilroy-thin';
+  letter-spacing: 2px;
+}
+
+.page-tributario_paginacao_item {
+  display: flex;
+  gap: 20;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.page-tributario_paginacao_item > p {
+  border-radius: 5px;
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+}
