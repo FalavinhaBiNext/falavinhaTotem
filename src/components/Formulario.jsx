@@ -2,6 +2,10 @@ import PropTypes from "prop-types";
 import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../context/GlobalContextProvider";
 
+import gifAvatar from "../assets/gifs/avatar.gif";
+import gifTel from "../assets/gifs/tel.gif";
+import gifEmail from "../assets/gifs/email.gif";
+
 export default function Formulario({ setisFormVisible }) {
   const { errors, touched, handleBlur, handleChange, inputValue, phoneMask } =
     useContext(GlobalContext);
@@ -23,6 +27,7 @@ export default function Formulario({ setisFormVisible }) {
       error: errors.nome,
       touched: touched.nome,
       onBlur: handleBlur,
+      icon: gifAvatar
     },
     {
       title: "Telefone",
@@ -34,6 +39,7 @@ export default function Formulario({ setisFormVisible }) {
       error: errors.telefone,
       touched: touched.telefone,
       onBlur: handleBlur,
+      icon: gifTel
     },
     {
       title: "Email",
@@ -45,6 +51,7 @@ export default function Formulario({ setisFormVisible }) {
       error: errors.email,
       touched: touched.email,
       onBlur: handleBlur,
+      icon: gifEmail
     },
   ];
 
@@ -57,7 +64,10 @@ export default function Formulario({ setisFormVisible }) {
   return !Object.keys(hasUserData).length > 0 ? (
     <form className="form">
       {inputs.map((input) => (
-        <ElementoInput {...input} key={input.id} phoneMask={phoneMask} />
+        <div style={{display: "flex", alignItems: "center", backgroundColor: "#4b5052", gap: 10, borderRadius: "10px", padding: "0 10px",}}>
+          <img src={input.icon} className="icon-topicos_servicos" alt="" />
+          <ElementoInput {...input} key={input.id} phoneMask={phoneMask} />
+        </div>
       ))}
     </form>
   ) : null;
