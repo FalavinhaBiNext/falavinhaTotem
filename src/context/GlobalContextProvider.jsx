@@ -72,11 +72,6 @@ export default function GlobalContextProvider({ children }) {
       //   }
       // );
 
-      // console.log("Resposta do servidor:", response.data);
-      console.log("Resposta do servidor:", {
-        dadosSurvey,
-        contatoUsuario,
-      });
       resetForm();
     } catch (error) {
       console.error("Erro ao salvar o usuário:", error);
