@@ -36,9 +36,9 @@ export default function ResultadoTributario() {
     deducao_irpj,
     creditos_simples1,
     creditos_simples2,
+    incidencia_icms,
     atividades,
     importacoes,
-    incidencia_icms,
   } = resultadoTributario;
 
   const hasActivities = (activitiesArray) =>
@@ -61,60 +61,60 @@ export default function ResultadoTributario() {
   const resultList = [
     hasPisCofins && {
       title: `Exclusão do ICMS da base de cálculo do PIS/COFINS`,
-      value: exclusao_icms,
+      value: parseInt(exclusao_icms, 10),
     },
     hasPisCofins && {
       title: `Exclusão do PIS/COFINS da própria base`,
-      value: exclusao_pis,
+      value: parseInt(exclusao_pis, 10),
     },
     hasServicos && {
       title: `Exclusão do ISS da base de cálculo do PIS/COFINS`,
-      value: exclusao_iss,
+      value: parseInt(exclusao_iss, 10),
     },
     hasAllActivities && {
       title: `Não incidência do ICMS e ISS da base de cálculo do IR e CS`,
-      value: incidencia_icms,
+      value: parseInt(incidencia_icms, 10),
     },
     hasAllActivities && {
       title: `Afastamento das verbas indenizatórias`,
-      value: afastamento_verbas,
+      value: parseInt(afastamento_verbas, 10),
     },
     hasAllActivities && {
       title: `INSS sobre terceiros (Sistema "S") limitação da base em 20 salários mínimos`,
-      value: inss_terceiros,
+      value: parseInt(inss_terceiros, 10),
     },
     hasAllActivities &&
-      importacoes > 0 && {
+      parseInt(importacoes) > 0 && {
         title: `Recuperação da taxa Siscomex pago a maior nas importações`,
-        value: taxa_siscomex,
+        value: parseInt(taxa_siscomex, 10),
       },
     (hasRestaurantes || hasAutoPecas) && {
       title: `Recuperação de créditos para empresas do Simples Nacional (Produtos Monofásicos)`,
       value: hasRestaurantes
-        ? creditos_simples1
+        ? parseInt(creditos_simples1, 10)
         : hasAutoPecas
-        ? creditos_simples2
+        ? parseInt(creditos_simples2, 10)
         : null,
     },
     hasAllActivities && {
       title: `Ampliação do conceito de insumo pelo STJ e implicações no direito a créditos de PIS e COFINS`,
-      value: conceito_insumos,
+      value: parseInt(conceito_insumos, 10),
     },
     hasAllActivities && {
       title: `Reintegra`,
-      value: reintegracao,
+      value: parseInt(reintegracao, 10),
     },
     hasAllActivities && {
       title: `Lei do Bem`,
-      value: lei_do_bem,
+      value: parseInt(lei_do_bem, 10),
     },
     hasAllActivities && {
       title: `Juros sobre o Capital Próprio`,
-      value: capital_proprio,
+      value: parseInt(capital_proprio, 10),
     },
     hasAllActivities && {
       title: `PAT - Dedução do IRPJ`,
-      value: deducao_irpj,
+      value: parseInt(deducao_irpj, 10),
     },
   ].filter(Boolean);
 
@@ -143,7 +143,11 @@ export default function ResultadoTributario() {
                 </li>
               ))}
             {resultList.filter(
-              ({ value }) => value !== 0 && value !== "0" && value !== null
+              ({ value }) =>
+                value !== 0 &&
+                value !== "0" &&
+                value !== null &&
+                value !== isNaN(value)
             ).length === 0 && (
               <h2
                 style={{

@@ -26,6 +26,8 @@ import NotFound from "./pages/NotFound";
 import ResultadoTributario from "./pages/resultados/ResultadoTributario";
 import QuestionarioEmpresarial from "./pages/simulacoes/QuestionarioEmpresarial";
 import ResultadoEmpresarial from "./pages/resultados/ResultadoEmpresarial";
+import QuestionarioHolding from "./pages/simulacoes/QuestionarioHolding";
+import ResultadoHolding from "./pages/resultados/ResultadoHolding";
 
 function App() {
   const RedirectHomepage = () => useIdleRedirect("/");
@@ -33,7 +35,7 @@ function App() {
     <AnimatePresence>
       <Router>
         <StayOnTop />
-        <RedirectHomepage />
+        {/* <RedirectHomepage /> */}
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/servicos" element={<Servicos />} />
@@ -81,6 +83,12 @@ function App() {
             path="/resultado-empresarial"
             element={<ResultadoEmpresarial />}
           />
+
+          <Route
+            path="/questionario-holding"
+            element={<QuestionarioHolding />}
+          />
+          <Route path="/resultado-holding" element={<ResultadoHolding />} />
 
           <Route path="/*" element={<NotFound />} />
         </Routes>

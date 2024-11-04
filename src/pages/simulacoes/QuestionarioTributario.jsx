@@ -43,10 +43,11 @@ export default function QuestionarioTributario() {
     creditos_simples1,
     creditos_simples2,
     incidencia_icms,
+    tributacao,
   } = QuestionarioTributarioState();
   const navigate = useNavigate();
-  const [importOrExport, setImportOrExport] = useState("");
-  const [isFormVisible, setisFormVisible] = useState(false);
+  const [importacoes, setImportacoes] = useState(false);
+  const [isFormVisible, setIsFormVisible] = useState(false);
 
   const handleChange = (event) => {
     const { id, value } = event.target;
@@ -72,8 +73,9 @@ export default function QuestionarioTributario() {
       creditos_simples1,
       creditos_simples2,
       incidencia_icms,
+      tributacao,
       atividades: taxValues.atividade,
-      importacoes: taxValues.importacoes_anuais,
+      importacoes: parseInt(taxValues.importacoes_anuais, 10) || null,
     });
     navigate("/resultado-tributario");
   };
@@ -90,13 +92,9 @@ export default function QuestionarioTributario() {
       </HeaderApp>
       <HeroApp>
         <FramerMotion>
-          <Formulario setisFormVisible={setisFormVisible} />
+          <Formulario setIsFormVisible={setIsFormVisible} />
 
-          <form
-            className="form"
-            // onSubmit={handleSubmitValues}
-            style={{ margin: "40px 0 40px" }}
-          >
+          <form className="form" style={{ margin: "40px 0 40px" }}>
             <label
               htmlFor="tributacao"
               className="input-label input-label__select"
@@ -133,11 +131,13 @@ export default function QuestionarioTributario() {
                 <option value={""} disabled>
                   Selecione (Obrigatório)
                 </option>
-                {selectAtividades.map((item) => (
-                  <option value={item.value} key={item.value}>
-                    {item.label}
-                  </option>
-                ))}
+                {selectAtividades
+                  .sort((a, b) => a.label.localeCompare(b.label))
+                  .map((item) => (
+                    <option value={item.value} key={item.value}>
+                      {item.label}
+                    </option>
+                  ))}
               </select>
             </label>
 
@@ -175,20 +175,20 @@ export default function QuestionarioTributario() {
             />
 
             <label
-              htmlFor="importOrExport"
+              htmlFor="importacoes"
               className="input-label input-label__select"
             >
               <span>Se importa ou exporta:</span>
               <select
                 className="input-element"
-                name="importOrExport"
-                id="importOrExport"
-                value={importOrExport}
-                onChange={(e) => setImportOrExport(e.target.value === "true")}
+                name="importacoes"
+                id="importacoes"
+                value={importacoes}
+                onChange={(e) => setImportacoes(e.target.value === "sim")}
               >
-                <option value={false}>Selecione (Opcional)</option>
-                <option value={true}>Sim</option>
-                <option value={false}>Não</option>
+                <option value={"false"}>Selecione (Opcional)</option>
+                <option value={"sim"}>Sim</option>
+                <option value={"nao"}>Não</option>
               </select>
             </label>
 
@@ -202,7 +202,7 @@ export default function QuestionarioTributario() {
               onChange={handleChange}
               type="number"
               placeholder="Digite um valor (Opcional)"
-              disabled={!importOrExport}
+              disabled={!importacoes}
             />
 
             <TextInput
@@ -215,7 +215,7 @@ export default function QuestionarioTributario() {
               onChange={handleChange}
               type="number"
               placeholder="Digite um valor (Opcional)"
-              disabled={!importOrExport}
+              disabled={!importacoes}
             />
 
             <TextInput

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../context/GlobalContextProvider";
 
-export default function Formulario({ setisFormVisible }) {
+export default function Formulario({ setIsFormVisible }) {
   const { errors, touched, handleBlur, handleChange, inputValue, phoneMask } =
     useContext(GlobalContext);
 
@@ -50,7 +50,7 @@ export default function Formulario({ setisFormVisible }) {
 
   useEffect(() => {
     if (!Object.keys(hasUserData).length > 0) {
-      setisFormVisible(true);
+      setIsFormVisible(true);
     }
   });
 
@@ -64,7 +64,7 @@ export default function Formulario({ setisFormVisible }) {
 }
 
 Formulario.propTypes = {
-  setisFormVisible: PropTypes.func,
+  setIsFormVisible: PropTypes.func,
 };
 
 const ElementoInput = (props) => {

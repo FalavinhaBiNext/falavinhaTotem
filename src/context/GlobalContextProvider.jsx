@@ -5,6 +5,7 @@ import { phoneMask, moneyConverter, validationSchema } from "../utils";
 import { BASE_URL } from "../services/api";
 import { axiosInstance } from "../services/api";
 import { useGetSurvey } from "../hooks/useGetSurvey";
+import QuestionarioHoldingState from "../states/QuestionarioHoldingState";
 
 export const GlobalContext = createContext();
 export default function GlobalContextProvider({ children }) {
@@ -16,8 +17,11 @@ export default function GlobalContextProvider({ children }) {
     respostasRh,
     respostasEmp,
   } = useGetSurvey();
-  const [resultadoCigam, setResultadoCigam] = useState(null);
+  const { holdingValues, setHoldingValues, holdinginventarioResult } =
+    QuestionarioHoldingState();
+  const [resultadoCigam, setResultadoCigam] = useState({});
   const [resultadoTributario, setResultadoTributario] = useState({});
+  const [resultadoHolding, setResultadoHolding] = useState({});
   const sessionStorageData = sessionStorage.getItem("userInfo");
   const saveData = sessionStorageData ? JSON.parse(sessionStorageData) : null;
 
@@ -52,22 +56,27 @@ export default function GlobalContextProvider({ children }) {
         resultadoTributario,
         resultadoEmpresarial: handleGetSurveyEmpresarial,
         resultadoRH: handleGetSurveyRh,
+        resultadoHolding,
       };
       sessionStorage.setItem("userInfo", JSON.stringify(contatoUsuario));
-      const response = await axiosInstance.post(
-        `${BASE_URL}/survey`,
-        {
-          dadosSurvey,
-          contatoUsuario,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      // const response = await axiosInstance.post(
+      //   `${BASE_URL}/survey`,
+      //   {
+      //     dadosSurvey,
+      //     contatoUsuario,
+      //   },
+      //   {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //   }
+      // );
 
-      console.log("Resposta do servidor:", response.data);
+      // console.log("Resposta do servidor:", response.data);
+      console.log("Resposta do servidor:", {
+        dadosSurvey,
+        contatoUsuario,
+      });
       resetForm();
     } catch (error) {
       console.error("Erro ao salvar o usuário:", error);
@@ -102,6 +111,11 @@ export default function GlobalContextProvider({ children }) {
     setResultadoTributario,
     hasEmptyInputs,
     hasInputErrors,
+    holdingValues,
+    setHoldingValues,
+    holdinginventarioResult,
+    resultadoHolding,
+    setResultadoHolding,
   };
   return (
     <GlobalContext.Provider value={values}>{children}</GlobalContext.Provider>

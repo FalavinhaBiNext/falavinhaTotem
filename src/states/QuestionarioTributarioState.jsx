@@ -17,14 +17,14 @@ export default function QuestionarioTributarioState() {
   });
 
   const tributacao = taxValues.tributacao;
-  const faturamentoMensal = parseFloat(taxValues.faturamento_mensal);
-  const folhaPagamento = parseFloat(taxValues.folha_pagamento);
-  const dispesaAnual = parseFloat(taxValues.dispesa_anual);
-  const patrimonioLiquido = parseFloat(taxValues.patrimonio_liquido);
-  const lucroEmpresa = parseFloat(taxValues.lucro_empresa);
-  const gastosInovacao = parseFloat(taxValues.gastos_inovacao);
-  const importacoesAnuais = parseFloat(taxValues.importacoes_anuais);
-  const exportacoesAnuais = parseFloat(taxValues.exportacoes_anuais);
+  const faturamentoMensal = taxValues.faturamento_mensal;
+  const folhaPagamento = taxValues.folha_pagamento;
+  const dispesaAnual = taxValues.dispesa_anual;
+  const patrimonioLiquido = taxValues.patrimonio_liquido;
+  const lucroEmpresa = taxValues.lucro_empresa;
+  const gastosInovacao = taxValues.gastos_inovacao;
+  const importacoesAnuais = taxValues.importacoes_anuais;
+  const exportacoesAnuais = taxValues.exportacoes_anuais;
 
   // Definição dos multiplicadores fora do switch
   const multipliers = {
@@ -37,7 +37,7 @@ export default function QuestionarioTributarioState() {
     if (tributacao in multipliers) {
       return faturamentoMensal * 0.1 * multipliers[tributacao] * 60;
     }
-    return tributacao === "0" ? "0" : null;
+    return tributacao === "0" ? 0 : null;
   }, [tributacao, faturamentoMensal]);
 
   // CÁLCULO DE 'PIS/COFINS'
@@ -50,7 +50,7 @@ export default function QuestionarioTributarioState() {
         60
       );
     }
-    return tributacao === "0" ? "0" : null;
+    return tributacao === "0" ? 0 : null;
   }, [tributacao, faturamentoMensal]);
 
   // CÁLCULO DE 'ISS'
@@ -58,10 +58,9 @@ export default function QuestionarioTributarioState() {
     if (tributacao in multipliers) {
       return faturamentoMensal * 0.05 * multipliers[tributacao] * 60;
     }
-    return tributacao === "0" ? "0" : null;
+    return tributacao === "0" ? 0 : null;
   }, [tributacao, faturamentoMensal]);
 
-  // Calculations for tributacao 1 or 2
   const tributacao1or2 = tributacao === "1" || tributacao === "2";
 
   // CÁLCULO DE 'AFASTAMENTO DE VERBAS INDENIZATÓRIAS'
@@ -69,7 +68,7 @@ export default function QuestionarioTributarioState() {
     return tributacao1or2
       ? folhaPagamento * 0.005 * 60
       : tributacao === "0"
-      ? "0"
+      ? null
       : null;
   }, [tributacao, folhaPagamento]);
 
@@ -78,7 +77,7 @@ export default function QuestionarioTributarioState() {
     return tributacao1or2
       ? importacoesAnuais * 184.5 * 5
       : tributacao === "0"
-      ? "0"
+      ? 0
       : null;
   }, [tributacao, importacoesAnuais]);
 
@@ -87,7 +86,7 @@ export default function QuestionarioTributarioState() {
     return tributacao1or2
       ? (folhaPagamento - 20000) * 0.058 * 60
       : tributacao === "0"
-      ? "0"
+      ? 0
       : null;
   }, [tributacao, folhaPagamento]);
 
@@ -155,5 +154,6 @@ export default function QuestionarioTributarioState() {
     creditos_simples1,
     creditos_simples2,
     incidencia_icms,
+    tributacao,
   };
 }

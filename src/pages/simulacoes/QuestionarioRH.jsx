@@ -16,7 +16,7 @@ export default function QuestionarioRH() {
     useContext(GlobalContext);
 
   const navigate = useNavigate();
-  const [isFormVisible, setisFormVisible] = useState(false);
+  const [isFormVisible, setIsFormVisible] = useState(false);
 
   // Limpa a respostas do survey do RH ao carregar a página
   useEffect(() => {
@@ -49,7 +49,7 @@ export default function QuestionarioRH() {
 
       <HeroApp fundo={imagem}>
         <FramerMotion>
-          <Formulario setisFormVisible={setisFormVisible} />
+          <Formulario setIsFormVisible={setIsFormVisible} />
 
           <QuestionarioElementoMultiplo
             perguntas={perguntasSurveyRh}
