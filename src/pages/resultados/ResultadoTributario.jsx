@@ -5,6 +5,7 @@ import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import FramerMotion from "../../components/FramerMotion";
 import FooterApp from "../../components/Footer";
+import ConfettiAnimation from "../../components/ConfettiAnimation";
 
 export default function ResultadoTributario() {
   const { moneyConverter, resultadoTributario, handleGetSurveyData } =
@@ -120,6 +121,7 @@ export default function ResultadoTributario() {
 
   return (
     <>
+      <ConfettiAnimation />
       <HeaderApp redirect={"/tributario"}>
         <h1 className="title">Resultado tributário</h1>
       </HeaderApp>

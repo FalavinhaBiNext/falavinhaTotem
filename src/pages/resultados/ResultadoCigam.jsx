@@ -6,6 +6,8 @@ import HeroApp from "../../components/Hero";
 import FramerMotion from "../../components/FramerMotion";
 import imagem from "../../assets/image/AssessoriaTributaria.png";
 import FooterApp from "../../components/Footer";
+import { numberFormatter } from "../../utils";
+import ConfettiAnimation from "../../components/ConfettiAnimation";
 
 export default function ResultadoCigam() {
   const {
@@ -16,7 +18,7 @@ export default function ResultadoCigam() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!data) {
+    if (!Object.values(data).length) {
       navigate("/questionario-cigam");
     } else {
       handleGetSurveyData("cigam");
@@ -26,34 +28,25 @@ export default function ResultadoCigam() {
 
   const roiData = data
     ? [
-        { value: data?.usuarios, title: "Usuários" },
         {
-          value: moneyConverter(data?.salario_medio),
-          title: "Salário Médio",
-        },
-        {
-          value: moneyConverter(data?.folha_pagamento),
-          title: "Folha de Pagamento",
-        },
-        {
-          value: moneyConverter(data?.salario_hora),
-          title: "Salário/Hora/Colaborador",
-        },
-        {
-          value: data?.produtividade_hora,
-          title: "Ganho de Produtividade em Horas/Mês",
+          value: moneyConverter(data?.produtividade_financeira),
+          title: "Ganho de Produtividade Financeira/Ano",
+          customSize: true,
         },
         {
           value: moneyConverter(data?.produtividade_mensal),
           title: "Ganho de Produtividade Mensal",
+          customSize: true,
         },
         {
-          value: moneyConverter(data?.produtividade_financeira),
-          title: "Ganho de Produtividade Financeira/Ano",
+          value: numberFormatter(data?.produtividade_hora),
+          title: "Ganho de Produtividade em Horas/Mês",
+          customSize: false,
         },
         {
-          value: data?.roi_meses_ano.toFixed(1).replace(".", ","),
+          value: data?.roi_meses_ano?.toFixed(1)?.replace(".", ","),
           title: "Retorno do Investimento/Anos/Meses",
+          customSize: false,
         },
       ]
     : [];
@@ -67,6 +60,7 @@ export default function ResultadoCigam() {
 
   return (
     <>
+      <ConfettiAnimation />
       <HeaderApp redirect={"/cigam"}>
         <h1 className="title">Resultado CIGAM</h1>
       </HeaderApp>
@@ -76,9 +70,16 @@ export default function ResultadoCigam() {
           {roiData.length > 0 ? (
             <ul className="roi-list">
               {roiData.map((item, index) => (
-                <li className="roi-list__item" key={index}>
+                <li
+                  className={`roi-list__item ${
+                    item.customSize ? "roi-list__item--custom" : ""
+                  }`}
+                  key={index}
+                >
                   <h2 className="roi-list__title">{item.value}</h2>
-                  <h3 className="roi-list__value">{item.title}</h3>
+                  <h3 className="roi-list__value">
+                    {item.title || "Ganho produtividade financeira anual"}
+                  </h3>
                 </li>
               ))}
             </ul>
