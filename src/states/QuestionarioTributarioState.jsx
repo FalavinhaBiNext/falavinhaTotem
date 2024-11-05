@@ -2,6 +2,7 @@
 import { useState, useMemo } from "react";
 
 export default function QuestionarioTributarioState() {
+  const [importacoes, setImportacoes] = useState(false);
   const [taxValues, setTaxValues] = useState({
     tributacao: "",
     atividade: "",
@@ -25,8 +26,9 @@ export default function QuestionarioTributarioState() {
   const gastosInovacao = taxValues.gastos_inovacao;
   const importacoesAnuais = taxValues.importacoes_anuais;
   const exportacoesAnuais = taxValues.exportacoes_anuais;
+  const atividades = taxValues.atividade;
 
-  // Definição dos multiplicadores fora do switch
+  // Definição dos multiplicadores para os cálculos
   const multipliers = {
     1: 0.0925,
     2: 0.0365,
@@ -137,23 +139,32 @@ export default function QuestionarioTributarioState() {
     return tributacao === "1" ? lucroEmpresa * 0.15 * 0.04 : null;
   }, [tributacao, lucroEmpresa]);
 
-  return {
-    taxValues,
-    setTaxValues,
+  // dados processados com base nas fórmulas de cálculos
+  const tributarioValues = {
     exclusao_icms,
     exclusao_pis,
-    taxa_siscomex,
     exclusao_iss,
-    conceito_insumos,
+    tributacao1or2,
     afastamento_verbas,
+    taxa_siscomex,
     inss_terceiros,
     reintegracao,
+    creditos_simples1,
+    creditos_simples2,
+    conceito_insumos,
+    incidencia_icms,
     lei_do_bem,
     capital_proprio,
     deducao_irpj,
-    creditos_simples1,
-    creditos_simples2,
-    incidencia_icms,
+  };
+
+  return {
+    taxValues,
+    setTaxValues,
     tributacao,
+    importacoes,
+    setImportacoes,
+    atividades,
+    tributarioValues,
   };
 }

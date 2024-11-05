@@ -9,6 +9,12 @@ import QuestionarioHoldingState from "../states/QuestionarioHoldingState";
 
 export const GlobalContext = createContext();
 export default function GlobalContextProvider({ children }) {
+  const [resultadoCigam, setResultadoCigam] = useState({});
+  const [resultadoTributario, setResultadoTributario] = useState([]);
+  const [resultadoHolding, setResultadoHolding] = useState({});
+  const sessionStorageData = sessionStorage.getItem("userInfo");
+  const saveData = sessionStorageData ? JSON.parse(sessionStorageData) : null;
+
   const {
     setRespostasRh,
     handleGetSurveyRh,
@@ -19,11 +25,14 @@ export default function GlobalContextProvider({ children }) {
   } = useGetSurvey();
   const { holdingValues, setHoldingValues, holdinginventarioResult } =
     QuestionarioHoldingState();
-  const [resultadoCigam, setResultadoCigam] = useState({});
-  const [resultadoTributario, setResultadoTributario] = useState({});
-  const [resultadoHolding, setResultadoHolding] = useState({});
-  const sessionStorageData = sessionStorage.getItem("userInfo");
-  const saveData = sessionStorageData ? JSON.parse(sessionStorageData) : null;
+
+  // Filtro de valores NaN, nulos e vazios do tributário
+  const tributarioFiltrado = resultadoTributario.reduce((acc, el) => {
+    if (!isNaN(el.value) && el.value !== null && el.value !== "") {
+      acc[el.title] = moneyConverter(el.value);
+    }
+    return acc;
+  }, {});
 
   const {
     values: inputValue,
@@ -45,25 +54,26 @@ export default function GlobalContextProvider({ children }) {
   // Salva os dados do usuário no servidor
   async function handleGetSurveyData(origemUsuario) {
     try {
-      const contatoUsuario = {
+      const dados_usuario = {
         name: inputValue.nome || saveData.name,
         email: inputValue.email || saveData.email,
         phone: inputValue.telefone || saveData.phone,
         origin: origemUsuario || saveData.origin,
       };
-      const dadosSurvey = {
-        resultadoCigam,
-        resultadoTributario,
-        resultadoEmpresarial: handleGetSurveyEmpresarial,
-        resultadoRH: handleGetSurveyRh,
-        resultadoHolding,
+      const dados_survey = {
+        resultado_cigam: resultadoCigam,
+        resultado_tributario: JSON.stringify(tributarioFiltrado),
+        resultado_empresarial: handleGetSurveyEmpresarial,
+        resultado_rh: handleGetSurveyRh,
+        resultado_holding: resultadoHolding,
       };
-      sessionStorage.setItem("userInfo", JSON.stringify(contatoUsuario));
+
+      sessionStorage.setItem("userInfo", JSON.stringify(dados_usuario));
       // const response = await axiosInstance.post(
       //   `${BASE_URL}/survey`,
       //   {
-      //     dadosSurvey,
-      //     contatoUsuario,
+      //     dados_survey,
+      //     dados_usuario,
       //   },
       //   {
       //     headers: {
