@@ -28,7 +28,6 @@ export default function QuestionarioTributario() {
   const { hasEmptyInputs, setResultadoTributario } = useContext(GlobalContext);
   const [show, setShow] = useState(true);
   const [isFormVisible, setIsFormVisible] = useState(false);
-  const [goNextPage, setGoNextPage] = useState(true);
   const navigate = useNavigate();
 
   const {
@@ -138,18 +137,6 @@ export default function QuestionarioTributario() {
     !taxValues.tributacao ||
     !taxValues.atividade ||
     !taxValues.faturamento_mensal;
-
-  // Aciona o botão para a próxima página e muda o estado do show
-  const handleGetNextPage = () => {
-    setGoNextPage(false);
-    setShow(!show);
-  };
-
-  // Aciona o botão para a página anterior e muda o estado do show
-  const handleGetPrevPage = () => {
-    setGoNextPage(true);
-    setShow(!show);
-  };
 
   return (
     <>
@@ -342,7 +329,9 @@ export default function QuestionarioTributario() {
 
             <div className="page-tributario_paginacao">
               <div style={{ width: 100 }}>
-                {!show && <button onClick={handleGetPrevPage}>Anterior</button>}
+                {!show && (
+                  <button onClick={() => setShow(!show)}>Anterior</button>
+                )}
               </div>
               <div className="page-tributario_paginacao_item">
                 <p
@@ -363,7 +352,9 @@ export default function QuestionarioTributario() {
                 </p>
               </div>
               <div style={{ width: 100 }}>
-                {show && <button onClick={handleGetNextPage}>Próximo</button>}
+                {show && (
+                  <button onClick={() => setShow(!show)}>Próximo</button>
+                )}
               </div>
             </div>
           </form>
@@ -375,9 +366,7 @@ export default function QuestionarioTributario() {
           type="submit"
           className="botao"
           onClick={handleSubmitValues}
-          disabled={
-            (isFormVisible && hasEmptyInputs) || goNextPage || emptyValueFields
-          }
+          disabled={(isFormVisible && hasEmptyInputs) || emptyValueFields}
         >
           Calcular
         </Botoes>
