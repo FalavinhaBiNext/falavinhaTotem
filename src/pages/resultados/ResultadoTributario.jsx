@@ -28,6 +28,8 @@ export default function ResultadoTributario() {
     marginTop: "100px",
   };
 
+  // console.log(resultadoTributario);
+
   return (
     <>
       <ConfettiAnimation />
@@ -38,15 +40,36 @@ export default function ResultadoTributario() {
       <HeroApp>
         <FramerMotion>
           <ul className="tributario-list">
+            {resultadoTributario.map(({ title, value }, index) => {
+              const isValidValue =
+                value !== 0 && value !== "0" && value !== null && !isNaN(value);
+              if (isValidValue) {
+                return (
+                  <li className="tributario-list__item" key={index}>
+                    <h2 className="tributario-list__title">
+                      {title}: <span>{moneyConverter(value)}</span>
+                    </h2>
+                  </li>
+                );
+              }
+            })}
+
+            {resultadoTributario.every(
+              ({ value }) =>
+                !value || value === 0 || value === "0" || isNaN(value)
+            ) && (
+              <h2 style={noResultStyle}>
+                Não encontramos um resultado para os seus dados
+              </h2>
+            )}
+          </ul>
+          {/* <ul className="tributario-list">
             {resultadoTributario
-              .filter(
-                ({ value }) =>
+              .filter(({ value }) =>
                   value !== 0 &&
                   value !== "0" &&
                   value !== null &&
-                  !isNaN(value)
-              )
-              .map(({ title, value }, index) => (
+                  !isNaN(value)).map(({ title, value }, index) => (
                 <li className="tributario-list__item" key={index}>
                   <h2 className="tributario-list__title">
                     {title}: <span>{moneyConverter(value)}</span>
@@ -62,7 +85,7 @@ export default function ResultadoTributario() {
             ).length === 0 && (
               <h2 style={noResultStyle}>Sem dados para exibir</h2>
             )}
-          </ul>
+          </ul> */}
         </FramerMotion>
       </HeroApp>
 
