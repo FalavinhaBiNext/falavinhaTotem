@@ -26,13 +26,19 @@ export default function GlobalContextProvider({ children }) {
   const { holdingValues, setHoldingValues, holdinginventarioResult } =
     QuestionarioHoldingState();
 
-  // Filtro de valores NaN, nulos e vazios do tributário
+  // Filtro de valores NaN, nulos e vazios do resultado do tributário
   const tributarioFiltrado = resultadoTributario.reduce((acc, el) => {
     if (!isNaN(el.value) && el.value !== null && el.value !== "") {
       acc[el.title] = moneyConverter(el.value);
     }
     return acc;
   }, {});
+
+  // Verifica se todos os valores do resultado do tributário são válidos antes de salvar no servidor
+  const hasValidData = resultadoTributario.some(
+    (el) =>
+      !isNaN(el.value) && el.value !== null && el.value !== "" && el.value !== 0
+  );
 
   const {
     values: inputValue,
@@ -62,11 +68,15 @@ export default function GlobalContextProvider({ children }) {
       };
       const dados_survey = {
         resultado_cigam: resultadoCigam,
-        resultado_tributario: JSON.stringify(tributarioFiltrado),
+        resultado_tributario: hasValidData
+          ? JSON.stringify(tributarioFiltrado)
+          : null,
         resultado_empresarial: handleGetSurveyEmpresarial,
         resultado_rh: handleGetSurveyRh,
         resultado_holding: resultadoHolding,
       };
+
+      console.log("PARA O SERVER", dados_survey);
 
       sessionStorage.setItem("userInfo", JSON.stringify(dados_usuario));
       // const response = await axiosInstance.post(

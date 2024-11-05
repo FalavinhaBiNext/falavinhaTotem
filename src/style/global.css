@@ -26,12 +26,15 @@ body {
   margin: 0;
 }
 
+body {
+  min-height: 100vh;
+}
+
 #root,
 body,
 .motion-element {
   background-color: #009499;
   font-family: "Gilroy-light";
-  min-height: 100vh;
   display: flex;
   flex-flow: column;
 }
@@ -61,8 +64,8 @@ input[type="number"]::-webkit-outer-spin-button {
   justify-content: center;
   width: 100%;
   text-align: center;
-  min-height: auto;
-  /* min-height: calc(100vh - 150px); */
+  /* min-height: auto; */
+  min-height: calc(100vh - 180px);
   padding-top: 180px;
 }
 

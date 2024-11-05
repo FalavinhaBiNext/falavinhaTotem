@@ -28,11 +28,15 @@ export default function ResultadoTributario() {
     marginTop: "100px",
   };
 
-  // console.log(resultadoTributario);
+  const hasValidData = resultadoTributario.some(
+    (el) =>
+      !isNaN(el.value) && el.value !== null && el.value !== "" && el.value !== 0
+  );
 
   return (
     <>
-      <ConfettiAnimation />
+      {hasValidData && <ConfettiAnimation />}
+
       <HeaderApp redirect={"/tributario"}>
         <h1 className="title">Resultado tributário</h1>
       </HeaderApp>
@@ -54,38 +58,12 @@ export default function ResultadoTributario() {
               }
             })}
 
-            {resultadoTributario.every(
-              ({ value }) =>
-                !value || value === 0 || value === "0" || isNaN(value)
-            ) && (
+            {!hasValidData && (
               <h2 style={noResultStyle}>
-                Não encontramos um resultado para os seus dados
+                Infelizmente não obtivemos um resultado para os seus dados
               </h2>
             )}
           </ul>
-          {/* <ul className="tributario-list">
-            {resultadoTributario
-              .filter(({ value }) =>
-                  value !== 0 &&
-                  value !== "0" &&
-                  value !== null &&
-                  !isNaN(value)).map(({ title, value }, index) => (
-                <li className="tributario-list__item" key={index}>
-                  <h2 className="tributario-list__title">
-                    {title}: <span>{moneyConverter(value)}</span>
-                  </h2>
-                </li>
-              ))}
-            {resultadoTributario.filter(
-              ({ value }) =>
-                value !== 0 &&
-                value !== "0" &&
-                value !== null &&
-                value !== isNaN(value)
-            ).length === 0 && (
-              <h2 style={noResultStyle}>Sem dados para exibir</h2>
-            )}
-          </ul> */}
         </FramerMotion>
       </HeroApp>
 
