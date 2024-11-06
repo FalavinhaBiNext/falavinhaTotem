@@ -2,9 +2,7 @@ import HeaderApp from "../components/Header";
 import HeroApp from "../components/Hero";
 
 import fundo from "../assets/image/FundoCigam.png";
-import logoCigam from "../assets/image/logoCigam.png"
-import DiagramaCigam from "../assets/image/DiagramaCigam.png"
-import PremioCigam from "../assets/image/PremioCigam.png"
+import logoCigam from "../assets/image/LogoCigam.png"
 import FooterApp from "../components/Footer";
 import routes from "../routes";
 import textos from "../components/textos";
