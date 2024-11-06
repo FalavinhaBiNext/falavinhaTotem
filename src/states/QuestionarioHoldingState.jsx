@@ -4,6 +4,8 @@ export default function QuestionarioHoldingState() {
     valor_imovel: "",
     inventario: "",
   });
+
+  //  HOLDING
   const holdingResultItCMD = useMemo(
     () => holdingValues.valor_imovel * 0.04,
     [holdingValues.valor_imovel]
@@ -13,9 +15,10 @@ export default function QuestionarioHoldingState() {
     [holdingValues.valor_imovel]
   );
   const holdingResultConsultoriaHolding = useMemo(
-    () => holdingValues.inventario * 0.01,
-    [holdingValues.inventario]
+    () => holdingValues.valor_imovel * 0.01,
+    [holdingValues.valor_imovel]
   );
+
   const holdingTotal = useMemo(
     () =>
       holdingResultItCMD +
@@ -28,6 +31,7 @@ export default function QuestionarioHoldingState() {
     ]
   );
 
+  // INVENTÁRIO
   const inventarioResultItCMD = useMemo(
     () => holdingValues.inventario * 0.04,
     [holdingValues.inventario]
@@ -40,6 +44,8 @@ export default function QuestionarioHoldingState() {
     () => holdingValues.inventario * 0.1,
     [holdingValues.inventario]
   );
+
+  // CÁLCULO DO HOLDING E INVENTÁRIO
   const inventarioTotal = useMemo(
     () =>
       inventarioResultItCMD +
@@ -51,6 +57,8 @@ export default function QuestionarioHoldingState() {
       inventarioResultConsultoriaHolding,
     ]
   );
+
+  // RESULTADO FINAL DO CÁLCULO DO HOLDING E INVENTÁRIO
   const totalResult = useMemo(
     () => inventarioTotal - holdingTotal,
     [holdingTotal, inventarioTotal]
@@ -64,7 +72,7 @@ export default function QuestionarioHoldingState() {
     inventario_itcmd: inventarioResultItCMD,
     inventario_cartorio: inventarioResultCustoCartorio,
     inventario_consultoria: inventarioResultConsultoriaHolding,
-    total_inventario: inventarioTotal,
+    inventario_total: inventarioTotal,
     total_geral: totalResult,
   };
 

@@ -1,21 +1,26 @@
 import PropTypes from "prop-types";
 import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../context/GlobalContextProvider";
-
 import gifAvatar from "../assets/gifs/avatar.gif";
 import gifTel from "../assets/gifs/tel.gif";
 import gifEmail from "../assets/gifs/email.gif";
 
 export default function Formulario({ setIsFormVisible }) {
-  const { errors, touched, handleBlur, handleChange, inputValue, phoneMask } =
-    useContext(GlobalContext);
+  const {
+    errors,
+    touched,
+    handleBlur,
+    handleChange,
+    inputValue,
+    setInputValue,
+    phoneMask,
+  } = useContext(GlobalContext);
 
   const [hasUserData] = useState(() => {
     const storedData = sessionStorage.getItem("userInfo");
     return storedData ? JSON.parse(storedData) : {};
   });
 
-  // dados dos inputs
   const inputs = [
     {
       title: "Nome",
@@ -55,11 +60,25 @@ export default function Formulario({ setIsFormVisible }) {
     },
   ];
 
+  const clearInputValues = () => {
+    setInputValue({
+      nome: "",
+      telefone: "",
+      email: "",
+    });
+  };
+
   useEffect(() => {
     if (!Object.keys(hasUserData).length > 0) {
       setIsFormVisible(true);
     }
-  });
+
+    // Check and clear input values on mount
+    if (inputValue.nome || inputValue.telefone || inputValue.email) {
+      clearInputValues();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return !Object.keys(hasUserData).length > 0 ? (
     <form className="form">
@@ -88,20 +107,10 @@ Formulario.propTypes = {
 };
 
 const ElementoInput = (props) => {
-  const {
-    nome,
-    type,
-    id,
-    value,
-    title,
-    onChange,
-    error,
-    touched,
-    onBlur,
-    phoneMask,
-  } = props;
+  const { nome, type, id, title, phoneMask } = props;
+  const { inputValue, handleChange, errors, touched, handleBlur } =
+    useContext(GlobalContext);
 
-  // altera a primeira letra do input para maiúscula
   const handleInputChange = (e) => {
     let updatedValue = e.target.value;
     if (updatedValue.includes(" ")) {
@@ -116,7 +125,7 @@ const ElementoInput = (props) => {
     if (type === "email") {
       updatedValue = updatedValue.toLowerCase();
     }
-    onChange({ target: { name: nome, value: updatedValue } });
+    handleChange({ target: { name: nome, value: updatedValue } });
   };
 
   return (
@@ -128,26 +137,27 @@ const ElementoInput = (props) => {
         id={id}
         placeholder={title}
         autoComplete="off"
-        value={type === "tel" ? phoneMask(value) : value}
+        value={
+          type === "tel"
+            ? phoneMask(inputValue[nome] || "")
+            : inputValue[nome] || ""
+        }
         maxLength={type === "tel" ? 15 : undefined}
         onChange={handleInputChange}
-        onBlur={onBlur}
+        onBlur={handleBlur}
         style={{
-          borderColor: error && touched ? "#ff0000" : "",
+          borderColor: errors[nome && touched[nome]] ? "#ff0000" : "",
         }}
       />
-      {error && touched && <span className="error-message">{error}</span>}
+      {errors[nome] && touched[nome] && (
+        <span className="error-message">{errors[nome]}</span>
+      )}
     </label>
   );
 };
 
 ElementoInput.propTypes = {
-  value: PropTypes.string,
   title: PropTypes.string,
-  onChange: PropTypes.func,
-  error: PropTypes.string,
-  touched: PropTypes.bool,
-  onBlur: PropTypes.func,
   phoneMask: PropTypes.func,
   nome: PropTypes.string,
   type: PropTypes.string,

@@ -10,11 +10,18 @@ import { useNavigate } from "react-router-dom";
 import { perguntasSurveyRh } from "../../services/db";
 import Botoes from "../../components/Botoes";
 import { QuestionarioElementoMultiplo } from "../../components/QuestionarioElemento";
+import useRefreshDetector from "../../hooks/useRefreshDetector";
 
 export default function QuestionarioRH() {
-  const { respostasRh, setRespostasRh, hasInputErrors, hasEmptyInputs } =
-    useContext(GlobalContext);
+  const {
+    respostasRh,
+    setRespostasRh,
+    hasInputErrors,
+    hasEmptyInputs,
+    isSubmitting,
+  } = useContext(GlobalContext);
 
+  const { handleCheckRefresh } = useRefreshDetector();
   const navigate = useNavigate();
   const [isFormVisible, setIsFormVisible] = useState(false);
 
@@ -23,6 +30,11 @@ export default function QuestionarioRH() {
     if (Object.keys(respostasRh).length > 0) {
       setRespostasRh({});
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    handleCheckRefresh();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -63,7 +75,8 @@ export default function QuestionarioRH() {
               disabled={
                 (isFormVisible && hasEmptyInputs) ||
                 hasInputErrors ||
-                !isAllInputsChecked()
+                !isAllInputsChecked() ||
+                isSubmitting
               }
             >
               Ver resultado

@@ -1,22 +1,25 @@
-import { useContext, useState, useMemo } from "react";
+import { useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import fundo from "../../assets/image/FundoHolding.png";
 import FramerMotion from "../../components/FramerMotion";
-import Formulario from "../../components/Formulario"; // Unused, consider removing
+import Formulario from "../../components/Formulario";
 import FooterApp from "../../components/Footer";
 import QuestionarioHoldingState from "../../states/QuestionarioHoldingState";
 import { numberFormatter } from "../../utils";
 import Botoes from "../../components/Botoes";
 import { GlobalContext } from "../../context/GlobalContextProvider";
 import { useNavigate } from "react-router-dom";
+import useRefreshDetector from "../../hooks/useRefreshDetector";
 
 export default function QuestionarioHolding() {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const { holdingValues, setHoldingValues, holdinginventarioResult } =
     QuestionarioHoldingState();
-  const { hasEmptyInputs, setResultadoHolding } = useContext(GlobalContext);
+  const { hasEmptyInputs, setResultadoHolding, isSubmitting } =
+    useContext(GlobalContext);
+  const { handleCheckRefresh } = useRefreshDetector();
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -35,9 +38,13 @@ export default function QuestionarioHolding() {
 
   const handleSubmitValues = () => {
     setResultadoHolding(holdinginventarioResult);
-
     navigate("/resultado-holding");
   };
+
+  useEffect(() => {
+    handleCheckRefresh();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -69,7 +76,7 @@ export default function QuestionarioHolding() {
             <article className="holding-questionario">
               <h2 className="holding-questionario__title">Inventário</h2>
               <TextInput
-                title="Valor do invetário:"
+                title="Valor do inventário:"
                 nome="inventario"
                 type="text"
                 id="inventario"
@@ -90,7 +97,11 @@ export default function QuestionarioHolding() {
           type="submit"
           className="botao"
           onClick={handleSubmitValues}
-          disabled={(isFormVisible && hasEmptyInputs) || emptyValueFields}
+          disabled={
+            (isFormVisible && hasEmptyInputs) ||
+            emptyValueFields ||
+            isSubmitting
+          }
         >
           Calcular
         </Botoes>

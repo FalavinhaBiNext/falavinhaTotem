@@ -29,7 +29,7 @@ export function useGetSurvey() {
   const handleGetSurveyEmpresarial = useMemo(() => {
     const respostasEmpKeys = Object.keys(respostasEmp);
     if (respostasEmpKeys.length === 0) {
-      return { porcentagem: 0, resultado_pesquisa: 0 };
+      return { porcentagem: null, resultado_pesquisa: null };
     }
     const totalQuestions = perguntasSurveyEmpresarial.reduce(
       (count, section) => count + section.perguntas.length,

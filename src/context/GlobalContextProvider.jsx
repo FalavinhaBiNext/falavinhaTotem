@@ -9,6 +9,7 @@ import QuestionarioHoldingState from "../states/QuestionarioHoldingState";
 
 export const GlobalContext = createContext();
 export default function GlobalContextProvider({ children }) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [resultadoCigam, setResultadoCigam] = useState({});
   const [resultadoTributario, setResultadoTributario] = useState([]);
   const [resultadoHolding, setResultadoHolding] = useState({});
@@ -60,6 +61,7 @@ export default function GlobalContextProvider({ children }) {
   // Salva os dados do usuário no servidor
   async function handleGetSurveyData(origemUsuario) {
     try {
+      setIsSubmitting(true);
       const dados_usuario = {
         name: inputValue.nome || saveData.name,
         email: inputValue.email || saveData.email,
@@ -70,7 +72,7 @@ export default function GlobalContextProvider({ children }) {
         resultado_cigam: resultadoCigam,
         resultado_tributario: hasValidData
           ? JSON.stringify(tributarioFiltrado)
-          : null,
+          : "Sem dados para exibir",
         resultado_empresarial: handleGetSurveyEmpresarial,
         resultado_rh: handleGetSurveyRh,
         resultado_holding: resultadoHolding,
@@ -93,7 +95,9 @@ export default function GlobalContextProvider({ children }) {
       // );
 
       resetForm();
+      setIsSubmitting(false);
     } catch (error) {
+      setIsSubmitting(false);
       console.error("Erro ao salvar o usuário:", error);
     }
   }
@@ -131,6 +135,7 @@ export default function GlobalContextProvider({ children }) {
     holdinginventarioResult,
     resultadoHolding,
     setResultadoHolding,
+    isSubmitting,
   };
   return (
     <GlobalContext.Provider value={values}>{children}</GlobalContext.Provider>

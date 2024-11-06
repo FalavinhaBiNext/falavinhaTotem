@@ -8,6 +8,7 @@ import FramerMotion from "../../components/FramerMotion";
 import FooterApp from "../../components/Footer";
 import ConfettiAnimation from "../../components/ConfettiAnimation";
 import { IoStar } from "react-icons/io5";
+// import useRefreshDetector from "../../hooks/useRefreshDetector";
 
 export default function ResultadoEmpresarial() {
   const navigate = useNavigate();
@@ -15,14 +16,29 @@ export default function ResultadoEmpresarial() {
     useContext(GlobalContext);
   const { resultado_pesquisa, porcentagem } = handleGetSurveyEmpresarial;
 
+  // const { isRefreshing, pageLoaded } = useRefreshDetector();
+
+  // useEffect(() => {
+  //   if (isRefreshing) {
+  //     navigate("/consultoria-empresarial");
+  //   } else {
+  //     console.log("Page was loaded initially.");
+  //   }
+  // }, [isRefreshing, pageLoaded, navigate]);
+
+  // const percent = porcentagem === 0 ? porcentagem + 1 : porcentagem;
+
   useEffect(() => {
-    if (!resultado_pesquisa || !porcentagem) {
+    if (resultado_pesquisa === null || porcentagem === null) {
       navigate("/consultoria-empresarial");
     } else {
       handleGetSurveyData("empresarial");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resultado_pesquisa, porcentagem, navigate]);
+
+  // console.log("porcentagem", percent);
+  console.log("PERCENTAGEM (original)", porcentagem);
 
   const renderStars = (icon) => {
     const starCount = Math.min(Math.max(icon, 1), 5);
@@ -43,23 +59,25 @@ export default function ResultadoEmpresarial() {
         <FramerMotion>
           <article className="result-survey">
             <h2 style={{ fontSize: "1.5rem", color: "#fff" }}>
-              {" "}
-              Sua pontuação é: {""}
-              {Math.round(porcentagem)}%
-            </h2>
-            <h3>
-              O nível de maturidade da empresa é{" "}
-              <span style={{ fontSize: "1.5rem", textTransform: "uppercase" }}>
-                {resultado_pesquisa.maturidade}
+              O nível de maturidade da sua empresa é: <br />
+              <span
+                style={{
+                  fontSize: "2rem",
+                  textTransform: "uppercase",
+                  paddingTop: "10px",
+                  display: "inline-block",
+                }}
+              >
+                {resultado_pesquisa?.maturidade}
               </span>
-            </h3>
+            </h2>
             <div className="icon-result-container">
-              {renderStars(resultado_pesquisa.icon)}
+              {renderStars(resultado_pesquisa?.icon)}
             </div>{" "}
             <p
               style={{ fontSize: "1rem", letterSpacing: "2px", color: "#fff" }}
             >
-              {resultado_pesquisa.mensagem}
+              {resultado_pesquisa?.mensagem}
             </p>
           </article>
         </FramerMotion>

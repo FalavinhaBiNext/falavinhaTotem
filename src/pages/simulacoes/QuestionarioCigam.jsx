@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HeaderApp from "../../components/Header";
 import Botoes from "../../components/Botoes";
@@ -12,11 +12,12 @@ import Formulario from "../../components/Formulario";
 import { numberFormatter } from "../../utils";
 import QuestionarioCigamState from "../../states/QuestionarioCigamState";
 import gifWinner from "../../assets/gifs/winner.gif";
+import useRefreshDetector from "../../hooks/useRefreshDetector";
 import gifCheck from "../../assets/gifs/check.gif";
-
 export default function QuestionarioCigam() {
   const navigate = useNavigate();
-  const { moneyConverter, hasEmptyInputs, hasInputErrors, setResultadoCigam } =
+  const { handleCheckRefresh } = useRefreshDetector();
+  const { hasEmptyInputs, hasInputErrors, setResultadoCigam, isSubmitting } =
     useContext(GlobalContext);
   const {
     cigamValues,
@@ -64,6 +65,11 @@ export default function QuestionarioCigam() {
     });
     navigate("/resultado-cigam");
   };
+
+  useEffect(() => {
+    handleCheckRefresh();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -193,15 +199,22 @@ export default function QuestionarioCigam() {
           <div className="consultoria-rh">
             <div className="consultoria-rh__item">
               <img src={gifWinner} alt="Winner" className="icon-topicos_rh" />
-              <p>Premiado como Melhor ERP para médias e Grandes empresas pelo B2B STACK</p>
+              <p>
+                Premiado como Melhor ERP para médias e Grandes empresas pelo B2B
+                STACK
+              </p>
             </div>
             <div className="consultoria-rh__item">
               <img src={gifCheck} alt="Winner" className="icon-topicos_rh" />
-              <p>Único ERP de grande porte que usa tecnologia LOW CODE - à prova de futuro (Magic)</p>
+              <p>
+                Único ERP de grande porte que usa tecnologia LOW CODE - à prova
+                de futuro (Magic)
+              </p>
             </div>
           </div>
         </FramerMotion>
       </HeroApp>
+
       <FooterApp footerFixed>
         <Botoes
           type="button"
@@ -210,7 +223,8 @@ export default function QuestionarioCigam() {
           disabled={
             (isFormVisible && hasEmptyInputs) ||
             hasInputErrors ||
-            emptyValueFields
+            emptyValueFields ||
+            isSubmitting
           }
         >
           Calcular
@@ -230,7 +244,7 @@ const TextInput = ({
   isReadOnly,
 }) => (
   <label htmlFor={nome} className="input-label">
-    <span>{title}</span>
+    {/* <span>{title}</span> */}
     <input
       className={`input-element ${newClassName}`}
       name={nome}

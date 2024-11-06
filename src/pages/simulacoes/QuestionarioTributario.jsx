@@ -11,6 +11,7 @@ import Formulario from "../../components/Formulario";
 import Botoes from "../../components/Botoes";
 import QuestionarioTributarioState from "../../states/QuestionarioTributarioState";
 import fundo from "../../assets/image/FundoTributario.png";
+import useRefreshDetector from "../../hooks/useRefreshDetector";
 
 const selectAtividades = [
   { value: 1, label: "Comércio" },
@@ -25,10 +26,12 @@ const selectAtividades = [
 ];
 
 export default function QuestionarioTributario() {
-  const { hasEmptyInputs, setResultadoTributario } = useContext(GlobalContext);
+  const { hasEmptyInputs, setResultadoTributario, isSubmitting } =
+    useContext(GlobalContext);
   const [show, setShow] = useState(true);
   const [isFormVisible, setIsFormVisible] = useState(false);
   const navigate = useNavigate();
+  const { handleCheckRefresh } = useRefreshDetector();
 
   const {
     taxValues,
@@ -82,17 +85,17 @@ export default function QuestionarioTributario() {
       value: parseInt(tributarioValues.inss_terceiros, 10),
     },
     hasAllActivities &&
-    importacoes && {
-      title: `Recuperação da taxa Siscomex pago a maior nas importações`,
-      value: parseInt(tributarioValues.taxa_siscomex),
-    },
+      importacoes && {
+        title: `Recuperação da taxa Siscomex pago a maior nas importações`,
+        value: parseInt(tributarioValues.taxa_siscomex),
+      },
     (hasRestaurantes || hasAutoPecas) && {
       title: `Recuperação de créditos para empresas do Simples Nacional (Produtos Monofásicos)`,
       value: hasRestaurantes
         ? parseInt(tributarioValues.creditos_simples1, 10)
         : hasAutoPecas
-          ? parseInt(tributarioValues.creditos_simples2, 10)
-          : null,
+        ? parseInt(tributarioValues.creditos_simples2, 10)
+        : null,
     },
     hasAllActivities && {
       title: `Ampliação do conceito de insumo pelo STJ e implicações no direito a créditos de PIS e COFINS`,
@@ -139,8 +142,13 @@ export default function QuestionarioTributario() {
     !taxValues.faturamento_mensal;
 
   const handleShow = () => {
-    setShow(!show)
-  }
+    setShow(!show);
+  };
+
+  useEffect(() => {
+    handleCheckRefresh();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -157,11 +165,33 @@ export default function QuestionarioTributario() {
             onSubmit={handleSubmitValues}
             style={{ marginTop: "10px", padding: "15px" }}
           >
-
-            <div className="page-tributario_paginacao" style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+            <div
+              className="page-tributario_paginacao"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
               <div className="page-tributario_paginacao_item">
-                <p onClick={handleShow} style={{ border: show == true ? "1px solid white" : "none", fontWeight: show == true ? "bold" : "normal" }}>1</p>
-                <p onClick={handleShow} style={{ border: show != true ? "1px solid white" : "none", fontWeight: show != true ? "bold" : "normal" }}>2</p>
+                <p
+                  onClick={handleShow}
+                  style={{
+                    border: show == true ? "1px solid white" : "none",
+                    fontWeight: show == true ? "bold" : "normal",
+                  }}
+                >
+                  1
+                </p>
+                <p
+                  onClick={handleShow}
+                  style={{
+                    border: show != true ? "1px solid white" : "none",
+                    fontWeight: show != true ? "bold" : "normal",
+                  }}
+                >
+                  2
+                </p>
               </div>
             </div>
 
@@ -374,18 +404,24 @@ export default function QuestionarioTributario() {
       </HeroApp>
 
       <FooterApp footerFixed>
-        {show === true ?
-          <button className="botao" onClick={handleShow}>Proximo</button>
-          :
+        {show === true ? (
+          <button className="botao" onClick={handleShow}>
+            Proximo
+          </button>
+        ) : (
           <Botoes
             type="submit"
             className="botao"
             onClick={handleSubmitValues}
-            disabled={(isFormVisible && hasEmptyInputs) || emptyValueFields}
+            disabled={
+              (isFormVisible && hasEmptyInputs) ||
+              emptyValueFields ||
+              isSubmitting
+            }
           >
             Calcular
           </Botoes>
-        }
+        )}
       </FooterApp>
     </>
   );

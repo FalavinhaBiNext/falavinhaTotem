@@ -19,15 +19,40 @@ function Contabilidade() {
   ];
 
   const topicos = [
-    { titulo: "PLANEJAMENTO CONTÁBIL", texto: "Inclui a elaboração de contas e relatórios (BI), acompanhamento e envio periódicos de balancetes, além de relatórios comparaticos de evolução financeira e outros indicadores essenciais para uma visão detalhada e estratégica da contabilidade.", icone: gifTarget },
-    { titulo: "CONTABILIDADE CONSULTIVA", texto: "com foco nas necessidades únicas e exclusivas das empresas prezando por um atendimento personalizado, por meio do uso de tecnologia de ponta e inovação constante, conseguimos apresentar soluções estratégicas para auxiliar na tomada de decisão de cada modelo de negócio das empresas.", icone: gifComunicacao },
-    { titulo: "CONTABILIDADE GERENCIAL", texto: "Proporciona uma visão detalhada e atualizada da situação financeira da empresa, permitindo uma melhor tomada de decisões. Com informações precisas sobre receitas, despesas, lucros e custos, os gestores podem identificar áreas de oportunidade, avaliar o desempenho de diferentes departamentos, projetos, segmentos e produtos, podendo assim direcionar recursos de forma mais eficiente.", icone: gifCheck },
-    { titulo: "TECNOLOGIA E SISTEMAS", texto: "Utilizamos o que há de melhor em tecnologia para o seu atendimento, contamos com sistema de comunicação e solicitações via web, envio automático de guias e relatórios e um dos melhores sistemas contábeis do mercado, tudo isso para garantir as informações repassadas e trazer mais praticidade para o seu dia a dia.", icone: gifComputador },
-  ]
+    {
+      titulo: "PLANEJAMENTO CONTÁBIL",
+      texto: `Inclui a elaboração de contas e relatórios (BI), acompanhamento e envio periódicos de balancetes, 
+      além de relatórios comparaticos de evolução financeira e outros 
+      indicadores essenciais para uma visão detalhada e estratégica da contabilidade.`,
+      icone: gifTarget,
+    },
+    {
+      titulo: "CONTABILIDADE CONSULTIVA",
+      texto: `com foco nas necessidades únicas e exclusivas das empresas prezando por um atendimento personalizado, 
+      por meio do uso de tecnologia de ponta e inovação constante, conseguimos apresentar soluções estratégicas 
+      para auxiliar na tomada de decisão de cada modelo de negócio das empresas.`,
+      icone: gifComunicacao,
+    },
+    {
+      titulo: "CONTABILIDADE GERENCIAL",
+      texto: `Proporciona uma visão detalhada e atualizada da situação financeira da empresa, permitindo uma melhor tomada de decisões. 
+      Com informações precisas sobre receitas, despesas, lucros e custos, os gestores podem identificar áreas de oportunidade, 
+      avaliar o desempenho de diferentes departamentos, projetos, segmentos e produtos, podendo assim direcionar recursos de 
+      forma mais eficiente.`,
+      icone: gifCheck,
+    },
+    {
+      titulo: "TECNOLOGIA E SISTEMAS",
+      texto: `Utilizamos o que há de melhor em tecnologia para o seu atendimento, contamos com sistema de comunicação e 
+      solicitações via web, envio automático de guias e relatórios e um dos melhores sistemas contábeis do mercado, 
+      tudo isso para garantir as informações repassadas e trazer mais praticidade para o seu dia a dia.`,
+      icone: gifComputador,
+    },
+  ];
 
   return (
-    <div style={{ display: "flex", flexFlow: "column", gap: "20px", padding: "20px", height: "100vh" }}>
-      <HeaderApp>
+    <>
+      <HeaderApp redirect={"/servicos"}>
         <h1 className="title">{textos.contabilidade.Titulo}</h1>
       </HeaderApp>
 
@@ -63,7 +88,7 @@ function Contabilidade() {
           </a>
         </div> */}
       </FooterApp>
-    </div>
+    </>
   );
 }
 export default Contabilidade;
