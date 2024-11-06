@@ -35,8 +35,6 @@ export default function useRefreshDetector() {
       window.confirm(
         "Tem certeza que deseja atualizar? As alterações não salvas serão perdidas."
       );
-    } else {
-      console.log("Page was loaded initially.");
     }
   }
 
