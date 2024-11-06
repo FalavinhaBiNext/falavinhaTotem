@@ -43,7 +43,7 @@ export default function QuestionarioEmpresarial() {
 
   return (
     <>
-      <HeaderApp redirect={"/servicosl"}>
+      <HeaderApp redirect={"/servicos"}>
         <h1 className="title">Faça uma pesquisa sobre sua empresa</h1>
       </HeaderApp>
 

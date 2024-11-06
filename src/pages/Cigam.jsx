@@ -18,7 +18,6 @@ import gifIntel from "../assets/gifs/intel.gif";
 const Cigam = () => {
   // links dos botões
   const options = [
-    { name: "DASHBOARD BI CIGAM", route: routes.dashboardGestor },
     { name: "FAÇA UMA SIMULAÇÃO", route: routes.questionarioCigam },
   ];
 

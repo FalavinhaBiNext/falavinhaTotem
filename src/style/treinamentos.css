@@ -1,0 +1,53 @@
+
+  .accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    padding: 10px;
+    margin-top: 15px;
+    cursor: pointer;
+    background-color: transparent;
+    border-bottom: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    font-family: 'Gilroy-light';
+    letter-spacing: 2px;
+    gap: 20px;
+    height: 60px;
+  }
+
+  .accordion-header > span {
+    font-size: 0.8rem;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .accordion-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    padding: 10px;
+    background-color: #4b5052;
+    gap: 10px;
+    color: #fff;
+    border-radius: 10px;
+  }
+  .accordion-content > ul {
+   text-align: start;
+   padding: 10px 0;
+   font-family: 'Gilroy-thin';
+   letter-spacing: 1px;
+  }
+
+  .accordion-content > h4 {
+    font-size: 1.1rem;
+    color: #fff;
+    letter-spacing: 1px;
+    line-height: 20px;
+    font-family: 'Gilroy-light';
+  }
+  

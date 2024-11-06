@@ -110,8 +110,8 @@ export default function QuestionarioTributario() {
                   {!show && <button onClick={handleShow}>Anterior</button>}
                 </div>
                 <div className="page-tributario_paginacao_item">
-                  <p style={{border: show == true ? "1px solid white" : "none", fontWeight: show == true ? "bold" : "normal"}}>1</p>
-                  <p style={{border: show != true ? "1px solid white" : "none", fontWeight: show != true ? "bold" : "normal"}}>2</p>
+                  <p onClick={handleShow} style={{border: show == true ? "1px solid white" : "none", fontWeight: show == true ? "bold" : "normal"}}>1</p>
+                  <p onClick={handleShow} style={{border: show != true ? "1px solid white" : "none", fontWeight: show != true ? "bold" : "normal"}}>2</p>
                 </div>
                 <div style={{width: 100}}>
                   {show && <button onClick={handleShow}>Proximo</button>}

@@ -9,6 +9,7 @@ const routes = {
   consultoriaEmpresarial: "/consultoria-empresarial",
   holding: "/holding",
   treinamentos: "/treinamentos",
+  cursos: "/cursos",
   dashboardGestor: "/dashboard-contabilidade",
   dashboardFinanceiro: "/dashboard-financeiro",
   dashboardRH: "/dashboard-rh",

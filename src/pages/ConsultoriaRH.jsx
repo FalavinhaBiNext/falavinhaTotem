@@ -57,7 +57,7 @@ function ConsultoriaRH() {
 
   // links dos botões
   const options = [
-    { name: "DASHBOARD BI CONSULTORIA RH", route: routes.dashboardFinanceiro },
+    { name: "DASHBOARD BI CONSULTORIA RH", route: routes.dashboardRH },
     { name: "FAÇA UMA SIMULAÇÃO", route: routes.questionarioRH },
   ];
 
