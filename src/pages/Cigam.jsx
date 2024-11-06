@@ -33,7 +33,7 @@ const Cigam = () => {
     <div style={{ display: "flex", flexFlow: "column", gap: "20px", padding: "20px", height: "100vh" }}>
       <HeaderApp redirect={"/servicos"}>
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-          <img style={{ width: "40%" }} src={logoCigam} alt="" />
+          <img style={{ width: "45%" }} src={logoCigam} alt="" />
         </div>
       </HeaderApp>
       <HeroApp fundo={fundo}>
