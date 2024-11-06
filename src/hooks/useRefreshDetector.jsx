@@ -38,15 +38,5 @@ export default function useRefreshDetector() {
     }
   }
 
-  // useEffect(() => {
-  //   if (isRefreshing) {
-  //     window.confirm(
-  //       "Tem certeza que deseja atualizar? As alterações não salvas serão perdidas."
-  //     );
-  //   } else {
-  //     console.log("Page was loaded initially.");
-  //   }
-  // }, [isRefreshing, pageLoaded]);
-
   return { isRefreshing, pageLoaded, handleCheckRefresh };
 }

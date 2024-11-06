@@ -76,7 +76,7 @@ export default function QuestionarioHolding() {
             <article className="holding-questionario">
               <h2 className="holding-questionario__title">Inventário</h2>
               <TextInput
-                title="Valor do invetário:"
+                title="Valor do inventário:"
                 nome="inventario"
                 type="text"
                 id="inventario"
