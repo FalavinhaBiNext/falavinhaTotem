@@ -17,7 +17,7 @@ function DashContabilidade() {
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <h2 className="subtitulo">Gestor 2.0 | Contabilidade</h2>
+          <h2 className="subtitulo">Contabilidade</h2>
           <div className="iframeDash">
             <iframe
               className="iframe-content"

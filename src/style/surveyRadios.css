@@ -23,8 +23,9 @@
   font-size: 1rem;
   color: #fff;
   padding-bottom: 10px;
-  letter-spacing: 1px;
   line-height: 20px;
+  font-family: 'Gilroy-bold';
+  letter-spacing: 2px;
 }
 
 .survey__list--question {
@@ -32,6 +33,7 @@
   flex-flow: column;
   gap: 10px;
   font-family: "Gilroy-thin";
+  letter-spacing: 2px;
 }
 
 .survey__list--radios {
@@ -52,6 +54,7 @@
   display: flex;
   align-items: center;
   height: inherit;
+  font-family: 'Gilroy-light';
 }
 
 .survey__list input[type="radio"] + .radio-label:before {
@@ -103,10 +106,12 @@
 
 /*  SURVEY DO EMPRESARIAL */
 .survey__list--empreTitle {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   color: #fff;
   letter-spacing: 1px;
   line-height: 30px;
+  font-family: 'Gilroy-bold';
+  padding-bottom: 10px;
 }
 
 .survey__question--list {
@@ -121,10 +126,12 @@
   color: #fff;
   letter-spacing: 1px;
   line-height: 20px;
+  font-family: 'Gilroy-light';
 }
 
 .survey__question--radios {
   display: flex;
-  flex-flow: column;
+  flex-flow: row;
   gap: 10px;
+  padding-bottom: 10px;
 }

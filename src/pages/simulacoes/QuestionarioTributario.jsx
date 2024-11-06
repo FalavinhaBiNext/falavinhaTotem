@@ -141,6 +141,10 @@ export default function QuestionarioTributario() {
     !taxValues.atividade ||
     !taxValues.faturamento_mensal;
 
+  const handleShow = () => {
+    setShow(!show);
+  };
+
   useEffect(() => {
     handleCheckRefresh();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -161,6 +165,36 @@ export default function QuestionarioTributario() {
             onSubmit={handleSubmitValues}
             style={{ marginTop: "10px", padding: "15px" }}
           >
+            <div
+              className="page-tributario_paginacao"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <div className="page-tributario_paginacao_item">
+                <p
+                  onClick={handleShow}
+                  style={{
+                    border: show == true ? "1px solid white" : "none",
+                    fontWeight: show == true ? "bold" : "normal",
+                  }}
+                >
+                  1
+                </p>
+                <p
+                  onClick={handleShow}
+                  style={{
+                    border: show != true ? "1px solid white" : "none",
+                    fontWeight: show != true ? "bold" : "normal",
+                  }}
+                >
+                  2
+                </p>
+              </div>
+            </div>
+
             {show && (
               <div>
                 <label
@@ -244,7 +278,7 @@ export default function QuestionarioTributario() {
             {!show && (
               <div>
                 <TextInput
-                  title="Média das Despesas Anual: (Opcional)"
+                  title="Média das Despesas Anual:"
                   nome="dispesa_anual"
                   type="number"
                   value={
@@ -274,10 +308,10 @@ export default function QuestionarioTributario() {
                     `R$ ${numberFormatter(taxValues.lucro_empresa)}`
                   }
                   onChange={handleChange}
-                  placeholder="Digite um valor (Opcional)"
+                  placeholder="Digite um valor Aproximado"
                 />
                 <TextInput
-                  title="Gastos com Inovação e Tecnologia: (Opcional)"
+                  title="Gastos com Inovação e Tecnologia:"
                   nome="gastos_inovacao"
                   type="number"
                   value={
@@ -335,7 +369,7 @@ export default function QuestionarioTributario() {
             )}
             <br />
 
-            <div className="page-tributario_paginacao">
+            {/* <div className="page-tributario_paginacao">
               <div style={{ width: 100 }}>
                 {!show && (
                   <button onClick={() => setShow(!show)}>Anterior</button>
@@ -364,24 +398,30 @@ export default function QuestionarioTributario() {
                   <button onClick={() => setShow(!show)}>Próximo</button>
                 )}
               </div>
-            </div>
+            </div> */}
           </form>
         </FramerMotion>
       </HeroApp>
 
       <FooterApp footerFixed>
-        <Botoes
-          type="submit"
-          className="botao"
-          onClick={handleSubmitValues}
-          disabled={
-            (isFormVisible && hasEmptyInputs) ||
-            emptyValueFields ||
-            isSubmitting
-          }
-        >
-          Calcular
-        </Botoes>
+        {show === true ? (
+          <button className="botao" onClick={handleShow}>
+            Proximo
+          </button>
+        ) : (
+          <Botoes
+            type="submit"
+            className="botao"
+            onClick={handleSubmitValues}
+            disabled={
+              (isFormVisible && hasEmptyInputs) ||
+              emptyValueFields ||
+              isSubmitting
+            }
+          >
+            Calcular
+          </Botoes>
+        )}
       </FooterApp>
     </>
   );

@@ -16,7 +16,6 @@ function Contabilidade() {
   // links dos botões
   const options = [
     { name: "DASHBOARD BI CONTABILIDADE", route: routes.dashboardGestor },
-    { name: "FAÇA UMA SIMULAÇÃO", route: routes.powerapps },
   ];
 
   const topicos = [
@@ -78,7 +77,17 @@ function Contabilidade() {
           <ButtonLinks options={options} />
         </FramerMotion>
       </HeroApp>
-      <FooterApp></FooterApp>
+      <FooterApp>
+        {/* 
+        // QR CODE QUE IRÁ DIRECIONAR PARA O WHATSAPP DA FALAVINHA NEXT
+        <div style={{ display: 'flex', flex: 1, justifyContent: 'end', margin: '40px' }}>
+          <a href='#'>
+            <img
+              style={{ height: 100, width: 100 }}
+              src='https://cdn2.me-qr.com/qr/133728716.png?v=1730899955' alt='Create qr code for free' />
+          </a>
+        </div> */}
+      </FooterApp>
     </>
   );
 }

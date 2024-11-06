@@ -1,3 +1,4 @@
+import { desc } from "framer-motion/client";
 
 // Perguntas para o survey do RH
 export const perguntasSurveyRh = [
@@ -290,3 +291,105 @@ export const respostasSurveyEmpresarial = [
     para que obtenha melhores resultados e possa expandir seus negócios`,
   },
 ];
+
+export const cursos = [
+  {
+    name: "FORMAR LÍDERES DE ELITE:",
+    description: "Crie seu 'BOPE' Organizacional",
+    item: [
+      {item: "Identificação e Desenvolvimento de Talentos Internos."},
+      {item: "Treinamento Intensivo em Habilidades de Liderança."},
+      {item: "Cultura de Alta Performance e Resiliência."},
+      {item: "Estratégias de Motivação e Engajamento de Equipes."},
+      {item: "Avaliação Contínua e Feedback Construtivo."}
+    ]
+  },
+  {
+    name: "A REVOLUÇÃO DA IA:",
+    description: "Transformando Negócios e Redefinindo Estratégias Empresariais",
+    item: [
+      {item: "Integração de IA nos processos de negócios."},
+      {item: "Ética e governança na implementação de IA."},
+      {item: "Personalização de experiências do cliente através da IA."},
+      {item: "Automação inteligente e otimização de operações."},
+      {item: "Análise de dados e tomada de decisões baseada em IA."}
+    ]
+  },
+  {
+    name: "DELEGAÇÃO ESTRATÉGICA:",
+    description: "Maximizando Desempenho e Resultados Organizacionais",
+    item: [
+      {item: "Princípios Fundamentais da Delegação Estratégica"},
+      {item: "Identificação de Tarefas e Responsabilidades para Delegação"},
+      {item: "Desenvolvimento de Habilidades de Liderança para Delegação"},
+      {item: "Abordagens e Melhores Práticas na Delegação"},
+      {item: "Medindo o Impacto da Delegação nos Resultados Empresariais"}
+    ]
+  },
+  {
+    name: "FERRAMENTAS ESSENCIAIS PARA IMPULSIONAR AS VENDAS",
+    description: "",
+    item: [
+      {item: "Automação de Marketing"},
+      {item: "Gestão de Relacionamento com Clientes (CRM)"},
+      {item: "Análise de Dados de Vendas"},
+      {item: "Redes Sociais e Conteúdo Digital"},
+      {item: "Inteligência Artificial e Chatbots"},
+    ]
+  },
+  {
+    name: "GESTÃO DE CONFLITOS:",
+    description: "Transformando Desafios em Oportunidades",
+    item: [
+      {item: "Entendendo as Causas dos Conflitos."},
+      {item: "Técnicas de Resolução de Conflitos."},
+      {item: "A Arte da Negociação e Compromisso."},
+      {item: "Manter a Calma em Situações de Conflito."},
+      {item: "Transformando Conflitos em Crescimento."}
+    ]
+  },
+  {
+    name: "PROCESSOS DOS TRABALHOS",
+    description: "Como Evitar Passivos Trabalhistas",
+    item: [
+      {item: "Identificação de Riscos Trabalhistas Comuns."},
+      {item: "Implementação de Políticas de Conformidade."},
+      {item: "Auditorias Internas e Externas para Prevenção de Passivos."}, 
+      {item: "Treinamento e Capacitação de Equipes."},
+      {item: "Resolução Proativa de Conflitos Trabalhistas."}
+    ]
+  },
+  {
+    name: "CONTABILIDADE GERENCIAL:",
+    description: "Tomando Decisões Baseadas em Dados.",
+    item: [
+      {item: "Ferramentas de Contabilidade Gerencial para Análise de Desempenho."},
+      {item: "Utilização de Indicadores Financeiros na Tomada de Decisões."},
+      {item: "Relatórios Gerenciais: Transformando Dados em Ações Estratégicas."},
+      {item: "Integração de Sistemas de Informação para Melhor Gestão."},
+      {item: "Estudos de Caso: Sucesso na Tomada de Decisões Baseadas em Dados."}
+    ]
+  },
+  {
+    name: "GESTÃO DE RISCOS:",
+    description: "Protegendo o Patrimônio da Empresa",
+    item: [
+      {item: "Identificação e Avaliação de Riscos Financeiros."},
+      {item: "Estratégias de Mitigação e Controle de Riscos."},
+      {item: "Uso de Derivativos e Seguros para Proteção Financeira."},
+      {item: "Implementação de Políticas de Gestão de Riscos."},
+      {item: "Monitoramento e Revisão Contínua de Riscos Financeiros."}
+    ]
+  },
+  {
+    name: "HOLDING FAMILIAR: ",
+    description: "Proteção e Sucessão Patrimonial",
+    item: [
+      {item: "Estruturação de uma Holding Familiar: Passos Iniciais."},
+      {item: "Vantagens Fiscais e Jurídicas de uma Holding."},
+      {item: "Planejamento Sucessório e Continuidade do Patrimônio."},
+      {item: "Governança e Gestão de Conflitos em Holdings Familiares."},
+      {item: "Estudos de Caso: Sucesso na Proteção e Sucessão Patrimonial."}
+    ]
+  },
+]

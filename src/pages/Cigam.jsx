@@ -18,7 +18,6 @@ import gifIntel from "../assets/gifs/intel.gif";
 const Cigam = () => {
   // links dos botões
   const options = [
-    { name: "DASHBOARD BI CIGAM", route: routes.dashboardGestor },
     { name: "FAÇA UMA SIMULAÇÃO", route: routes.questionarioCigam },
   ];
 
@@ -30,12 +29,15 @@ const Cigam = () => {
   ];
 
   return (
-    <>
+    <div style={{ display: "flex", flexFlow: "column", gap: "20px", padding: "20px", height: "100vh" }}>
       <HeaderApp redirect={"/servicos"}>
         <h1 className="title">{textos.cigam.Titulo}</h1>
       </HeaderApp>
       <HeroApp fundo={fundo}>
         <FramerMotion>
+          <div>
+            <h1>Teste</h1>
+          </div>
           <div>
             <h2 className="subtitulo">
               {textos.cigam.Subtitulo}{" "}
@@ -60,7 +62,7 @@ const Cigam = () => {
         </FramerMotion>
       </HeroApp>
       <FooterApp />
-    </>
+    </div>
   );
 };
 export default Cigam;

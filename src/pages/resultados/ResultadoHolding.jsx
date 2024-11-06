@@ -6,7 +6,7 @@ import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import FramerMotion from "../../components/FramerMotion";
 import FooterApp from "../../components/Footer";
-import fundo from "../../assets/image/fundoHolding.png";
+import fundo from "../../assets/image/FundoHolding.png";
 import ConfettiAnimation from "../../components/ConfettiAnimation";
 
 export default function ResultadoHolding() {

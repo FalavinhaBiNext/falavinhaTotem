@@ -31,7 +31,7 @@ function ConsultoriaEmpresarial() {
   ]
 
   return (
-    <>
+    <div style={{ display: "flex", flexFlow: "column", gap: "20px", padding: "20px", height: "100vh" }}>
       <HeaderApp redirect={"/servicos"}>
         <h1 className="title">{textos.consultoriaEmpresarial.Titulo}</h1>
       </HeaderApp>
@@ -71,7 +71,7 @@ function ConsultoriaEmpresarial() {
         </FramerMotion>
       </HeroApp>
       <FooterApp />
-    </>
+    </div>
   );
 }
 export default ConsultoriaEmpresarial;

@@ -7,13 +7,15 @@ import Contabilidade from "./pages/Contabilidade";
 import ConsultoriaRH from "./pages/ConsultoriaRH";
 import Cigam from "./pages/Cigam";
 import Holding from "./pages/Holding";
+import Treinamentos from "./pages/treinamentos";
+import Cursos from "./pages/Cursos";
 import Dashboard from "./pages/Dashboard";
 import DashboardFinanceiro from "./pages/Dashboard_Financeiro";
 import DashboardRH from "./pages/DashboardRH";
 import DashboardGestaoEstoque from "./pages/DashboardGestaoEstoque";
 import ConsultoriaEmpresarial from "./pages/ConsultoriaEmpresarial";
 import { AnimatePresence } from "framer-motion";
-import useIdleRedirect from "./hooks/useIdleRedirect";
+//import useIdleRedirect from "./hooks/useIdleRedirect";
 // páginas simulações
 import QuestionarioRH from "./pages/simulacoes/QuestionarioRH";
 import QuestionarioCigam from "./pages/simulacoes/QuestionarioCigam";
@@ -49,6 +51,8 @@ function App() {
             element={<ConsultoriaEmpresarial />}
           />
           <Route path="/holding" element={<Holding />} />
+          <Route path="/treinamentos" element={<Treinamentos />} />
+          <Route path="/cursos" element={<Cursos />} />
           <Route
             path="/dashboard-contabilidade"
             element={<DashContabilidade />}

@@ -57,12 +57,12 @@ function ConsultoriaRH() {
 
   // links dos botões
   const options = [
-    { name: "DASHBOARD BI CONSULTORIA RH", route: routes.dashboardFinanceiro },
+    { name: "DASHBOARD BI CONSULTORIA RH", route: routes.dashboardRH },
     { name: "FAÇA UMA SIMULAÇÃO", route: routes.questionarioRH },
   ];
 
   return (
-    <>
+    <div style={{ display: "flex", flexFlow: "column", gap: "20px", padding: "20px", height: "100vh" }}>
       <HeaderApp redirect={"/servicos"}>
         <h1 className="title">{textos.consultoriaRh.Titulo}</h1>
       </HeaderApp>
@@ -99,7 +99,7 @@ function ConsultoriaRH() {
         </FramerMotion>
       </HeroApp>
       <FooterApp />
-    </>
+    </div>
   );
 }
 export default ConsultoriaRH;
