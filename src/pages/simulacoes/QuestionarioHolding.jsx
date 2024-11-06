@@ -2,7 +2,7 @@ import { useContext, useState, useMemo } from "react";
 import PropTypes from "prop-types";
 import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
-import fundo from "../../assets/image/fundoHolding.png";
+import fundo from "../../assets/image/FundoHolding.png";
 import FramerMotion from "../../components/FramerMotion";
 import Formulario from "../../components/Formulario"; // Unused, consider removing
 import FooterApp from "../../components/Footer";

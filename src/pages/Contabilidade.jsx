@@ -26,7 +26,7 @@ function Contabilidade() {
   ]
 
   return (
-    <>
+    <div style={{ display: "flex", flexFlow: "column", gap: "20px", padding: "20px", height: "100vh" }}>
       <HeaderApp>
         <h1 className="title">{textos.contabilidade.Titulo}</h1>
       </HeaderApp>
@@ -53,16 +53,17 @@ function Contabilidade() {
         </FramerMotion>
       </HeroApp>
       <FooterApp>
-
+        {/* 
+        // QR CODE QUE IRÁ DIRECIONAR PARA O WHATSAPP DA FALAVINHA NEXT
         <div style={{ display: 'flex', flex: 1, justifyContent: 'end', margin: '40px' }}>
           <a href='#'>
             <img
               style={{ height: 100, width: 100 }}
               src='https://cdn2.me-qr.com/qr/133728716.png?v=1730899955' alt='Create qr code for free' />
           </a>
-        </div>
+        </div> */}
       </FooterApp>
-    </>
+    </div>
   );
 }
 export default Contabilidade;

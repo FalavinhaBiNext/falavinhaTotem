@@ -37,7 +37,7 @@ const Holding = () => {
   ];
 
   return (
-    <>
+    <div style={{ display: "flex", flexFlow: "column", gap: "20px", padding: "20px", height: "100vh" }}>
       <HeaderApp redirect={"/servicos"}>
         <h1 className="title">HOLDING</h1>
       </HeaderApp>
@@ -62,7 +62,7 @@ const Holding = () => {
           <ButtonLinks options={options} />
         </FramerMotion>
       </HeroApp>
-    </>
+    </div>
   );
 };
 
