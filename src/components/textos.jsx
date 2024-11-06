@@ -1,7 +1,7 @@
 const textos = {
   cigam: {
     texto:
-      "A CIGAM, com 30 anos de experiência, oferece o melhor ERP para gestão empresarial, focando em produtividade, crescimento e resultados para os clientes através de soluções inovadoras e fáceis de usar, resultando em processos ágeis e análise de daos confiáveis para ganhos de produtividade.",
+      "A CIGAM, com 37 anos de experiência, oferece o melhor ERP para gestão empresarial, focando em produtividade, crescimento e resultados para os clientes através de soluções inovadoras e fáceis de usar, resultando em processos ágeis e análise de daos confiáveis para ganhos de produtividade.",
     Titulo: "ERP CIGAM",
     Subtitulo: "Seu Ecossistema empresarial",
   },

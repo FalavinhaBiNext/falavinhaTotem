@@ -6,6 +6,7 @@ import HeroApp from "../../components/Hero";
 import FramerMotion from "../../components/FramerMotion";
 import FooterApp from "../../components/Footer";
 import ConfettiAnimation from "../../components/ConfettiAnimation";
+import fundo from "../../assets/image/FundoTributario.png"
 
 export default function ResultadoTributario() {
   const { moneyConverter, handleGetSurveyData, resultadoTributario } =
@@ -41,7 +42,7 @@ export default function ResultadoTributario() {
         <h1 className="title">Resultado tributário</h1>
       </HeaderApp>
 
-      <HeroApp>
+      <HeroApp fundo={fundo}>
         <FramerMotion>
           <ul className="tributario-list">
             {resultadoTributario.map(({ title, value }, index) => {
@@ -51,8 +52,9 @@ export default function ResultadoTributario() {
                 return (
                   <li className="tributario-list__item" key={index}>
                     <h2 className="tributario-list__title">
-                      {title}: <span>{moneyConverter(value)}</span>
+                    {moneyConverter(value)}
                     </h2>
+                    <span>{title}</span>
                   </li>
                 );
               }

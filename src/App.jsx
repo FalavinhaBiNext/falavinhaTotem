@@ -13,9 +13,10 @@ import Dashboard from "./pages/Dashboard";
 import DashboardFinanceiro from "./pages/Dashboard_Financeiro";
 import DashboardRH from "./pages/DashboardRH";
 import DashboardGestaoEstoque from "./pages/DashboardGestaoEstoque";
+import DashboardTributario from "./pages/DashboardTributario";
 import ConsultoriaEmpresarial from "./pages/ConsultoriaEmpresarial";
 import { AnimatePresence } from "framer-motion";
-//import useIdleRedirect from "./hooks/useIdleRedirect";
+import useIdleRedirect from "./hooks/useIdleRedirect";
 // páginas simulações
 import QuestionarioRH from "./pages/simulacoes/QuestionarioRH";
 import QuestionarioCigam from "./pages/simulacoes/QuestionarioCigam";
@@ -37,7 +38,7 @@ function App() {
     <AnimatePresence>
       <Router>
         <StayOnTop />
-        {/* <RedirectHomepage /> */}
+        <RedirectHomepage />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/servicos" element={<Servicos />} />
@@ -65,6 +66,10 @@ function App() {
           <Route
             path="/dashboard-gestao-estoque"
             element={<DashboardGestaoEstoque />}
+          />
+          <Route
+            path="/dashboard-tributario"
+            element={<DashboardTributario />}
           />
 
           <Route path="/questionario-rh" element={<QuestionarioRH />} />

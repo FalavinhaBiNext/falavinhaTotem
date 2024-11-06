@@ -14,6 +14,7 @@ const routes = {
   dashboardFinanceiro: "/dashboard-financeiro",
   dashboardRH: "/dashboard-rh",
   dashboardGestaoEstoque: "/dashboard-gestao-estoque",
+  dashboardTributario: "/dashboard-tributario",
 
   questionarioRH: "/questionario-rh",
   questionarioCigam: "/questionario-cigam",

@@ -8,7 +8,7 @@
 .tributario-list__item {
   width: 100%;
   display: flex;
-  flex-flow: column;
+  flex-direction: column;
   justify-content: center;
   align-items: start;
   gap: 15px;
@@ -23,7 +23,7 @@
 }
 
 .tributario-list__title {
-  font-size: 1rem;
+  font-size: 1.8rem;
   text-align: start;
   line-height: 24px;
 }
