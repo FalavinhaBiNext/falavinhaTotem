@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HeaderApp from "../../components/Header";
 import Botoes from "../../components/Botoes";
@@ -12,10 +12,12 @@ import Formulario from "../../components/Formulario";
 import { numberFormatter } from "../../utils";
 import QuestionarioCigamState from "../../states/QuestionarioCigamState";
 import gifWinner from "../../assets/gifs/winner.gif";
+import useRefreshDetector from "../../hooks/useRefreshDetector";
 
 export default function QuestionarioCigam() {
   const navigate = useNavigate();
-  const { moneyConverter, hasEmptyInputs, hasInputErrors, setResultadoCigam } =
+  const { handleCheckRefresh } = useRefreshDetector();
+  const { hasEmptyInputs, hasInputErrors, setResultadoCigam, isSubmitting } =
     useContext(GlobalContext);
   const {
     cigamValues,
@@ -63,6 +65,13 @@ export default function QuestionarioCigam() {
     });
     navigate("/resultado-cigam");
   };
+
+  useEffect(() => {
+    handleCheckRefresh();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  console.log(isFormVisible);
 
   return (
     <>
@@ -266,6 +275,7 @@ export default function QuestionarioCigam() {
           </div>
         </FramerMotion>
       </HeroApp>
+
       <FooterApp footerFixed>
         <Botoes
           type="button"
@@ -274,7 +284,8 @@ export default function QuestionarioCigam() {
           disabled={
             (isFormVisible && hasEmptyInputs) ||
             hasInputErrors ||
-            emptyValueFields
+            emptyValueFields ||
+            isSubmitting
           }
         >
           Calcular
@@ -294,7 +305,7 @@ const TextInput = ({
   isReadOnly,
 }) => (
   <label htmlFor={nome} className="input-label">
-    <span>{title}</span>
+    {/* <span>{title}</span> */}
     <input
       className={`input-element ${newClassName}`}
       name={nome}

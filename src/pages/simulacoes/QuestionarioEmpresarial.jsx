@@ -10,12 +10,19 @@ import { GlobalContext } from "../../context/GlobalContextProvider";
 import Formulario from "../../components/Formulario";
 import { perguntasSurveyEmpresarial } from "../../services/db";
 import { QuestionarioElementoBinario } from "../../components/QuestionarioElemento";
+import useRefreshDetector from "../../hooks/useRefreshDetector";
 
 export default function QuestionarioEmpresarial() {
   const navigate = useNavigate();
+  const { handleCheckRefresh } = useRefreshDetector();
   const [isFormVisible, setIsFormVisible] = useState(false);
-  const { hasInputErrors, hasEmptyInputs, respostasEmp, setRespostasEmp } =
-    useContext(GlobalContext);
+  const {
+    hasInputErrors,
+    hasEmptyInputs,
+    respostasEmp,
+    setRespostasEmp,
+    isSubmitting,
+  } = useContext(GlobalContext);
 
   // Limpa a respostas do survey do RH ao carregar a página
   useEffect(() => {
@@ -41,9 +48,14 @@ export default function QuestionarioEmpresarial() {
     return Object.keys(respostasEmp).length === totalNumberOfQuestions;
   };
 
+  useEffect(() => {
+    handleCheckRefresh();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
-      <HeaderApp redirect={"/servicosl"}>
+      <HeaderApp redirect={"/servicos"}>
         <h1 className="title">Faça uma pesquisa sobre sua empresa</h1>
       </HeaderApp>
 
@@ -62,7 +74,8 @@ export default function QuestionarioEmpresarial() {
               disabled={
                 (isFormVisible && hasEmptyInputs) ||
                 hasInputErrors ||
-                !isAllInputsChecked()
+                !isAllInputsChecked() ||
+                isSubmitting
               }
             >
               Ver resultado

@@ -34,8 +34,7 @@ export default function ResultadoHolding() {
         },
         {
           title: "Total",
-          value:
-            resultadoHolding.total_holding || resultadoHolding.total_inventario,
+          value: resultadoHolding.holding_total,
         },
       ],
     },
@@ -51,17 +50,19 @@ export default function ResultadoHolding() {
           title: "Horários advocatícios",
           value: resultadoHolding.inventario_consultoria,
         },
-        { title: "Total", value: resultadoHolding.total_inventario },
+        { title: "Total", value: resultadoHolding.inventario_total },
       ],
     },
   ];
+
+  console.log(resultadoHolding);
 
   const resultStyle = (val) => val < 0 && "red";
 
   return (
     <>
       <ConfettiAnimation />
-      <HeaderApp redirect={"/questionario-holding"}>
+      <HeaderApp redirect={"/holding"}>
         <h1 className="title">Resultado holding</h1>
       </HeaderApp>
 
