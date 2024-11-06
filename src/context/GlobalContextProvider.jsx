@@ -5,9 +5,16 @@ import { phoneMask, moneyConverter, validationSchema } from "../utils";
 import { BASE_URL } from "../services/api";
 import { axiosInstance } from "../services/api";
 import { useGetSurvey } from "../hooks/useGetSurvey";
+import QuestionarioHoldingState from "../states/QuestionarioHoldingState";
 
 export const GlobalContext = createContext();
 export default function GlobalContextProvider({ children }) {
+  const [resultadoCigam, setResultadoCigam] = useState({});
+  const [resultadoTributario, setResultadoTributario] = useState([]);
+  const [resultadoHolding, setResultadoHolding] = useState({});
+  const sessionStorageData = sessionStorage.getItem("userInfo");
+  const saveData = sessionStorageData ? JSON.parse(sessionStorageData) : null;
+
   const {
     setRespostasRh,
     handleGetSurveyRh,
@@ -16,10 +23,22 @@ export default function GlobalContextProvider({ children }) {
     respostasRh,
     respostasEmp,
   } = useGetSurvey();
-  const [resultadoCigam, setResultadoCigam] = useState(null);
-  const [resultadoTributario, setResultadoTributario] = useState({});
-  const sessionStorageData = sessionStorage.getItem("userInfo");
-  const saveData = sessionStorageData ? JSON.parse(sessionStorageData) : null;
+  const { holdingValues, setHoldingValues, holdinginventarioResult } =
+    QuestionarioHoldingState();
+
+  // Filtro de valores NaN, nulos e vazios do resultado do tributário
+  const tributarioFiltrado = resultadoTributario.reduce((acc, el) => {
+    if (!isNaN(el.value) && el.value !== null && el.value !== "") {
+      acc[el.title] = moneyConverter(el.value);
+    }
+    return acc;
+  }, {});
+
+  // Verifica se todos os valores do resultado do tributário são válidos antes de salvar no servidor
+  const hasValidData = resultadoTributario.some(
+    (el) =>
+      !isNaN(el.value) && el.value !== null && el.value !== "" && el.value !== 0
+  );
 
   const {
     values: inputValue,
@@ -41,33 +60,38 @@ export default function GlobalContextProvider({ children }) {
   // Salva os dados do usuário no servidor
   async function handleGetSurveyData(origemUsuario) {
     try {
-      const contatoUsuario = {
+      const dados_usuario = {
         name: inputValue.nome || saveData.name,
         email: inputValue.email || saveData.email,
         phone: inputValue.telefone || saveData.phone,
         origin: origemUsuario || saveData.origin,
       };
-      const dadosSurvey = {
-        resultadoCigam,
-        resultadoTributario,
-        resultadoEmpresarial: handleGetSurveyEmpresarial,
-        resultadoRH: handleGetSurveyRh,
+      const dados_survey = {
+        resultado_cigam: resultadoCigam,
+        resultado_tributario: hasValidData
+          ? JSON.stringify(tributarioFiltrado)
+          : null,
+        resultado_empresarial: handleGetSurveyEmpresarial,
+        resultado_rh: handleGetSurveyRh,
+        resultado_holding: resultadoHolding,
       };
-      sessionStorage.setItem("userInfo", JSON.stringify(contatoUsuario));
-      const response = await axiosInstance.post(
-        `${BASE_URL}/survey`,
-        {
-          dadosSurvey,
-          contatoUsuario,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
 
-      console.log("Resposta do servidor:", response.data);
+      console.log("PARA O SERVER", dados_survey);
+
+      sessionStorage.setItem("userInfo", JSON.stringify(dados_usuario));
+      // const response = await axiosInstance.post(
+      //   `${BASE_URL}/survey`,
+      //   {
+      //     dados_survey,
+      //     dados_usuario,
+      //   },
+      //   {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //   }
+      // );
+
       resetForm();
     } catch (error) {
       console.error("Erro ao salvar o usuário:", error);
@@ -102,6 +126,11 @@ export default function GlobalContextProvider({ children }) {
     setResultadoTributario,
     hasEmptyInputs,
     hasInputErrors,
+    holdingValues,
+    setHoldingValues,
+    holdinginventarioResult,
+    resultadoHolding,
+    setResultadoHolding,
   };
   return (
     <GlobalContext.Provider value={values}>{children}</GlobalContext.Provider>

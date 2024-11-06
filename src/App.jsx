@@ -28,7 +28,8 @@ import NotFound from "./pages/NotFound";
 import ResultadoTributario from "./pages/resultados/ResultadoTributario";
 import QuestionarioEmpresarial from "./pages/simulacoes/QuestionarioEmpresarial";
 import ResultadoEmpresarial from "./pages/resultados/ResultadoEmpresarial";
-import PageTeste from "./pages/teste";
+import QuestionarioHolding from "./pages/simulacoes/QuestionarioHolding";
+import ResultadoHolding from "./pages/resultados/ResultadoHolding";
 
 function App() {
   const RedirectHomepage = () => useIdleRedirect("/");
@@ -87,7 +88,11 @@ function App() {
             element={<ResultadoEmpresarial />}
           />
 
-          <Route path="/teste" element={<PageTeste/>}/>
+          <Route
+            path="/questionario-holding"
+            element={<QuestionarioHolding />}
+          />
+          <Route path="/resultado-holding" element={<ResultadoHolding />} />
 
           <Route path="/*" element={<NotFound />} />
         </Routes>

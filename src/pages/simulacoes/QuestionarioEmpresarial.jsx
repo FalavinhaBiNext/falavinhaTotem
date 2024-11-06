@@ -13,7 +13,7 @@ import { QuestionarioElementoBinario } from "../../components/QuestionarioElemen
 
 export default function QuestionarioEmpresarial() {
   const navigate = useNavigate();
-  const [isFormVisible, setisFormVisible] = useState(false);
+  const [isFormVisible, setIsFormVisible] = useState(false);
   const { hasInputErrors, hasEmptyInputs, respostasEmp, setRespostasEmp } =
     useContext(GlobalContext);
 
@@ -49,7 +49,7 @@ export default function QuestionarioEmpresarial() {
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <Formulario setisFormVisible={setisFormVisible} />
+          <Formulario setIsFormVisible={setIsFormVisible} />
           <QuestionarioElementoBinario
             perguntas={perguntasSurveyEmpresarial}
             respostas={respostasEmp}

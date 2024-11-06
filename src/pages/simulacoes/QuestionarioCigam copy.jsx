@@ -35,7 +35,7 @@ export default function QuestionarioCigam() {
   } = QuestionarioCigamState();
   const [hasUserData] = useState(sessionStorage.getItem("userInfo"));
   const isValidValue = (val) => (isNaN(val) || !isFinite(val) ? "" : val);
-  const [isFormVisible, setisFormVisible] = useState(false);
+  const [isFormVisible, setIsFormVisible] = useState(false);
   const emptyValueFields =
     cigamValues.usuarios === "" ||
     cigamValues.salario_medio === "" ||
@@ -85,7 +85,7 @@ export default function QuestionarioCigam() {
       </HeaderApp>
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <Formulario setisFormVisible={setisFormVisible} />
+          <Formulario setIsFormVisible={setIsFormVisible} />
           <form className="form">
             <TextInput
               title="Usuários:"

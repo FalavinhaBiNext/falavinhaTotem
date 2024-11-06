@@ -14,14 +14,12 @@ const routes = {
   dashboardFinanceiro: "/dashboard-financeiro",
   dashboardRH: "/dashboard-rh",
   dashboardGestaoEstoque: "/dashboard-gestao-estoque",
- 
 
   questionarioRH: "/questionario-rh",
   questionarioCigam: "/questionario-cigam",
   questionarioTributario: "/questionario-tributario",
   questionarioEmpresarial: "/questionario-empresarial",
-
- 
+  questionarioHolding: "/questionario-holding",
 };
 
 export default routes;

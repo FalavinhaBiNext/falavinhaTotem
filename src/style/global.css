@@ -31,9 +31,9 @@ body,
 .motion-element {
   background-color: #009499;
   font-family: "Gilroy-light";
-  min-height: 100vh;
-  display: flex;
-  flex-flow: column;
+  min-height: 90vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
 }
 
 li {
@@ -61,8 +61,6 @@ input[type="number"]::-webkit-outer-spin-button {
   justify-content: center;
   width: 100%;
   text-align: center;
-  min-height: auto;
-  /* min-height: calc(100vh - 150px); */
   padding-top: 180px;
 }
 
@@ -131,8 +129,8 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .btnVoltar {
-  width: 35px;
-  height: 35px;
+  width: auto;
+  height: auto;
   margin: 0;
   padding: 0;
   border: none;
@@ -285,7 +283,6 @@ input[type="number"]::-webkit-outer-spin-button {
   height: 50px;
   width: 50px;
 }
-
 
 /*  CONSULTORIA RH */
 .consultoria-rh {

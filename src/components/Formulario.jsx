@@ -6,7 +6,7 @@ import gifAvatar from "../assets/gifs/avatar.gif";
 import gifTel from "../assets/gifs/tel.gif";
 import gifEmail from "../assets/gifs/email.gif";
 
-export default function Formulario({ setisFormVisible }) {
+export default function Formulario({ setIsFormVisible }) {
   const { errors, touched, handleBlur, handleChange, inputValue, phoneMask } =
     useContext(GlobalContext);
 
@@ -27,7 +27,7 @@ export default function Formulario({ setisFormVisible }) {
       error: errors.nome,
       touched: touched.nome,
       onBlur: handleBlur,
-      icon: gifAvatar
+      icon: gifAvatar,
     },
     {
       title: "Telefone",
@@ -39,7 +39,7 @@ export default function Formulario({ setisFormVisible }) {
       error: errors.telefone,
       touched: touched.telefone,
       onBlur: handleBlur,
-      icon: gifTel
+      icon: gifTel,
     },
     {
       title: "Email",
@@ -51,20 +51,30 @@ export default function Formulario({ setisFormVisible }) {
       error: errors.email,
       touched: touched.email,
       onBlur: handleBlur,
-      icon: gifEmail
+      icon: gifEmail,
     },
   ];
 
   useEffect(() => {
     if (!Object.keys(hasUserData).length > 0) {
-      setisFormVisible(true);
+      setIsFormVisible(true);
     }
   });
 
   return !Object.keys(hasUserData).length > 0 ? (
     <form className="form">
-      {inputs.map((input) => (
-        <div style={{display: "flex", alignItems: "center", backgroundColor: "#4b5052", gap: 10, borderRadius: "10px", padding: "0 10px",}}>
+      {inputs.map((input, index) => (
+        <div
+          key={index}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            backgroundColor: "#4b5052",
+            gap: 10,
+            borderRadius: "10px",
+            padding: "0 10px",
+          }}
+        >
           <img src={input.icon} className="icon-topicos_servicos" alt="" />
           <ElementoInput {...input} key={input.id} phoneMask={phoneMask} />
         </div>
@@ -74,7 +84,7 @@ export default function Formulario({ setisFormVisible }) {
 }
 
 Formulario.propTypes = {
-  setisFormVisible: PropTypes.func,
+  setIsFormVisible: PropTypes.func,
 };
 
 const ElementoInput = (props) => {

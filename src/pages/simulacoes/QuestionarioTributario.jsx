@@ -26,35 +26,97 @@ const selectAtividades = [
 
 export default function QuestionarioTributario() {
   const { hasEmptyInputs, setResultadoTributario } = useContext(GlobalContext);
-
   const [show, setShow] = useState(true);
-
-  const handleShow = () => {
-    setShow(!show);
-  }
+  const [isFormVisible, setIsFormVisible] = useState(false);
+  const navigate = useNavigate();
 
   const {
     taxValues,
     setTaxValues,
-    exclusao_icms,
-    exclusao_pis,
-    taxa_siscomex,
-    exclusao_iss,
-    conceito_insumos,
-    afastamento_verbas,
-    inss_terceiros,
-    reintegracao,
-    lei_do_bem,
-    capital_proprio,
-    deducao_irpj,
-    creditos_simples1,
-    creditos_simples2,
-    incidencia_icms,
+    importacoes,
+    setImportacoes,
+    atividades,
+    tributarioValues,
   } = QuestionarioTributarioState();
-  const navigate = useNavigate();
-  const [importOrExport, setImportOrExport] = useState("");
-  const [isFormVisible, setisFormVisible] = useState(false);
 
+  const hasActivities = (activitiesArray) =>
+    activitiesArray.includes(atividades);
+
+  const hasPisCofins = hasActivities(["1", "2", "4", "5"]);
+  const hasServicos = hasActivities(["3"]);
+  const hasRestaurantes = hasActivities(["6"]);
+  const hasAutoPecas = hasActivities(["7"]);
+  const hasAllActivities = hasActivities([
+    "1",
+    "2",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+  ]);
+  const resultList = [
+    hasPisCofins && {
+      title: `Exclusão do ICMS da base de cálculo do PIS/COFINS`,
+      value: parseInt(tributarioValues.exclusao_icms, 10),
+    },
+    hasPisCofins && {
+      title: `Exclusão do PIS/COFINS da própria base`,
+      value: parseInt(tributarioValues.exclusao_pis, 10),
+    },
+    hasServicos && {
+      title: `Exclusão do ISS da base de cálculo do PIS/COFINS`,
+      value: parseInt(tributarioValues.exclusao_iss, 10),
+    },
+    hasAllActivities && {
+      title: `Não incidência do ICMS e ISS da base de cálculo do IR e CS`,
+      value: parseInt(tributarioValues.incidencia_icms, 10),
+    },
+    hasAllActivities && {
+      title: `Afastamento das verbas indenizatórias`,
+      value: parseInt(tributarioValues.afastamento_verbas, 10),
+    },
+    hasAllActivities && {
+      title: `INSS sobre terceiros (Sistema "S") limitação da base em 20 salários mínimos`,
+      value: parseInt(tributarioValues.inss_terceiros, 10),
+    },
+    hasAllActivities &&
+      importacoes && {
+        title: `Recuperação da taxa Siscomex pago a maior nas importações`,
+        value: parseInt(tributarioValues.taxa_siscomex),
+      },
+    (hasRestaurantes || hasAutoPecas) && {
+      title: `Recuperação de créditos para empresas do Simples Nacional (Produtos Monofásicos)`,
+      value: hasRestaurantes
+        ? parseInt(tributarioValues.creditos_simples1, 10)
+        : hasAutoPecas
+        ? parseInt(tributarioValues.creditos_simples2, 10)
+        : null,
+    },
+    hasAllActivities && {
+      title: `Ampliação do conceito de insumo pelo STJ e implicações no direito a créditos de PIS e COFINS`,
+      value: parseInt(tributarioValues.conceito_insumos, 10),
+    },
+    hasAllActivities && {
+      title: `Reintegra`,
+      value: parseInt(tributarioValues.reintegracao, 10),
+    },
+    hasAllActivities && {
+      title: `Lei do Bem`,
+      value: parseInt(tributarioValues.lei_do_bem, 10),
+    },
+    hasAllActivities && {
+      title: `Juros sobre o Capital Próprio`,
+      value: parseInt(tributarioValues.capital_proprio, 10),
+    },
+    hasAllActivities && {
+      title: `PAT - Dedução do IRPJ`,
+      value: parseInt(tributarioValues.deducao_irpj, 10),
+    },
+  ].filter(Boolean);
+
+  // Altera os valores dos campos
   const handleChange = (event) => {
     const { id, value } = event.target;
     const numericValue = value.replace(/[^0-9]/g, "");
@@ -63,46 +125,37 @@ export default function QuestionarioTributario() {
       [id]: numericValue,
     }));
   };
+
+  // Envia os dados para o servidor
   const handleSubmitValues = () => {
-    setResultadoTributario({
-      exclusao_icms,
-      exclusao_pis,
-      taxa_siscomex,
-      exclusao_iss,
-      conceito_insumos,
-      afastamento_verbas,
-      inss_terceiros,
-      reintegracao,
-      lei_do_bem,
-      capital_proprio,
-      deducao_irpj,
-      creditos_simples1,
-      creditos_simples2,
-      incidencia_icms,
-      atividades: taxValues.atividade,
-      importacoes: taxValues.importacoes_anuais,
-    });
+    setResultadoTributario([...resultList]);
     navigate("/resultado-tributario");
   };
 
+  // Verifica se os campos estão vazios
   const emptyValueFields =
     !taxValues.tributacao ||
     !taxValues.atividade ||
     !taxValues.faturamento_mensal;
+
+  const handleShow = () =>{
+    setShow(!show)
+  }
 
   return (
     <>
       <HeaderApp redirect={"/servicos"}>
         <h1 className="title">Questionário Tributario</h1>
       </HeaderApp>
+
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <Formulario setisFormVisible={setisFormVisible} />
+          <Formulario setIsFormVisible={setIsFormVisible} />
 
           <form
             className="form"
             onSubmit={handleSubmitValues}
-            style={{ marginBottom: "60px", marginTop: "10px", padding: "15px" }}
+            style={{ marginTop: "10px", padding: "15px" }}
           >
            
               <div className="page-tributario_paginacao">
@@ -118,9 +171,8 @@ export default function QuestionarioTributario() {
                 </div>
               </div>
             
-            {show &&
+            {show && (
               <div>
-
                 <label
                   htmlFor="tributacao"
                   className="input-label input-label__select"
@@ -197,10 +249,9 @@ export default function QuestionarioTributario() {
                   placeholder="Digite o Valor Aproximado da Folha de Pagamento"
                 />
               </div>
-            }
+            )}
 
-            {!show &&
-
+            {!show && (
               <div>
                 <TextInput
                   title="Média das Despesas Anual: (Opcional)"
@@ -247,52 +298,83 @@ export default function QuestionarioTributario() {
                   placeholder="Digite um Valor Aproximado"
                 />
                 <label
-                  htmlFor="importOrExport"
+                  htmlFor="importacoes"
                   className="input-label input-label__select"
                 >
                   <span>Se importa ou exporta:</span>
                   <select
                     className="input-element"
-                    name="importOrExport"
-                    id="importOrExport"
-                    value={importOrExport}
-                    onChange={(e) => setImportOrExport(e.target.value === "true")}
+                    name="importacoes"
+                    id="importacoes"
+                    value={importacoes}
+                    onChange={(e) => setImportacoes(e.target.value === "true")}
                   >
                     <option value={false}>Selecione (Opcional)</option>
                     <option value={true}>Sim</option>
                     <option value={false}>Não</option>
                   </select>
                 </label>
-                {importOrExport &&
-                <div>
-                  <TextInput
-                    title="Média de Importações por Ano: (Opcional)"
-                    nome="importacoes_anuais"
-                    value={
-                      taxValues.importacoes_anuais &&
-                      `R$ ${numberFormatter(taxValues.importacoes_anuais)}`
-                    }
-                    onChange={handleChange}
-                    type="number"
-                    placeholder="Digite um Valor Aproximado em Importações"
-                    //disabled={!importOrExport}
-                  />
-                  <TextInput
-                    title="Média de Exportações por Ano: (Opcional)"
-                    nome="exportacoes_anuais"
-                    value={
-                      taxValues.exportacoes_anuais &&
-                      `R$ ${numberFormatter(taxValues.exportacoes_anuais)}`
-                    }
-                    onChange={handleChange}
-                    type="number"
-                    placeholder="Digite um Valor Aproximado de Exportações"
-                    //disabled={!importOrExport}
-                  />
-                </div>
-                }
+
+                {importacoes && (
+                  <div>
+                    <TextInput
+                      title="Média de Importações por Ano: (Opcional)"
+                      nome="importacoes_anuais"
+                      value={
+                        taxValues.importacoes_anuais &&
+                        `R$ ${numberFormatter(taxValues.importacoes_anuais)}`
+                      }
+                      onChange={handleChange}
+                      type="number"
+                      placeholder="Digite um Valor Aproximado em Importações"
+                    />
+                    <TextInput
+                      title="Média de Exportações por Ano: (Opcional)"
+                      nome="exportacoes_anuais"
+                      value={
+                        taxValues.exportacoes_anuais &&
+                        `R$ ${numberFormatter(taxValues.exportacoes_anuais)}`
+                      }
+                      onChange={handleChange}
+                      type="number"
+                      placeholder="Digite um Valor Aproximado de Exportações"
+                    />
+                  </div>
+                )}
               </div>
-            }
+            )}
+            <br />
+
+            {/* <div className="page-tributario_paginacao">
+              <div style={{ width: 100 }}>
+                {!show && (
+                  <button onClick={() => setShow(!show)}>Anterior</button>
+                )}
+              </div>
+              <div className="page-tributario_paginacao_item">
+                <p
+                  style={{
+                    border: show == true ? "1px solid white" : "none",
+                    fontWeight: show == true ? "bold" : "normal",
+                  }}
+                >
+                  1
+                </p>
+                <p
+                  style={{
+                    border: show != true ? "1px solid white" : "none",
+                    fontWeight: show != true ? "bold" : "normal",
+                  }}
+                >
+                  2
+                </p>
+              </div>
+              <div style={{ width: 100 }}>
+                {show && (
+                  <button onClick={() => setShow(!show)}>Próximo</button>
+                )}
+              </div>
+            </div> */}
           </form>
         </FramerMotion>
       </HeroApp>

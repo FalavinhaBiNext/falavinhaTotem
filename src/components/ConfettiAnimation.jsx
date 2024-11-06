@@ -12,15 +12,26 @@ export default function ConfettiAnimation() {
     return () => clearTimeout(timer);
   }, []);
 
+  const confettiStyle = {
+    position: "fixed",
+    inset: 0,
+    width: "100%",
+    height: "100%",
+    zIndex: 100000,
+    pointerEvents: "none",
+  };
+
   return (
     showConfetti && (
-      <Confetti
-        numberOfPieces={1000}
-        gravity={0.1}
-        width={window.innerWidth}
-        height={window.innerHeight}
-        recycle={false}
-      />
+      <div style={confettiStyle}>
+        <Confetti
+          numberOfPieces={1000}
+          gravity={0.1}
+          width={window.innerWidth}
+          height={window.innerHeight}
+          recycle={false}
+        />
+      </div>
     )
   );
 }

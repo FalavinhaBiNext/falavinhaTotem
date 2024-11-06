@@ -31,7 +31,7 @@ export default function QuestionarioCigam() {
     folha_pagamento,
   } = QuestionarioCigamState();
   const isValidValue = (val) => (isNaN(val) || !isFinite(val) ? "" : val);
-  const [isFormVisible, setisFormVisible] = useState(false);
+  const [isFormVisible, setIsFormVisible] = useState(false);
   const emptyValueFields =
     cigamValues.usuarios === "" ||
     cigamValues.salario_medio === "" ||
@@ -73,7 +73,7 @@ export default function QuestionarioCigam() {
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <Formulario setisFormVisible={setisFormVisible} />
+          <Formulario setIsFormVisible={setIsFormVisible} />
           <form className="form">
             <TextInput
               title="Usuários:"
@@ -112,7 +112,7 @@ export default function QuestionarioCigam() {
               htmlFor="situacao_atual"
               className="input-label input-label__select"
             >
-              <span >Situação atual:</span>
+              <span>Situação atual:</span>
               <select
                 className="input-element"
                 name="situacao_atual"

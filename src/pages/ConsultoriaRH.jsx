@@ -83,15 +83,15 @@ function ConsultoriaRH() {
           </div>
           <div className="consultoria-rh">
             {topicosRH.map(({ icone, texto, conteudo }, index) => (
-                <div className="consultoria-rh__item">
-                  <img src={icone} alt="" className="icon-topicos_rh" />
-                  <p>{texto}</p>
-                  <ul>
-                    {conteudo.map((item, index) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
+              <div className="consultoria-rh__item" key={index}>
+                <img src={icone} alt="" className="icon-topicos_rh" />
+                <p>{texto}</p>
+                <ul>
+                  {conteudo.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </div>
             ))}
           </div>
           <ButtonLinks options={options} />
