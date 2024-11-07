@@ -2,10 +2,9 @@ import PropTypes from "prop-types";
 import { createContext, useState } from "react";
 import { useFormik } from "formik";
 import { phoneMask, moneyConverter, validationSchema } from "../utils";
-import { BASE_URL } from "../services/api";
-import { axiosInstance } from "../services/api";
 import { useGetSurvey } from "../hooks/useGetSurvey";
 import QuestionarioHoldingState from "../states/QuestionarioHoldingState";
+import axios from "axios";
 
 export const GlobalContext = createContext();
 export default function GlobalContextProvider({ children }) {
@@ -14,7 +13,7 @@ export default function GlobalContextProvider({ children }) {
   const [resultadoTributario, setResultadoTributario] = useState([]);
   const [resultadoHolding, setResultadoHolding] = useState({});
   const sessionStorageData = sessionStorage.getItem("userInfo");
-  const savedData = sessionStorageData ? JSON.parse(sessionStorageData) : null;
+  const saveData = sessionStorageData ? JSON.parse(sessionStorageData) : null;
 
   const {
     setRespostasRh,
@@ -63,10 +62,10 @@ export default function GlobalContextProvider({ children }) {
     try {
       setIsSubmitting(true);
       const dados_usuario = {
-        name: inputValue.nome || savedData.name,
-        email: inputValue.email || savedData.email,
-        phone: inputValue.telefone || savedData.phone,
-        origin: origemUsuario || savedData.origin,
+        name: inputValue.nome || saveData.name,
+        email: inputValue.email || saveData.email,
+        phone: inputValue.telefone || saveData.phone,
+        origin: origemUsuario || saveData.origin,
       };
       const dados_survey = {
         resultado_cigam: resultadoCigam,
@@ -77,23 +76,109 @@ export default function GlobalContextProvider({ children }) {
         resultado_rh: handleGetSurveyRh,
         resultado_holding: resultadoHolding,
       };
-
-      console.log("PARA O SERVER", dados_survey);
-      console.log("DADOS USUÁRIO", dados_usuario);
-
+      // console.log("DADOS USUARIO", dados_usuario);
+      // console.log("DADOS SURVEY", dados_survey);
       sessionStorage.setItem("userInfo", JSON.stringify(dados_usuario));
-      // const response = await axiosInstance.post(
-      //   `${BASE_URL}/survey`,
-      //   {
-      //     dados_survey,
-      //     dados_usuario,
-      //   },
-      //   {
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //   }
-      // );
+
+      let originChanged = "";
+      let result = "";
+
+      switch (dados_usuario.origin) {
+        case "rh":
+          originChanged = "Consultoria RH";
+          result = `${dados_survey.resultado_rh.titulo}|${dados_survey.resultado_rh.mensagem}`;
+          break;
+        case "cigam":
+          originChanged = "CIGAM";
+          result = `Produtividade financeira: ${dados_survey.resultado_cigam.produtividade_financeira.toLocaleString(
+            "pt-BR",
+            {
+              style: "currency",
+              currency: "BRL",
+            }
+          )}|Produtividade hora: ${
+            dados_survey.resultado_cigam.produtividade_hora
+          }|Produtividade mensal: ${dados_survey.resultado_cigam.produtividade_mensal.toLocaleString(
+            "pt-BR",
+            {
+              style: "currency",
+              currency: "BRL",
+            }
+          )}`;
+          break;
+        case "empresarial":
+          originChanged = "Empresarial";
+          result = `${dados_survey.resultado_empresarial.resultado_pesquisa.maturidade}|${dados_survey.resultado_empresarial.resultado_pesquisa.mensagem}`;
+          break;
+        case "tributário":
+          originChanged = "Tributário";
+          result = dados_survey.resultado_tributario;
+          result = result.replace(/"(?=,)/g, "|");
+          result = result.replace(/"/g, "");
+          result = result.replace(/\|,/g, "|");
+          result = result.replace(/\\/g, "'");
+          result = result.replace(/[{}]/g, "");
+          break;
+        case "holding":
+          originChanged = "Holding";
+          result = `Resultado holding|ITCMD: ${dados_survey.resultado_holding.holding_itcmd.toLocaleString(
+            "pt-BR",
+            {
+              style: "currency",
+              currency: "BRL",
+            }
+          )}|Custo cartório: ${dados_survey.resultado_holding.holding_cartorio.toLocaleString(
+            "pt-BR",
+            { style: "currency", currency: "BRL" }
+          )}|Consultoria holding: ${dados_survey.resultado_holding.holding_consultoria.toLocaleString(
+            "pt-BR",
+            { style: "currency", currency: "BRL" }
+          )}|Total: ${dados_survey.resultado_holding.holding_total.toLocaleString(
+            "pt-BR",
+            { style: "currency", currency: "BRL" }
+          )}||Resultado inventário|ITCMD: ${dados_survey.resultado_holding.inventario_itcmd.toLocaleString(
+            "pt-BR",
+            {
+              style: "currency",
+              currency: "BRL",
+            }
+          )}|Custo cartório: ${dados_survey.resultado_holding.inventario_cartorio.toLocaleString(
+            "pt-BR",
+            { style: "currency", currency: "BRL" }
+          )}|Horários advocatícios: ${dados_survey.resultado_holding.inventario_consultoria.toLocaleString(
+            "pt-BR",
+            { style: "currency", currency: "BRL" }
+          )}|Total: ${dados_survey.resultado_holding.inventario_total.toLocaleString(
+            "pt-BR",
+            { style: "currency", currency: "BRL" }
+          )}||Diferença entre holding e inventário: ${dados_survey.resultado_holding.total_geral.toLocaleString(
+            "pt-BR",
+            { style: "currency", currency: "BRL" }
+          )}`;
+
+          break;
+      }
+
+      const lead = {
+        name: dados_usuario.name,
+        email: dados_usuario.email,
+        phone: dados_usuario.phone,
+        origin: originChanged,
+        result: result,
+      };
+
+      //https://rafae4699.c44.integrator.host/totem/lead/create
+      //http://localhost:58470/lead/create
+      console.log("LEAD", lead);
+      await axios.post(
+        "https://rafae4699.c44.integrator.host/totem/lead/create",
+        lead,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       resetForm();
       setIsSubmitting(false);
