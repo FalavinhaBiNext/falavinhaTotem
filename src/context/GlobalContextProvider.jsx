@@ -107,7 +107,7 @@ export default function GlobalContextProvider({ children }) {
           )}`;
           break;
         case "empresarial":
-          originChanged = "Empresarial";
+          originChanged = "Consultoria Empresarial";
           result = `${dados_survey.resultado_empresarial.resultado_pesquisa.maturidade}|${dados_survey.resultado_empresarial.resultado_pesquisa.mensagem}`;
           break;
         case "tributário":
