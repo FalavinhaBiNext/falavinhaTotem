@@ -55,8 +55,6 @@ export default function ResultadoHolding() {
     },
   ];
 
-  console.log(resultadoHolding);
-
   const resultStyle = (val) => val < 0 && "red";
 
   return (

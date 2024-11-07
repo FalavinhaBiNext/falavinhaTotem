@@ -14,7 +14,7 @@ export default function GlobalContextProvider({ children }) {
   const [resultadoTributario, setResultadoTributario] = useState([]);
   const [resultadoHolding, setResultadoHolding] = useState({});
   const sessionStorageData = sessionStorage.getItem("userInfo");
-  const saveData = sessionStorageData ? JSON.parse(sessionStorageData) : null;
+  const savedData = sessionStorageData ? JSON.parse(sessionStorageData) : null;
 
   const {
     setRespostasRh,
@@ -61,12 +61,13 @@ export default function GlobalContextProvider({ children }) {
   // Salva os dados do usuário no servidor
   async function handleGetSurveyData(origemUsuario) {
     try {
+      console.log("SESSION", savedData);
       setIsSubmitting(true);
       const dados_usuario = {
-        name: inputValue.nome || saveData.name,
-        email: inputValue.email || saveData.email,
-        phone: inputValue.telefone || saveData.phone,
-        origin: origemUsuario || saveData.origin,
+        name: inputValue.nome || savedData.name,
+        email: inputValue.email || savedData.email,
+        phone: inputValue.telefone || savedData.phone,
+        origin: origemUsuario || savedData.origin,
       };
       const dados_survey = {
         resultado_cigam: resultadoCigam,
@@ -79,6 +80,7 @@ export default function GlobalContextProvider({ children }) {
       };
 
       console.log("PARA O SERVER", dados_survey);
+      console.log("DADOS USUÁRIO", dados_usuario);
 
       sessionStorage.setItem("userInfo", JSON.stringify(dados_usuario));
       // const response = await axiosInstance.post(
