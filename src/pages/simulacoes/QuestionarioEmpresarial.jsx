@@ -66,20 +66,24 @@ export default function QuestionarioEmpresarial() {
             perguntas={perguntasSurveyEmpresarial}
             respostas={respostasEmp}
             handleChange={handleChange}
+            backgroundRadio={"#0f3355"}
           >
             {/* botões inseridos como children */}
-            <Botoes
-              className="botao"
-              onClick={() => navigate("/resultado-empresarial")}
-              disabled={
-                (isFormVisible && hasEmptyInputs) ||
-                hasInputErrors ||
-                !isAllInputsChecked() ||
-                isSubmitting
-              }
-            >
-              Ver resultado
-            </Botoes>
+
+            <div className="accordion-button">
+              <Botoes
+                className="botao"
+                onClick={() => navigate("/resultado-empresarial")}
+                disabled={
+                  (isFormVisible && hasEmptyInputs) ||
+                  hasInputErrors ||
+                  !isAllInputsChecked() ||
+                  isSubmitting
+                }
+              >
+                Ver resultado
+              </Botoes>
+            </div>
           </QuestionarioElementoBinario>
         </FramerMotion>
       </HeroApp>

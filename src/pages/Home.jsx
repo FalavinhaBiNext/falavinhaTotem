@@ -5,7 +5,7 @@ import HeaderApp from "../components/Header";
 import HeroApp from "../components/Hero";
 import FooterApp from "../components/Footer";
 import Botoes from "../components/Botoes";
-import fundo from "../assets/video/video-demo.mp4";
+import fundo from "../assets/video/video.mp4";
 import routes from "../routes";
 
 function HomePage() {

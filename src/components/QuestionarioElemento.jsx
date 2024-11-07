@@ -5,6 +5,7 @@ export function QuestionarioElementoMultiplo({
   perguntas,
   handleChange,
   children,
+  backgroundRadio
 }) {
   return (
     <>
@@ -29,7 +30,7 @@ export function QuestionarioElementoMultiplo({
                     style={{
                       backgroundColor:
                         respostas[question.id] === option.value
-                          ? "#582b6f"
+                          ? backgroundRadio
                           : "",
                     }}
                   >
@@ -72,6 +73,7 @@ export function QuestionarioElementoBinario({
   perguntas,
   handleChange,
   children,
+  backgroundRadio
 }) {
   return (
     <>
@@ -105,6 +107,9 @@ export function QuestionarioElementoBinario({
                         <label
                           className="radio-label"
                           htmlFor={`${section.id}-${questionIndex}-${option.value}`}
+                          style={{backgroundColor: respostas[`${section.id}-${questionIndex}`] ===
+                          option.value ? backgroundRadio : ""}}
+                          
                         >
                           {option.label}
                         </label>
