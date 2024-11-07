@@ -6,15 +6,8 @@ import gifTel from "../assets/gifs/tel.gif";
 import gifEmail from "../assets/gifs/email.gif";
 
 export default function Formulario({ setIsFormVisible }) {
-  const {
-    errors,
-    touched,
-    handleBlur,
-    handleChange,
-    inputValue,
-    setInputValue,
-    phoneMask,
-  } = useContext(GlobalContext);
+  const { errors, touched, handleBlur, handleChange, inputValue, phoneMask } =
+    useContext(GlobalContext);
 
   const [hasUserData] = useState(() => {
     const storedData = sessionStorage.getItem("userInfo");
@@ -60,22 +53,15 @@ export default function Formulario({ setIsFormVisible }) {
     },
   ];
 
-  const clearInputValues = () => {
-    setInputValue({
-      nome: "",
-      telefone: "",
-      email: "",
-    });
-  };
-
   useEffect(() => {
     if (!Object.keys(hasUserData).length > 0) {
       setIsFormVisible(true);
     }
 
-    // Check and clear input values on mount
     if (inputValue.nome || inputValue.telefone || inputValue.email) {
-      clearInputValues();
+      inputValue.nome = "";
+      inputValue.telefone = "";
+      inputValue.email = "";
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

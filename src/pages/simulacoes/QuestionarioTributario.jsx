@@ -403,7 +403,7 @@ export default function QuestionarioTributario() {
         </FramerMotion>
       </HeroApp>
 
-      <FooterApp footerFixed>
+      <FooterApp>
         {show === true ? (
           <button className="botao" onClick={handleShow}>
             Proximo

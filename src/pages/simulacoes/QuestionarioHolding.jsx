@@ -92,7 +92,7 @@ export default function QuestionarioHolding() {
         </FramerMotion>
       </HeroApp>
 
-      <FooterApp footerFixed>
+      <FooterApp>
         <Botoes
           type="submit"
           className="botao"

@@ -1,17 +1,12 @@
 import PropTypes from "prop-types";
-export default function FooterApp({ children, footerFixed }) {
-  const fixed = {
-    position: "fixed",
-    bottom: 0,
-    width: "100%",
-    zIndex: 100,
-    backgroundColor: "#009499",
-    padding: "0 20px",
-  };
-
+import AlertaFormulario from "./AlertaFormulario";
+export default function FooterApp({ children }) {
   return (
     <footer className="footer">
-      <div className="footer__element">{children}</div>
+      <div className="footer__element">
+        <AlertaFormulario />
+        {children}
+      </div>
     </footer>
   );
 }

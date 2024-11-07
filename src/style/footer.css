@@ -11,10 +11,11 @@
 }
 
 .footer__element {
-  width: 100%;
-  display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  width: 100%;
+  display: flex;
   padding: 10px 20px;
 }
 

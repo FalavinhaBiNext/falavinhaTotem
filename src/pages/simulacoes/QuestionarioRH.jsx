@@ -67,27 +67,24 @@ export default function QuestionarioRH() {
             perguntas={perguntasSurveyRh}
             respostas={respostasRh}
             handleChange={handleChange}
-          >
-            {/* botões inseridos como children */}
-            <div className="accordion-button">
-              <Botoes
-                className="botao"
-                onClick={() => navigate("/resultado-rh")}
-                disabled={
-                  (isFormVisible && hasEmptyInputs) ||
-                  hasInputErrors ||
-                  !isAllInputsChecked() ||
-                  isSubmitting
-                }
-              >
-                Ver resultado
-              </Botoes>
-            </div>
-          </QuestionarioElementoMultiplo>
+          ></QuestionarioElementoMultiplo>
         </FramerMotion>
       </HeroApp>
 
-      <FooterApp />
+      <FooterApp>
+        <Botoes
+          className="botao"
+          onClick={() => navigate("/resultado-rh")}
+          disabled={
+            (isFormVisible && hasEmptyInputs) ||
+            hasInputErrors ||
+            !isAllInputsChecked() ||
+            isSubmitting
+          }
+        >
+          Ver resultado
+        </Botoes>
+      </FooterApp>
     </>
   );
 }
