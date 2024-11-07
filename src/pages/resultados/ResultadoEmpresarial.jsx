@@ -19,7 +19,7 @@ export default function ResultadoEmpresarial() {
     if (resultado_pesquisa === null || porcentagem === null) {
       navigate("/consultoria-empresarial");
     } else {
-      handleGetSurveyData("Empresarial");
+      handleGetSurveyData("empresarial");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resultado_pesquisa, porcentagem, navigate]);
