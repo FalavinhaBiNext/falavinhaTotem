@@ -67,7 +67,6 @@ export default function QuestionarioRH() {
             perguntas={perguntasSurveyRh}
             respostas={respostasRh}
             handleChange={handleChange}
-            backgroundRadio={"#582b6f"}
           >
             {/* botões inseridos como children */}
             <div className="accordion-button">

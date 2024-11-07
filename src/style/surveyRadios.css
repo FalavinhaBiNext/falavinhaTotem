@@ -87,21 +87,21 @@
 }
 
 .survey__list input[type="radio"]:checked + .radio-label--binario {
-  background-color: blueviolet;
+  background-color: rgb(9, 0, 129);
 }
 
 .survey__list input[type="radio"]:checked + .radio-label--binario::before {
-  background-color: blueviolet;
-  border: 2px solid blueviolet;
+  background-color: #000;
+  border: 2px solid #000;
 }
 
 .survey__list input[type="radio"]:checked + .radio-label--multiplo {
-  background-color: #0000ff;
+  background-color: #582B6F;
 }
 
 .survey__list input[type="radio"]:checked + .radio-label--multiplo::before {
-  background-color: #0000ff;
-  border: 2px solid #0000ff;
+  background-color: #000;
+  border: 2px solid #000;
 }
 
 .survey__list input[type="radio"]:disabled + .radio-label::before {
