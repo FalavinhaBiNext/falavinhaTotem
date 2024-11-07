@@ -46,7 +46,7 @@ const Dashboard = () => {
 
   // links dos botões
   const options = [
-    { name: "BI GESTOR 2.0", route: routes.dashboardGestor },
+    { name: "BI CONTABILIDADE", route: routes.dashboardGestor },
     { name: "BI FINANCEIRO", route: routes.dashboardFinanceiro },
     { name: "BI GESTÃO DE ESTOQUE", route: routes.dashboardGestaoEstoque },
     { name: "BI RECURSOS HUMANOS", route: routes.dashboardRH },

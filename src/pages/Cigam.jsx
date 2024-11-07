@@ -2,7 +2,7 @@ import HeaderApp from "../components/Header";
 import HeroApp from "../components/Hero";
 
 import fundo from "../assets/image/FundoCigam.png";
-import logoCigam from "../assets/image/LogoCigam.png"
+import logoCigam from "../assets/image/LogoCigam.png";
 import FooterApp from "../components/Footer";
 import routes from "../routes";
 import textos from "../components/textos";
@@ -20,6 +20,7 @@ const Cigam = () => {
   // links dos botões
   const options = [
     { name: "FAÇA UMA SIMULAÇÃO", route: routes.questionarioCigam },
+    { name: "MODULOS CIGAM", route: routes.modulosCigam },
   ];
 
   const topicos = [

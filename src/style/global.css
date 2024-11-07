@@ -53,6 +53,15 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 100%;
 }
 
+/* CONTAINER DAS PÁGINAS */
+.container {
+  display: flex;
+  flex-flow: column;
+  gap: 20px;
+  padding: 10px;
+  height: 100vh;
+}
+
 /* MAIN */
 .hero {
   display: flex;

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import "../style/treinamentos.css";
+import "../style/accordion.css";
 
 
-const Accordion = ({name, description, item}) => {
+const Accordion = ({name, description, item, background, cardFundo}) => {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -11,13 +11,23 @@ const Accordion = ({name, description, item}) => {
     };
     return (
         <div>
-            <div style={{backgroundColor: isOpen ? "#007175" : "transparent", borderRadius: "10px"}} className="accordion-header" onClick={toggleAccordion}>
+            <div 
+                className="accordion-header"
+                style=
+                    {
+                        {backgroundColor: isOpen ? background : "transparent"}
+                    }
+                onClick={toggleAccordion}
+                >
                 <h3>{name}</h3>
                 <span>{isOpen ? "Fechar" : "Saiba Mais"}</span>
             </div>
             <div>
                 {isOpen && (
-                    <div className="accordion-content">
+                    <div 
+                        className="accordion-content"
+                        style={{backgroundColor: cardFundo}}    
+                    >
                         <h4>{description}</h4>
                         <ul>
                             {item.map((item, index) => (

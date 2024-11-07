@@ -9,6 +9,7 @@ import Cigam from "./pages/Cigam";
 import Holding from "./pages/Holding";
 import Treinamentos from "./pages/treinamentos";
 import Cursos from "./pages/Cursos";
+import ModulosCigam from "./pages/ModulosCigam";
 import Dashboard from "./pages/Dashboard";
 import DashboardFinanceiro from "./pages/Dashboard_Financeiro";
 import DashboardRH from "./pages/DashboardRH";
@@ -38,7 +39,7 @@ function App() {
     <AnimatePresence>
       <Router>
         <StayOnTop />
-        <RedirectHomepage />
+        {/* <RedirectHomepage /> */}
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/servicos" element={<Servicos />} />
@@ -54,6 +55,7 @@ function App() {
           <Route path="/holding" element={<Holding />} />
           <Route path="/treinamentos" element={<Treinamentos />} />
           <Route path="/cursos" element={<Cursos />} />
+          <Route path="/modulos-cigam" element={<ModulosCigam />} />
           <Route
             path="/dashboard-contabilidade"
             element={<DashContabilidade />}

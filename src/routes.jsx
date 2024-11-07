@@ -10,6 +10,7 @@ const routes = {
   holding: "/holding",
   treinamentos: "/treinamentos",
   cursos: "/cursos",
+  modulosCigam: "/modulos-cigam",
   dashboardGestor: "/dashboard-contabilidade",
   dashboardFinanceiro: "/dashboard-financeiro",
   dashboardRH: "/dashboard-rh",
