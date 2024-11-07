@@ -24,14 +24,11 @@ export function QuestionarioElementoMultiplo({
                     onChange={() => handleChange(question.id, option.value)}
                   />
                   <label
-                    className="radio-label"
+                    className={`radio-label ${
+                      respostas[question.id] === option.value &&
+                      "radio-label--multiplo"
+                    }`}
                     htmlFor={`${questionIndex}-${option.value}`}
-                    style={{
-                      backgroundColor:
-                        respostas[question.id] === option.value
-                          ? "#582b6f"
-                          : "",
-                    }}
                   >
                     {option.label}
                   </label>
@@ -103,7 +100,10 @@ export function QuestionarioElementoBinario({
                           }
                         />
                         <label
-                          className="radio-label"
+                          className={`radio-label ${
+                            respostas[`${section.id}-${questionIndex}`] ===
+                              option.value && "radio-label--binario"
+                          }`}
                           htmlFor={`${section.id}-${questionIndex}-${option.value}`}
                         >
                           {option.label}
