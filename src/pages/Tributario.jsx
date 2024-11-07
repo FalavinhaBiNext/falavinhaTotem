@@ -22,10 +22,10 @@ function Tributario() {
   ];
 
   const topicos = [
-    {titulo: "ANÁLISE DAS CARACTERÍSTICAS DO NEGÓCIO", texto: "Compreensão detalhada do setor, porte e especificidades da empresa", icone: gifLupa},
-    {titulo: "ESTUDO DO DRE E BALANÇO CONTÁBIL", texto: "Avaliação minuciosa dos Demonstrativos de Resultados do Exercício (DRE) e do Balanço Patrimonial para identificar oportunidades de otimização fiscal.", icone: tribut},
-    {titulo: "DEFINIÇÃO DE ESTRATÉGIAS FISCAIS", texto: "Elaboração de estratégias para reduzir as obrigações fiscais de forma eficiente e segura", icone: gifTarget},
-    {titulo: "LEVANTAMENTO E APLICAÇÃO DE BENEFÍCIOS FISCAIS", texto: "Identificação e utilização de incentivos fiscais disponíveis para a empresa.", icone: gitEscada},
+    {titulo: "ANÁLISE DE PROCEDIMENTOS FISCAIS", texto: "Nossa Equipe de especialistas em contabilidade e legislação fiscal avalia os procedimentos existentes, identifica possíveis melhorias e oferece soluções estratégicas para garantir a conformidade com as leis tributárias locais e maximizar a eficiência fiscal.", icone: gifLupa},
+    {titulo: "REVISÃO FISCAL CURITIBA", texto: "Tem a finalidade de encontrar oportunidades tributárias, seja elas por imposto pago a maior, por créditos não utilizados. Realiza todo o procedimento para o levantamento de crédito e compensação dos impostos.", icone: tribut},
+    {titulo: "PLANEJAMENTO TRIBUTÁRIO", texto: "O planejamento tributário envolve a análise do melhor regime tributário a ser aplicado para o recolhimento dos impostos durante todo o ano-calendário.", icone: gifTarget},
+    {titulo: "CONSULTORIA TRIBUTÁRIA", texto: "Identifica altenativas tributárias para diminuir o impacto dos tributos na Empresa. Assessora o cliente para diminuir o impacto dos tributos na sua empresa.", icone: gitEscada},
   ]
 
   return (
