@@ -61,7 +61,6 @@ export default function GlobalContextProvider({ children }) {
   // Salva os dados do usuário no servidor
   async function handleGetSurveyData(origemUsuario) {
     try {
-      console.log("SESSION", savedData);
       setIsSubmitting(true);
       const dados_usuario = {
         name: inputValue.nome || savedData.name,

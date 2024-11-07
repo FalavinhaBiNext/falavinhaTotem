@@ -8,7 +8,6 @@ import FramerMotion from "../../components/FramerMotion";
 import FooterApp from "../../components/Footer";
 import ConfettiAnimation from "../../components/ConfettiAnimation";
 import { IoStar } from "react-icons/io5";
-// import useRefreshDetector from "../../hooks/useRefreshDetector";
 
 export default function ResultadoEmpresarial() {
   const navigate = useNavigate();
@@ -16,29 +15,14 @@ export default function ResultadoEmpresarial() {
     useContext(GlobalContext);
   const { resultado_pesquisa, porcentagem } = handleGetSurveyEmpresarial;
 
-  // const { isRefreshing, pageLoaded } = useRefreshDetector();
-
-  // useEffect(() => {
-  //   if (isRefreshing) {
-  //     navigate("/consultoria-empresarial");
-  //   } else {
-  //     console.log("Page was loaded initially.");
-  //   }
-  // }, [isRefreshing, pageLoaded, navigate]);
-
-  // const percent = porcentagem === 0 ? porcentagem + 1 : porcentagem;
-
   useEffect(() => {
     if (resultado_pesquisa === null || porcentagem === null) {
       navigate("/consultoria-empresarial");
     } else {
-      handleGetSurveyData("empresarial");
+      handleGetSurveyData("Empresarial");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resultado_pesquisa, porcentagem, navigate]);
-
-  // console.log("porcentagem", percent);
-  console.log("PERCENTAGEM (original)", porcentagem);
 
   const renderStars = (icon) => {
     const starCount = Math.min(Math.max(icon, 1), 5);
