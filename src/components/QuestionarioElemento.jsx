@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import logo from "../assets/image/MinilogoBlack.png";
-import { style } from "framer-motion/client";
 export function QuestionarioElementoMultiplo({
   respostas,
   perguntas,
@@ -15,8 +14,7 @@ export function QuestionarioElementoMultiplo({
             <h2 className="survey__list--title">{question.text}</h2>
             <ul className="survey__list--question">
               {question.options.map((option) => (
-                <li className="survey__list--radios"
-                 key={option.value}>
+                <li className="survey__list--radios" key={option.value}>
                   <input
                     type="radio"
                     name={`question-${questionIndex}`}
@@ -28,6 +26,12 @@ export function QuestionarioElementoMultiplo({
                   <label
                     className="radio-label"
                     htmlFor={`${questionIndex}-${option.value}`}
+                    style={{
+                      backgroundColor:
+                        respostas[question.id] === option.value
+                          ? "#582b6f"
+                          : "",
+                    }}
                   >
                     {option.label}
                   </label>

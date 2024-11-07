@@ -24,14 +24,14 @@
   color: #fff;
   padding-bottom: 10px;
   line-height: 20px;
-  font-family: 'Gilroy-bold';
+  font-family: "Gilroy-bold";
   letter-spacing: 2px;
 }
 
 .survey__list--question {
   display: flex;
   flex-flow: column;
-  gap: 10px;
+  gap: 5px;
   font-family: "Gilroy-thin";
   letter-spacing: 2px;
 }
@@ -54,7 +54,8 @@
   display: flex;
   align-items: center;
   height: inherit;
-  font-family: 'Gilroy-light';
+  font-family: "Gilroy-light";
+  padding: 5px;
 }
 
 .survey__list input[type="radio"] + .radio-label:before {
@@ -77,9 +78,9 @@
 
 .survey__list input[type="radio"]:checked + .radio-label {
   color: white;
-  font-weight: 600;
+  /* font-weight: 600; */
   transition: all 200ms ease;
-  background-color: #582b6f;
+  /* background-color: #582b6f; */
   border-radius: 10px;
 }
 
@@ -110,7 +111,7 @@
   color: #fff;
   letter-spacing: 1px;
   line-height: 30px;
-  font-family: 'Gilroy-bold';
+  font-family: "Gilroy-bold";
   padding-bottom: 10px;
 }
 
@@ -126,7 +127,7 @@
   color: #fff;
   letter-spacing: 1px;
   line-height: 20px;
-  font-family: 'Gilroy-light';
+  font-family: "Gilroy-light";
 }
 
 .survey__question--radios {
