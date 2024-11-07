@@ -50,7 +50,7 @@ const Dashboard = () => {
     { name: "BI FINANCEIRO", route: routes.dashboardFinanceiro },
     { name: "BI GESTÃO DE ESTOQUE", route: routes.dashboardGestaoEstoque },
     { name: "BI RECURSOS HUMANOS", route: routes.dashboardRH },
-    { name: "BI TRIBUTÁRIO", route: routes.powerapps }
+    { name: "BI TRIBUTÁRIO", route: routes.dashboardTributario }
   ];
 
   //Dados Tópicos

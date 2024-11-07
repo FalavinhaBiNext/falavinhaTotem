@@ -17,7 +17,7 @@ import gitEscada from "../assets/gifs/escada.gif";
 function Tributario() {
   // links dos botões
   const options = [
-    { name: "DASHBOARD BI TRIBUTÁRIO", route: routes.dashboardFinanceiro },
+    { name: "DASHBOARD BI TRIBUTÁRIO", route: routes.dashboardTributario },
     { name: "FAÇA UMA SIMULAÇÃO", route: routes.questionarioTributario },
   ];
 

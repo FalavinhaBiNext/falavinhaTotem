@@ -47,7 +47,7 @@ export default function ResultadoHolding() {
           value: resultadoHolding.inventario_cartorio,
         },
         {
-          title: "Horários advocatícios",
+          title: "Honorários advocatícios",
           value: resultadoHolding.inventario_consultoria,
         },
         { title: "Total", value: resultadoHolding.inventario_total },
@@ -79,7 +79,7 @@ export default function ResultadoHolding() {
             </div>
           ))}
           <h4 className="holding-total">
-            Diferença entre holding e inventário:{" "}
+            Diferença entre Holding e Inventário:{" "}
             <span
               style={{
                 color: resultStyle(resultadoHolding.total_geral),

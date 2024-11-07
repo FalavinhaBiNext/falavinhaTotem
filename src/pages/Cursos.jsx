@@ -43,8 +43,8 @@ const Cursos = () => {
                         )}
                     </div>
                     <div className="page-curso_paginacao">
-                        {page === 0 ? <button/> : <button className="botao" onClick={prevPage}>Anterior</button>}
-                        {end >= cursos.length ? <button/> : <button className="botao" onClick={nextPage}>Próximo</button>}
+                        {page === 0 ? null : <button className="botao" onClick={prevPage}>Anterior</button>}
+                        {end >= cursos.length ? null : <button className="botao" onClick={nextPage}>Próximo</button>}
                     </div>
                 </FramerMotion>
             </HeroApp>
