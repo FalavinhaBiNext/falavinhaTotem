@@ -31,15 +31,20 @@ const HeaderApp = ({ children, redirect }) => {
 
   return (
     <header
-      className="header"
+      className="min-[1440px]:p-base_container px-5  
+      h-auto flex justify-between flex-col gap-3 fixed top-0 left-0 right-0 z-[100]"
       style={{
         boxShadow: hederBoxShadow,
         backgroundColor: headerScroll ? "#009499" : "transparent",
       }}
     >
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center pt-3">
         <Link to="/" className="logo" onClick={handleClearUserData}>
-          <img src={logo} alt="Logo Falavinha" />
+          <img
+            className="max-w-[35vw] md:max-w-[200px]"
+            src={logo}
+            alt="Logo Falavinha"
+          />
         </Link>
 
         {getPath ? (

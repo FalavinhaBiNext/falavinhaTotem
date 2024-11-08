@@ -11,7 +11,10 @@ const HeroApp = ({ children, fundo }) => {
   };
 
   return (
-    <main className="hero base_container">
+    <main
+      className="min-[1440px]:p-base_container px-5"
+      style={{ paddingTop: "180px" }}
+    >
       <span style={bgImageStyle}></span>
       {children}
     </main>

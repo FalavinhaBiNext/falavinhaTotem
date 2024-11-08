@@ -14,12 +14,13 @@ function HomePage() {
   return (
     <>
       <HeaderApp />
+
       <HeroApp>
         <HomeVideoPlayer videoSrc={fundo} />
       </HeroApp>
 
       <FooterApp>
-        <MainButton onClick={() => navigate(routes.servicos)} className="botao">
+        <MainButton onClick={() => navigate(routes.servicos)}>
           CONHEÇA NOSSOS SERVIÇOS
         </MainButton>
       </FooterApp>
@@ -47,7 +48,13 @@ const HomeVideoPlayer = ({ videoSrc }) => {
 
   return (
     <>
-      <video autoPlay loop muted={isMuted} playsInline className="home-video">
+      <video
+        className="fixed inset-0 w-screen h-screen min-[1440px]:object-cover object-fill m-auto"
+        autoPlay
+        loop
+        muted={isMuted}
+        playsInline
+      >
         <source src={videoSrc} type="video/mp4" />
       </video>
       <div
