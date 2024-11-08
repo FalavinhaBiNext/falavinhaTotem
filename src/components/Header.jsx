@@ -37,7 +37,7 @@ const HeaderApp = ({ children, redirect }) => {
         backgroundColor: headerScroll ? "#009499" : "transparent",
       }}
     >
-      <div className="header__content">
+      <div className="flex justify-between items-center">
         <Link to="/" className="logo" onClick={handleClearUserData}>
           <img src={logo} alt="Logo Falavinha" />
         </Link>

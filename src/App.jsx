@@ -1,119 +1,145 @@
+import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import useIdleRedirect from "./hooks/useIdleRedirect";
+// import useIdleRedirect from "./hooks/useIdleRedirect";
 import StayOnTop from "./components/StayOnTop";
+import Loader from "./components/UI/Loader";
 
-// DASHBOARDS
-import {
-  DashboardFinanceiro,
-  DashboardGestaoEstoque,
-  DashboardRH,
-  DashboardTributario,
-  DashboardContabilidade,
-  Dashboard,
-} from "./pages/dashboards";
-// SIMULAÇÕES
-import {
-  QuestionarioCigam,
-  QuestionarioRH,
-  QuestionarioTributario,
-  QuestionarioEmpresarial,
-  QuestionarioHolding,
-} from "./pages/simulacoes";
-// RESULTADOS
-import {
-  ResultadoCigam,
-  ResultadoRH,
-  ResultadoTributario,
-  ResultadoEmpresarial,
-  ResultadoHolding,
-} from "./pages/resultados";
+// PÁGINAS DASHBOARD
+const DashboardContabilidade = lazy(() =>
+  import("./pages/dashboards/DashboardContabilidade")
+);
+const DashboardFinanceiro = lazy(() =>
+  import("./pages/dashboards/DashboardFinanceiro")
+);
+const DashboardRH = lazy(() => import("./pages/dashboards/DashboardRH"));
+const DashboardGestaoEstoque = lazy(() =>
+  import("./pages/dashboards/DashboardGestaoEstoque")
+);
+const DashboardTributario = lazy(() =>
+  import("./pages/dashboards/DashboardTributario")
+);
+
+// PÁGINAS DE SIMULÇÕES
+const QuestionarioRH = lazy(() => import("./pages/simulacoes/QuestionarioRH"));
+const QuestionarioCigam = lazy(() =>
+  import("./pages/simulacoes/QuestionarioCigam")
+);
+const QuestionarioTributario = lazy(() =>
+  import("./pages/simulacoes/QuestionarioTributario")
+);
+const QuestionarioEmpresarial = lazy(() =>
+  import("./pages/simulacoes/QuestionarioEmpresarial")
+);
+const QuestionarioHolding = lazy(() =>
+  import("./pages/simulacoes/QuestionarioHolding")
+);
+
+// PÁGINAS DE RESULTADOS DAS SIMULAÇÕES
+const ResultadoRH = lazy(() => import("./pages/resultados/ResultadoRH"));
+const ResultadoCigam = lazy(() => import("./pages/resultados/ResultadoCigam"));
+const ResultadoTributario = lazy(() =>
+  import("./pages/resultados/ResultadoTributario")
+);
+const ResultadoEmpresarial = lazy(() =>
+  import("./pages/resultados/ResultadoEmpresarial")
+);
+const ResultadoHolding = lazy(() =>
+  import("./pages/resultados/ResultadoHolding")
+);
+
 // PÁGINAS COMUNS
-import {
-  Home,
-  Cigam,
-  ConsultoriaEmpresarial,
-  ConsultoriaRH,
-  Contabilidade,
-  Cursos,
-  Holding,
-  ModulosCigam,
-  Servicos,
-  Tributario,
-  Treinamentos,
-  NotFound,
-} from "./pages/comum";
+const Home = lazy(() => import("./pages/comum/Home"));
+const Servicos = lazy(() => import("./pages/comum/Servicos"));
+const Dashboard = lazy(() => import("./pages/dashboards/Dashboard"));
+const Tributario = lazy(() => import("./pages/comum/Tributario"));
+const Contabilidade = lazy(() => import("./pages/comum/Contabilidade"));
+const ConsultoriaRH = lazy(() => import("./pages/comum/ConsultoriaRH"));
+const Cigam = lazy(() => import("./pages/comum/Cigam"));
+const ConsultoriaEmpresarial = lazy(() =>
+  import("./pages/comum/ConsultoriaEmpresarial")
+);
+const Holding = lazy(() => import("./pages/comum/Holding"));
+const Treinamentos = lazy(() => import("./pages/comum/Treinamentos"));
+const Cursos = lazy(() => import("./pages/comum/Cursos"));
+const ModulosCigam = lazy(() => import("./pages/comum/ModulosCigam"));
+const NotFound = lazy(() => import("./pages/comum/NotFound"));
 
 function App() {
-  const RedirectHomepage = () => useIdleRedirect("/");
+  // const RedirectHomepage = () => useIdleRedirect("/");
   return (
     <AnimatePresence>
       <Router>
         <StayOnTop />
         {/* <RedirectHomepage /> */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/servicos" element={<Servicos />} />
-          <Route path="/BI" element={<Dashboard />} />
-          <Route path="/tributario" element={<Tributario />} />
-          <Route path="/contabilidade" element={<Contabilidade />} />
-          <Route path="/consultoriaRH" element={<ConsultoriaRH />} />
-          <Route path="/cigam" element={<Cigam />} />
-          <Route
-            path="/consultoria-empresarial"
-            element={<ConsultoriaEmpresarial />}
-          />
-          <Route path="/holding" element={<Holding />} />
-          <Route path="/treinamentos" element={<Treinamentos />} />
-          <Route path="/cursos" element={<Cursos />} />
-          <Route path="/modulos-cigam" element={<ModulosCigam />} />
-          <Route
-            path="/dashboard-contabilidade"
-            element={<DashboardContabilidade />}
-          />
-          <Route
-            path="/dashboard-financeiro"
-            element={<DashboardFinanceiro />}
-          />
-          <Route path="/dashboard-rh" element={<DashboardRH />} />
-          <Route
-            path="/dashboard-gestao-estoque"
-            element={<DashboardGestaoEstoque />}
-          />
-          <Route
-            path="/dashboard-tributario"
-            element={<DashboardTributario />}
-          />
-
-          <Route path="/questionario-rh" element={<QuestionarioRH />} />
-          <Route path="/resultado-rh" element={<ResultadoRH />} />
-          <Route path="/questionario-cigam" element={<QuestionarioCigam />} />
-          <Route path="/resultado-cigam" element={<ResultadoCigam />} />
-          <Route
-            path="/questionario-tributario"
-            element={<QuestionarioTributario />}
-          />
-          <Route
-            path="/resultado-tributario"
-            element={<ResultadoTributario />}
-          />
-          <Route
-            path="/questionario-empresarial"
-            element={<QuestionarioEmpresarial />}
-          />
-          <Route
-            path="/resultado-empresarial"
-            element={<ResultadoEmpresarial />}
-          />
-
-          <Route
-            path="/questionario-holding"
-            element={<QuestionarioHolding />}
-          />
-          <Route path="/resultado-holding" element={<ResultadoHolding />} />
-
-          <Route path="/*" element={<NotFound />} />
-        </Routes>
+        <Suspense fallback={<Loader />}>
+          {" "}
+          {/* Display loading state */}
+          <Routes>
+            {[
+              { path: "/", element: <Home /> },
+              { path: "/servicos", element: <Servicos /> },
+              { path: "/BI", element: <Dashboard /> },
+              { path: "/tributario", element: <Tributario /> },
+              { path: "/contabilidade", element: <Contabilidade /> },
+              { path: "/consultoriaRH", element: <ConsultoriaRH /> },
+              { path: "/cigam", element: <Cigam /> },
+              {
+                path: "/consultoria-empresarial",
+                element: <ConsultoriaEmpresarial />,
+              },
+              { path: "/holding", element: <Holding /> },
+              { path: "/treinamentos", element: <Treinamentos /> },
+              { path: "/cursos", element: <Cursos /> },
+              { path: "/modulos-cigam", element: <ModulosCigam /> },
+              {
+                path: "/dashboard-contabilidade",
+                element: <DashboardContabilidade />,
+              },
+              {
+                path: "/dashboard-financeiro",
+                element: <DashboardFinanceiro />,
+              },
+              { path: "/dashboard-rh", element: <DashboardRH /> },
+              {
+                path: "/dashboard-gestao-estoque",
+                element: <DashboardGestaoEstoque />,
+              },
+              {
+                path: "/dashboard-tributario",
+                element: <DashboardTributario />,
+              },
+              { path: "/questionario-rh", element: <QuestionarioRH /> },
+              { path: "/resultado-rh", element: <ResultadoRH /> },
+              { path: "/questionario-cigam", element: <QuestionarioCigam /> },
+              { path: "/resultado-cigam", element: <ResultadoCigam /> },
+              {
+                path: "/questionario-tributario",
+                element: <QuestionarioTributario />,
+              },
+              {
+                path: "/resultado-tributario",
+                element: <ResultadoTributario />,
+              },
+              {
+                path: "/questionario-empresarial",
+                element: <QuestionarioEmpresarial />,
+              },
+              {
+                path: "/resultado-empresarial",
+                element: <ResultadoEmpresarial />,
+              },
+              {
+                path: "/questionario-holding",
+                element: <QuestionarioHolding />,
+              },
+              { path: "/resultado-holding", element: <ResultadoHolding /> },
+              { path: "*", element: <NotFound /> },
+            ].map(({ path, element }) => (
+              <Route key={path} path={path} element={element} />
+            ))}
+          </Routes>
+        </Suspense>
       </Router>
     </AnimatePresence>
   );

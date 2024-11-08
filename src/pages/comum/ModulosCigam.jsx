@@ -27,7 +27,7 @@ const ModulosCigam = () => {
   };
 
   return (
-    <div className="container">
+    <>
       <HeaderApp redirect={"/cigam"}>
         <div
           style={{
@@ -69,8 +69,8 @@ const ModulosCigam = () => {
           </div>
         </FramerMotion>
       </HeroApp>
-      <FooterApp></FooterApp>
-    </div>
+      <FooterApp />
+    </>
   );
 };
 
