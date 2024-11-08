@@ -10,8 +10,31 @@ import gifCoins from "../../assets/gifs/coins1.gif";
 import gifMala from "../../assets/gifs/mala.gif";
 import gifAvatar from "../../assets/gifs/avatar.gif";
 import gifService from "../../assets/gifs/servicos.gif";
+import HeroMessageLayout from "../../components/UI/HeroMessageLayout";
+import QRCodeIcons from "../../components/UI/QRCodeIcons";
+import MainPageTitle from "../../components/UI/MainPageTitle";
 
-function SecondPage() {
+export default function Servicos() {
+  // blocos de detalhes
+  const presentationBlocks = [
+    {
+      icon: gifMala,
+      title: "+47 ANOS DE HISTÓRIA",
+    },
+    {
+      icon: gifCoins,
+      title: "+15.000 CLIENTES ATENDIDOS",
+    },
+    {
+      icon: gifAvatar,
+      title: "+180 COLABORADORES",
+    },
+    {
+      icon: gifService,
+      title: "+15 SERVIÇOS",
+    },
+  ];
+
   // links dos botões
   const options = [
     { name: "DASHBOARDS BI", route: routes.bi },
@@ -27,124 +50,42 @@ function SecondPage() {
     { name: "TREINAMENTOS", route: routes.treinamentos },
   ];
 
-  // DADOS DOS TÓPICOS
-  // const nossaHistoria = [
-  //   {
-  //     icon: <BsFillSuitcaseLgFill className="icon-topicos_servicos" />,
-  //     texto: "+ 47 ANOS DE HISTÓRIA",
-  //   },
-  //   {
-  //     icon: <BsRocketTakeoff className="icon-topicos_servicos" />,
-  //     texto: "+ 15.000 CLIENTES ATENDIDOS",
-  //   },
-  //   {
-  //     icon: <RiTeamFill className="icon-topicos_servicos" />,
-  //     texto: "+ 180 COLABORADORES",
-  //   },
-  //   {
-  //     icon: <GoGear className="icon-topicos_servicos" />,
-  //     texto: "+ 15 SERVIÇOS",
-  //   },
-  // ];
-
   return (
     <>
       <HeaderApp>
-        <h1 className="title">NOSSAS SOLUÇÕES</h1>
+        <MainPageTitle title="NOSSAS SOLUÇÕES" />
       </HeaderApp>
 
       <HeroApp fundo={imagem}>
         <FramerMotion>
-          <span className="textoMain">{textos.Servicos.Texto}</span>
-          <div style={{ display: "flex", gap: 2 }}>
-            <div className="container-topicos_servicos">
-              <div className="element-topicos_servicos">
-                <img src={gifMala} alt="" className="icon-topicos_servicos" />
-                <p>+ 47 ANOS DE HISTÓRIA</p>
-              </div>
-            </div>
-            <div className="container-topicos_servicos">
-              <div className="element-topicos_servicos">
-                <img src={gifCoins} alt="" className="icon-topicos_servicos" />
-                <p>+ 15.000 CLIENTES ATENDIDOS</p>
-              </div>
-            </div>
+          <HeroMessageLayout>
+            <p className="textoMain">{textos.Servicos.Texto}</p>
+          </HeroMessageLayout>
+
+          <div className="max-w-[992px] mx-auto py-10">
+            <ul className="grid grid-cols-standard gap-4">
+              {presentationBlocks.map(({ title, icon }) => (
+                <li
+                  className="flex flex-col items-center justify-center gap-2 
+                  min-h-[150px] w-full border-2 border-primary_color rounded-[10px] 
+                  shadow-bx-1 p-4"
+                  key={title}
+                >
+                  <img src={icon} alt="" className="w-[40px] h-[40px]" />
+                  <p className="text-light_color font-gilroyBold text-base text-center leading-[1.2rem]">
+                    {title}
+                  </p>
+                </li>
+              ))}
+            </ul>
           </div>
-          <div style={{ display: "flex", gap: 2, textAlign: "start" }}>
-            <div className="container-topicos_servicos">
-              <div className="element-topicos_servicos">
-                <img src={gifAvatar} alt="" className="icon-topicos_servicos" />
-                <p>+ 180 COLABORADORES</p>
-              </div>
-            </div>
-            <div className="container-topicos_servicos">
-              <div className="element-topicos_servicos">
-                <img
-                  src={gifService}
-                  alt=""
-                  className="icon-topicos_servicos"
-                />
-                <p>+ 15 SERVIÇOS</p>
-              </div>
-            </div>
-          </div>
+
           <ButtonLinks options={options} />
 
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: 20,
-              marginTop: 20,
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <a
-                href="https://falavinhanext.com.br/"
-                border="0"
-                style={{ cursor: "pointer", display: "block" }}
-              >
-                <img
-                  style={{ height: 80, width: 80 }}
-                  src="https://cdn.me-qr.com/qr/130261488.png?v=1729000579"
-                  alt="Site Falavinha"
-                />
-              </a>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <a
-                href="https://www.instagram.com/"
-                border="0"
-                style={{ cursor: "pointer", display: "block" }}
-              >
-                <img
-                  style={{ height: 80, width: 80 }}
-                  src="https://cdn.me-qr.com/qr/130259779.png?v=1728999910"
-                  alt="Instagram Falavinha"
-                />
-              </a>
-            </div>
-          </div>
+          <QRCodeIcons />
         </FramerMotion>
       </HeroApp>
       <FooterApp />
     </>
   );
 }
-
-export default SecondPage;

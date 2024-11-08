@@ -3,7 +3,7 @@ import AlertaFormulario from "./UI/AlertaFormulario";
 export default function FooterApp({ children }) {
   return (
     // <footer className="footer">
-    <footer className="min-[1440px]:p-base_container px-5 z-[500]">
+    <footer className="min-[992px]:p-base_container px-5 z-[500]">
       <div className="footer__element">
         <AlertaFormulario />
         {children}

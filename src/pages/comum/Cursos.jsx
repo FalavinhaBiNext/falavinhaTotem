@@ -6,6 +6,7 @@ import fundo from "../../assets/image/Treinamento.png";
 import FramerMotion from "../../components/UI/FramerMotion";
 import { cursos } from "../../services/db";
 import Accordion from "../../components/UI/Accordion";
+import MainPageTitle from "../../components/UI/MainPageTitle";
 
 const Cursos = () => {
   const fieldsPage = 3;
@@ -24,9 +25,9 @@ const Cursos = () => {
   };
 
   return (
-    <div className="container">
+    <>
       <HeaderApp redirect={"/treinamentos"}>
-        <h1 className="title">CURSOS GRUPO FALAVINHA NEXT</h1>
+        <MainPageTitle title="CURSOS GRUPO FALAVINHA NEXT" />
       </HeaderApp>
       <HeroApp fundo={fundo}>
         <FramerMotion>
@@ -61,8 +62,8 @@ const Cursos = () => {
           </div>
         </FramerMotion>
       </HeroApp>
-      <FooterApp></FooterApp>
-    </div>
+      <FooterApp />
+    </>
   );
 };
 

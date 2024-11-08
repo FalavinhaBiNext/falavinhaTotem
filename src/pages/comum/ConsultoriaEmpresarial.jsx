@@ -12,6 +12,7 @@ import gifTarget from "../../assets/gifs/target.gif";
 import gifComunicacao from "../../assets/gifs/comunicacao.gif";
 import gifEditar from "../../assets/gifs/editar.gif";
 import gifLupa from "../../assets/gifs/lupa.gif";
+import MainPageTitle from "../../components/UI/MainPageTitle";
 
 function ConsultoriaEmpresarial() {
   // links dos botões
@@ -68,17 +69,9 @@ function ConsultoriaEmpresarial() {
   ];
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexFlow: "column",
-        gap: "20px",
-        padding: "20px",
-        height: "100vh",
-      }}
-    >
+    <>
       <HeaderApp redirect={"/servicos"}>
-        <h1 className="title">{textos.consultoriaEmpresarial.Titulo}</h1>
+        <MainPageTitle title={textos.consultoriaEmpresarial.Titulo} />
       </HeaderApp>
 
       <HeroApp fundo={fundo}>
@@ -116,7 +109,7 @@ function ConsultoriaEmpresarial() {
         </FramerMotion>
       </HeroApp>
       <FooterApp />
-    </div>
+    </>
   );
 }
 export default ConsultoriaEmpresarial;

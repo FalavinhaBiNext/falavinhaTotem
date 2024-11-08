@@ -13,6 +13,7 @@ import gifLupa from "../../assets/gifs/lupa.gif";
 import tribut from "../../assets/gifs/tribut.gif";
 import gifTarget from "../../assets/gifs/target.gif";
 import gitEscada from "../../assets/gifs/escada.gif";
+import MainPageTitle from "../../components/UI/MainPageTitle";
 
 function Tributario() {
   // links dos botões
@@ -51,7 +52,7 @@ function Tributario() {
   return (
     <>
       <HeaderApp redirect={"/servicos"}>
-        <h1 className="title">{textos.tributario.Titulo}</h1>
+        <MainPageTitle title={textos.tributario.Titulo} />
       </HeaderApp>
 
       <HeroApp fundo={fundo}>

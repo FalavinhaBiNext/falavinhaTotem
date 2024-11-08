@@ -11,6 +11,7 @@ import gifGrafico from "../../assets/gifs/grafico.gif";
 import gifDocumento from "../../assets/gifs/documento.gif";
 import gifWinner from "../../assets/gifs/winner.gif";
 import gitComputador from "../../assets/gifs/computer.gif";
+import MainPageTitle from "../../components/UI/MainPageTitle";
 
 function ConsultoriaRH() {
   const topicosRH = [
@@ -62,17 +63,9 @@ function ConsultoriaRH() {
   ];
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexFlow: "column",
-        gap: "20px",
-        padding: "20px",
-        height: "100vh",
-      }}
-    >
+    <>
       <HeaderApp redirect={"/servicos"}>
-        <h1 className="title">{textos.consultoriaRh.Titulo}</h1>
+        <MainPageTitle title={textos.consultoriaRh.Titulo} />
       </HeaderApp>
 
       <HeroApp fundo={fundo}>
@@ -107,7 +100,7 @@ function ConsultoriaRH() {
         </FramerMotion>
       </HeroApp>
       <FooterApp />
-    </div>
+    </>
   );
 }
 export default ConsultoriaRH;

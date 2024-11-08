@@ -6,12 +6,16 @@ export default function ButtonLinks({ options, style }) {
   const navigate = useNavigate();
 
   return (
-    <div className="links" style={style}>
-      {options.map((option, index) => (
-        <MainButton key={index} onClick={() => navigate(option.route)}>
-          {option.name}
-        </MainButton>
-      ))}
+    <div className="max-w-[992px] mx-auto" style={style}>
+      <ul className="grid grid-cols-1 md:grid-cols-standard2 gap-4">
+        {options.map((option, index) => (
+          <li key={index}>
+            <MainButton onClick={() => navigate(option.route)}>
+              {option.name}
+            </MainButton>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

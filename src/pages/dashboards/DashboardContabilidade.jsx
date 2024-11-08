@@ -3,6 +3,7 @@ import FooterApp from "../../components/Footer";
 import FramerMotion from "../../components/UI/FramerMotion";
 import HeroApp from "../../components/Hero";
 import fundo from "../../assets/image/FundoBI.png";
+import MainPageTitle from "../../components/UI/MainPageTitle";
 
 // Link ao dashboard BI Gestor 2.0
 const biContent = `https://app.powerbi.com/view?r=eyJrIjoiMGM5Y2VhYTUtMTdhMS00MmM0LWFmOTMtYTY4Njc2ZjMwYz
@@ -12,7 +13,7 @@ function DashboardContabilidade() {
   return (
     <>
       <HeaderApp>
-        <h1 className="title">DASHBOARD BI</h1>
+        <MainPageTitle title="DASHBOARD BI" />
       </HeaderApp>
 
       <HeroApp fundo={fundo}>

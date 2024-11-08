@@ -15,6 +15,7 @@ import gifMoeda from "../../assets/gifs/moedas.gif";
 import gifCoins from "../../assets/gifs/coins1.gif";
 import gifAvatar from "../../assets/gifs/avatar.gif";
 import gifWinner from "../../assets/gifs/winner.gif";
+import MainPageTitle from "../../components/UI/MainPageTitle";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -89,7 +90,7 @@ const Dashboard = () => {
   return (
     <>
       <HeaderApp>
-        <h1 className="title">{textos.Business.Titulo}</h1>
+        <MainPageTitle title={textos.Business.Titulo} />
       </HeaderApp>
 
       <HeroApp fundo={fundo}>

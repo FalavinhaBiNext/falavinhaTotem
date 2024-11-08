@@ -9,6 +9,7 @@ import gifComunicacao from "../../assets/gifs/comunicacao.gif";
 import gifComputer from "../../assets/gifs/computer.gif";
 import gifVideo from "../../assets/gifs/video.gif";
 import gifEngajamento from "../../assets/gifs/engajamento.gif";
+import MainPageTitle from "../../components/UI/MainPageTitle";
 
 const Treinamentos = () => {
   const options = [{ name: "CONHEÇA NOSSOS CURSOS", route: routes.cursos }];
@@ -48,17 +49,9 @@ const Treinamentos = () => {
   ];
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexFlow: "column",
-        gap: "20px",
-        padding: "20px",
-        height: "100vh",
-      }}
-    >
+    <>
       <HeaderApp redirect={"/servicos"}>
-        <h1 className="title">{data.titulo}</h1>
+        <MainPageTitle title={data.titulo} />
       </HeaderApp>
       <HeroApp fundo={fundo}>
         <FramerMotion>
@@ -82,7 +75,7 @@ const Treinamentos = () => {
           </div>
         </FramerMotion>
       </HeroApp>
-    </div>
+    </>
   );
 };
 

@@ -3,6 +3,7 @@ import FooterApp from "../../components/Footer";
 import FramerMotion from "../../components/UI/FramerMotion";
 import HeroApp from "../../components/Hero";
 import fundo from "../../assets/image/FundoBI.png";
+import MainPageTitle from "../../components/UI/MainPageTitle";
 
 // Link ao dashboard Tributario
 const biContent = `https://app.powerbi.com/view?r=eyJrIjoiODA2NjYzNWEtYjVlMi00ZWVmLWE4YTAtZjk5YjJiNzhlMTE4IiwidCI6Ijk2ZjUxYjBhLTMwNDAtNDgzZi04Yjc2LTExODQ4YmZkZTRmYiJ9&navContentPaneEnabled=false`;
@@ -11,7 +12,7 @@ function DashContabilidade() {
   return (
     <>
       <HeaderApp>
-        <h1 className="title">DASHBOARD BI</h1>
+        <MainPageTitle title="DASHBOARD BI" />
       </HeaderApp>
 
       <HeroApp fundo={fundo}>

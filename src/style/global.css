@@ -24,6 +24,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   margin: 0;
+  letter-spacing: 1.5px !important;
 }
 
 #root,
@@ -93,14 +94,14 @@ input[type="number"]::-webkit-outer-spin-button {
   overflow: hidden;
 }
 
-.icon {
+/* .icon {
   height: 45px;
   width: 45px;
   color: #fff;
-}
+} */
 
 /*  BOTÃO */
-.links {
+/* .links {
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -108,7 +109,7 @@ input[type="number"]::-webkit-outer-spin-button {
   gap: 15px;
   width: 100%;
   margin: 20px 0;
-}
+} */
 
 /* .botao {
   padding: 5px 30px;
@@ -156,16 +157,15 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 /* CONTEÚDO GERAL DAS PÁGINAS */
-.title {
+/* .title {
   font-family: "Gilroy-light";
   font-size: 1.5rem;
   color: #fff;
   letter-spacing: 5px;
   text-transform: uppercase;
   padding-bottom: 10px;
-  text-align: center;
-  /* margin-top: 15px; */
-}
+  text-align: center; 
+} */
 
 .subtitulo {
   margin-top: 10px;
@@ -251,7 +251,7 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 20px 0px 0px 0px;
 }
 
-.container-topicos_servicos {
+/* .container-topicos_servicos {
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -266,9 +266,9 @@ input[type="number"]::-webkit-outer-spin-button {
   background-color: transparent;
   border: 1px solid #007175;
   margin: 10px 5px;
-}
+} */
 
-.element-topicos_servicos {
+/* .element-topicos_servicos {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -285,7 +285,7 @@ input[type="number"]::-webkit-outer-spin-button {
   font-family: "Gilroy-bold";
   font-size: 1rem;
   text-align: center;
-}
+} */
 
 /*PAGINA RH*/
 

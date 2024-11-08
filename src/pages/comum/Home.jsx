@@ -20,7 +20,10 @@ function HomePage() {
       </HeroApp>
 
       <FooterApp>
-        <MainButton onClick={() => navigate(routes.servicos)}>
+        <MainButton
+          onClick={() => navigate(routes.servicos)}
+          className={"md:max-w-[470px] max-w-none"}
+        >
           CONHEÇA NOSSOS SERVIÇOS
         </MainButton>
       </FooterApp>
@@ -49,7 +52,7 @@ const HomeVideoPlayer = ({ videoSrc }) => {
   return (
     <>
       <video
-        className="fixed inset-0 w-screen h-screen min-[1440px]:object-cover object-fill m-auto"
+        className="fixed inset-0 w-screen h-screen min-[992px]:object-cover object-fill mx-auto"
         autoPlay
         loop
         muted={isMuted}
@@ -62,6 +65,10 @@ const HomeVideoPlayer = ({ videoSrc }) => {
         onClick={() => setIsMuted(!isMuted)}
         role="button"
         aria-label={isMuted ? "Unmute video" : "Mute video"}
+      />
+      <span
+        className="absolute bottom-0 left-0 w-full h-[50%] 
+      bg-gradient-to-b from-transparent to-[#000] z-10 pointer-events-none"
       />
     </>
   );

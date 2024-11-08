@@ -7,12 +7,7 @@ export default function FramerMotion({ children }) {
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ type: "spring", stiffness: 60, damping: 30 }}
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        minHeight: "inherit",
-        width: "inherit",
-      }}
+      className="block"
     >
       {children}
     </motion.div>

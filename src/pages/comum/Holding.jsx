@@ -9,6 +9,7 @@ import textos from "../../components/UI/textos";
 import gifHome from "../../assets/gifs/home.gif";
 import gifTeam from "../../assets/gifs/team.gif";
 import gifCompany from "../../assets/gifs/company.gif";
+import MainPageTitle from "../../components/UI/MainPageTitle";
 
 const Holding = () => {
   const options = [
@@ -37,17 +38,9 @@ const Holding = () => {
   ];
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexFlow: "column",
-        gap: "20px",
-        padding: "20px",
-        height: "100vh",
-      }}
-    >
+    <>
       <HeaderApp redirect={"/servicos"}>
-        <h1 className="title">HOLDING</h1>
+        <MainPageTitle title="HOLDING" />
       </HeaderApp>
       <HeroApp fundo={fundo}>
         <FramerMotion>
@@ -70,7 +63,7 @@ const Holding = () => {
           <ButtonLinks options={options} />
         </FramerMotion>
       </HeroApp>
-    </div>
+    </>
   );
 };
 

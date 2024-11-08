@@ -42,15 +42,7 @@ const Cigam = () => {
   ];
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexFlow: "column",
-        gap: "20px",
-        padding: "20px",
-        height: "100vh",
-      }}
-    >
+    <>
       <HeaderApp redirect={"/servicos"}>
         <div
           style={{
@@ -97,7 +89,7 @@ const Cigam = () => {
         </FramerMotion>
       </HeroApp>
       <FooterApp />
-    </div>
+    </>
   );
 };
 export default Cigam;

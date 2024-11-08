@@ -21,24 +21,23 @@ export default {
         'bx-1': '0px 10px 15px rgba(0, 0, 0, 0.3)',
       },
       padding: {
-        'base_container': '0 calc((100% - 1440px) / 2) 0 calc((100% - 1440px) / 2)',
-        'custom_container': '0 calc((100% - 1070px) / 2) 0 calc((100% - 1070px) / 2)',
-        'ultrawide_container': '0 calc((100% - 1670px) / 2) 0 calc((100% - 1670px) / 2)',
+        'base_container': '0 calc((100% - 992px) / 2) 0 calc((100% - 992px) / 2)',
+        // 'custom_container': '0 calc((100% - 1070px) / 2) 0 calc((100% - 1070px) / 2)',
+        // 'ultrawide_container': '0 calc((100% - 1670px) / 2) 0 calc((100% - 1670px) / 2)',
       },
-
-      // fontFamily: {
-      //   sans: ['Poppins', 'sans-serif'],
-      //   sans2: ['DM Sans', 'sans-serif'],
-      //   serif: ['Roboto', 'serif'],
-      // },
-      // gridTemplateColumns: {
-      //   'standard': 'repeat(auto-fit, minmax(200px, 1fr))',
-      //   'standard2': 'repeat(auto-fit, minmax(350px, 1fr))',
-      //   'footerXl': 'repeat(auto-fit, minmax(170px, 1fr))',
-      //   'footerSm': 'repeat(auto-fit, minmax(250px, 1fr))',
-      //   'resources': 'repeat(auto-fit, minmax(280px, 1fr))',
-      //   'tiers': 'repeat(auto-fit, minmax(300px, 1fr))',
-      // },
+      fontFamily: {
+        gilroyLight: ['Gilroy-light', 'sans-serif'],
+        gilroyThin: ['Gilroy-thin', 'sans-serif'],
+        gilroyBold: ['Gilroy-bold', 'sans-serif'],
+      },
+      gridTemplateColumns: {
+        'standard': 'repeat(auto-fit, minmax(180px, 1fr))',
+        'standard2': 'repeat(auto-fit, minmax(350px, 1fr))',
+        // 'footerXl': 'repeat(auto-fit, minmax(170px, 1fr))',
+        // 'footerSm': 'repeat(auto-fit, minmax(250px, 1fr))',
+        // 'resources': 'repeat(auto-fit, minmax(280px, 1fr))',
+        // 'tiers': 'repeat(auto-fit, minmax(300px, 1fr))',
+      },
 
     },
   },
