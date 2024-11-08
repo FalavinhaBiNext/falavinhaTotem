@@ -1,14 +1,14 @@
-import HeaderApp from "../components/Header";
-import HeroApp from "../components/Hero";
-import fundo from "../assets/image/FundoHolding.png";
-import FramerMotion from "../components/FramerMotion";
-import ButtonLinks from "../components/ButtonLinks";
-import routes from "../routes";
-import textos from "../components/textos";
+import HeaderApp from "../../components/Header";
+import HeroApp from "../../components/Hero";
+import fundo from "../../assets/image/FundoHolding.png";
+import FramerMotion from "../../components/FramerMotion";
+import ButtonLinks from "../../components/ButtonLinks";
+import routes from "../../routes";
+import textos from "../../components/textos";
 // Import dos Gifs
-import gifHome from "../assets/gifs/home.gif";
-import gifTeam from "../assets/gifs/team.gif";
-import gifCompany from "../assets/gifs/company.gif";
+import gifHome from "../../assets/gifs/home.gif";
+import gifTeam from "../../assets/gifs/team.gif";
+import gifCompany from "../../assets/gifs/company.gif";
 
 const Holding = () => {
   const options = [
@@ -37,7 +37,15 @@ const Holding = () => {
   ];
 
   return (
-    <div style={{ display: "flex", flexFlow: "column", gap: "20px", padding: "20px", height: "100vh" }}>
+    <div
+      style={{
+        display: "flex",
+        flexFlow: "column",
+        gap: "20px",
+        padding: "20px",
+        height: "100vh",
+      }}
+    >
       <HeaderApp redirect={"/servicos"}>
         <h1 className="title">HOLDING</h1>
       </HeaderApp>

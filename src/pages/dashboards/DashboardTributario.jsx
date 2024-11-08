@@ -1,8 +1,8 @@
-import HeaderApp from "../components/Header";
-import FooterApp from "../components/Footer";
-import FramerMotion from "../components/FramerMotion";
-import HeroApp from "../components/Hero";
-import fundo from "../assets/image/FundoBI.png";
+import HeaderApp from "../../components/Header";
+import FooterApp from "../../components/Footer";
+import FramerMotion from "../../components/FramerMotion";
+import HeroApp from "../../components/Hero";
+import fundo from "../../assets/image/FundoBI.png";
 
 // Link ao dashboard Tributario
 const biContent = `https://app.powerbi.com/view?r=eyJrIjoiODA2NjYzNWEtYjVlMi00ZWVmLWE4YTAtZjk5YjJiNzhlMTE4IiwidCI6Ijk2ZjUxYjBhLTMwNDAtNDgzZi04Yjc2LTExODQ4YmZkZTRmYiJ9&navContentPaneEnabled=false`;

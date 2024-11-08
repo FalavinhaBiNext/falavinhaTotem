@@ -1,16 +1,16 @@
-import HeaderApp from "../components/Header";
-import HeroApp from "../components/Hero";
-import fundo from "../assets/image/ConsultoriaRH.png";
-import FooterApp from "../components/Footer";
-import routes from "../routes";
-import textos from "../components/textos";
-import FramerMotion from "../components/FramerMotion";
-import ButtonLinks from "../components/ButtonLinks";
-import PalavraChave from "../components/PalavraChave";
-import gifGrafico from "../assets/gifs/grafico.gif";
-import gifDocumento from "../assets/gifs/documento.gif";
-import gifWinner from "../assets/gifs/winner.gif";
-import gitComputador from "../assets/gifs/computer.gif";
+import HeaderApp from "../../components/Header";
+import HeroApp from "../../components/Hero";
+import fundo from "../../assets/image/ConsultoriaRH.png";
+import FooterApp from "../../components/Footer";
+import routes from "../../routes";
+import textos from "../../components/textos";
+import FramerMotion from "../../components/FramerMotion";
+import ButtonLinks from "../../components/ButtonLinks";
+import PalavraChave from "../../components/PalavraChave";
+import gifGrafico from "../../assets/gifs/grafico.gif";
+import gifDocumento from "../../assets/gifs/documento.gif";
+import gifWinner from "../../assets/gifs/winner.gif";
+import gitComputador from "../../assets/gifs/computer.gif";
 
 function ConsultoriaRH() {
   const topicosRH = [
@@ -62,7 +62,15 @@ function ConsultoriaRH() {
   ];
 
   return (
-    <div style={{ display: "flex", flexFlow: "column", gap: "20px", padding: "20px", height: "100vh" }}>
+    <div
+      style={{
+        display: "flex",
+        flexFlow: "column",
+        gap: "20px",
+        padding: "20px",
+        height: "100vh",
+      }}
+    >
       <HeaderApp redirect={"/servicos"}>
         <h1 className="title">{textos.consultoriaRh.Titulo}</h1>
       </HeaderApp>

@@ -1,7 +1,7 @@
-import Botoes from "../components/Botoes";
-import FooterApp from "../components/Footer";
-import HeaderApp from "../components/Header";
-import Main from "../components/Main";
+import Botoes from "../../components/Botoes";
+import FooterApp from "../../components/Footer";
+import HeaderApp from "../../components/Header";
+import Main from "../../components/Main";
 import { useNavigate } from "react-router-dom";
 
 export default function NotFound() {

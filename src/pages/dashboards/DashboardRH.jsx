@@ -1,12 +1,12 @@
-import HeaderApp from "../components/Header";
-import FooterApp from "../components/Footer";
-import HeroApp from "../components/Hero";
-import FramerMotion from "../components/FramerMotion";
-import fundo from "../assets/image/FundoBI.png";
+import HeaderApp from "../../components/Header";
+import FooterApp from "../../components/Footer";
+import HeroApp from "../../components/Hero";
+import FramerMotion from "../../components/FramerMotion";
+import fundo from "../../assets/image/FundoBI.png";
 
 const biContent = `https://app.powerbi.com/view?r=eyJrIjoiNDAyM2RkYmQtOWM2Mi00NTljLWFiZjEtNmMwZWI2Y2IxYzU5IiwidCI6Ijk2ZjUxYjBhLTMwNDAtNDgzZi04Yjc2LTExODQ4YmZkZTRmYiJ9`;
 
-function Dashboard_Financeiro() {
+function DashboardFinanceiro() {
   // const motionStyle = {
   //   backgroundColor: "#009499",
   // };
@@ -38,4 +38,4 @@ function Dashboard_Financeiro() {
   );
 }
 
-export default Dashboard_Financeiro;
+export default DashboardFinanceiro;

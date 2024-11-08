@@ -1,15 +1,15 @@
-import HeaderApp from "../components/Header";
-import HeroApp from "../components/Hero";
-import FooterApp from "../components/Footer";
-import imagem from "../assets/image/Servicos2.png";
-import routes from "../routes";
-import FramerMotion from "../components/FramerMotion";
-import ButtonLinks from "../components/ButtonLinks";
-import textos from "../components/textos";
-import gifCoins from "../assets/gifs/coins1.gif";
-import gifMala from "../assets/gifs/mala.gif";
-import gifAvatar from "../assets/gifs/avatar.gif";
-import gifService from "../assets/gifs/servicos.gif";
+import HeaderApp from "../../components/Header";
+import HeroApp from "../../components/Hero";
+import FooterApp from "../../components/Footer";
+import imagem from "../../assets/image/Servicos2.png";
+import routes from "../../routes";
+import FramerMotion from "../../components/FramerMotion";
+import ButtonLinks from "../../components/ButtonLinks";
+import textos from "../../components/textos";
+import gifCoins from "../../assets/gifs/coins1.gif";
+import gifMala from "../../assets/gifs/mala.gif";
+import gifAvatar from "../../assets/gifs/avatar.gif";
+import gifService from "../../assets/gifs/servicos.gif";
 
 function SecondPage() {
   // links dos botões
@@ -59,13 +59,13 @@ function SecondPage() {
           <div style={{ display: "flex", gap: 2 }}>
             <div className="container-topicos_servicos">
               <div className="element-topicos_servicos">
-                <img src={gifMala} alt="" className="icon-topicos_servicos"/>
+                <img src={gifMala} alt="" className="icon-topicos_servicos" />
                 <p>+ 47 ANOS DE HISTÓRIA</p>
               </div>
             </div>
             <div className="container-topicos_servicos">
               <div className="element-topicos_servicos">
-                <img src={gifCoins} alt="" className="icon-topicos_servicos"/>
+                <img src={gifCoins} alt="" className="icon-topicos_servicos" />
                 <p>+ 15.000 CLIENTES ATENDIDOS</p>
               </div>
             </div>
@@ -73,13 +73,17 @@ function SecondPage() {
           <div style={{ display: "flex", gap: 2, textAlign: "start" }}>
             <div className="container-topicos_servicos">
               <div className="element-topicos_servicos">
-                <img src={gifAvatar} alt="" className="icon-topicos_servicos"/>
+                <img src={gifAvatar} alt="" className="icon-topicos_servicos" />
                 <p>+ 180 COLABORADORES</p>
               </div>
             </div>
             <div className="container-topicos_servicos">
               <div className="element-topicos_servicos">
-                <img src={gifService} alt="" className="icon-topicos_servicos"/>
+                <img
+                  src={gifService}
+                  alt=""
+                  className="icon-topicos_servicos"
+                />
                 <p>+ 15 SERVIÇOS</p>
               </div>
             </div>

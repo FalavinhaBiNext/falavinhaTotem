@@ -1,14 +1,14 @@
-import HeaderApp from "../components/Header";
-import FooterApp from "../components/Footer";
-import FramerMotion from "../components/FramerMotion";
-import HeroApp from "../components/Hero";
-import fundo from "../assets/image/FundoBI.png";
+import HeaderApp from "../../components/Header";
+import FooterApp from "../../components/Footer";
+import FramerMotion from "../../components/FramerMotion";
+import HeroApp from "../../components/Hero";
+import fundo from "../../assets/image/FundoBI.png";
 
 // Link ao dashboard BI Gestor 2.0
 const biContent = `https://app.powerbi.com/view?r=eyJrIjoiMGM5Y2VhYTUtMTdhMS00MmM0LWFmOTMtYTY4Njc2ZjMwYz
 QwIiwidCI6Ijk2ZjUxYjBhLTMwNDAtNDgzZi04Yjc2LTExODQ4YmZkZTRmYiJ9&navContentPaneEnabled=false`;
 
-function DashContabilidade() {
+function DashboardContabilidade() {
   return (
     <>
       <HeaderApp>
@@ -36,4 +36,4 @@ function DashContabilidade() {
   );
 }
 
-export default DashContabilidade;
+export default DashboardContabilidade;

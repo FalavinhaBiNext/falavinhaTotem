@@ -1,37 +1,48 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/Home";
-import Servicos from "./pages/Servicos";
-import DashContabilidade from "./pages/DashboardContabilidade";
-import Tributario from "./pages/Tributario";
-import Contabilidade from "./pages/Contabilidade";
-import ConsultoriaRH from "./pages/ConsultoriaRH";
-import Cigam from "./pages/Cigam";
-import Holding from "./pages/Holding";
-import Treinamentos from "./pages/treinamentos";
-import Cursos from "./pages/Cursos";
-import ModulosCigam from "./pages/ModulosCigam";
-import Dashboard from "./pages/Dashboard";
-import DashboardFinanceiro from "./pages/Dashboard_Financeiro";
-import DashboardRH from "./pages/DashboardRH";
-import DashboardGestaoEstoque from "./pages/DashboardGestaoEstoque";
-import DashboardTributario from "./pages/DashboardTributario";
-import ConsultoriaEmpresarial from "./pages/ConsultoriaEmpresarial";
 import { AnimatePresence } from "framer-motion";
 import useIdleRedirect from "./hooks/useIdleRedirect";
-// páginas simulações
-import QuestionarioRH from "./pages/simulacoes/QuestionarioRH";
-import QuestionarioCigam from "./pages/simulacoes/QuestionarioCigam";
-import QuestionarioTributario from "./pages/simulacoes/QuestionarioTributario";
-// páginas resultados
-import ResultadoRH from "./pages/resultados/ResultadoRH";
 import StayOnTop from "./components/StayOnTop";
-import ResultadoCigam from "./pages/resultados/ResultadoCigam";
-import NotFound from "./pages/NotFound";
-import ResultadoTributario from "./pages/resultados/ResultadoTributario";
-import QuestionarioEmpresarial from "./pages/simulacoes/QuestionarioEmpresarial";
-import ResultadoEmpresarial from "./pages/resultados/ResultadoEmpresarial";
-import QuestionarioHolding from "./pages/simulacoes/QuestionarioHolding";
-import ResultadoHolding from "./pages/resultados/ResultadoHolding";
+
+// DASHBOARDS
+import {
+  DashboardFinanceiro,
+  DashboardGestaoEstoque,
+  DashboardRH,
+  DashboardTributario,
+  DashboardContabilidade,
+  Dashboard,
+} from "./pages/dashboards";
+// SIMULAÇÕES
+import {
+  QuestionarioCigam,
+  QuestionarioRH,
+  QuestionarioTributario,
+  QuestionarioEmpresarial,
+  QuestionarioHolding,
+} from "./pages/simulacoes";
+// RESULTADOS
+import {
+  ResultadoCigam,
+  ResultadoRH,
+  ResultadoTributario,
+  ResultadoEmpresarial,
+  ResultadoHolding,
+} from "./pages/resultados";
+// PÁGINAS COMUNS
+import {
+  Home,
+  Cigam,
+  ConsultoriaEmpresarial,
+  ConsultoriaRH,
+  Contabilidade,
+  Cursos,
+  Holding,
+  ModulosCigam,
+  Servicos,
+  Tributario,
+  Treinamentos,
+  NotFound,
+} from "./pages/comum";
 
 function App() {
   const RedirectHomepage = () => useIdleRedirect("/");
@@ -41,7 +52,7 @@ function App() {
         <StayOnTop />
         {/* <RedirectHomepage /> */}
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<Home />} />
           <Route path="/servicos" element={<Servicos />} />
           <Route path="/BI" element={<Dashboard />} />
           <Route path="/tributario" element={<Tributario />} />
@@ -58,7 +69,7 @@ function App() {
           <Route path="/modulos-cigam" element={<ModulosCigam />} />
           <Route
             path="/dashboard-contabilidade"
-            element={<DashContabilidade />}
+            element={<DashboardContabilidade />}
           />
           <Route
             path="/dashboard-financeiro"
