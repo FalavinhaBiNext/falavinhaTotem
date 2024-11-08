@@ -4,9 +4,9 @@ import HeroApp from "../../components/Hero";
 import FooterApp from "../../components/Footer";
 import fundo from "../../assets/image/FundoCigam.png";
 import logoCigam from "../../assets/image/LogoCigam.png";
-import FramerMotion from "../../components/FramerMotion";
+import FramerMotion from "../../components/UI/FramerMotion";
 import { modulosCigam } from "../../services/db";
-import Accordion from "../../components/Accordion";
+import Accordion from "../../components/UI/Accordion";
 
 import "../../style/accordion.css";
 

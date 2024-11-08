@@ -4,9 +4,9 @@ import { GlobalContext } from "../../context/GlobalContextProvider";
 import HeaderApp from "../../components/Header";
 import fundo from "../../assets/image/ConsultoriaEmpresarial.png";
 import HeroApp from "../../components/Hero";
-import FramerMotion from "../../components/FramerMotion";
+import FramerMotion from "../../components/UI/FramerMotion";
 import FooterApp from "../../components/Footer";
-import ConfettiAnimation from "../../components/ConfettiAnimation";
+import ConfettiAnimation from "../../components/UI/ConfettiAnimation";
 import { IoStar } from "react-icons/io5";
 
 export default function ResultadoEmpresarial() {

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import Botoes from "./Botoes";
+import MainButton from "./UI/MainButton";
 
 export default function ErrorBoundaryFallback({ resetErrorBoundary }) {
   const mainStyles = {
@@ -25,9 +25,9 @@ export default function ErrorBoundaryFallback({ resetErrorBoundary }) {
   return (
     <main role="alert" style={mainStyles}>
       <h1 style={titleStyles}>Erro ao carregar a página!</h1>
-      <Botoes onClick={resetErrorBoundary} className="botao" type="button">
+      <MainButton onClick={resetErrorBoundary} className="botao" type="button">
         Tente novamente
-      </Botoes>
+      </MainButton>
     </main>
   );
 }

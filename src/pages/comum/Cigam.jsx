@@ -5,10 +5,10 @@ import fundo from "../../assets/image/FundoCigam.png";
 import logoCigam from "../../assets/image/LogoCigam.png";
 import FooterApp from "../../components/Footer";
 import routes from "../../routes";
-import textos from "../../components/textos";
-import FramerMotion from "../../components/FramerMotion";
-import ButtonLinks from "../../components/ButtonLinks";
-import PalavraChave from "../../components/PalavraChave";
+import textos from "../../components/UI/textos";
+import FramerMotion from "../../components/UI/FramerMotion";
+import ButtonLinks from "../../components/UI/ButtonLinks";
+import PalavraChave from "../../components/UI/PalavraChave";
 // Import dos Gifs
 import gifPuzzle from "../../assets/gifs/puzzle.gif";
 import gifLine from "../../assets/gifs/line.gif";

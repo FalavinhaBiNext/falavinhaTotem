@@ -2,7 +2,7 @@
 import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 
-export default function Botoes(props) {
+export default function MainButton(props) {
   const { onClick, type, className, children, disabled } = props;
 
   return (
@@ -19,7 +19,7 @@ export default function Botoes(props) {
   );
 }
 
-Botoes.propTypes = {
+MainButton.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
   children: PropTypes.node,

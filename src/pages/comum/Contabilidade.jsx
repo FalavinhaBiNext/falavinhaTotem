@@ -3,9 +3,9 @@ import HeroApp from "../../components/Hero";
 import fundo from "../../assets/image/FundoContabilidade.png";
 import FooterApp from "../../components/Footer";
 import routes from "../../routes";
-import textos from "../../components/textos";
-import ButtonLinks from "../../components/ButtonLinks";
-import FramerMotion from "../../components/FramerMotion";
+import textos from "../../components/UI/textos";
+import ButtonLinks from "../../components/UI/ButtonLinks";
+import FramerMotion from "../../components/UI/FramerMotion";
 // Import dos Gifs
 import gifTarget from "../../assets/gifs/target.gif";
 import gifComunicacao from "../../assets/gifs/comunicacao.gif";

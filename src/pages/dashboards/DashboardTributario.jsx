@@ -1,6 +1,6 @@
 import HeaderApp from "../../components/Header";
 import FooterApp from "../../components/Footer";
-import FramerMotion from "../../components/FramerMotion";
+import FramerMotion from "../../components/UI/FramerMotion";
 import HeroApp from "../../components/Hero";
 import fundo from "../../assets/image/FundoBI.png";
 

@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import fundo from "../../assets/image/FundoHolding.png";
-import FramerMotion from "../../components/FramerMotion";
+import FramerMotion from "../../components/UI/FramerMotion";
 import Formulario from "../../components/Formulario";
 import FooterApp from "../../components/Footer";
 import QuestionarioHoldingState from "../../states/QuestionarioHoldingState";
-import { numberFormatter } from "../../utils";
-import Botoes from "../../components/Botoes";
+import { numberFormatter } from "../../utils/formatters";
+import MainButton from "../../components/UI/MainButton";
 import { GlobalContext } from "../../context/GlobalContextProvider";
 import { useNavigate } from "react-router-dom";
 import useRefreshDetector from "../../hooks/useRefreshDetector";
@@ -93,7 +93,7 @@ export default function QuestionarioHolding() {
       </HeroApp>
 
       <FooterApp>
-        <Botoes
+        <MainButton
           type="submit"
           className="botao"
           onClick={handleSubmitValues}
@@ -104,7 +104,7 @@ export default function QuestionarioHolding() {
           }
         >
           Calcular
-        </Botoes>
+        </MainButton>
       </FooterApp>
     </>
   );

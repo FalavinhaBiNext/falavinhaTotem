@@ -4,10 +4,10 @@ import fundo from "../../assets/image/FundoTributario.png";
 
 import FooterApp from "../../components/Footer";
 import routes from "../../routes";
-import textos from "../../components/textos";
-import FramerMotion from "../../components/FramerMotion";
-import ButtonLinks from "../../components/ButtonLinks";
-import PalavraChave from "../../components/PalavraChave";
+import textos from "../../components/UI/textos";
+import FramerMotion from "../../components/UI/FramerMotion";
+import ButtonLinks from "../../components/UI/ButtonLinks";
+import PalavraChave from "../../components/UI/PalavraChave";
 // Import dos Gifs
 import gifLupa from "../../assets/gifs/lupa.gif";
 import tribut from "../../assets/gifs/tribut.gif";

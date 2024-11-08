@@ -3,10 +3,10 @@ import HeroApp from "../../components/Hero";
 import fundo from "../../assets/image/ConsultoriaEmpresarial.png";
 import FooterApp from "../../components/Footer";
 import routes from "../../routes";
-import textos from "../../components/textos";
-import FramerMotion from "../../components/FramerMotion";
-import ButtonLinks from "../../components/ButtonLinks";
-import PalavraChave from "../../components/PalavraChave";
+import textos from "../../components/UI/textos";
+import FramerMotion from "../../components/UI/FramerMotion";
+import ButtonLinks from "../../components/UI/ButtonLinks";
+import PalavraChave from "../../components/UI/PalavraChave";
 // Import dos Gifs
 import gifTarget from "../../assets/gifs/target.gif";
 import gifComunicacao from "../../assets/gifs/comunicacao.gif";

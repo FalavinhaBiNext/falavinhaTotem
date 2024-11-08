@@ -4,10 +4,10 @@ import { moneyConverter } from "../../utils";
 import { GlobalContext } from "../../context/GlobalContextProvider";
 import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
-import FramerMotion from "../../components/FramerMotion";
+import FramerMotion from "../../components/UI/FramerMotion";
 import FooterApp from "../../components/Footer";
 import fundo from "../../assets/image/FundoHolding.png";
-import ConfettiAnimation from "../../components/ConfettiAnimation";
+import ConfettiAnimation from "../../components/UI/ConfettiAnimation";
 
 export default function ResultadoHolding() {
   const { resultadoHolding, handleGetSurveyData } = useContext(GlobalContext);

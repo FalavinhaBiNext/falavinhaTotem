@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import FooterApp from "../../components/Footer";
-import Botoes from "../../components/Botoes";
+import MainButton from "../../components/UI/MainButton";
 import fundo from "../../assets/video/video.mp4";
 import routes from "../../routes";
 
@@ -19,9 +19,9 @@ function HomePage() {
       </HeroApp>
 
       <FooterApp>
-        <Botoes onClick={() => navigate(routes.servicos)} className="botao">
+        <MainButton onClick={() => navigate(routes.servicos)} className="botao">
           CONHEÇA NOSSOS SERVIÇOS
-        </Botoes>
+        </MainButton>
       </FooterApp>
     </>
   );

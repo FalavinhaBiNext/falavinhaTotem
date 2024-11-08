@@ -2,14 +2,14 @@ import PropTypes from "prop-types";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HeaderApp from "../../components/Header";
-import Botoes from "../../components/Botoes";
+import MainButton from "../../components/UI/MainButton";
 import HeroApp from "../../components/Hero";
-import FramerMotion from "../../components/FramerMotion";
+import FramerMotion from "../../components/UI/FramerMotion";
 import FooterApp from "../../components/Footer";
 import fundo from "../../assets/image/FundoCigam.png";
 import { GlobalContext } from "../../context/GlobalContextProvider";
 import Formulario from "../../components/Formulario";
-import { numberFormatter } from "../../utils";
+import { numberFormatter } from "../../utils/formatters";
 import QuestionarioCigamState from "../../states/QuestionarioCigamState";
 import gifWinner from "../../assets/gifs/winner.gif";
 import useRefreshDetector from "../../hooks/useRefreshDetector";
@@ -216,7 +216,7 @@ export default function QuestionarioCigam() {
       </HeroApp>
 
       <FooterApp footerFixed>
-        <Botoes
+        <MainButton
           type="button"
           className="botao"
           onClick={handleSubmitValues}
@@ -228,7 +228,7 @@ export default function QuestionarioCigam() {
           }
         >
           Calcular
-        </Botoes>
+        </MainButton>
       </FooterApp>
     </>
   );

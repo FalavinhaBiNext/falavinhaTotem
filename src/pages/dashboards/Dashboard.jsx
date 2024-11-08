@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
-import FramerMotion from "../../components/FramerMotion";
+import FramerMotion from "../../components/UI/FramerMotion";
 import fundo from "../../assets/image/FundoBI.png";
 import FooterApp from "../../components/Footer";
 import routes from "../../routes";
-import textos from "../../components/textos";
-import ButtonLinks from "../../components/ButtonLinks";
-import PalavraChave from "../../components/PalavraChave";
+import textos from "../../components/UI/textos";
+import ButtonLinks from "../../components/UI/ButtonLinks";
+import PalavraChave from "../../components/UI/PalavraChave";
 //Import dos gifs
 import gifComunicacao from "../../assets/gifs/comunicacao.gif";
 import gifMoeda from "../../assets/gifs/moedas.gif";

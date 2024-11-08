@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import fundo from "../../assets/image/ConsultoriaEmpresarial.png";
-import FramerMotion from "../../components/FramerMotion";
+import FramerMotion from "../../components/UI/FramerMotion";
 import FooterApp from "../../components/Footer";
-import Botoes from "../../components/Botoes";
+import MainButton from "../../components/UI/MainButton";
 import { GlobalContext } from "../../context/GlobalContextProvider";
 import Formulario from "../../components/Formulario";
 import { perguntasSurveyEmpresarial } from "../../services/db";
@@ -71,7 +71,7 @@ export default function QuestionarioEmpresarial() {
         </FramerMotion>
       </HeroApp>
       <FooterApp>
-        <Botoes
+        <MainButton
           className="botao"
           onClick={() => navigate("/resultado-empresarial")}
           disabled={
@@ -82,7 +82,7 @@ export default function QuestionarioEmpresarial() {
           }
         >
           Ver resultado
-        </Botoes>
+        </MainButton>
       </FooterApp>
     </>
   );

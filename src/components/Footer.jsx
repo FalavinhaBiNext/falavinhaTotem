@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import AlertaFormulario from "./AlertaFormulario";
+import AlertaFormulario from "./UI/AlertaFormulario";
 export default function FooterApp({ children }) {
   return (
     <footer className="footer">

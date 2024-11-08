@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import logo from "../assets/image/LogoFalavinhaCTT.png";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
-import Botoes from "./Botoes";
+import MainButton from "./UI/MainButton";
 
 const HeaderApp = ({ children, redirect }) => {
   const navigate = useNavigate();
@@ -43,9 +43,9 @@ const HeaderApp = ({ children, redirect }) => {
         </Link>
 
         {getPath ? (
-          <Botoes onClick={standardNavigate} className="btnVoltar">
+          <MainButton onClick={standardNavigate} className="btnVoltar">
             <IoArrowBackCircleOutline className="icon" />
-          </Botoes>
+          </MainButton>
         ) : null}
       </div>
 

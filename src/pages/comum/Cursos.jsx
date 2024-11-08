@@ -3,9 +3,9 @@ import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import FooterApp from "../../components/Footer";
 import fundo from "../../assets/image/Treinamento.png";
-import FramerMotion from "../../components/FramerMotion";
+import FramerMotion from "../../components/UI/FramerMotion";
 import { cursos } from "../../services/db";
-import Accordion from "../../components/Accordion";
+import Accordion from "../../components/UI/Accordion";
 
 const Cursos = () => {
   const fieldsPage = 3;

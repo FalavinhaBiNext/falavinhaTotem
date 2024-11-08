@@ -1,4 +1,4 @@
-import useAlertaFormularioVazio from "../hooks/useAlertaFormularioVazio";
+import useAlertaFormularioVazio from "../../hooks/useAlertaFormularioVazio";
 
 export default function AlertaFormulario() {
   const { getCurrentPath, showEmptyFormAlert } = useAlertaFormularioVazio();

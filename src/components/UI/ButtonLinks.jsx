@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-import Botoes from "./Botoes";
+import MainButton from "./MainButton";
 
 export default function ButtonLinks({ options, style }) {
   const navigate = useNavigate();
@@ -8,13 +8,13 @@ export default function ButtonLinks({ options, style }) {
   return (
     <div className="links" style={style}>
       {options.map((option, index) => (
-        <Botoes
+        <MainButton
           key={index}
           onClick={() => navigate(option.route)}
           className="botao"
         >
           {option.name}
-        </Botoes>
+        </MainButton>
       ))}
     </div>
   );

@@ -2,8 +2,8 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 // import useIdleRedirect from "./hooks/useIdleRedirect";
-import StayOnTop from "./components/StayOnTop";
 import Loader from "./components/UI/Loader";
+import UseKeepOnTop from "./hooks/useKeepOnTop";
 
 // PÁGINAS DASHBOARD
 const DashboardContabilidade = lazy(() =>
@@ -70,7 +70,7 @@ function App() {
   return (
     <AnimatePresence>
       <Router>
-        <StayOnTop />
+        <UseKeepOnTop />
         {/* <RedirectHomepage /> */}
         <Suspense fallback={<Loader />}>
           {" "}

@@ -2,13 +2,13 @@ import PropTypes from "prop-types";
 import { useContext, useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../context/GlobalContextProvider";
-import { numberFormatter } from "../../utils";
+import { numberFormatter } from "../../utils/formatters";
 import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
-import FramerMotion from "../../components/FramerMotion";
+import FramerMotion from "../../components/UI/FramerMotion";
 import FooterApp from "../../components/Footer";
 import Formulario from "../../components/Formulario";
-import Botoes from "../../components/Botoes";
+import MainButton from "../../components/UI/MainButton";
 import QuestionarioTributarioState from "../../states/QuestionarioTributarioState";
 import fundo from "../../assets/image/FundoTributario.png";
 import useRefreshDetector from "../../hooks/useRefreshDetector";
@@ -409,7 +409,7 @@ export default function QuestionarioTributario() {
             Proximo
           </button>
         ) : (
-          <Botoes
+          <MainButton
             type="submit"
             className="botao"
             onClick={handleSubmitValues}
@@ -420,7 +420,7 @@ export default function QuestionarioTributario() {
             }
           >
             Calcular
-          </Botoes>
+          </MainButton>
         )}
       </FooterApp>
     </>

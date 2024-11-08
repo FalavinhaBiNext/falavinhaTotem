@@ -3,13 +3,13 @@ import { useNavigate } from "react-router-dom";
 import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import { GlobalContext } from "../../context/GlobalContextProvider";
-import FramerMotion from "../../components/FramerMotion";
+import FramerMotion from "../../components/UI/FramerMotion";
 import imagem from "../../assets/image/ConsultoriaRH.png";
 import "../../style/resultPages.css";
 import { IoStar } from "react-icons/io5";
 import { PiUserSwitchThin } from "react-icons/pi";
 import { BsShieldLock } from "react-icons/bs";
-import ConfettiAnimation from "../../components/ConfettiAnimation";
+import ConfettiAnimation from "../../components/UI/ConfettiAnimation";
 import FooterApp from "../../components/Footer";
 
 export default function ResultadoRH() {

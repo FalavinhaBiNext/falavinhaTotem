@@ -2,13 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import FooterApp from "../../components/Footer";
-import FramerMotion from "../../components/FramerMotion";
+import FramerMotion from "../../components/UI/FramerMotion";
 import imagem from "../../assets/image/ConsultoriaRH.png";
 import Formulario from "../../components/Formulario";
 import { GlobalContext } from "../../context/GlobalContextProvider";
 import { useNavigate } from "react-router-dom";
 import { perguntasSurveyRh } from "../../services/db";
-import Botoes from "../../components/Botoes";
+import MainButton from "../../components/UI/MainButton";
 import { QuestionarioElementoMultiplo } from "../../components/QuestionarioElemento";
 import useRefreshDetector from "../../hooks/useRefreshDetector";
 
@@ -72,7 +72,7 @@ export default function QuestionarioRH() {
       </HeroApp>
 
       <FooterApp>
-        <Botoes
+        <MainButton
           className="botao"
           onClick={() => navigate("/resultado-rh")}
           disabled={
@@ -83,7 +83,7 @@ export default function QuestionarioRH() {
           }
         >
           Ver resultado
-        </Botoes>
+        </MainButton>
       </FooterApp>
     </>
   );

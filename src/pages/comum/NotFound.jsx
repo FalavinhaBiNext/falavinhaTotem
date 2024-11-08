@@ -1,4 +1,4 @@
-import Botoes from "../../components/Botoes";
+import MainButton from "../../components/UI/MainButton";
 import FooterApp from "../../components/Footer";
 import HeaderApp from "../../components/Header";
 import Main from "../../components/Main";
@@ -20,9 +20,9 @@ export default function NotFound() {
       <Main>
         <div style={{ margin: "auto" }}>
           <h1 style={notFoundText}>Página não encontrada</h1>
-          <Botoes onClick={() => navigate(-1)} className="botao">
+          <MainButton onClick={() => navigate(-1)} className="botao">
             Voltar
-          </Botoes>
+          </MainButton>
         </div>
       </Main>
       <FooterApp />

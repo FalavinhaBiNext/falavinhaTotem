@@ -3,10 +3,10 @@ import { GlobalContext } from "../../context/GlobalContextProvider";
 import { useNavigate } from "react-router-dom";
 import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
-import FramerMotion from "../../components/FramerMotion";
+import FramerMotion from "../../components/UI/FramerMotion";
 import FooterApp from "../../components/Footer";
-import ConfettiAnimation from "../../components/ConfettiAnimation";
-import fundo from "../../assets/image/FundoTributario.png"
+import ConfettiAnimation from "../../components/UI/ConfettiAnimation";
+import fundo from "../../assets/image/FundoTributario.png";
 
 export default function ResultadoTributario() {
   const { moneyConverter, handleGetSurveyData, resultadoTributario } =
@@ -52,7 +52,7 @@ export default function ResultadoTributario() {
                 return (
                   <li className="tributario-list__item" key={index}>
                     <h2 className="tributario-list__title">
-                    {moneyConverter(value)}
+                      {moneyConverter(value)}
                     </h2>
                     <span>{title}</span>
                   </li>

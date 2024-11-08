@@ -3,11 +3,11 @@ import { GlobalContext } from "../../context/GlobalContextProvider";
 import { useNavigate } from "react-router-dom";
 import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
-import FramerMotion from "../../components/FramerMotion";
+import FramerMotion from "../../components/UI/FramerMotion";
 import imagem from "../../assets/image/AssessoriaTributaria.png";
 import FooterApp from "../../components/Footer";
 import { numberFormatter } from "../../utils";
-import ConfettiAnimation from "../../components/ConfettiAnimation";
+import ConfettiAnimation from "../../components/UI/ConfettiAnimation";
 
 export default function ResultadoCigam() {
   const {
