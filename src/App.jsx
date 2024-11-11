@@ -65,6 +65,9 @@ const Cursos = lazy(() => import("./pages/comum/Cursos"));
 const ModulosCigam = lazy(() => import("./pages/comum/ModulosCigam"));
 const NotFound = lazy(() => import("./pages/comum/NotFound"));
 
+// import SideMenuPage from "./pages/comum/SideMenuPage";
+const SideMenuPage = lazy(() => import("./pages/comum/SideMenuPage"));
+
 function App() {
   // const RedirectHomepage = () => useIdleRedirect("/");
   return (
@@ -132,6 +135,8 @@ function App() {
                 element: <QuestionarioHolding />,
               },
               { path: "/resultado-holding", element: <ResultadoHolding /> },
+
+              { path: "/sidemenu", element: <SideMenuPage /> },
               { path: "*", element: <NotFound /> },
             ].map(({ path, element }) => (
               <Route key={path} path={path} element={element} />

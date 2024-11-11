@@ -7,6 +7,7 @@ import FooterApp from "../../components/Footer";
 import MainButton from "../../components/UI/MainButton";
 import fundo from "../../assets/video/video.mp4";
 import routes from "../../routes";
+import SideMenu from "../../components/SideMenu";
 
 function HomePage() {
   const navigate = useNavigate();

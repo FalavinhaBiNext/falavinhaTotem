@@ -46,7 +46,7 @@ const Holding = () => {
       <HeroApp fundo={fundo}>
         <FramerMotion>
           <div>
-            <h2 className="subtitulo">Subtitulo Holding</h2>
+            <h2 className="subtitulo">Transforme sua gestão patrimonial com a segurança e eficiência de uma holding — proteção, otimização e legado para o seu futuro.</h2>
           </div>
           <div className="textoMain">
             <p className="paragraph">{textos.Holding.Texto}</p>

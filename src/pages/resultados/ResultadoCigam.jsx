@@ -3,8 +3,13 @@ import { GlobalContext } from "../../context/GlobalContextProvider";
 import { useNavigate } from "react-router-dom";
 import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
+<<<<<<< HEAD
 import FramerMotion from "../../components/UI/FramerMotion";
 import imagem from "../../assets/image/AssessoriaTributaria.png";
+=======
+import FramerMotion from "../../components/FramerMotion";
+import imagem from "../../assets/image/FundoTributario.png";
+>>>>>>> 321d76a25912de58dfea9b8de691b1069ff1e1b2
 import FooterApp from "../../components/Footer";
 import { numberFormatter } from "../../utils";
 import ConfettiAnimation from "../../components/UI/ConfettiAnimation";

@@ -295,7 +295,7 @@ export const respostasSurveyEmpresarial = [
 // CURSOS GRUPO FALAVINHA NEXT
 export const cursos = [
   {
-    name: "FORMAR LÍDERES DE ELITE:",
+    name: "FORMAR LÍDERES DE ELITE",
     description: "Crie seu 'BOPE' Organizacional",
     item: [
       { item: "Identificação e Desenvolvimento de Talentos Internos." },
@@ -306,7 +306,7 @@ export const cursos = [
     ]
   },
   {
-    name: "A REVOLUÇÃO DA IA:",
+    name: "A REVOLUÇÃO DA IA",
     description: "Transformando Negócios e Redefinindo Estratégias Empresariais",
     item: [
       { item: "Integração de IA nos processos de negócios." },
@@ -317,7 +317,7 @@ export const cursos = [
     ]
   },
   {
-    name: "DELEGAÇÃO ESTRATÉGICA:",
+    name: "DELEGAÇÃO ESTRATÉGICA",
     description: "Maximizando Desempenho e Resultados Organizacionais",
     item: [
       { item: "Princípios Fundamentais da Delegação Estratégica" },
@@ -339,7 +339,7 @@ export const cursos = [
     ]
   },
   {
-    name: "GESTÃO DE CONFLITOS:",
+    name: "GESTÃO DE CONFLITOS",
     description: "Transformando Desafios em Oportunidades",
     item: [
       { item: "Entendendo as Causas dos Conflitos." },
@@ -361,7 +361,7 @@ export const cursos = [
     ]
   },
   {
-    name: "CONTABILIDADE GERENCIAL:",
+    name: "CONTABILIDADE GERENCIAL",
     description: "Tomando Decisões Baseadas em Dados.",
     item: [
       { item: "Ferramentas de Contabilidade Gerencial para Análise de Desempenho." },
@@ -372,7 +372,7 @@ export const cursos = [
     ]
   },
   {
-    name: "GESTÃO DE RISCOS:",
+    name: "GESTÃO DE RISCOS",
     description: "Protegendo o Patrimônio da Empresa",
     item: [
       { item: "Identificação e Avaliação de Riscos Financeiros." },
@@ -383,7 +383,7 @@ export const cursos = [
     ]
   },
   {
-    name: "HOLDING FAMILIAR: ",
+    name: "HOLDING FAMILIAR ",
     description: "Proteção e Sucessão Patrimonial",
     item: [
       { item: "Estruturação de uma Holding Familiar: Passos Iniciais." },
@@ -400,8 +400,13 @@ export const modulosCigam = [
   {
     name: "PESQUISA DE MERCADO",
     item: [
+<<<<<<< HEAD
       { item: "Aummento nas vendas através de uma ferramenta de BIG DATA já integrada com áreas de CRM e ERP. Diferente de outras soluções, o Pesquisa de Mercado não limita o número de empresas importadas e nem cobra valores adicionais a partir de um número de extrações. Ou seja: liberdade para sua empresa crescer!" }
     ]
+=======
+      {item: "Aumento nas vendas através de uma ferramenta de BIG DATA já integrada com áreas de CRM e ERP. Diferente de outras soluções, o Pesquisa de Mercado não limita o número de empresas importadas e nem cobra valores adicionais a partir de um número de extrações. Ou seja: liberdade para sua empresa crescer!"}
+    ] 
+>>>>>>> 321d76a25912de58dfea9b8de691b1069ff1e1b2
   },
 
   {
