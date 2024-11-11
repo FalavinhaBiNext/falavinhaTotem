@@ -51,7 +51,7 @@ const ResultadoHolding = lazy(() =>
 // PÁGINAS COMUNS
 const Home = lazy(() => import("./pages/comum/Home"));
 const Servicos = lazy(() => import("./pages/comum/Servicos"));
-const Dashboard = lazy(() => import("./pages/dashboards/Dashboard"));
+const DashboardBI = lazy(() => import("./pages/dashboards/DashboardBI"));
 const Tributario = lazy(() => import("./pages/comum/Tributario"));
 const Contabilidade = lazy(() => import("./pages/comum/Contabilidade"));
 const ConsultoriaRH = lazy(() => import("./pages/comum/ConsultoriaRH"));
@@ -73,13 +73,11 @@ function App() {
         <UseKeepOnTop />
         {/* <RedirectHomepage /> */}
         <Suspense fallback={<Loader />}>
-          {" "}
-          {/* Display loading state */}
           <Routes>
             {[
               { path: "/", element: <Home /> },
               { path: "/servicos", element: <Servicos /> },
-              { path: "/BI", element: <Dashboard /> },
+              { path: "/business-intelligence", element: <DashboardBI /> },
               { path: "/tributario", element: <Tributario /> },
               { path: "/contabilidade", element: <Contabilidade /> },
               { path: "/consultoriaRH", element: <ConsultoriaRH /> },

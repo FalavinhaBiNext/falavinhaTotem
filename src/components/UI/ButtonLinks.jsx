@@ -7,7 +7,7 @@ export default function ButtonLinks({ options, style }) {
 
   return (
     <div className="max-w-[992px] mx-auto" style={style}>
-      <ul className="grid grid-cols-1 md:grid-cols-standard2 gap-4">
+      <ul className="grid grid-cols-1 md:grid-cols-standard2 gap-x-6 gap-y-4">
         {options.map((option, index) => (
           <li key={index}>
             <MainButton onClick={() => navigate(option.route)}>

@@ -69,6 +69,7 @@ const ModulosCigam = () => {
           </div>
         </FramerMotion>
       </HeroApp>
+
       <FooterApp />
     </>
   );

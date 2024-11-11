@@ -5,11 +5,12 @@ import FramerMotion from "../../components/UI/FramerMotion";
 import ButtonLinks from "../../components/UI/ButtonLinks";
 import routes from "../../routes";
 import textos from "../../components/UI/textos";
+import MainPageTitle from "../../components/UI/MainPageTitle";
+import FooterApp from "../../components/Footer";
 // Import dos Gifs
 import gifHome from "../../assets/gifs/home.gif";
 import gifTeam from "../../assets/gifs/team.gif";
 import gifCompany from "../../assets/gifs/company.gif";
-import MainPageTitle from "../../components/UI/MainPageTitle";
 
 const Holding = () => {
   const options = [
@@ -63,6 +64,8 @@ const Holding = () => {
           <ButtonLinks options={options} />
         </FramerMotion>
       </HeroApp>
+
+      <FooterApp />
     </>
   );
 };

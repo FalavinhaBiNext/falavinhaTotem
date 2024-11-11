@@ -4,6 +4,7 @@ import fundo from "../../assets/image/Treinamento.png";
 import FramerMotion from "../../components/UI/FramerMotion";
 import ButtonLinks from "../../components/UI/ButtonLinks";
 import routes from "../../routes";
+import FooterApp from "../../components/Footer";
 // Import gifs
 import gifComunicacao from "../../assets/gifs/comunicacao.gif";
 import gifComputer from "../../assets/gifs/computer.gif";
@@ -53,6 +54,7 @@ const Treinamentos = () => {
       <HeaderApp redirect={"/servicos"}>
         <MainPageTitle title={data.titulo} />
       </HeaderApp>
+
       <HeroApp fundo={fundo}>
         <FramerMotion>
           <div>
@@ -75,6 +77,8 @@ const Treinamentos = () => {
           </div>
         </FramerMotion>
       </HeroApp>
+
+      <FooterApp />
     </>
   );
 };

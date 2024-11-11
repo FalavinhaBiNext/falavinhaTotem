@@ -62,6 +62,7 @@ const Cursos = () => {
           </div>
         </FramerMotion>
       </HeroApp>
+
       <FooterApp />
     </>
   );

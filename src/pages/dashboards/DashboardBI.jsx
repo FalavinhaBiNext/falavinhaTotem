@@ -17,7 +17,7 @@ import gifAvatar from "../../assets/gifs/avatar.gif";
 import gifWinner from "../../assets/gifs/winner.gif";
 import MainPageTitle from "../../components/UI/MainPageTitle";
 
-const Dashboard = () => {
+export default function DashboardBI() {
   const navigate = useNavigate();
   const [lastInteraction, setLastInteraction] = useState(Date.now());
 
@@ -161,5 +161,4 @@ const Dashboard = () => {
       <FooterApp></FooterApp>
     </>
   );
-};
-export default Dashboard;
+}

@@ -37,7 +37,7 @@ export default function Servicos() {
 
   // links dos botões
   const options = [
-    { name: "DASHBOARDS BI", route: routes.bi },
+    { name: "DASHBOARDS BI", route: routes.bisinessIntelligence },
     { name: "TRIBUTÁRIO", route: routes.tributario },
     { name: "CONTABILIDADE", route: routes.contabilidade },
     { name: "CONSULTORIA RH", route: routes.consultoriRh },
@@ -63,7 +63,7 @@ export default function Servicos() {
           </HeroMessageLayout>
 
           <div className="max-w-[992px] mx-auto py-10">
-            <ul className="grid grid-cols-standard gap-4">
+            <ul className="grid gap-4 grid-cols-standard">
               {presentationBlocks.map(({ title, icon }) => (
                 <li
                   className="flex flex-col items-center justify-center gap-2 
@@ -85,6 +85,7 @@ export default function Servicos() {
           <QRCodeIcons />
         </FramerMotion>
       </HeroApp>
+
       <FooterApp />
     </>
   );

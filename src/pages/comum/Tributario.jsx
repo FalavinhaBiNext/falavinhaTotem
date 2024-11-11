@@ -82,6 +82,7 @@ function Tributario() {
           <ButtonLinks options={options} />
         </FramerMotion>
       </HeroApp>
+
       <FooterApp />
     </>
   );

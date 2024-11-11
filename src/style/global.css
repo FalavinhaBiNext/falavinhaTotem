@@ -32,7 +32,7 @@ body,
 .motion-element {
   background-color: #009499;
   font-family: "Gilroy-light";
-  min-height: 90vh;
+  min-height: 100vh;
   display: grid;
   grid-template-rows: 1fr auto;
 }
