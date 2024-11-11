@@ -7,7 +7,6 @@ import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import FramerMotion from "../../components/FramerMotion";
 import FooterApp from "../../components/Footer";
-import Formulario from "../../components/Formulario";
 import Botoes from "../../components/Botoes";
 import QuestionarioTributarioState from "../../states/QuestionarioTributarioState";
 import fundo from "../../assets/image/FundoTributario.png";
@@ -29,7 +28,6 @@ export default function QuestionarioTributario() {
   const { hasEmptyInputs, setResultadoTributario, isSubmitting } =
     useContext(GlobalContext);
   const [show, setShow] = useState(true);
-  const [isFormVisible, setIsFormVisible] = useState(false);
   const navigate = useNavigate();
   const { handleCheckRefresh } = useRefreshDetector();
 
@@ -158,8 +156,6 @@ export default function QuestionarioTributario() {
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <Formulario setIsFormVisible={setIsFormVisible} />
-
           <form
             className="form"
             onSubmit={handleSubmitValues}
@@ -413,11 +409,7 @@ export default function QuestionarioTributario() {
             type="submit"
             className="botao"
             onClick={handleSubmitValues}
-            disabled={
-              (isFormVisible && hasEmptyInputs) ||
-              emptyValueFields ||
-              isSubmitting
-            }
+            disabled={hasEmptyInputs || emptyValueFields || isSubmitting}
           >
             Calcular
           </Botoes>

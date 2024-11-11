@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
@@ -7,7 +7,6 @@ import FramerMotion from "../../components/FramerMotion";
 import FooterApp from "../../components/Footer";
 import Botoes from "../../components/Botoes";
 import { GlobalContext } from "../../context/GlobalContextProvider";
-import Formulario from "../../components/Formulario";
 import { perguntasSurveyEmpresarial } from "../../services/db";
 import { QuestionarioElementoBinario } from "../../components/QuestionarioElemento";
 import useRefreshDetector from "../../hooks/useRefreshDetector";
@@ -15,7 +14,6 @@ import useRefreshDetector from "../../hooks/useRefreshDetector";
 export default function QuestionarioEmpresarial() {
   const navigate = useNavigate();
   const { handleCheckRefresh } = useRefreshDetector();
-  const [isFormVisible, setIsFormVisible] = useState(false);
   const {
     hasInputErrors,
     hasEmptyInputs,
@@ -61,7 +59,6 @@ export default function QuestionarioEmpresarial() {
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <Formulario setIsFormVisible={setIsFormVisible} />
           <QuestionarioElementoBinario
             perguntas={perguntasSurveyEmpresarial}
             respostas={respostasEmp}
@@ -75,7 +72,7 @@ export default function QuestionarioEmpresarial() {
                 className="botao"
                 onClick={() => navigate("/resultado-empresarial")}
                 disabled={
-                  (isFormVisible && hasEmptyInputs) ||
+                  hasEmptyInputs ||
                   hasInputErrors ||
                   !isAllInputsChecked() ||
                   isSubmitting

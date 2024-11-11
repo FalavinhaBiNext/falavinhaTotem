@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import FooterApp from "../../components/Footer";
 import FramerMotion from "../../components/FramerMotion";
 import imagem from "../../assets/image/ConsultoriaRH.png";
-import Formulario from "../../components/Formulario";
 import { GlobalContext } from "../../context/GlobalContextProvider";
 import { useNavigate } from "react-router-dom";
 import { perguntasSurveyRh } from "../../services/db";
@@ -23,7 +22,6 @@ export default function QuestionarioRH() {
 
   const { handleCheckRefresh } = useRefreshDetector();
   const navigate = useNavigate();
-  const [isFormVisible, setIsFormVisible] = useState(false);
 
   // Limpa a respostas do survey do RH ao carregar a página
   useEffect(() => {
@@ -61,8 +59,6 @@ export default function QuestionarioRH() {
 
       <HeroApp fundo={imagem}>
         <FramerMotion>
-          <Formulario setIsFormVisible={setIsFormVisible} />
-
           <QuestionarioElementoMultiplo
             perguntas={perguntasSurveyRh}
             respostas={respostasRh}
@@ -74,7 +70,7 @@ export default function QuestionarioRH() {
                 className="botao"
                 onClick={() => navigate("/resultado-rh")}
                 disabled={
-                  (isFormVisible && hasEmptyInputs) ||
+                  hasEmptyInputs ||
                   hasInputErrors ||
                   !isAllInputsChecked() ||
                   isSubmitting

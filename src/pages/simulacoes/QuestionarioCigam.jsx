@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import HeaderApp from "../../components/Header";
 import Botoes from "../../components/Botoes";
@@ -8,7 +8,6 @@ import FramerMotion from "../../components/FramerMotion";
 import FooterApp from "../../components/Footer";
 import fundo from "../../assets/image/FundoCigam.png";
 import { GlobalContext } from "../../context/GlobalContextProvider";
-import Formulario from "../../components/Formulario";
 import { numberFormatter } from "../../utils";
 import QuestionarioCigamState from "../../states/QuestionarioCigamState";
 import gifWinner from "../../assets/gifs/winner.gif";
@@ -31,8 +30,6 @@ export default function QuestionarioCigam() {
     salario_hora,
     folha_pagamento,
   } = QuestionarioCigamState();
-  const isValidValue = (val) => (isNaN(val) || !isFinite(val) ? "" : val);
-  const [isFormVisible, setIsFormVisible] = useState(false);
   const emptyValueFields =
     cigamValues.usuarios === "" ||
     cigamValues.salario_medio === "" ||
@@ -79,7 +76,6 @@ export default function QuestionarioCigam() {
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <Formulario setIsFormVisible={setIsFormVisible} />
           <form className="form">
             <TextInput
               title="Usuários:"
@@ -221,10 +217,7 @@ export default function QuestionarioCigam() {
           className="botao"
           onClick={handleSubmitValues}
           disabled={
-            (isFormVisible && hasEmptyInputs) ||
-            hasInputErrors ||
-            emptyValueFields ||
-            isSubmitting
+            hasEmptyInputs || hasInputErrors || emptyValueFields || isSubmitting
           }
         >
           Calcular

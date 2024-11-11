@@ -12,8 +12,12 @@ export default function GlobalContextProvider({ children }) {
   const [resultadoCigam, setResultadoCigam] = useState({});
   const [resultadoTributario, setResultadoTributario] = useState([]);
   const [resultadoHolding, setResultadoHolding] = useState({});
+  const [showModal, setShowModal] = useState(
+    sessionStorage.getItem("showmodal") === "true"
+  );
+
   const sessionStorageData = sessionStorage.getItem("userInfo");
-  const saveData = sessionStorageData ? JSON.parse(sessionStorageData) : null;
+  const savedData = sessionStorageData ? JSON.parse(sessionStorageData) : null;
 
   const {
     setRespostasRh,
@@ -62,10 +66,10 @@ export default function GlobalContextProvider({ children }) {
     try {
       setIsSubmitting(true);
       const dados_usuario = {
-        name: inputValue.nome || saveData.name,
-        email: inputValue.email || saveData.email,
-        phone: inputValue.telefone || saveData.phone,
-        origin: origemUsuario || saveData.origin,
+        name: inputValue.nome || savedData.name,
+        email: inputValue.email || savedData.email,
+        phone: inputValue.telefone || savedData.phone,
+        origin: origemUsuario || savedData.origin,
       };
       const dados_survey = {
         resultado_cigam: resultadoCigam,
@@ -222,6 +226,9 @@ export default function GlobalContextProvider({ children }) {
     resultadoHolding,
     setResultadoHolding,
     isSubmitting,
+    showModal,
+    setShowModal,
+    savedData,
   };
   return (
     <GlobalContext.Provider value={values}>{children}</GlobalContext.Provider>
