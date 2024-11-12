@@ -11,6 +11,7 @@ import Botoes from "../../components/Botoes";
 import QuestionarioTributarioState from "../../states/QuestionarioTributarioState";
 import fundo from "../../assets/image/FundoTributario.png";
 import useRefreshDetector from "../../hooks/useRefreshDetector";
+import PopupModal from "../../components/PopupModal";
 
 const selectAtividades = [
   { value: 1, label: "Comércio" },
@@ -25,8 +26,15 @@ const selectAtividades = [
 ];
 
 export default function QuestionarioTributario() {
-  const { hasEmptyInputs, setResultadoTributario, isSubmitting } =
-    useContext(GlobalContext);
+  const {
+    hasEmptyInputs,
+    setResultadoTributario,
+    isSubmitting,
+    showModal,
+    closeModal,
+    handleSetShowModal,
+    hasSavedData,
+  } = useContext(GlobalContext);
   const [show, setShow] = useState(true);
   const navigate = useNavigate();
   const { handleCheckRefresh } = useRefreshDetector();
@@ -129,6 +137,9 @@ export default function QuestionarioTributario() {
 
   // Envia os dados para o servidor
   const handleSubmitValues = () => {
+    if (!showModal && !hasSavedData) {
+      return handleSetShowModal(true);
+    }
     setResultadoTributario([...resultList]);
     navigate("/resultado-tributario");
   };
@@ -150,6 +161,10 @@ export default function QuestionarioTributario() {
 
   return (
     <>
+      {showModal && (
+        <PopupModal showModal={showModal} closeModal={closeModal} />
+      )}
+
       <HeaderApp redirect={"/servicos"}>
         <h1 className="title">Questionário Tributario</h1>
       </HeaderApp>
@@ -409,7 +424,7 @@ export default function QuestionarioTributario() {
             type="submit"
             className="botao"
             onClick={handleSubmitValues}
-            disabled={hasEmptyInputs || emptyValueFields || isSubmitting}
+            disabled={emptyValueFields || isSubmitting}
           >
             Calcular
           </Botoes>

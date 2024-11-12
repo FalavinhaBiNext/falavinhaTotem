@@ -8,6 +8,15 @@
 }
 
 /* INPUTS  DE TEXTO */
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: #4b5052;
+  gap: 10px;
+  border-radius: 10px;
+  padding: 0 10px;
+}
+
 .input-label {
   display: flex;
   flex-flow: column;
@@ -18,6 +27,7 @@
   letter-spacing: 1px;
   line-height: 20px;
   font-weight: 600;
+  padding: 3px 0;
 }
 
 /* .input-label > span {
@@ -29,7 +39,7 @@
 
 .input-element {
   width: inherit;
-  height: 50px;
+  height: 45px;
   border-radius: 5px;
   border: 1px solid #b4b4b4;
   transition: all 250ms ease;
@@ -38,6 +48,10 @@
   color: #000;
   font-family: "Gilroy-thin";
   font-weight: 400;
+}
+
+.input-element--alert {
+  border: 2px solid #fe5151;
 }
 
 .input-element:disabled {
@@ -72,7 +86,7 @@
   color: #fe5151;
   font-family: inherit;
   line-height: 14px;
-  padding: 2px 0 0 20px;
+  padding-top: 2px;
 }
 
 /* INPUT SELECT */

@@ -10,14 +10,18 @@ import { perguntasSurveyRh } from "../../services/db";
 import Botoes from "../../components/Botoes";
 import { QuestionarioElementoMultiplo } from "../../components/QuestionarioElemento";
 import useRefreshDetector from "../../hooks/useRefreshDetector";
+import PopupModal from "../../components/PopupModal";
 
 export default function QuestionarioRH() {
   const {
     respostasRh,
     setRespostasRh,
     hasInputErrors,
-    hasEmptyInputs,
     isSubmitting,
+    showModal,
+    closeModal,
+    handleSetShowModal,
+    hasSavedData,
   } = useContext(GlobalContext);
 
   const { handleCheckRefresh } = useRefreshDetector();
@@ -51,8 +55,19 @@ export default function QuestionarioRH() {
     );
   };
 
+  const handleSubmitValues = () => {
+    if (!showModal && !hasSavedData) {
+      return handleSetShowModal(true);
+    }
+    navigate("/resultado-rh");
+  };
+
   return (
     <>
+      {showModal && (
+        <PopupModal showModal={showModal} closeModal={closeModal} />
+      )}
+
       <HeaderApp redirect={"/servicos"}>
         <h1 className="title">Faça uma pesquisa sobre sua empresa</h1>
       </HeaderApp>
@@ -68,13 +83,8 @@ export default function QuestionarioRH() {
             <div className="accordion-button">
               <Botoes
                 className="botao"
-                onClick={() => navigate("/resultado-rh")}
-                disabled={
-                  hasEmptyInputs ||
-                  hasInputErrors ||
-                  !isAllInputsChecked() ||
-                  isSubmitting
-                }
+                onClick={handleSubmitValues}
+                disabled={!isAllInputsChecked() || isSubmitting}
               >
                 Ver resultado
               </Botoes>

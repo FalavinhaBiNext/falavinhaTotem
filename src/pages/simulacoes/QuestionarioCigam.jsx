@@ -13,11 +13,21 @@ import QuestionarioCigamState from "../../states/QuestionarioCigamState";
 import gifWinner from "../../assets/gifs/winner.gif";
 import useRefreshDetector from "../../hooks/useRefreshDetector";
 import gifCheck from "../../assets/gifs/check.gif";
+import PopupModal from "../../components/PopupModal";
+
 export default function QuestionarioCigam() {
   const navigate = useNavigate();
   const { handleCheckRefresh } = useRefreshDetector();
-  const { hasEmptyInputs, hasInputErrors, setResultadoCigam, isSubmitting } =
-    useContext(GlobalContext);
+  const {
+    hasEmptyInputs,
+    hasInputErrors,
+    setResultadoCigam,
+    isSubmitting,
+    showModal,
+    closeModal,
+    hasSavedData,
+    handleSetShowModal,
+  } = useContext(GlobalContext);
   const {
     cigamValues,
     setCigamValues,
@@ -51,6 +61,10 @@ export default function QuestionarioCigam() {
   // Envia dados para o servidor
   const handleSubmitValues = () => {
     if (emptyValueFields) return;
+    if (!showModal && !hasSavedData) {
+      return handleSetShowModal(true);
+    }
+
     setResultadoCigam({
       ...cigamValues,
       folha_pagamento,
@@ -70,6 +84,10 @@ export default function QuestionarioCigam() {
 
   return (
     <>
+      {showModal && (
+        <PopupModal showModal={showModal} closeModal={closeModal} />
+      )}
+
       <HeaderApp redirect={"/servicos"}>
         <h1 className="title">Faça uma pesquisa sobre sua empresa</h1>
       </HeaderApp>
@@ -216,9 +234,7 @@ export default function QuestionarioCigam() {
           type="button"
           className="botao"
           onClick={handleSubmitValues}
-          disabled={
-            hasEmptyInputs || hasInputErrors || emptyValueFields || isSubmitting
-          }
+          disabled={emptyValueFields || isSubmitting}
         >
           Calcular
         </Botoes>
@@ -228,7 +244,6 @@ export default function QuestionarioCigam() {
 }
 
 const TextInput = ({
-  title,
   nome,
   value,
   onChange,
@@ -237,7 +252,6 @@ const TextInput = ({
   isReadOnly,
 }) => (
   <label htmlFor={nome} className="input-label">
-    {/* <span>{title}</span> */}
     <input
       className={`input-element ${newClassName}`}
       name={nome}

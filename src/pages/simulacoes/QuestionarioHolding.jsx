@@ -22,6 +22,7 @@ export default function QuestionarioHolding() {
     closeModal,
     handleSetShowModal,
     hasSavedData,
+    isSubmitting,
   } = useContext(GlobalContext);
   const { handleCheckRefresh } = useRefreshDetector();
   const navigate = useNavigate();
@@ -106,7 +107,7 @@ export default function QuestionarioHolding() {
           type="button"
           className="botao"
           onClick={handleSubmitValues}
-          disabled={emptyValueFields}
+          disabled={emptyValueFields || isSubmitting}
         >
           Calcular
         </Botoes>

@@ -85,24 +85,23 @@ export default function Formulario() {
     },
   ];
 
-  const labelWrapper = {
-    display: "flex",
-    alignItems: "center",
-    backgroundColor: "#4b5052",
-    gap: 10,
-    borderRadius: "10px",
-    padding: "0 10px",
-  };
+  function errorAlert(val) {
+    return errors[val] && touched[val] ? "input-element--alert" : "";
+  }
 
   return (
     <form className="form">
       {inputs.map((input) => (
-        <div key={input.id} style={labelWrapper}>
+        <div className="input-wrapper" key={input.id}>
           <img src={input.icon} className="icon-topicos_servicos" alt="" />
           {input.type !== "select" ? (
-            <ElementoInput {...input} phoneMask={phoneMask} />
+            <ElementoInput
+              {...input}
+              phoneMask={phoneMask}
+              errorAlert={errorAlert}
+            />
           ) : (
-            <ElementSelect {...input} />
+            <ElementoSelect {...input} errorAlert={errorAlert} />
           )}
         </div>
       ))}
@@ -115,21 +114,17 @@ Formulario.propTypes = {
 };
 
 const ElementoInput = (props) => {
-  const { nome, type, id, title, phoneMask } = props;
-  const { inputValue, handleChange, errors, touched, handleBlur } =
+  const { nome, type, id, title, phoneMask, errorAlert } = props;
+  const { inputValue, handleChange, handleBlur, errors, touched } =
     useContext(GlobalContext);
 
   const handleInputChange = (e) => {
-    let updatedValue = e.target.value;
-    if (updatedValue.includes(" ")) {
-      const words = updatedValue.split(" ");
-      updatedValue = words
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ");
-    } else {
-      updatedValue =
-        updatedValue.charAt(0).toUpperCase() + updatedValue.slice(1);
-    }
+    let updatedValue = e.target.value.toLowerCase();
+    const words = updatedValue.split(" ");
+    updatedValue = words
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+
     if (type === "email") {
       updatedValue = updatedValue.toLowerCase();
     }
@@ -139,7 +134,7 @@ const ElementoInput = (props) => {
   return (
     <label htmlFor={id} className="input-label" key={id}>
       <input
-        className="input-element"
+        className={`input-element ${errorAlert(nome)}`}
         type={type}
         name={nome}
         id={id}
@@ -153,9 +148,6 @@ const ElementoInput = (props) => {
         maxLength={type === "tel" ? 15 : undefined}
         onChange={handleInputChange}
         onBlur={handleBlur}
-        style={{
-          borderColor: errors[nome && touched[nome]] ? "#ff0000" : "",
-        }}
       />
       {errors[nome] && touched[nome] && (
         <span className="error-message">{errors[nome]}</span>
@@ -170,18 +162,18 @@ ElementoInput.propTypes = {
   nome: PropTypes.string,
   type: PropTypes.string,
   id: PropTypes.string,
+  errorAlert: PropTypes.func,
 };
 
-const ElementSelect = (props) => {
-  // const { handleChangeSelect } = useContext(GlobalContext);
-  const { title, nome, options } = props;
-  const { inputValue, handleChange, errors, touched, handleBlur } =
+const ElementoSelect = (props) => {
+  const { title, nome, options, errorAlert } = props;
+  const { inputValue, handleChange, handleBlur, errors, touched } =
     useContext(GlobalContext);
 
   return (
     <label htmlFor={nome} className="input-label">
       <select
-        className="input-element"
+        className={`input-element ${errorAlert(nome)}`}
         name={nome}
         id={nome}
         onChange={handleChange}
@@ -200,32 +192,17 @@ const ElementSelect = (props) => {
           </option>
         ))}
       </select>
+      {errors[nome] && touched[nome] && (
+        <span className="error-message">{errors[nome]}</span>
+      )}
     </label>
   );
 };
 
-{
-  /* <select
-className="input-element"
-name="atividade"
-id="atividade"
-value={taxValues.atividade}
-onChange={handleChange}
->
-<option value={""} disabled>
-  Selecione Uma Atividade
-</option>
-{selectAtividades.map((item) => (
-  <option value={item.value} key={item.value}>
-    {item.label}
-  </option>
-))}
-</select> */
-}
-
-ElementSelect.propTypes = {
+ElementoSelect.propTypes = {
   title: PropTypes.string,
   nome: PropTypes.string,
   id: PropTypes.string,
   options: PropTypes.array,
+  errorAlert: PropTypes.func,
 };

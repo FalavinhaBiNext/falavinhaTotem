@@ -14,19 +14,18 @@ export default function PopupModal({ closeModal }) {
     closeModal();
   };
 
+  const closeIconsStyle = {
+    width: "24px",
+    height: "24px",
+    alignSelf: "flex-end",
+    margin: "-12px",
+    cursor: "pointer",
+  };
+
   return (
     <div className="overlay">
       <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <span
-          onClick={closeModal}
-          style={{
-            width: "24px",
-            height: "24px",
-            alignSelf: "flex-end",
-            margin: "-12px",
-            cursor: "pointer",
-          }}
-        >
+        <span onClick={closeModal} style={closeIconsStyle}>
           {CloseIcon()}
         </span>
 
