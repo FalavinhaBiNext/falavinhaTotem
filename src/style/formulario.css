@@ -3,8 +3,8 @@
   display: flex;
   flex-flow: column;
   gap: 10px;
-  padding: 15px;
-
+  padding: 30px 0;
+  width: 100%;
 }
 
 /* INPUTS  DE TEXTO */
@@ -20,12 +20,12 @@
   font-weight: 600;
 }
 
-.input-label > span {
+/* .input-label > span {
   font-size: medium;
-  font-family: 'Gilroy-thin';
+  font-family: "Gilroy-thin";
   letter-spacing: 4px;
   padding: 10px 0;
-}
+} */
 
 .input-element {
   width: inherit;
@@ -36,7 +36,7 @@
   padding: 0 10px;
   font-size: 1rem;
   color: #000;
-  font-family: 'Gilroy-thin';
+  font-family: "Gilroy-thin";
   font-weight: 400;
 }
 

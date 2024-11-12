@@ -1,25 +1,13 @@
 import PropTypes from "prop-types";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContextProvider";
 import gifAvatar from "../assets/gifs/avatar.gif";
 import gifTel from "../assets/gifs/tel.gif";
 import gifEmail from "../assets/gifs/email.gif";
 
-export default function Formulario({ setIsFormVisible }) {
-  const {
-    errors,
-    touched,
-    handleBlur,
-    handleChange,
-    inputValue,
-    setInputValue,
-    phoneMask,
-  } = useContext(GlobalContext);
-
-  const [hasUserData] = useState(() => {
-    const storedData = sessionStorage.getItem("userInfo");
-    return storedData ? JSON.parse(storedData) : {};
-  });
+export default function Formulario() {
+  const { errors, touched, handleBlur, handleChange, inputValue, phoneMask } =
+    useContext(GlobalContext);
 
   const inputs = [
     {
@@ -58,48 +46,68 @@ export default function Formulario({ setIsFormVisible }) {
       onBlur: handleBlur,
       icon: gifEmail,
     },
+    {
+      title: "Empresa",
+      nome: "empresa",
+      type: "text",
+      id: "empresa",
+      value: inputValue.empresa || "",
+      onChange: handleChange,
+      error: errors.empresa,
+      touched: touched.empresa,
+      onBlur: handleBlur,
+      icon: gifEmail,
+    },
+    {
+      title: "Vendendor",
+      nome: "vendedor",
+      type: "select",
+      id: "vendedor",
+      value: inputValue.vendedor || "",
+      onChange: handleChange,
+      error: errors.vendedor,
+      touched: touched.vendedor,
+      onBlur: handleBlur,
+      icon: gifAvatar,
+      options: [
+        { value: "William Bond", label: "William Bond" },
+        { value: "Tassio Leite", label: "Tassio Leite" },
+        { value: "Ana Pimentel", label: "Ana Pimentel" },
+        { value: "Henrique Paulo", label: "Henrique Paulo" },
+        { value: "Henrique Rezende", label: "Henrique Rezende" },
+        { value: "Eduardo Arthur", label: "Eduardo Arthur" },
+        { value: "Vinicius Macedo", label: "Vinicius Macedo" },
+        { value: "Bruno Lobo", label: "Bruno Lobo" },
+        { value: "Ramon Campos", label: "Ramon Campos" },
+        { value: "Danilo Bedretchuk", label: "Danilo Bedretchuk" },
+        { value: "Wagner Clemente", label: "Wagner Clemente" },
+      ],
+    },
   ];
 
-  const clearInputValues = () => {
-    setInputValue({
-      nome: "",
-      telefone: "",
-      email: "",
-    });
+  const labelWrapper = {
+    display: "flex",
+    alignItems: "center",
+    backgroundColor: "#4b5052",
+    gap: 10,
+    borderRadius: "10px",
+    padding: "0 10px",
   };
 
-  useEffect(() => {
-    if (!Object.keys(hasUserData).length > 0) {
-      setIsFormVisible(true);
-    }
-
-    // Check and clear input values on mount
-    if (inputValue.nome || inputValue.telefone || inputValue.email) {
-      clearInputValues();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  return !Object.keys(hasUserData).length > 0 ? (
+  return (
     <form className="form">
-      {inputs.map((input, index) => (
-        <div
-          key={index}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            backgroundColor: "#4b5052",
-            gap: 10,
-            borderRadius: "10px",
-            padding: "0 10px",
-          }}
-        >
+      {inputs.map((input) => (
+        <div key={input.id} style={labelWrapper}>
           <img src={input.icon} className="icon-topicos_servicos" alt="" />
-          <ElementoInput {...input} key={input.id} phoneMask={phoneMask} />
+          {input.type !== "select" ? (
+            <ElementoInput {...input} phoneMask={phoneMask} />
+          ) : (
+            <ElementSelect {...input} />
+          )}
         </div>
       ))}
     </form>
-  ) : null;
+  );
 }
 
 Formulario.propTypes = {
@@ -162,4 +170,62 @@ ElementoInput.propTypes = {
   nome: PropTypes.string,
   type: PropTypes.string,
   id: PropTypes.string,
+};
+
+const ElementSelect = (props) => {
+  // const { handleChangeSelect } = useContext(GlobalContext);
+  const { title, nome, options } = props;
+  const { inputValue, handleChange, errors, touched, handleBlur } =
+    useContext(GlobalContext);
+
+  return (
+    <label htmlFor={nome} className="input-label">
+      <select
+        className="input-element"
+        name={nome}
+        id={nome}
+        onChange={handleChange}
+        value={inputValue[nome]}
+        onBlur={handleBlur}
+        onTouchStart={handleBlur}
+        onTouchEnd={handleBlur}
+        onFocus={handleBlur}
+      >
+        <option value={""} disabled>
+          {title}
+        </option>
+        {options.map((option) => (
+          <option value={option.id} key={option.label}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+};
+
+{
+  /* <select
+className="input-element"
+name="atividade"
+id="atividade"
+value={taxValues.atividade}
+onChange={handleChange}
+>
+<option value={""} disabled>
+  Selecione Uma Atividade
+</option>
+{selectAtividades.map((item) => (
+  <option value={item.value} key={item.value}>
+    {item.label}
+  </option>
+))}
+</select> */
+}
+
+ElementSelect.propTypes = {
+  title: PropTypes.string,
+  nome: PropTypes.string,
+  id: PropTypes.string,
+  options: PropTypes.array,
 };

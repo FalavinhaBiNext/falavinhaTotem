@@ -12,7 +12,7 @@ const HeaderApp = ({ children, redirect }) => {
   const [headerScroll, setHeaderScroll] = useState(false);
   const [hasForm, setHasForm] = useState(false);
   const [hasUserData] = useState(() => {
-    const storedData = sessionStorage.getItem("userInfo");
+    const storedData = sessionStorage.getItem("user_info");
     return storedData ? JSON.parse(storedData) : {};
   });
   const { hasEmptyInputs, hasInputErrors } = useContext(GlobalContext);

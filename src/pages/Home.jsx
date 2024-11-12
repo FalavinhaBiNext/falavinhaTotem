@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import HeaderApp from "../components/Header";
@@ -7,10 +7,16 @@ import FooterApp from "../components/Footer";
 import Botoes from "../components/Botoes";
 import fundo from "../assets/video/video.mp4";
 import routes from "../routes";
+import { GlobalContext } from "../context/GlobalContextProvider";
 
 function HomePage() {
   const navigate = useNavigate();
 
+  const { handleSetShowModal } = useContext(GlobalContext);
+  const handleGetSevices = () => {
+    handleSetShowModal(true);
+    navigate(routes.servicos);
+  };
   return (
     <>
       <HeaderApp />
@@ -19,7 +25,7 @@ function HomePage() {
       </HeroApp>
 
       <FooterApp>
-        <Botoes onClick={() => navigate(routes.servicos)} className="botao">
+        <Botoes onClick={handleGetSevices} className="botao">
           CONHEÇA NOSSOS SERVIÇOS
         </Botoes>
       </FooterApp>

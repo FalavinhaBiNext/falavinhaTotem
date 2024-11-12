@@ -16,8 +16,13 @@ import PopupModal from "../../components/PopupModal";
 export default function QuestionarioHolding() {
   const { holdingValues, setHoldingValues, holdinginventarioResult } =
     QuestionarioHoldingState();
-  const { hasEmptyInputs, setResultadoHolding, isSubmitting, showModal } =
-    useContext(GlobalContext);
+  const {
+    setResultadoHolding,
+    showModal,
+    closeModal,
+    handleSetShowModal,
+    hasSavedData,
+  } = useContext(GlobalContext);
   const { handleCheckRefresh } = useRefreshDetector();
   const navigate = useNavigate();
 
@@ -36,6 +41,9 @@ export default function QuestionarioHolding() {
     !holdingValues.valor_imovel || !holdingValues.inventario;
 
   const handleSubmitValues = () => {
+    if (!showModal && !hasSavedData) {
+      return handleSetShowModal(true);
+    }
     setResultadoHolding(holdinginventarioResult);
     navigate("/resultado-holding");
   };
@@ -47,7 +55,9 @@ export default function QuestionarioHolding() {
 
   return (
     <>
-      {showModal && <PopupModal />}
+      {showModal && (
+        <PopupModal showModal={showModal} closeModal={closeModal} />
+      )}
 
       <HeaderApp redirect={"/servicos"}>
         <h1 className="title">Pesquisa de holding</h1>
@@ -93,10 +103,10 @@ export default function QuestionarioHolding() {
 
       <FooterApp footerFixed>
         <Botoes
-          type="submit"
+          type="button"
           className="botao"
           onClick={handleSubmitValues}
-          disabled={hasEmptyInputs || emptyValueFields || isSubmitting}
+          disabled={emptyValueFields}
         >
           Calcular
         </Botoes>

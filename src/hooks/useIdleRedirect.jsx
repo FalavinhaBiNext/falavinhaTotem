@@ -18,7 +18,7 @@ export default function useIdleRedirect(redirectPath) {
 
       idleTimer = setTimeout(() => {
         navigate(redirectPath);
-        sessionStorage.removeItem("userInfo");
+        sessionStorage.removeItem("user_info");
       }, IDLE_TIMEOUT);
 
       checkInterval = setInterval(() => {

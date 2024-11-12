@@ -1,4 +1,3 @@
-import { useContext, useEffect } from "react";
 import HeaderApp from "../components/Header";
 import HeroApp from "../components/Hero";
 import FooterApp from "../components/Footer";
@@ -11,15 +10,12 @@ import gifCoins from "../assets/gifs/coins1.gif";
 import gifMala from "../assets/gifs/mala.gif";
 import gifAvatar from "../assets/gifs/avatar.gif";
 import gifService from "../assets/gifs/servicos.gif";
-import Botoes from "../components/Botoes";
-import { GlobalContext } from "../context/GlobalContextProvider";
 import PopupModal from "../components/PopupModal";
+import { GlobalContext } from "../context/GlobalContextProvider";
+import { useContext } from "react";
 
 function SecondPage() {
-  const { setShowModal, showModal, savedData } = useContext(GlobalContext);
-
-  console.log(showModal);
-  console.log(savedData);
+  const { showModal, closeModal } = useContext(GlobalContext);
 
   // links dos botões
   const options = [
@@ -38,7 +34,9 @@ function SecondPage() {
 
   return (
     <>
-      {/* {savedData === null && !showModal && <PopupModal />} */}
+      {showModal && (
+        <PopupModal showModal={showModal} closeModal={closeModal} />
+      )}
 
       <HeaderApp>
         <h1 className="title">NOSSAS SOLUÇÕES</h1>
