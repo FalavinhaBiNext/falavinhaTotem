@@ -1,29 +1,31 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import FooterApp from "../../components/Footer";
 import FramerMotion from "../../components/FramerMotion";
 import imagem from "../../assets/image/ConsultoriaRH.png";
-import Formulario from "../../components/Formulario";
 import { GlobalContext } from "../../context/GlobalContextProvider";
 import { useNavigate } from "react-router-dom";
 import { perguntasSurveyRh } from "../../services/db";
 import Botoes from "../../components/Botoes";
 import { QuestionarioElementoMultiplo } from "../../components/QuestionarioElemento";
 import useRefreshDetector from "../../hooks/useRefreshDetector";
+import PopupModal from "../../components/PopupModal";
 
 export default function QuestionarioRH() {
   const {
     respostasRh,
     setRespostasRh,
     hasInputErrors,
-    hasEmptyInputs,
     isSubmitting,
+    showModal,
+    closeModal,
+    handleSetShowModal,
+    hasSavedData,
   } = useContext(GlobalContext);
 
   const { handleCheckRefresh } = useRefreshDetector();
   const navigate = useNavigate();
-  const [isFormVisible, setIsFormVisible] = useState(false);
 
   // Limpa a respostas do survey do RH ao carregar a página
   useEffect(() => {
@@ -53,16 +55,25 @@ export default function QuestionarioRH() {
     );
   };
 
+  const handleSubmitValues = () => {
+    if (!showModal && !hasSavedData) {
+      return handleSetShowModal(true);
+    }
+    navigate("/resultado-rh");
+  };
+
   return (
     <>
+      {showModal && (
+        <PopupModal showModal={showModal} closeModal={closeModal} />
+      )}
+
       <HeaderApp redirect={"/servicos"}>
         <h1 className="title">Faça uma pesquisa sobre sua empresa</h1>
       </HeaderApp>
 
       <HeroApp fundo={imagem}>
         <FramerMotion>
-          <Formulario setIsFormVisible={setIsFormVisible} />
-
           <QuestionarioElementoMultiplo
             perguntas={perguntasSurveyRh}
             respostas={respostasRh}
@@ -72,13 +83,8 @@ export default function QuestionarioRH() {
             <div className="accordion-button">
               <Botoes
                 className="botao"
-                onClick={() => navigate("/resultado-rh")}
-                disabled={
-                  (isFormVisible && hasEmptyInputs) ||
-                  hasInputErrors ||
-                  !isAllInputsChecked() ||
-                  isSubmitting
-                }
+                onClick={handleSubmitValues}
+                disabled={!isAllInputsChecked() || isSubmitting}
               >
                 Ver resultado
               </Botoes>

@@ -10,8 +10,13 @@ import gifCoins from "../assets/gifs/coins1.gif";
 import gifMala from "../assets/gifs/mala.gif";
 import gifAvatar from "../assets/gifs/avatar.gif";
 import gifService from "../assets/gifs/servicos.gif";
+import PopupModal from "../components/PopupModal";
+import { GlobalContext } from "../context/GlobalContextProvider";
+import { useContext } from "react";
 
 function SecondPage() {
+  const { showModal, closeModal } = useContext(GlobalContext);
+
   // links dos botões
   const options = [
     { name: "DASHBOARDS BI", route: routes.bi },
@@ -27,28 +32,12 @@ function SecondPage() {
     { name: "TREINAMENTOS", route: routes.treinamentos },
   ];
 
-  // DADOS DOS TÓPICOS
-  // const nossaHistoria = [
-  //   {
-  //     icon: <BsFillSuitcaseLgFill className="icon-topicos_servicos" />,
-  //     texto: "+ 47 ANOS DE HISTÓRIA",
-  //   },
-  //   {
-  //     icon: <BsRocketTakeoff className="icon-topicos_servicos" />,
-  //     texto: "+ 15.000 CLIENTES ATENDIDOS",
-  //   },
-  //   {
-  //     icon: <RiTeamFill className="icon-topicos_servicos" />,
-  //     texto: "+ 180 COLABORADORES",
-  //   },
-  //   {
-  //     icon: <GoGear className="icon-topicos_servicos" />,
-  //     texto: "+ 15 SERVIÇOS",
-  //   },
-  // ];
-
   return (
     <>
+      {showModal && (
+        <PopupModal showModal={showModal} closeModal={closeModal} />
+      )}
+
       <HeaderApp>
         <h1 className="title">NOSSAS SOLUÇÕES</h1>
       </HeaderApp>
@@ -59,13 +48,13 @@ function SecondPage() {
           <div style={{ display: "flex", gap: 2 }}>
             <div className="container-topicos_servicos">
               <div className="element-topicos_servicos">
-                <img src={gifMala} alt="" className="icon-topicos_servicos"/>
+                <img src={gifMala} alt="" className="icon-topicos_servicos" />
                 <p>+ 47 ANOS DE HISTÓRIA</p>
               </div>
             </div>
             <div className="container-topicos_servicos">
               <div className="element-topicos_servicos">
-                <img src={gifCoins} alt="" className="icon-topicos_servicos"/>
+                <img src={gifCoins} alt="" className="icon-topicos_servicos" />
                 <p>+ 15.000 CLIENTES ATENDIDOS</p>
               </div>
             </div>
@@ -73,13 +62,17 @@ function SecondPage() {
           <div style={{ display: "flex", gap: 2, textAlign: "start" }}>
             <div className="container-topicos_servicos">
               <div className="element-topicos_servicos">
-                <img src={gifAvatar} alt="" className="icon-topicos_servicos"/>
+                <img src={gifAvatar} alt="" className="icon-topicos_servicos" />
                 <p>+ 180 COLABORADORES</p>
               </div>
             </div>
             <div className="container-topicos_servicos">
               <div className="element-topicos_servicos">
-                <img src={gifService} alt="" className="icon-topicos_servicos"/>
+                <img
+                  src={gifService}
+                  alt=""
+                  className="icon-topicos_servicos"
+                />
                 <p>+ 15 SERVIÇOS</p>
               </div>
             </div>
@@ -138,6 +131,7 @@ function SecondPage() {
           </div>
         </FramerMotion>
       </HeroApp>
+
       <FooterApp />
     </>
   );

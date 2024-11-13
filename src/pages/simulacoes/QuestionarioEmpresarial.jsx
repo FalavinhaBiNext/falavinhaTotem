@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
@@ -7,21 +7,22 @@ import FramerMotion from "../../components/FramerMotion";
 import FooterApp from "../../components/Footer";
 import Botoes from "../../components/Botoes";
 import { GlobalContext } from "../../context/GlobalContextProvider";
-import Formulario from "../../components/Formulario";
 import { perguntasSurveyEmpresarial } from "../../services/db";
 import { QuestionarioElementoBinario } from "../../components/QuestionarioElemento";
 import useRefreshDetector from "../../hooks/useRefreshDetector";
+import PopupModal from "../../components/PopupModal";
 
 export default function QuestionarioEmpresarial() {
   const navigate = useNavigate();
   const { handleCheckRefresh } = useRefreshDetector();
-  const [isFormVisible, setIsFormVisible] = useState(false);
   const {
-    hasInputErrors,
-    hasEmptyInputs,
     respostasEmp,
     setRespostasEmp,
     isSubmitting,
+    showModal,
+    closeModal,
+    hasSavedData,
+    handleSetShowModal,
   } = useContext(GlobalContext);
 
   // Limpa a respostas do survey do RH ao carregar a página
@@ -53,15 +54,26 @@ export default function QuestionarioEmpresarial() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Envia dados para o servidor
+  const handleSubmitValues = () => {
+    if (!showModal && !hasSavedData) {
+      return handleSetShowModal(true);
+    }
+    navigate("/resultado-empresarial");
+  };
+
   return (
     <>
+      {showModal && (
+        <PopupModal showModal={showModal} closeModal={closeModal} />
+      )}
+
       <HeaderApp redirect={"/servicos"}>
         <h1 className="title">Faça uma pesquisa sobre sua empresa</h1>
       </HeaderApp>
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <Formulario setIsFormVisible={setIsFormVisible} />
           <QuestionarioElementoBinario
             perguntas={perguntasSurveyEmpresarial}
             respostas={respostasEmp}
@@ -69,17 +81,11 @@ export default function QuestionarioEmpresarial() {
             backgroundRadio={"#0f3355"}
           >
             {/* botões inseridos como children */}
-
             <div className="accordion-button">
               <Botoes
                 className="botao"
-                onClick={() => navigate("/resultado-empresarial")}
-                disabled={
-                  (isFormVisible && hasEmptyInputs) ||
-                  hasInputErrors ||
-                  !isAllInputsChecked() ||
-                  isSubmitting
-                }
+                onClick={handleSubmitValues}
+                disabled={!isAllInputsChecked() || isSubmitting}
               >
                 Ver resultado
               </Botoes>

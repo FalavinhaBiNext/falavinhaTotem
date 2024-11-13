@@ -1,10 +1,9 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import fundo from "../../assets/image/FundoHolding.png";
 import FramerMotion from "../../components/FramerMotion";
-import Formulario from "../../components/Formulario";
 import FooterApp from "../../components/Footer";
 import QuestionarioHoldingState from "../../states/QuestionarioHoldingState";
 import { numberFormatter } from "../../utils";
@@ -12,13 +11,19 @@ import Botoes from "../../components/Botoes";
 import { GlobalContext } from "../../context/GlobalContextProvider";
 import { useNavigate } from "react-router-dom";
 import useRefreshDetector from "../../hooks/useRefreshDetector";
+import PopupModal from "../../components/PopupModal";
 
 export default function QuestionarioHolding() {
-  const [isFormVisible, setIsFormVisible] = useState(false);
   const { holdingValues, setHoldingValues, holdinginventarioResult } =
     QuestionarioHoldingState();
-  const { hasEmptyInputs, setResultadoHolding, isSubmitting } =
-    useContext(GlobalContext);
+  const {
+    setResultadoHolding,
+    showModal,
+    closeModal,
+    handleSetShowModal,
+    hasSavedData,
+    isSubmitting,
+  } = useContext(GlobalContext);
   const { handleCheckRefresh } = useRefreshDetector();
   const navigate = useNavigate();
 
@@ -37,6 +42,9 @@ export default function QuestionarioHolding() {
     !holdingValues.valor_imovel || !holdingValues.inventario;
 
   const handleSubmitValues = () => {
+    if (!showModal && !hasSavedData) {
+      return handleSetShowModal(true);
+    }
     setResultadoHolding(holdinginventarioResult);
     navigate("/resultado-holding");
   };
@@ -48,14 +56,16 @@ export default function QuestionarioHolding() {
 
   return (
     <>
+      {showModal && (
+        <PopupModal showModal={showModal} closeModal={closeModal} />
+      )}
+
       <HeaderApp redirect={"/servicos"}>
         <h1 className="title">Pesquisa de holding</h1>
       </HeaderApp>
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <Formulario setIsFormVisible={setIsFormVisible} />
-
           <form className="form" style={{ margin: "40px 0 40px" }}>
             <article className="holding-questionario">
               <h2 className="holding-questionario__title">Holding</h2>
@@ -94,14 +104,10 @@ export default function QuestionarioHolding() {
 
       <FooterApp footerFixed>
         <Botoes
-          type="submit"
+          type="button"
           className="botao"
           onClick={handleSubmitValues}
-          disabled={
-            (isFormVisible && hasEmptyInputs) ||
-            emptyValueFields ||
-            isSubmitting
-          }
+          disabled={emptyValueFields || isSubmitting}
         >
           Calcular
         </Botoes>

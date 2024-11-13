@@ -1,25 +1,16 @@
 import PropTypes from "prop-types";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContextProvider";
 import gifAvatar from "../assets/gifs/avatar.gif";
 import gifTel from "../assets/gifs/tel.gif";
 import gifEmail from "../assets/gifs/email.gif";
+import gifEmpresa from "../assets/gifs/empresa.gif";
+import gifTeam from "../assets/gifs/team.gif";
 
-export default function Formulario({ setIsFormVisible }) {
-  const {
-    errors,
-    touched,
-    handleBlur,
-    handleChange,
-    inputValue,
-    setInputValue,
-    phoneMask,
-  } = useContext(GlobalContext);
 
-  const [hasUserData] = useState(() => {
-    const storedData = sessionStorage.getItem("userInfo");
-    return storedData ? JSON.parse(storedData) : {};
-  });
+export default function Formulario() {
+  const { errors, touched, handleBlur, handleChange, inputValue, phoneMask } =
+    useContext(GlobalContext);
 
   const inputs = [
     {
@@ -58,48 +49,68 @@ export default function Formulario({ setIsFormVisible }) {
       onBlur: handleBlur,
       icon: gifEmail,
     },
+    {
+      title: "Empresa",
+      nome: "empresa",
+      type: "text",
+      id: "empresa",
+      value: inputValue.empresa || "",
+      onChange: handleChange,
+      error: errors.empresa,
+      touched: touched.empresa,
+      onBlur: handleBlur,
+      icon: gifEmpresa,
+    },
+    {
+      title: "Vendendor",
+      nome: "vendedor",
+      type: "select",
+      id: "vendedor",
+      value: inputValue.vendedor || "",
+      onChange: handleChange,
+      error: errors.vendedor,
+      touched: touched.vendedor,
+      onBlur: handleBlur,
+      icon: gifTeam,
+      options: [
+        { value: "William Bond", label: "William Bond" },
+        { value: "Tassio Leite", label: "Tassio Leite" },
+        { value: "Ana Pimentel", label: "Ana Pimentel" },
+        { value: "Henrique Paulo", label: "Henrique Paulo" },
+        { value: "Henrique Rezende", label: "Henrique Rezende" },
+        { value: "Eduardo Arthur", label: "Eduardo Arthur" },
+        { value: "Vinicius Macedo", label: "Vinicius Macedo" },
+        { value: "Bruno Lobo", label: "Bruno Lobo" },
+        { value: "Ramon Campos", label: "Ramon Campos" },
+        { value: "Danilo Bedretchuk", label: "Danilo Bedretchuk" },
+        { value: "Wagner Clemente", label: "Wagner Clemente" },
+      ],
+    },
   ];
 
-  const clearInputValues = () => {
-    setInputValue({
-      nome: "",
-      telefone: "",
-      email: "",
-    });
-  };
+  function errorAlert(val) {
+    return errors[val] && touched[val] ? "input-element--alert" : "";
+  }
 
-  useEffect(() => {
-    if (!Object.keys(hasUserData).length > 0) {
-      setIsFormVisible(true);
-    }
-
-    // Check and clear input values on mount
-    if (inputValue.nome || inputValue.telefone || inputValue.email) {
-      clearInputValues();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  return !Object.keys(hasUserData).length > 0 ? (
+  return (
     <form className="form">
-      {inputs.map((input, index) => (
-        <div
-          key={index}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            backgroundColor: "#4b5052",
-            gap: 10,
-            borderRadius: "10px",
-            padding: "0 10px",
-          }}
-        >
+      <h2 className="form__title">QUEREMOS LHE CONHECER MELHOR</h2>
+      {inputs.map((input) => (
+        <div className="input-wrapper" key={input.id}>
           <img src={input.icon} className="icon-topicos_servicos" alt="" />
-          <ElementoInput {...input} key={input.id} phoneMask={phoneMask} />
+          {input.type !== "select" ? (
+            <ElementoInput
+              {...input}
+              phoneMask={phoneMask}
+              errorAlert={errorAlert}
+            />
+          ) : (
+            <ElementoSelect {...input} errorAlert={errorAlert} />
+          )}
         </div>
       ))}
     </form>
-  ) : null;
+  );
 }
 
 Formulario.propTypes = {
@@ -107,21 +118,17 @@ Formulario.propTypes = {
 };
 
 const ElementoInput = (props) => {
-  const { nome, type, id, title, phoneMask } = props;
-  const { inputValue, handleChange, errors, touched, handleBlur } =
+  const { nome, type, id, title, phoneMask, errorAlert } = props;
+  const { inputValue, handleChange, handleBlur, errors, touched } =
     useContext(GlobalContext);
 
   const handleInputChange = (e) => {
-    let updatedValue = e.target.value;
-    if (updatedValue.includes(" ")) {
-      const words = updatedValue.split(" ");
-      updatedValue = words
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ");
-    } else {
-      updatedValue =
-        updatedValue.charAt(0).toUpperCase() + updatedValue.slice(1);
-    }
+    let updatedValue = e.target.value.toLowerCase();
+    const words = updatedValue.split(" ");
+    updatedValue = words
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+
     if (type === "email") {
       updatedValue = updatedValue.toLowerCase();
     }
@@ -131,7 +138,7 @@ const ElementoInput = (props) => {
   return (
     <label htmlFor={id} className="input-label" key={id}>
       <input
-        className="input-element"
+        className={`input-element ${errorAlert(nome)}`}
         type={type}
         name={nome}
         id={id}
@@ -145,9 +152,6 @@ const ElementoInput = (props) => {
         maxLength={type === "tel" ? 15 : undefined}
         onChange={handleInputChange}
         onBlur={handleBlur}
-        style={{
-          borderColor: errors[nome && touched[nome]] ? "#ff0000" : "",
-        }}
       />
       {errors[nome] && touched[nome] && (
         <span className="error-message">{errors[nome]}</span>
@@ -162,4 +166,47 @@ ElementoInput.propTypes = {
   nome: PropTypes.string,
   type: PropTypes.string,
   id: PropTypes.string,
+  errorAlert: PropTypes.func,
+};
+
+const ElementoSelect = (props) => {
+  const { title, nome, options, errorAlert } = props;
+  const { inputValue, handleChange, handleBlur, errors, touched } =
+    useContext(GlobalContext);
+
+  return (
+    <label htmlFor={nome} className="input-label input-label--custom">
+      <select
+        className={`input-element ${errorAlert(nome)}`}
+        name={nome}
+        id={nome}
+        onChange={handleChange}
+        value={inputValue[nome]}
+        onBlur={handleBlur}
+        onTouchStart={handleBlur}
+        onTouchEnd={handleBlur}
+        onFocus={handleBlur}
+      >
+        <option value={""} disabled>
+          {title}
+        </option>
+        {options.map((option) => (
+          <option value={option.id} key={option.label}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+      {errors[nome] && touched[nome] && (
+        <span className="error-message">{errors[nome]}</span>
+      )}
+    </label>
+  );
+};
+
+ElementoSelect.propTypes = {
+  title: PropTypes.string,
+  nome: PropTypes.string,
+  id: PropTypes.string,
+  options: PropTypes.array,
+  errorAlert: PropTypes.func,
 };

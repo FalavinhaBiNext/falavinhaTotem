@@ -22,20 +22,18 @@
   font-family: inherit;
   letter-spacing: 1.5px;
   height: 150px;
-  
 }
 
 .tributario-list__title {
   font-size: 2.7rem;
   text-align: start;
-  line-height: 24px;
-  font-family: 'Gilroy-bold';
+  font-family: "Gilroy-bold";
   letter-spacing: 4px;
 }
 
 .tributario-list__item > span {
   font-size: 1rem;
-  font-family: 'Gilroy-light';
+  font-family: "Gilroy-light";
   letter-spacing: 1px;
   text-transform: uppercase;
 }
@@ -45,14 +43,13 @@
   justify-content: space-between;
   align-items: center;
   gap: 20;
-  
 }
 
 .page-tributario_paginacao button {
   background-color: transparent;
   border: none;
   color: #fff;
-  font-family: 'Gilroy-thin';
+  font-family: "Gilroy-thin";
   letter-spacing: 2px;
 }
 

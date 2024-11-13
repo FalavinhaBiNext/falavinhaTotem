@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import HeaderApp from "../../components/Header";
 import Botoes from "../../components/Botoes";
@@ -8,17 +8,26 @@ import FramerMotion from "../../components/FramerMotion";
 import FooterApp from "../../components/Footer";
 import fundo from "../../assets/image/FundoCigam.png";
 import { GlobalContext } from "../../context/GlobalContextProvider";
-import Formulario from "../../components/Formulario";
 import { numberFormatter } from "../../utils";
 import QuestionarioCigamState from "../../states/QuestionarioCigamState";
 import gifWinner from "../../assets/gifs/winner.gif";
 import useRefreshDetector from "../../hooks/useRefreshDetector";
 import gifCheck from "../../assets/gifs/check.gif";
+import PopupModal from "../../components/PopupModal";
+
 export default function QuestionarioCigam() {
   const navigate = useNavigate();
   const { handleCheckRefresh } = useRefreshDetector();
-  const { hasEmptyInputs, hasInputErrors, setResultadoCigam, isSubmitting } =
-    useContext(GlobalContext);
+  const {
+    hasEmptyInputs,
+    hasInputErrors,
+    setResultadoCigam,
+    isSubmitting,
+    showModal,
+    closeModal,
+    hasSavedData,
+    handleSetShowModal,
+  } = useContext(GlobalContext);
   const {
     cigamValues,
     setCigamValues,
@@ -31,8 +40,6 @@ export default function QuestionarioCigam() {
     salario_hora,
     folha_pagamento,
   } = QuestionarioCigamState();
-  const isValidValue = (val) => (isNaN(val) || !isFinite(val) ? "" : val);
-  const [isFormVisible, setIsFormVisible] = useState(false);
   const emptyValueFields =
     cigamValues.usuarios === "" ||
     cigamValues.salario_medio === "" ||
@@ -54,6 +61,10 @@ export default function QuestionarioCigam() {
   // Envia dados para o servidor
   const handleSubmitValues = () => {
     if (emptyValueFields) return;
+    if (!showModal && !hasSavedData) {
+      return handleSetShowModal(true);
+    }
+
     setResultadoCigam({
       ...cigamValues,
       folha_pagamento,
@@ -73,13 +84,16 @@ export default function QuestionarioCigam() {
 
   return (
     <>
+      {showModal && (
+        <PopupModal showModal={showModal} closeModal={closeModal} />
+      )}
+
       <HeaderApp redirect={"/servicos"}>
         <h1 className="title">Faça uma pesquisa sobre sua empresa</h1>
       </HeaderApp>
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <Formulario setIsFormVisible={setIsFormVisible} />
           <form className="form">
             <TextInput
               title="Usuários:"
@@ -220,12 +234,7 @@ export default function QuestionarioCigam() {
           type="button"
           className="botao"
           onClick={handleSubmitValues}
-          disabled={
-            (isFormVisible && hasEmptyInputs) ||
-            hasInputErrors ||
-            emptyValueFields ||
-            isSubmitting
-          }
+          disabled={emptyValueFields || isSubmitting}
         >
           Calcular
         </Botoes>
@@ -235,7 +244,6 @@ export default function QuestionarioCigam() {
 }
 
 const TextInput = ({
-  title,
   nome,
   value,
   onChange,
@@ -244,7 +252,6 @@ const TextInput = ({
   isReadOnly,
 }) => (
   <label htmlFor={nome} className="input-label">
-    {/* <span>{title}</span> */}
     <input
       className={`input-element ${newClassName}`}
       name={nome}

@@ -38,4 +38,10 @@ export const validationSchema = Yup.object().shape({
     .email("Email inválido")
     .matches(regex, "Email incompleto!")
     .required(requiredField),
+  empresa: Yup.string()
+    .min(5, "Nome muito curto")
+    .max(30, "Nome muito longo")
+    .required(requiredField),
+  vendedor: Yup.string()
+    .required(requiredField),
 });
