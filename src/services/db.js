@@ -400,13 +400,8 @@ export const modulosCigam = [
   {
     name: "PESQUISA DE MERCADO",
     item: [
-<<<<<<< HEAD
       { item: "Aummento nas vendas através de uma ferramenta de BIG DATA já integrada com áreas de CRM e ERP. Diferente de outras soluções, o Pesquisa de Mercado não limita o número de empresas importadas e nem cobra valores adicionais a partir de um número de extrações. Ou seja: liberdade para sua empresa crescer!" }
     ]
-=======
-      {item: "Aumento nas vendas através de uma ferramenta de BIG DATA já integrada com áreas de CRM e ERP. Diferente de outras soluções, o Pesquisa de Mercado não limita o número de empresas importadas e nem cobra valores adicionais a partir de um número de extrações. Ou seja: liberdade para sua empresa crescer!"}
-    ] 
->>>>>>> 321d76a25912de58dfea9b8de691b1069ff1e1b2
   },
 
   {

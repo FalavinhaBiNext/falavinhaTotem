@@ -367,17 +367,17 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 /* ========================== */
-aside {
+.menu-aside {
   background-color: #0799d3;
   position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
-  width: 20%;
+  width: 250px;
   z-index: 1;
 }
 
-section {
+.menu-section {
   position: relative;
   width: 100%;
   height: 100%;
@@ -385,26 +385,25 @@ section {
   overflow: hidden;
 }
 
-label {
+.menu-label {
   display: inline-block;
   padding: 7px 10px;
   background-color: transparent;
   cursor: pointer;
-  margin: 10px;
-  z-index: 3;
+  z-index: 3000;
   position: fixed;
   right: 0;
 }
 
 .bar {
   display: block;
-  background-color: #0799d3;
+  background-color: #fff;
   width: 30px;
   height: 3px;
   border-radius: 5px;
   margin: 5px auto;
-  transition: background-color 0.5s ease-in, transform 0.5s ease-in,
-    width 0.5s ease-in;
+  transition: background-color 0.3s ease-in, transform 0.3s ease-in,
+    width 0.3s ease-in;
 }
 
 .content {
@@ -415,7 +414,7 @@ label {
   left: 0;
   background-color: #fff;
   z-index: 2;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 }
 
 h1 {
@@ -429,7 +428,7 @@ h1 {
   font-size: 40px;
 }
 
-.asideList {
+.menu-aside__list {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -438,7 +437,7 @@ h1 {
   border-top: 2px solid rgba(255, 255, 255, 0.7);
 }
 
-.asideAnchor {
+.menu-aside__anchor {
   border-bottom: 2px solid rgba(255, 255, 255, 0.7);
   padding: 20px 0;
   display: block;
@@ -451,7 +450,7 @@ h1 {
   transition: color 0.3s 0.15s ease-in;
 }
 
-.asideAnchor::after {
+.menu-aside__anchor::after {
   content: "";
   position: absolute;
   left: 0;
@@ -463,27 +462,27 @@ h1 {
   z-index: -1;
 }
 
-.asideAnchor:hover {
+.menu-aside__anchor:hover {
   color: #0799d3;
 }
 
-.asideAnchor:hover::after {
+.menu-aside__anchor:hover::after {
   width: 100%;
 }
 
-input[type="checkbox"] {
+.menu-section input[type="checkbox"] {
   display: none;
 }
 
-input[type="checkbox"]:checked ~ .content {
-  transform: translateX(-20%);
+.menu-section input[type="checkbox"]:checked ~ .content {
+  transform: translateX(-250px);
 }
 
-input[type="checkbox"]:checked ~ label .bar {
+.menu-section input[type="checkbox"]:checked ~ .menu-label .bar {
   background-color: #fff;
 }
 
-input[type="checkbox"]:checked ~ label .top {
+.menu-section input[type="checkbox"]:checked ~ .menu-label .top {
   -webkit-transform: translateY(0px) rotateZ(45deg);
   -moz-transform: translateY(0px) rotateZ(45deg);
   -ms-transform: translateY(0px) rotateZ(45deg);
@@ -491,7 +490,7 @@ input[type="checkbox"]:checked ~ label .top {
   transform: translateY(0px) rotateZ(45deg);
 }
 
-input[type="checkbox"]:checked ~ label .bottom {
+.menu-section input[type="checkbox"]:checked ~ .menu-label .bottom {
   -webkit-transform: translateY(-15px) rotateZ(-45deg);
   -moz-transform: translateY(-15px) rotateZ(-45deg);
   -ms-transform: translateY(-15px) rotateZ(-45deg);
@@ -499,7 +498,7 @@ input[type="checkbox"]:checked ~ label .bottom {
   transform: translateY(-15px) rotateZ(-45deg);
 }
 
-input[type="checkbox"]:checked ~ label .middle {
+.menu-section input[type="checkbox"]:checked ~ .menu-label .middle {
   width: 0;
 }
 

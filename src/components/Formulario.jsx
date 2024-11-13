@@ -80,7 +80,7 @@ export default function Formulario({ setIsFormVisible }) {
             padding: "0 10px",
           }}
         >
-          <img src={input.icon} className="icon-topicos_servicos" alt="" />
+          <img src={input.icon} className="block w-8 h-8" alt="" />
           <ElementoInput {...input} key={input.id} phoneMask={phoneMask} />
         </div>
       ))}
@@ -115,7 +115,7 @@ const ElementoInput = (props) => {
   };
 
   return (
-    <label htmlFor={id} className="input-label" key={id}>
+    <label className="flex flex-col items-start w-full" htmlFor={id} key={id}>
       <input
         className="input-element"
         type={type}

@@ -25,14 +25,14 @@ const HeaderApp = ({ children, redirect }) => {
   return (
     <header
       className="min-[992px]:p-base_container px-5  
-      h-auto flex justify-between flex-col gap-3 fixed top-0 left-0 right-0 z-[100] 
+      h-auto flex justify-between flex-col gap-3  
       transition-all duration-200 ease-in-out"
       style={{
         boxShadow: hederBoxShadow,
         backgroundColor: isScrolling ? "#009499" : "transparent",
       }}
     >
-      <div className="flex justify-between items-center pt-3">
+      <div className="flex items-center justify-between pt-3">
         <Link to="/" className="logo" onClick={handleClearUserData}>
           <img
             className="max-w-[35vw] md:max-w-[180px] relative z-[10000]"
