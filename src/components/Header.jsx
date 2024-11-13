@@ -26,7 +26,7 @@ const HeaderApp = ({ children, redirect }) => {
     <header
       className="min-[992px]:p-base_container px-5  
       h-auto flex justify-between flex-col gap-3  
-      transition-all duration-200 ease-in-out"
+      transition-all duration-200 ease-in-out fixed left-0 top-0 z-10 w-full"
       style={{
         boxShadow: hederBoxShadow,
         backgroundColor: isScrolling ? "#009499" : "transparent",
