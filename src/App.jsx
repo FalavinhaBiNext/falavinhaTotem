@@ -22,16 +22,17 @@ import useIdleRedirect from "./hooks/useIdleRedirect";
 import QuestionarioRH from "./pages/simulacoes/QuestionarioRH";
 import QuestionarioCigam from "./pages/simulacoes/QuestionarioCigam";
 import QuestionarioTributario from "./pages/simulacoes/QuestionarioTributario";
-// páginas resultados
-import ResultadoRH from "./pages/resultados/ResultadoRH";
-import StayOnTop from "./components/StayOnTop";
-import ResultadoCigam from "./pages/resultados/ResultadoCigam";
-import NotFound from "./pages/NotFound";
-import ResultadoTributario from "./pages/resultados/ResultadoTributario";
 import QuestionarioEmpresarial from "./pages/simulacoes/QuestionarioEmpresarial";
-import ResultadoEmpresarial from "./pages/resultados/ResultadoEmpresarial";
 import QuestionarioHolding from "./pages/simulacoes/QuestionarioHolding";
+import QuestionarioBI from "./pages/simulacoes/QuestionarioBI";
+// páginas resultados
+import StayOnTop from "./components/StayOnTop";
+import ResultadoRH from "./pages/resultados/ResultadoRH";
+import ResultadoCigam from "./pages/resultados/ResultadoCigam";
+import ResultadoTributario from "./pages/resultados/ResultadoTributario";
+import ResultadoEmpresarial from "./pages/resultados/ResultadoEmpresarial";
 import ResultadoHolding from "./pages/resultados/ResultadoHolding";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const RedirectHomepage = () => useIdleRedirect("/");
@@ -39,7 +40,7 @@ function App() {
     <AnimatePresence>
       <Router>
         <StayOnTop />
-        <RedirectHomepage />
+        {/* <RedirectHomepage /> */}
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/servicos" element={<Servicos />} />
@@ -100,6 +101,7 @@ function App() {
             element={<QuestionarioHolding />}
           />
           <Route path="/resultado-holding" element={<ResultadoHolding />} />
+          <Route path="/questionario-bi" element={<QuestionarioBI />} />
 
           <Route path="/*" element={<NotFound />} />
         </Routes>

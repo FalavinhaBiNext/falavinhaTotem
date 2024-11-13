@@ -22,6 +22,7 @@ const routes = {
   questionarioTributario: "/questionario-tributario",
   questionarioEmpresarial: "/questionario-empresarial",
   questionarioHolding: "/questionario-holding",
+  questionarioBI: "/questionario-bi",
 };
 
 export default routes;

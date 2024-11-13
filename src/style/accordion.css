@@ -42,9 +42,14 @@
   }
   .accordion-content > ul {
    text-align: start;
-   padding: 10px 0;
+   padding: 10px 30px;
    font-family: 'Gilroy-thin';
    letter-spacing: 1px;
+  }
+
+  .accordion-content > ul > li {
+    padding-bottom: 5px;
+    list-style-type: circle;
   }
 
   .accordion-content > h4 {
