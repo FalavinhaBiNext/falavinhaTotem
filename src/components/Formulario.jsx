@@ -119,19 +119,6 @@ const ElementoInput = (props) => {
   const { inputValue, handleChange, handleBlur, errors, touched } =
     useContext(GlobalContext);
 
-  const handleInputChange = (e) => {
-    let updatedValue = e.target.value.toLowerCase();
-    const words = updatedValue.split(" ");
-    updatedValue = words
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
-
-    if (type === "email") {
-      updatedValue = updatedValue.toLowerCase();
-    }
-    handleChange({ target: { name: nome, value: updatedValue } });
-  };
-
   return (
     <label htmlFor={id} className="input-label" key={id}>
       <input
@@ -147,7 +134,7 @@ const ElementoInput = (props) => {
             : inputValue[nome] || ""
         }
         maxLength={type === "tel" ? 15 : undefined}
-        onChange={handleInputChange}
+        onChange={handleChange}
         onBlur={handleBlur}
       />
       {errors[nome] && touched[nome] && (
