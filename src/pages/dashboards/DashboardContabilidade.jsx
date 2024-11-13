@@ -4,6 +4,7 @@ import FramerMotion from "../../components/UI/FramerMotion";
 import HeroApp from "../../components/Hero";
 import fundo from "../../assets/image/FundoBI.png";
 import MainPageTitle from "../../components/UI/MainPageTitle";
+import DashboardBILayout from "../../components/UI/DashboardBILayout";
 
 // Link ao dashboard BI Gestor 2.0
 const biContent = `https://app.powerbi.com/view?r=eyJrIjoiMGM5Y2VhYTUtMTdhMS00MmM0LWFmOTMtYTY4Njc2ZjMwYz
@@ -18,18 +19,7 @@ function DashboardContabilidade() {
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <h2 className="subtitulo">Contabilidade</h2>
-          <div className="iframeDash">
-            <iframe
-              className="iframe-content"
-              title="Gestor 2.0 (Revitalizado) - Copia"
-              src={biContent}
-              frameBorder="0"
-              allowFullScreen
-              loading="lazy"
-            ></iframe>
-            <span className="iframe-border"></span>
-          </div>
+          <DashboardBILayout biTitle={"Contabilidade"} biContent={biContent} />
         </FramerMotion>
       </HeroApp>
       <FooterApp />

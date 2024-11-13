@@ -24,7 +24,7 @@
   background: transparent;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-  box-shadow: 0 50px 0 0 #06A2B9;
+  box-shadow: 0 50px 0 0 #028ea3;
   z-index: 100;
 }
 
@@ -38,7 +38,7 @@
   height: 60px;
   width: 100%;
   background: transparent;
-  background-color: #06A2B9;
+  background-color: #008ea4fc;
   z-index: 99;
 }
 
