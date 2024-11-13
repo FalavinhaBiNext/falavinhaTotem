@@ -91,6 +91,7 @@ export default function Formulario() {
 
   return (
     <form className="form">
+      <h2 className="form__title">Queremos lhe conhecer melhor</h2>
       {inputs.map((input) => (
         <div className="input-wrapper" key={input.id}>
           <img src={input.icon} className="icon-topicos_servicos" alt="" />
@@ -171,7 +172,7 @@ const ElementoSelect = (props) => {
     useContext(GlobalContext);
 
   return (
-    <label htmlFor={nome} className="input-label">
+    <label htmlFor={nome} className="input-label input-label--custom">
       <select
         className={`input-element ${errorAlert(nome)}`}
         name={nome}

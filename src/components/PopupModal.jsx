@@ -36,7 +36,7 @@ export default function PopupModal({ closeModal }) {
           className="botao"
           disabled={hasEmptyInputs || emptyValueFields}
         >
-          Enviar
+          Salvar
         </Botoes>
       </div>
     </div>
