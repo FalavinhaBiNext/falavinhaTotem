@@ -187,11 +187,13 @@ const ElementoSelect = (props) => {
         <option value={""} disabled>
           {title}
         </option>
-        {options.map((option) => (
-          <option value={option.id} key={option.label}>
-            {option.label}
-          </option>
-        ))}
+        {options
+          .sort((a, b) => a.label.localeCompare(b.label))
+          .map((option) => (
+            <option value={option.value} key={option.label}>
+              {option.label}
+            </option>
+          ))}
       </select>
       {errors[nome] && touched[nome] && (
         <span className="error-message">{errors[nome]}</span>

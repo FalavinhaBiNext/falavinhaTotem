@@ -16,7 +16,7 @@
 }
 
 .header .logo img {
-  max-width: 40vw;
+  max-width: 35vw;
 }
 @media (min-width: 768px) {
   .header .logo img {
