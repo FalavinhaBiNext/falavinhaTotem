@@ -6,12 +6,12 @@ import routes from "../../routes";
 import textos from "../../components/UI/textos";
 import ButtonLinks from "../../components/UI/ButtonLinks";
 import FramerMotion from "../../components/UI/FramerMotion";
+import MainPageTitle from "../../components/UI/MainPageTitle";
 // Import dos Gifs
 import gifTarget from "../../assets/gifs/target.gif";
 import gifComunicacao from "../../assets/gifs/comunicacao.gif";
 import gifCheck from "../../assets/gifs/check.gif";
 import gifComputador from "../../assets/gifs/computer.gif";
-import MainPageTitle from "../../components/UI/MainPageTitle";
 
 function Contabilidade() {
   // links dos botões
@@ -59,18 +59,33 @@ function Contabilidade() {
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <div>
-            <h2 className="subtitulo">{textos.contabilidade.Subtitulo}</h2>
-          </div>
-          <div className="textoMain">
-            <p className="paragraph">{textos.contabilidade.Texto}</p>
-          </div>
-          <div className="consultoria-rh">
+          <section className="mb-10">
+            <h2 className="pb-3 text-xl leading-6 text-center text-light_color font-gilroyLight">
+              {textos.contabilidade.Subtitulo}!
+            </h2>
+            <p className="text-base italic text-light_color font-gilroyThin">
+              {textos.contabilidade.Texto}
+            </p>
+          </section>
+
+          <div className="grid gap-5 mb-10 grid-cols-standard2">
             {topicos.map((item, index) => (
-              <div key={index} className="consultoria-rh__item">
-                <img src={item.icone} alt="" className="icon-topicos_rh" />
-                <p>{item.titulo}</p>
-                {item.texto}
+              <div
+                key={index}
+                className="flex flex-col items-start justify-start gap-2 min-h-[150px] py-3 px-4 text-left
+                 w-full border-2 border-primary_color rounded-[20px] shadow-bx-1 bg-transparent text-light_color"
+              >
+                <img
+                  src={item.icone}
+                  alt="Icone"
+                  className="w-[50px] h-[50px]"
+                />
+                <h2 className="font-gilroyBold text-base text-center leading-[1.2rem] uppercase pb-3">
+                  {item.titulo}
+                </h2>
+                <p className="text-sm sm:text-base font-gilroyLight">
+                  {item.texto}
+                </p>
               </div>
             ))}
           </div>

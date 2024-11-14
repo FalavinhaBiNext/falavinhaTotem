@@ -4,7 +4,7 @@ import HeroApp from "../../components/Hero";
 import FramerMotion from "../../components/UI/FramerMotion";
 import fundo from "../../assets/image/FundoBI.png";
 import MainPageTitle from "../../components/UI/MainPageTitle";
-import DashboardBILayout from "../../components/UI/DashboardBILayout";
+import DashboardBILayout from "../../components/UI/DashboadBILayout";
 
 const biContent = `https://app.powerbi.com/view?r=eyJrIjoiNDAyM2RkYmQtOWM2Mi00NTljLWFiZjEtNmMwZWI2Y2IxYzU5IiwidCI6Ijk2ZjUxYjBhLTMwNDAtNDgzZi04Yjc2LTExODQ4YmZkZTRmYiJ9`;
 

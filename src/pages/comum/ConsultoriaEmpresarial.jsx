@@ -76,29 +76,43 @@ function ConsultoriaEmpresarial() {
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <div>
-            <h2 className="subtitulo">
+          <section className="mb-10">
+            <h2 className="pb-3 text-xl leading-6 text-center text-light_color font-gilroyLight">
               {textos.consultoriaEmpresarial.Subtitulo}
             </h2>
-          </div>
-
-          <div className="textoMain">
-            <p className="paragraph">
+            <p className="text-base italic text-light_color font-gilroyThin">
               A{" "}
               <PalavraChave color="#fff">
                 {textos.consultoriaEmpresarial.palavraChave}
               </PalavraChave>
               {textos.consultoriaEmpresarial.texto}
             </p>
-          </div>
-          <div className="consultoria-rh">
+          </section>
+
+          <div className="grid gap-5 mb-10 grid-cols-standard2">
             {topicos.map((item, index) => (
-              <div key={index} className="consultoria-rh__item">
-                <img src={item.icone} alt="" className="icon-topicos_rh" />
-                <p>{item.titulo}</p>
-                <ul>
+              <div
+                key={index}
+                className="flex flex-col items-start justify-start gap-1 min-h-[230px] py-3 px-4 text-left
+                 w-full border-2 border-primary_color rounded-[20px] shadow-bx-1 bg-transparent text-light_color"
+              >
+                <img
+                  src={item.icone}
+                  alt="Icone"
+                  className="w-[40px] h-[40px]"
+                />
+                <h3 className="text-light_color font-gilroyBold text-base text-center leading-[1.2rem] uppercase pb-2">
+                  {item.titulo}
+                </h3>
+                <ul className="flex flex-col gap-2 text-light_color">
                   {item.item.map((itens, index) => (
-                    <li key={index}>{itens}</li>
+                    <li
+                      className="font-gilroyLight text-base leading-[1.2rem]"
+                      key={index}
+                    >
+                      {" "}
+                      &#x2714; {itens}
+                    </li>
                   ))}
                 </ul>
               </div>

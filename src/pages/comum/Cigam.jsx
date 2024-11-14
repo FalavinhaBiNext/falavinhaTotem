@@ -14,6 +14,7 @@ import gifPuzzle from "../../assets/gifs/puzzle.gif";
 import gifLine from "../../assets/gifs/line.gif";
 import gifEditar from "../../assets/gifs/editar.gif";
 import gifIntel from "../../assets/gifs/intel.gif";
+import MainPageTitle from "../../components/UI/MainPageTitle";
 
 const Cigam = () => {
   // links dos botões
@@ -44,47 +45,44 @@ const Cigam = () => {
   return (
     <>
       <HeaderApp redirect={"/servicos"}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <img style={{ width: "45%" }} src={logoCigam} alt="" />
-        </div>
+        <MainPageTitle title={textos.contabilidade.Titulo} image={logoCigam} />
       </HeaderApp>
+
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <div>
-            <h2 className="subtitulo">
+          <section className="mt-0 mb-10 sm:mt-10">
+            <h2 className="pb-3 text-xl leading-6 text-center text-light_color font-gilroyLight">
               {textos.cigam.Subtitulo}{" "}
               <PalavraChave color="#FE710E">
                 completamente integrado!
               </PalavraChave>
             </h2>
-          </div>
-          <div className="textoMain">
-            <p className="paragraph">{textos.cigam.texto}</p>
-          </div>
-          <div className="consultoria-rh">
+            <p className="text-base italic text-light_color font-gilroyThin">
+              {textos.cigam.texto}
+            </p>
+          </section>
+
+          <div className="grid gap-5 mb-10 grid-cols-standard2">
             {topicos.map((item, index) => (
-              <div key={index} className="consultoria-rh__item">
-                <img src={item.icone} alt="" className="icon-topicos_rh" />
-                <p>{item.texto}</p>
+              <div
+                key={index}
+                className="
+                  flex flex-col items-start justify-start gap-2 py-3 px-4 text-left
+                  w-full border-2 border-primary_color rounded-[20px] shadow-bx-1 
+                  bg-transparent text-light_color min-h-[200px]"
+              >
+                <img
+                  src={item.icone}
+                  alt="Icone"
+                  className="w-[50px] h-[50px]"
+                />
+                <p className="font-gilroyLight text-base leading-[1.2rem]">
+                  {item.texto}
+                </p>
               </div>
             ))}
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              gap: 20,
-              marginTop: 20,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          ></div>
+
           <ButtonLinks options={options} />
         </FramerMotion>
       </HeroApp>

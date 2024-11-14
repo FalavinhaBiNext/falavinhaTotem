@@ -7,11 +7,11 @@ import FramerMotion from "../../components/UI/FramerMotion";
 import { cursos } from "../../services/db";
 import Accordion from "../../components/UI/Accordion";
 import MainPageTitle from "../../components/UI/MainPageTitle";
+import MainButton from "../../components/UI/MainButton";
 
 const Cursos = () => {
-  const fieldsPage = 3;
   const [page, setPage] = useState(0);
-
+  const fieldsPage = 3;
   const start = page * fieldsPage;
   const end = start + fieldsPage;
   const sliced = cursos.slice(start, end);
@@ -19,7 +19,6 @@ const Cursos = () => {
   const nextPage = () => {
     if (end < cursos.length) setPage(page + 1);
   };
-
   const prevPage = () => {
     if (start > 0) setPage(page - 1);
   };
@@ -31,33 +30,32 @@ const Cursos = () => {
       </HeaderApp>
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <div>
-            <h2 className="subtitulo">
-              NÚCLEO DE EDUCAÇÃO CORPORATIVA GRUPO FALAVINHA NEXT
+          <section className="mb-10">
+            <h2 className="pb-3 text-xl leading-6 text-center text-light_color font-gilroyLight">
+              Núcleo de educação corporativa grupo Falavinha Next
             </h2>
-          </div>
-          <div className="container-accordion">
-            {sliced.map((item, index) => (
-              <Accordion
-                name={item.name}
-                description={item.description}
-                item={item.item}
-                key={index}
-                background={"#0F3355"}
-                cardFundo={"#1b1f24"}
-              />
-            ))}
-          </div>
-          <div className="accordion-button">
-            {page === 0 ? null : (
-              <button className="botao" onClick={prevPage}>
-                Anterior
-              </button>
+          </section>
+
+          <ul className="flex flex-col gap-4 mb-10">
+            <Accordion sliced={sliced} />
+          </ul>
+
+          <div className="flex justify-center gap-x-6 gap-y-4">
+            {page > 0 && (
+              <MainButton
+                onClick={prevPage}
+                className={"md:max-w-[470px] max-w-none"}
+              >
+                &#x2190; Anterior
+              </MainButton>
             )}
-            {end >= cursos.length ? null : (
-              <button className="botao" onClick={nextPage}>
-                Próximo
-              </button>
+            {end < cursos.length && (
+              <MainButton
+                onClick={nextPage}
+                className={"md:max-w-[470px] max-w-none"}
+              >
+                Próximo &#x2192;
+              </MainButton>
             )}
           </div>
         </FramerMotion>

@@ -20,7 +20,11 @@ export default function NotFound() {
       <Main>
         <div style={{ margin: "auto" }}>
           <h1 style={notFoundText}>Página não encontrada</h1>
-          <MainButton onClick={() => navigate(-1)} className="botao">
+          <MainButton
+            onClick={() => navigate(-1)}
+            className="botao"
+            style={{ width: "max-content" }}
+          >
             Voltar
           </MainButton>
         </div>

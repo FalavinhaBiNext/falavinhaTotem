@@ -1,7 +1,6 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-// import useIdleRedirect from "./hooks/useIdleRedirect";
 import Loader from "./components/UI/Loader";
 import UseKeepOnTop from "./hooks/useKeepOnTop";
 

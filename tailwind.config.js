@@ -32,12 +32,11 @@ export default {
       },
       gridTemplateColumns: {
         'standard': 'repeat(auto-fit, minmax(180px, 1fr))',
-        'standard2': 'repeat(auto-fit, minmax(350px, 1fr))',
+        'standard2': 'repeat(auto-fit, minmax(320px, 1fr))',
         'standard3': 'repeat(auto-fit, minmax(230px, 1fr))',
         // 'footerXl': 'repeat(auto-fit, minmax(170px, 1fr))',
         // 'footerSm': 'repeat(auto-fit, minmax(250px, 1fr))',
         // 'resources': 'repeat(auto-fit, minmax(280px, 1fr))',
-        // 'tiers': 'repeat(auto-fit, minmax(300px, 1fr))',
       },
 
     },

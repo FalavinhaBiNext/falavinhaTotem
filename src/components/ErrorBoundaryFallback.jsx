@@ -25,7 +25,11 @@ export default function ErrorBoundaryFallback({ resetErrorBoundary }) {
   return (
     <main role="alert" style={mainStyles}>
       <h1 style={titleStyles}>Erro ao carregar a página!</h1>
-      <MainButton onClick={resetErrorBoundary} className="botao" type="button">
+      <MainButton
+        onClick={resetErrorBoundary}
+        className="botao w-max"
+        type="button"
+      >
         Tente novamente
       </MainButton>
     </main>

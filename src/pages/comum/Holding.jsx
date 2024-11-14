@@ -43,23 +43,41 @@ const Holding = () => {
       <HeaderApp redirect={"/servicos"}>
         <MainPageTitle title="HOLDING" />
       </HeaderApp>
+
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <div>
-            <h2 className="subtitulo">Transforme sua gestão patrimonial com a segurança e eficiência de uma holding — proteção, otimização e legado para o seu futuro.</h2>
-          </div>
-          <div className="textoMain">
-            <p className="paragraph">{textos.Holding.Texto}</p>
-          </div>
-          {topicos.map((item, index) => (
-            <div className="consultoria-rh" key={index}>
-              <div className="consultoria-rh__item">
-                <img src={item.icone} alt="" className="icon-topicos_rh" />
-                <p>{item.titulo}</p>
-                {item.texto}
+          <section className="mb-10">
+            <h2 className="pb-3 text-xl leading-6 text-center text-light_color font-gilroyLight">
+              Transforme sua gestão patrimonial com a segurança e eficiência de
+              uma holding — proteção, otimização e legado para o seu futuro.
+            </h2>
+            <p className="text-base italic text-light_color font-gilroyThin">
+              {textos.Holding.Texto}
+            </p>
+          </section>
+
+          <div className="grid gap-5 mb-10 grid-cols-standard2">
+            {topicos.map((item, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-start justify-start gap-1 min-h-[150px] py-3 px-4 text-left
+                 w-full border-2 border-primary_color rounded-[20px] shadow-bx-1 bg-transparent text-light_color"
+              >
+                <img
+                  src={item.icone}
+                  alt="Icone"
+                  className="w-[50px] h-[50px]"
+                />
+                <h3 className="text-light_color font-gilroyBold text-base text-center leading-[1.2rem] uppercase pb-2">
+                  {item.titulo}
+                </h3>
+                <p className="font-gilroyLight text-base leading-[1.2rem]">
+                  {" "}
+                  {item.texto}
+                </p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
 
           <ButtonLinks options={options} />
         </FramerMotion>

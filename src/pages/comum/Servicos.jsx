@@ -59,14 +59,16 @@ export default function Servicos() {
       <HeroApp fundo={imagem}>
         <FramerMotion>
           <HeroMessageLayout>
-            <p className="textoMain">{textos.Servicos.Texto}</p>
+            <p className="text-base italic md:text-lg text-light_color font-gilroyThin">
+              {textos.Servicos.Texto}
+            </p>
           </HeroMessageLayout>
 
           <div className="max-w-[992px] mx-auto py-10">
-            <ul className="grid gap-4 grid-cols-standard">
+            <ul className="grid gap-5 mb-10 grid-cols-standard2">
               {presentationBlocks.map(({ title, icon }) => (
                 <li
-                  className="flex flex-col items-center justify-center gap-2 
+                  className="flex flex-col items-center gap-2 
                   min-h-[150px] w-full border-2 border-primary_color rounded-[10px] 
                   shadow-bx-1 p-4"
                   key={title}

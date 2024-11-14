@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import HeaderApp from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import FramerMotion from "../../components/UI/FramerMotion";
@@ -9,41 +7,14 @@ import routes from "../../routes";
 import textos from "../../components/UI/textos";
 import ButtonLinks from "../../components/UI/ButtonLinks";
 import PalavraChave from "../../components/UI/PalavraChave";
+import MainPageTitle from "../../components/UI/MainPageTitle";
 //Import dos gifs
 import gifComunicacao from "../../assets/gifs/comunicacao.gif";
 import gifMoeda from "../../assets/gifs/moedas.gif";
 import gifCoins from "../../assets/gifs/coins1.gif";
 import gifAvatar from "../../assets/gifs/avatar.gif";
-import MainPageTitle from "../../components/UI/MainPageTitle";
 
 export default function DashboardBI() {
-  //const navigate = useNavigate();
-  // const [lastInteraction, setLastInteraction] = useState(Date.now());
-
-  // useEffect(() => {
-  //   // Tempo de inatividade (exemplo: 5 minutos = 300000 ms)
-  //   const timeoutDuration = 300000;
-  //   const handleActivity = () => {
-  //     setLastInteraction(Date.now()); // Atualiza o tempo da última interação
-  //   };
-  //   const interval = setInterval(() => {
-  //     if (Date.now() - lastInteraction > timeoutDuration) {
-  //       navigate("/"); // Redireciona para a página inicial
-  //     }
-  //   }, 1000); // Verifica a cada 1 segundo
-
-  //   // Ouve eventos de interação com a página
-  //   window.addEventListener("mousemove", handleActivity);
-  //   window.addEventListener("keypress", handleActivity);
-
-  //   // Limpa os listeners e o intervalo ao desmontar o componente
-  //   return () => {
-  //     clearInterval(interval);
-  //     window.removeEventListener("mousemove", handleActivity);
-  //     window.removeEventListener("keypress", handleActivity);
-  //   };
-  // }, [lastInteraction, navigate]);
-
   // links dos botões
   const options = [
     { name: "BI CONTABILIDADE", route: routes.dashboardGestor },
@@ -78,7 +49,7 @@ export default function DashboardBI() {
       ],
     },
     {
-      title: "RH",
+      title: "Recursos Humanos",
       icon: gifAvatar,
       content: [
         "Turnover",
@@ -109,11 +80,11 @@ export default function DashboardBI() {
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <section className="textoMain">
-            <h2 className="pb-2 text-xl text-center text-light_color">
+          <section className="mb-10">
+            <h2 className="pb-3 text-xl leading-6 text-center text-light_color font-gilroyLight">
               {textos.Business.Subtitulo}!
             </h2>
-            <p className="text-light_color text-base leading-[1.2rem] italic">
+            <p className="text-base italic text-light_color font-gilroyThin">
               O{" "}
               <PalavraChave color="#fff">
                 {textos.Business.PalavraChave}
@@ -122,12 +93,12 @@ export default function DashboardBI() {
             </p>
           </section>
 
-          <div className="grid gap-5 mt-8 mb-10 grid-cols-standard3">
+          <div className="grid gap-5 mb-10 grid-cols-standard2">
             {boards.map((item, index) => (
               <div
                 key={index}
                 className="flex flex-col justify-start items-start py-3 px-4 text-left 
-                text-light_color w-full border-2 border-[#007175] rounded-[20px] 
+                text-light_color w-full border-2 border-primary_color rounded-[20px] 
                 shadow-bx-1 bg-transparent"
               >
                 <img src={item.icon} alt="" className="w-[50px] h-[50px]" />
@@ -147,7 +118,7 @@ export default function DashboardBI() {
               </div>
             ))}
           </div>
-          <ButtonLinks options={options} style={{ marginBottom: "50px" }} />
+          <ButtonLinks options={options} />
         </FramerMotion>
       </HeroApp>
       <FooterApp></FooterApp>

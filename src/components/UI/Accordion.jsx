@@ -1,48 +1,52 @@
-import { useState } from "react";
-import PropTypes from "prop-types";
-import "../../style/accordion.css";
+import { useState, useRef } from "react";
 
-export default function Accordion(props) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function Accordion({ sliced }) {
+  const [active, setActive] = useState(null);
+  const contentEl = useRef();
+  const isActive = (index) => active === index;
 
-  const { name, description, item, background, cardFundo } = props;
-
-  const toggleAccordion = () => {
-    setIsOpen(!isOpen);
+  const handleToggle = (index) => {
+    setActive(isActive(index) ? null : index);
   };
-  return (
-    <div>
-      <div
-        className="accordion-header"
-        style={{ backgroundColor: isOpen ? background : "transparent" }}
-        onClick={toggleAccordion}
-      >
-        <h3>{name}</h3>
-        <span>{isOpen ? "Fechar" : "Saiba Mais"}</span>
-      </div>
-      <div>
-        {isOpen && (
-          <div
-            className="accordion-content"
-            style={{ backgroundColor: cardFundo }}
-          >
-            <h4>{description}</h4>
-            <ul>
-              {item.map((item, index) => (
-                <li key={index}>{item.item}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
 
-Accordion.propTypes = {
-  name: PropTypes.string,
-  description: PropTypes.string,
-  item: PropTypes.array,
-  background: PropTypes.string,
-  cardFundo: PropTypes.string,
-};
+  return sliced.map(({ name, description, item }, index) => (
+    <li
+      key={index}
+      className="border-b border-[#ddd] rounded-[5px] overflow-hidden shadow-bx-1 min-h-[60px]"
+    >
+      <div
+        className={`flex items-center bg-transparent min-h-[inherit] cursor-pointer p-4 
+        ${isActive(index) ? "active bg-[#0f3355]" : ""}`}
+        onClick={() => handleToggle(index)}
+      >
+        <h5 className="text-sm uppercase text-light_color font-gilroyLight sm:text-base">
+          {name}
+        </h5>
+        <span className="ml-auto text-sm transition-all duration-300 ease-in-out text-light_color font-gilroyLight">
+          {isActive(index) ? "Fechar" : "Saiba mais"}
+        </span>
+      </div>
+      <div
+        className="transition-[height] duration-300 ease-in-out bg-[#1b1f24]"
+        style={
+          isActive(index)
+            ? { height: contentEl?.current?.scrollHeight }
+            : { height: "0px" }
+        }
+        ref={contentEl}
+      >
+        <div className="p-4 text-light_color">
+          <h4 className="pb-4 text-base sm:text-lg">{description}</h4>
+          <ul className="flex flex-col gap-2">
+            {item.map((item, index) => (
+              <li className="text-sm sm:text-base" key={item.item + index}>
+                {" "}
+                &#x2714; {item.item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </li>
+  ));
+}
