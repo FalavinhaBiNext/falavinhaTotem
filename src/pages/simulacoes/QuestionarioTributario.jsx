@@ -152,7 +152,7 @@ export default function QuestionarioTributario() {
 
   return (
     <>
-      <HeaderApp redirect={"/servicos"}>
+      <HeaderApp redirect={"/solucoes"}>
         <h1 className="title">Questionário Tributario</h1>
       </HeaderApp>
 

@@ -51,7 +51,7 @@ const Treinamentos = () => {
 
   return (
     <>
-      <HeaderApp redirect={"/servicos"}>
+      <HeaderApp redirect={"/solucoes"}>
         <MainPageTitle title={data.titulo} />
       </HeaderApp>
 
@@ -61,16 +61,16 @@ const Treinamentos = () => {
             <h2 className="pb-3 text-xl leading-6 text-center text-light_color font-gilroyLight">
               {data.subtitulo}
             </h2>
-            <p className="text-base italic text-light_color font-gilroyThin">
+            <p className="text-sm italic sm:text-base text-light_color font-gilroyThin">
               {data.texto}
             </p>
           </section>
 
-          <div className="grid gap-5 mb-10 grid-cols-standard2">
+          <ul className="grid gap-5 mb-10 grid-cols-standard2">
             {topicos.map((item, index) => (
-              <div
+              <li
                 key={index}
-                className="flex flex-col items-start justify-start gap-1 min-h-[230px] py-3 px-4 text-left
+                className="flex flex-col items-start justify-start gap-1 min-h-[230px] p-6 text-left
                  w-full border-2 border-primary_color rounded-[20px] shadow-bx-1 bg-transparent text-light_color"
               >
                 <img
@@ -81,12 +81,12 @@ const Treinamentos = () => {
                 <h3 className="text-light_color font-gilroyBold text-base text-center leading-[1.2rem] uppercase pb-2">
                   {item.titulo}
                 </h3>
-                <p className="font-gilroyLight text-base leading-[1.2rem]">
+                <p className="font-gilroyLight text-sm sm:text-base leading-[1.2rem]">
                   {item.texto}
                 </p>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
 
           <ButtonLinks options={options} />
         </FramerMotion>

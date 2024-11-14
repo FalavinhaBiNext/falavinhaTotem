@@ -37,7 +37,7 @@ const Cursos = () => {
           </section>
 
           <ul className="flex flex-col gap-4 mb-10">
-            <Accordion sliced={sliced} />
+            <Accordion sliced={sliced} background={"#0f3355"} />
           </ul>
 
           <div className="flex justify-center gap-x-6 gap-y-4">

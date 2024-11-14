@@ -48,7 +48,7 @@ export default function QuestionarioHolding() {
 
   return (
     <>
-      <HeaderApp redirect={"/servicos"}>
+      <HeaderApp redirect={"/solucoes"}>
         <h1 className="title">Pesquisa de holding</h1>
       </HeaderApp>
 

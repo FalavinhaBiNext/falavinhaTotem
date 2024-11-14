@@ -55,7 +55,7 @@ export default function QuestionarioRH() {
 
   return (
     <>
-      <HeaderApp redirect={"/servicos"}>
+      <HeaderApp redirect={"/solucoes"}>
         <h1 className="title">Faça uma pesquisa sobre sua empresa</h1>
       </HeaderApp>
 

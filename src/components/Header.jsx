@@ -14,7 +14,7 @@ const HeaderApp = ({ children, redirect }) => {
   const hederBoxShadow = isScrolling ? "0 0 36px rgba(0, 0, 0, 0.2)" : "none";
   const getPath = location.pathname !== "/";
   const standardNavigate = () => {
-    if (location.pathname === "/servicos") {
+    if (location.pathname === "/solucoes") {
       handleClearUserData();
       navigate("/");
     } else {

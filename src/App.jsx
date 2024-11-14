@@ -49,8 +49,10 @@ const ResultadoHolding = lazy(() =>
 
 // PÁGINAS COMUNS
 const Home = lazy(() => import("./pages/comum/Home"));
-const Servicos = lazy(() => import("./pages/comum/Servicos"));
-const DashboardBI = lazy(() => import("./pages/dashboards/DashboardBI"));
+const Solucoes = lazy(() => import("./pages/comum/Solucoes"));
+const BusinessIntelligence = lazy(() =>
+  import("./pages/comum/BusinessIntelligence")
+);
 const Tributario = lazy(() => import("./pages/comum/Tributario"));
 const Contabilidade = lazy(() => import("./pages/comum/Contabilidade"));
 const ConsultoriaRH = lazy(() => import("./pages/comum/ConsultoriaRH"));
@@ -78,8 +80,11 @@ function App() {
           <Routes>
             {[
               { path: "/", element: <Home /> },
-              { path: "/servicos", element: <Servicos /> },
-              { path: "/business-intelligence", element: <DashboardBI /> },
+              { path: "/solucoes", element: <Solucoes /> },
+              {
+                path: "/business-intelligence",
+                element: <BusinessIntelligence />,
+              },
               { path: "/tributario", element: <Tributario /> },
               { path: "/contabilidade", element: <Contabilidade /> },
               { path: "/consultoriaRH", element: <ConsultoriaRH /> },
