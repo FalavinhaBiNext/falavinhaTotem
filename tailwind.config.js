@@ -10,7 +10,7 @@ export default {
         primary_color: '#007175',
         secondary_color: '#00F7FF',
         tertiary_color: '#6E3DEB',
-        light_color: '#FFFFFF',
+        light_color: '#FFF',
         dark_color: '#060113',
 
         // success_color: '#07bc0c',

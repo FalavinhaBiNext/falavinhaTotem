@@ -1,21 +1,31 @@
 import PropTypes from "prop-types";
 import logo from "../assets/image/MinilogoBlack.png";
+
+const containerStyle = `flex flex-col gap-8 mb-10 md:max-w-[768px] max-w-none mx-auto`;
+const surveyListStyle = `flex flex-col text-start bg-[#005d604d] p-5 rounded-[20px] shadow-bx-1`;
+const surveyListQuestionsStyle = `flex flex-col gap-[5px] font-gilroyThin tracking-[2px]`;
+const radioLabelStyle = `flex gap-2 text-base text-light_color p-[5px] items-center h-[inherit] font-gilroyLight cursor-pointer
+ before:content-[''] before:bg-tranparent before:rounded-full before:border-[2px] before:border-[#b4b4b4] 
+ before:inline-block before:w-[16px] before:h-[16px] before:min-w-[16px] before:relative before:top-0 before:mt-0
+before:align-top before:text-center before:transition before:ease-in-out duration-300
+`;
 export function QuestionarioElementoMultiplo({
   respostas,
   perguntas,
   handleChange,
   children,
-  backgroundRadio
 }) {
   return (
     <>
-      <ul className="survey">
+      <ul className={containerStyle}>
         {perguntas?.map((question, questionIndex) => (
-          <li className="survey__list" key={question.id}>
-            <h2 className="survey__list--title">{question.text}</h2>
-            <ul className="survey__list--question">
+          <li className={`${surveyListStyle} survey__list`} key={question.id}>
+            <h2 className="text-lg text-light_color leading-[26px] pb-2 font-gilroyBold tracking-[2px]">
+              {question.text}
+            </h2>
+            <ul className={surveyListQuestionsStyle}>
               {question.options.map((option) => (
-                <li className="survey__list--radios" key={option.value}>
+                <li className="relative h-full" key={option.value}>
                   <input
                     type="radio"
                     name={`question-${questionIndex}`}
@@ -25,7 +35,7 @@ export function QuestionarioElementoMultiplo({
                     onChange={() => handleChange(question.id, option.value)}
                   />
                   <label
-                    className={`radio-label ${
+                    className={`radio-label ${radioLabelStyle} ${
                       respostas[question.id] === option.value &&
                       "radio-label--multiplo"
                     }`}
@@ -69,22 +79,29 @@ export function QuestionarioElementoBinario({
   respostas,
   perguntas,
   handleChange,
+  backgroundRadio,
   children,
-  backgroundRadio
 }) {
   return (
     <>
-      <ul className="survey">
+      <ul className={containerStyle}>
         {perguntas?.map((section) => (
-          <li className="survey__list" key={section.id}>
-            <h2 className="survey__list--empreTitle">{section.titulo}</h2>
-            <ul className="survey__list--question">
+          <li className={`${surveyListStyle} survey__list`} key={section.id}>
+            <h2 className="text-2xl sm:text-3xl text-light_color font-gilroyBold pb-[10px]">
+              {section.titulo}
+            </h2>
+            <ul className={surveyListQuestionsStyle}>
               {section.perguntas.map((question, questionIndex) => (
-                <li className="survey__question--list" key={questionIndex}>
-                  <h3>{question.text}</h3>
-                  <ul className="survey__question--radios">
+                <li
+                  className="flex flex-col gap-[2px] pb-2"
+                  key={questionIndex}
+                >
+                  <h3 className="text-lg text-light_color leading-[26px] pb-1 font-gilroyBold tracking-[2px]">
+                    {question.text}
+                  </h3>
+                  <ul className="flex flex-row gap-[10px] pb-2">
                     {question.options.map((option) => (
-                      <li className="survey__list--radios" key={option.value}>
+                      <li className="relative h-full" key={option.value}>
                         <input
                           type="radio"
                           name={`question-${section.id}-${questionIndex}`}
@@ -102,14 +119,18 @@ export function QuestionarioElementoBinario({
                           }
                         />
                         <label
-                          className={`radio-label ${
+                          className={`radio-label ${radioLabelStyle} ${
                             respostas[`${section.id}-${questionIndex}`] ===
                               option.value && "radio-label--binario"
                           }`}
                           htmlFor={`${section.id}-${questionIndex}-${option.value}`}
-                          style={{backgroundColor: respostas[`${section.id}-${questionIndex}`] ===
-                          option.value ? backgroundRadio : ""}}
-                          
+                          style={{
+                            backgroundColor:
+                              respostas[`${section.id}-${questionIndex}`] ===
+                              option.value
+                                ? backgroundRadio
+                                : "",
+                          }}
                         >
                           {option.label}
                         </label>
@@ -133,4 +154,5 @@ QuestionarioElementoBinario.propTypes = {
   perguntas: PropTypes.array,
   handleChange: PropTypes.func,
   children: PropTypes.node,
+  backgroundRadio: PropTypes.string,
 };

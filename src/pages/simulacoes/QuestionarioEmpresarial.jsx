@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import MainHeader from "../../components/Header";
 import HeroApp from "../../components/Hero";
@@ -7,22 +7,16 @@ import FramerMotion from "../../components/UI/FramerMotion";
 import FooterApp from "../../components/Footer";
 import MainButton from "../../components/UI/MainButton";
 import { GlobalContext } from "../../context/GlobalContextProvider";
-import Formulario from "../../components/Formulario";
 import { perguntasSurveyEmpresarial } from "../../services/db";
 import { QuestionarioElementoBinario } from "../../components/QuestionarioElemento";
 import useRefreshDetector from "../../hooks/useRefreshDetector";
+import MainPageTitle from "../../components/UI/MainPageTitle";
 
 export default function QuestionarioEmpresarial() {
   const navigate = useNavigate();
   const { handleCheckRefresh } = useRefreshDetector();
-  const [isFormVisible, setIsFormVisible] = useState(false);
-  const {
-    hasInputErrors,
-    hasEmptyInputs,
-    respostasEmp,
-    setRespostasEmp,
-    isSubmitting,
-  } = useContext(GlobalContext);
+  const { hasInputErrors, respostasEmp, setRespostasEmp, isSubmitting } =
+    useContext(GlobalContext);
 
   // Limpa a respostas do survey do RH ao carregar a página
   useEffect(() => {
@@ -56,34 +50,28 @@ export default function QuestionarioEmpresarial() {
   return (
     <>
       <MainHeader redirect={"/solucoes"}>
-        <h1 className="title">Faça uma pesquisa sobre sua empresa</h1>
+        <MainPageTitle title={"Faça uma pesquisa sobre sua empresa"} />
       </MainHeader>
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <Formulario setIsFormVisible={setIsFormVisible} />
           <QuestionarioElementoBinario
             perguntas={perguntasSurveyEmpresarial}
             respostas={respostasEmp}
             handleChange={handleChange}
             backgroundRadio={"#0f3355"}
           />
+
+          <MainButton
+            className={"md:max-w-[470px] max-w-none"}
+            onClick={() => navigate("/resultado-empresarial")}
+            disabled={hasInputErrors || !isAllInputsChecked() || isSubmitting}
+          >
+            Ver resultado
+          </MainButton>
         </FramerMotion>
       </HeroApp>
-      <FooterApp>
-        <MainButton
-          className={"md:max-w-[470px] max-w-none"}
-          onClick={() => navigate("/resultado-empresarial")}
-          disabled={
-            (isFormVisible && hasEmptyInputs) ||
-            hasInputErrors ||
-            !isAllInputsChecked() ||
-            isSubmitting
-          }
-        >
-          Ver resultado
-        </MainButton>
-      </FooterApp>
+      <FooterApp />
     </>
   );
 }

@@ -1,81 +1,8 @@
-.survey {
-  margin-top: 30px;
-  font-family: "Gilroy-bold";
-}
-
-.survey__list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  text-align: start;
-  margin-bottom: 30px;
-  background-color: rgba(0, 93, 96, 0.3);
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-}
-
-.survey__list:last-of-type {
-  margin-bottom: 50px;
-}
-
-.survey__list--title {
-  font-size: 1rem;
-  color: #fff;
-  padding-bottom: 10px;
-  line-height: 20px;
-  font-family: "Gilroy-bold";
-  letter-spacing: 2px;
-}
-
-.survey__list--question {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  font-family: "Gilroy-thin";
-  letter-spacing: 2px;
-}
-
-.survey__list--radios {
-  position: relative;
-  height: 100%;
-}
-
 /* BOTÃO RADIO */
 .survey__list input[type="radio"] {
   position: absolute;
   opacity: 0;
 }
-
-.radio-label {
-  font-size: 1rem;
-  font-weight: 500;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  height: inherit;
-  font-family: "Gilroy-light";
-  padding: 5px;
-  cursor: pointer;
-}
-
-.radio-label::before {
-  content: "";
-  background: transparent;
-  border-radius: 100%;
-  border: 2px solid #b4b4b4;
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  min-width: 16px;
-  position: relative;
-  top: 0;
-  margin-right: 15px;
-  vertical-align: top;
-  text-align: center;
-  transition: all 250ms ease;
-}
-
 .survey__list input[type="radio"]:checked + .radio-label {
   color: white;
   transition: all 200ms ease;
@@ -96,7 +23,7 @@
 }
 
 .survey__list input[type="radio"]:checked + .radio-label--multiplo {
-  background-color: #582B6F;
+  background-color: #582b6f;
 }
 
 .survey__list input[type="radio"]:checked + .radio-label--multiplo::before {
@@ -112,36 +39,4 @@
 
 .survey__list input[type="radio"] + .radio-label:empty::before {
   margin-right: 0;
-}
-
-/*  SURVEY DO EMPRESARIAL */
-.survey__list--empreTitle {
-  font-size: 1.7rem;
-  color: #fff;
-  letter-spacing: 1px;
-  line-height: 30px;
-  font-family: "Gilroy-bold";
-  padding-bottom: 10px;
-}
-
-.survey__question--list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding-bottom: 10px;
-}
-
-.survey__question--list > h3 {
-  font-size: 1rem;
-  color: #fff;
-  letter-spacing: 1px;
-  line-height: 20px;
-  font-family: "Gilroy-light";
-}
-
-.survey__question--radios {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  padding-bottom: 10px;
 }
