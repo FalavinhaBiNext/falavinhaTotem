@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import MainHeader from "../../components/Header";
 import MainButton from "../../components/UI/MainButton";
@@ -8,18 +8,26 @@ import FramerMotion from "../../components/UI/FramerMotion";
 import FooterApp from "../../components/Footer";
 import fundo from "../../assets/image/FundoCigam.png";
 import { GlobalContext } from "../../context/GlobalContextProvider";
-import { numberFormatter } from "../../utils/formatters";
+import { numberFormatter } from "../../utils";
 import QuestionarioCigamState from "../../states/QuestionarioCigamState";
 import gifWinner from "../../assets/gifs/winner.gif";
 import useRefreshDetector from "../../hooks/useRefreshDetector";
 import gifCheck from "../../assets/gifs/check.gif";
 import MainPageTitle from "../../components/UI/MainPageTitle";
 import logoCigam from "../../assets/image/LogoCigam.png";
+import PopupModal from "../../components/UI/PopupModal";
 
 export default function QuestionarioCigam() {
   const navigate = useNavigate();
   const { handleCheckRefresh } = useRefreshDetector();
-  const { setResultadoCigam, isSubmitting } = useContext(GlobalContext);
+  const {
+    setResultadoCigam,
+    isSubmitting,
+    showModal,
+    hasSavedData,
+    closeModal,
+    handleSetShowModal,
+  } = useContext(GlobalContext);
   const {
     cigamValues,
     setCigamValues,
@@ -51,6 +59,9 @@ export default function QuestionarioCigam() {
   // Envia dados para o servidor
   const handleSubmitValues = () => {
     if (emptyValueFields) return;
+    if (!showModal && !hasSavedData) {
+      return handleSetShowModal(true);
+    }
     setResultadoCigam({
       ...cigamValues,
       folha_pagamento,
@@ -70,6 +81,10 @@ export default function QuestionarioCigam() {
 
   return (
     <>
+      {showModal && (
+        <PopupModal showModal={showModal} closeModal={closeModal} />
+      )}
+
       <MainHeader redirect={"/solucoes"}>
         <MainPageTitle image={logoCigam} />
       </MainHeader>

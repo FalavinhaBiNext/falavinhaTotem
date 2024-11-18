@@ -3,10 +3,35 @@
   display: flex;
   flex-flow: column;
   gap: 10px;
-  padding: 15px;
+  padding: 10px 0 30px;
+  width: 100%;
+}
+
+.form__title {
+  font-family: inherit;
+  font-size: 1.5rem;
+  color: #000;
+  text-align: center;
+  margin-bottom: 5px;
+  font-family: "Gilroy-thin";
+}
+
+@media (max-width: 768px) {
+  .form__title {
+    font-size: 1.3rem;
+  }
 }
 
 /* INPUTS  DE TEXTO */
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: #4b5052;
+  gap: 5px;
+  border-radius: 10px;
+  padding: 0 10px;
+}
+
 .input-label {
   display: flex;
   flex-flow: column;
@@ -17,18 +42,32 @@
   letter-spacing: 1px;
   line-height: 20px;
   font-weight: 600;
+  padding: 3px 0;
+  position: relative;
 }
 
-.input-label > span {
-  font-size: medium;
-  font-family: "Gilroy-thin";
-  letter-spacing: 4px;
-  padding: 10px 0;
+.input-label--custom select {
+  appearance: none;
+}
+
+.input-label--custom::after {
+  --size: 5px;
+  content: "";
+  position: absolute;
+  right: 13px;
+  pointer-events: none;
+}
+
+.input-label--custom::after {
+  border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+  border-top: var(--size) solid black;
+  top: 50%;
 }
 
 .input-element {
   width: inherit;
-  height: 50px;
+  height: 45px;
   border-radius: 5px;
   border: 1px solid #b4b4b4;
   transition: all 250ms ease;
@@ -37,6 +76,10 @@
   color: #000;
   font-family: "Gilroy-thin";
   font-weight: 400;
+}
+
+.input-element--alert {
+  border: 2px solid #fe5151;
 }
 
 .input-element:disabled {
@@ -71,7 +114,7 @@
   color: #fe5151;
   font-family: inherit;
   line-height: 14px;
-  padding: 2px 0 0 20px;
+  padding-top: 2px;
 }
 
 /* INPUT SELECT */
@@ -100,8 +143,4 @@
   border-right: var(--size) solid transparent;
   border-top: var(--size) solid black;
   top: 65%;
-}
-
-.input-label__select--cigam::after {
-  top: 48%;
 }

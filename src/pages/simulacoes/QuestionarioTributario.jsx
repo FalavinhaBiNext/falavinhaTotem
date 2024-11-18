@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useContext, useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../context/GlobalContextProvider";
-import { numberFormatter } from "../../utils/formatters";
+import { numberFormatter } from "../../utils";
 import MainHeader from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import FramerMotion from "../../components/UI/FramerMotion";
@@ -12,6 +12,7 @@ import QuestionarioTributarioState from "../../states/QuestionarioTributarioStat
 import fundo from "../../assets/image/FundoTributario.png";
 import useRefreshDetector from "../../hooks/useRefreshDetector";
 import MainPageTitle from "../../components/UI/MainPageTitle";
+import PopupModal from "../../components/UI/PopupModal";
 
 const selectAtividades = [
   { value: 1, label: "Comércio" },
@@ -26,7 +27,14 @@ const selectAtividades = [
 ];
 
 export default function QuestionarioTributario() {
-  const { setResultadoTributario, isSubmitting } = useContext(GlobalContext);
+  const {
+    setResultadoTributario,
+    isSubmitting,
+    showModal,
+    closeModal,
+    handleSetShowModal,
+    hasSavedData,
+  } = useContext(GlobalContext);
   const [show, setShow] = useState(true);
   const navigate = useNavigate();
   const { handleCheckRefresh } = useRefreshDetector();
@@ -129,6 +137,9 @@ export default function QuestionarioTributario() {
 
   // Envia os dados para o servidor
   const handleSubmitValues = () => {
+    if (!showModal && !hasSavedData) {
+      return handleSetShowModal(true);
+    }
     setResultadoTributario([...resultList]);
     navigate("/resultado-tributario");
   };
@@ -154,16 +165,17 @@ export default function QuestionarioTributario() {
 
   return (
     <>
+      {showModal && (
+        <PopupModal showModal={showModal} closeModal={closeModal} />
+      )}
+
       <MainHeader redirect={"/solucoes"}>
         <MainPageTitle title={"Questionário Tributario"} />
       </MainHeader>
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <form
-            className="flex flex-col gap-8 mb-10 md:max-w-[768px] max-w-none mx-auto"
-            onSubmit={handleSubmitValues}
-          >
+          <form className="flex flex-col gap-8 mb-10 md:max-w-[768px] max-w-none mx-auto">
             <div className="flex items-center justify-end gap-2 max-w-[768px] md:mr-0 mx-auto">
               {[true, false].map((page, index) => (
                 <button

@@ -6,7 +6,7 @@ import HeroApp from "../../components/Hero";
 import FramerMotion from "../../components/UI/FramerMotion";
 import imagem from "../../assets/image/AssessoriaTributaria.png";
 import FooterApp from "../../components/Footer";
-import { numberFormatter } from "../../utils/formatters";
+import { numberFormatter } from "../../utils";
 import ConfettiAnimation from "../../components/UI/ConfettiAnimation";
 import MainPageTitle from "../../components/UI/MainPageTitle";
 

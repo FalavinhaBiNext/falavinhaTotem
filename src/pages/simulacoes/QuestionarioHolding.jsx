@@ -6,17 +6,25 @@ import fundo from "../../assets/image/FundoHolding.png";
 import FramerMotion from "../../components/UI/FramerMotion";
 import FooterApp from "../../components/Footer";
 import QuestionarioHoldingState from "../../states/QuestionarioHoldingState";
-import { numberFormatter } from "../../utils/formatters";
+import { numberFormatter } from "../../utils";
 import MainButton from "../../components/UI/MainButton";
 import { GlobalContext } from "../../context/GlobalContextProvider";
 import { useNavigate } from "react-router-dom";
 import useRefreshDetector from "../../hooks/useRefreshDetector";
 import MainPageTitle from "../../components/UI/MainPageTitle";
+import PopupModal from "../../components/UI/PopupModal";
 
 export default function QuestionarioHolding() {
   const { holdingValues, setHoldingValues, holdinginventarioResult } =
     QuestionarioHoldingState();
-  const { setResultadoHolding, isSubmitting } = useContext(GlobalContext);
+  const {
+    setResultadoHolding,
+    showModal,
+    closeModal,
+    handleSetShowModal,
+    hasSavedData,
+    isSubmitting,
+  } = useContext(GlobalContext);
   const { handleCheckRefresh } = useRefreshDetector();
   const navigate = useNavigate();
 
@@ -35,6 +43,9 @@ export default function QuestionarioHolding() {
     !holdingValues.valor_imovel || !holdingValues.inventario;
 
   const handleSubmitValues = () => {
+    if (!showModal && !hasSavedData) {
+      return handleSetShowModal(true);
+    }
     setResultadoHolding(holdinginventarioResult);
     navigate("/resultado-holding");
   };
@@ -46,6 +57,10 @@ export default function QuestionarioHolding() {
 
   return (
     <>
+      {showModal && (
+        <PopupModal showModal={showModal} closeModal={closeModal} />
+      )}
+
       <MainHeader redirect={"/solucoes"}>
         <MainPageTitle title={"Pesquisa de Holding"} />
       </MainHeader>

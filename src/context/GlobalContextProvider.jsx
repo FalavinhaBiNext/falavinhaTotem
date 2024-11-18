@@ -1,9 +1,8 @@
 import PropTypes from "prop-types";
+import { createContext, useState, useEffect } from "react";
 import axios from "axios";
-import { createContext, useState } from "react";
 import { useFormik } from "formik";
-import { phoneMask, moneyConverter } from "../utils/formatters";
-import { validationSchema } from "../utils/validators";
+import { phoneMask, moneyConverter, validationSchema } from "../utils";
 import { useGetSurvey } from "../hooks/useGetSurvey";
 
 import QuestionarioHoldingState from "../states/QuestionarioHoldingState";
@@ -14,8 +13,9 @@ export default function GlobalContextProvider({ children }) {
   const [resultadoCigam, setResultadoCigam] = useState({});
   const [resultadoTributario, setResultadoTributario] = useState([]);
   const [resultadoHolding, setResultadoHolding] = useState({});
-  const sessionStorageData = sessionStorage.getItem("userInfo");
-  const saveData = sessionStorageData ? JSON.parse(sessionStorageData) : null;
+  const [showModal, setShowModal] = useState(true);
+  const sessionStorageData = sessionStorage.getItem("user_info");
+  const savedData = sessionStorageData ? JSON.parse(sessionStorageData) : {};
 
   const {
     setRespostasRh,
@@ -27,6 +27,25 @@ export default function GlobalContextProvider({ children }) {
   } = useGetSurvey();
   const { holdingValues, setHoldingValues, holdinginventarioResult } =
     QuestionarioHoldingState();
+
+  // Verifica se tem dados do usuário salvos no sessionStorage
+  const hasSavedData = Object.keys(savedData).length > 0;
+  useEffect(() => {
+    const showPopUp = sessionStorage.getItem("show_popup");
+    setShowModal(showPopUp !== "false");
+  }, []);
+
+  // Fecha o modal
+  const closeModal = () => {
+    sessionStorage.setItem("show_popup", false);
+    setShowModal(false);
+  };
+
+  // Seta o status do modal para mostrar ou não
+  function handleSetShowModal(value) {
+    sessionStorage.setItem("show_popup", value);
+    setShowModal(value);
+  }
 
   // Filtro de valores NaN, nulos e vazios do resultado do tributário
   const tributarioFiltrado = resultadoTributario.reduce((acc, el) => {
@@ -42,6 +61,15 @@ export default function GlobalContextProvider({ children }) {
       !isNaN(el.value) && el.value !== null && el.value !== "" && el.value !== 0
   );
 
+  // SALVA OS DADOS DA SIMULAÇÃO
+  const initialInputValues = {
+    nome: "",
+    telefone: "",
+    email: "",
+    empresa: "",
+    vendedor: "",
+  };
+
   const {
     values: inputValue,
     errors,
@@ -50,24 +78,39 @@ export default function GlobalContextProvider({ children }) {
     handleChange,
     resetForm,
   } = useFormik({
-    initialValues: {
-      nome: "",
-      telefone: "",
-      email: "",
-    },
+    initialValues: initialInputValues,
     validationSchema,
-    onSubmit: handleGetSurveyData,
+    onSubmit: handleSubmitUserData,
   });
 
-  // Salva os dados do usuário no servidor
+  const dados_lead = {
+    name: inputValue.nome || savedData.name,
+    email: inputValue.email || savedData.email,
+    phone: inputValue.telefone || savedData.phone,
+    company: inputValue.empresa || savedData.company,
+    seller: inputValue.vendedor || savedData.seller,
+  };
+
+  // função para salvar dados do lead
+  async function handleSubmitUserData() {
+    try {
+      setIsSubmitting(true);
+      console.log("LEAD BÁSICO: ", dados_lead);
+      sessionStorage.setItem("user_info", JSON.stringify(dados_lead));
+    } catch (error) {
+      console.error("Erro ao salvar o lead:", error);
+    } finally {
+      setIsSubmitting(false);
+      resetForm();
+    }
+  }
+
+  //  função para salvar todas as informações sobre o lead no servidor
   async function handleGetSurveyData(origemUsuario) {
     try {
       setIsSubmitting(true);
       const dados_usuario = {
-        name: inputValue.nome || saveData.name,
-        email: inputValue.email || saveData.email,
-        phone: inputValue.telefone || saveData.phone,
-        origin: origemUsuario || saveData.origin,
+        origin: origemUsuario || savedData.origin,
       };
       const dados_survey = {
         resultado_cigam: resultadoCigam,
@@ -78,97 +121,81 @@ export default function GlobalContextProvider({ children }) {
         resultado_rh: handleGetSurveyRh,
         resultado_holding: resultadoHolding,
       };
-      console.log("DADOS USUARIO", dados_usuario);
-      console.log("DADOS SURVEY", dados_survey);
-      sessionStorage.setItem("userInfo", JSON.stringify(dados_usuario));
+      // tratamento dos dados coletados
+      const originMapping = {
+        rh: {
+          originName: "Consultoria RH",
+          resultFunc: (data) =>
+            `${data.resultado_rh.titulo}|${data.resultado_rh.mensagem}`,
+        },
+        cigam: {
+          originName: "CIGAM",
+          resultFunc: (data) => {
+            const currencyOptions = { style: "currency", currency: "BRL" };
+            return `Produtividade financeira: ${data.resultado_cigam.produtividade_financeira.toLocaleString(
+              "pt-BR",
+              currencyOptions
+            )}|Produtividade hora: ${
+              data.resultado_cigam.produtividade_hora
+            }|Produtividade mensal: ${data.resultado_cigam.produtividade_mensal.toLocaleString(
+              "pt-BR",
+              currencyOptions
+            )}`;
+          },
+        },
+        empresarial: {
+          originName: "Consultoria Empresarial",
+          resultFunc: (data) =>
+            `${data.resultado_empresarial.resultado_pesquisa.maturidade}|
+           ${data.resultado_empresarial.resultado_pesquisa.mensagem}`,
+        },
+        tributário: {
+          originName: "Tributário",
+          resultFunc: (data) =>
+            data.resultado_tributario
+              .replace(/"(?=,)/g, "|")
+              .replace(/"/g, "")
+              .replace(/\|,/g, "|")
+              .replace(/\\/g, "'")
+              .replace(/[{}]/g, ""),
+        },
+        holding: {
+          originName: "Holding",
+          resultFunc: (data) => {
+            const currencyOptions = { style: "currency", currency: "BRL" };
+            const formatCurrency = (value) =>
+              value.toLocaleString("pt-BR", currencyOptions);
+            return `Resultado holding|ITCMD: ${formatCurrency(
+              data.resultado_holding.holding_itcmd
+            )}|Custo cartório: ${formatCurrency(
+              data.resultado_holding.holding_cartorio
+            )}|Consultoria holding: ${formatCurrency(
+              data.resultado_holding.holding_consultoria
+            )}|Total: ${formatCurrency(
+              data.resultado_holding.holding_total
+            )}||Resultado inventário|ITCMD: ${formatCurrency(
+              data.resultado_holding.inventario_itcmd
+            )}|Custo cartório: ${formatCurrency(
+              data.resultado_holding.inventario_cartorio
+            )}|Horários advocatícios: ${formatCurrency(
+              data.resultado_holding.inventario_consultoria
+            )}|Total: ${formatCurrency(
+              data.resultado_holding.inventario_total
+            )}||Diferença entre holding e inventário: ${formatCurrency(
+              data.resultado_holding.total_geral
+            )}`;
+          },
+        },
+      };
+      const originData = originMapping[dados_usuario.origin];
+      const originChanged = originData?.originName || "";
+      const result = originData?.resultFunc(dados_survey) || "";
 
-      // let originChanged = "";
-      // let result = "";
-
-      // switch (dados_usuario.origin) {
-      //   case "rh":
-      //     originChanged = "Consultoria RH";
-      //     result = `${dados_survey.resultado_rh.titulo}|${dados_survey.resultado_rh.mensagem}`;
-      //     break;
-      //   case "cigam":
-      //     originChanged = "CIGAM";
-      //     result = `Produtividade financeira: ${dados_survey.resultado_cigam.produtividade_financeira.toLocaleString(
-      //       "pt-BR",
-      //       {
-      //         style: "currency",
-      //         currency: "BRL",
-      //       }
-      //     )}|Produtividade hora: ${
-      //       dados_survey.resultado_cigam.produtividade_hora
-      //     }|Produtividade mensal: ${dados_survey.resultado_cigam.produtividade_mensal.toLocaleString(
-      //       "pt-BR",
-      //       {
-      //         style: "currency",
-      //         currency: "BRL",
-      //       }
-      //     )}`;
-      //     break;
-      //   case "empresarial":
-      //     originChanged = "Consultoria Empresarial";
-      //     result = `${dados_survey.resultado_empresarial.resultado_pesquisa.maturidade}|${dados_survey.resultado_empresarial.resultado_pesquisa.mensagem}`;
-      //     break;
-      //   case "tributário":
-      //     originChanged = "Tributário";
-      //     result = dados_survey.resultado_tributario;
-      //     result = result.replace(/"(?=,)/g, "|");
-      //     result = result.replace(/"/g, "");
-      //     result = result.replace(/\|,/g, "|");
-      //     result = result.replace(/\\/g, "'");
-      //     result = result.replace(/[{}]/g, "");
-      //     break;
-      //   case "holding":
-      //     originChanged = "Holding";
-      //     result = `Resultado holding|ITCMD: ${dados_survey.resultado_holding.holding_itcmd.toLocaleString(
-      //       "pt-BR",
-      //       {
-      //         style: "currency",
-      //         currency: "BRL",
-      //       }
-      //     )}|Custo cartório: ${dados_survey.resultado_holding.holding_cartorio.toLocaleString(
-      //       "pt-BR",
-      //       { style: "currency", currency: "BRL" }
-      //     )}|Consultoria holding: ${dados_survey.resultado_holding.holding_consultoria.toLocaleString(
-      //       "pt-BR",
-      //       { style: "currency", currency: "BRL" }
-      //     )}|Total: ${dados_survey.resultado_holding.holding_total.toLocaleString(
-      //       "pt-BR",
-      //       { style: "currency", currency: "BRL" }
-      //     )}||Resultado inventário|ITCMD: ${dados_survey.resultado_holding.inventario_itcmd.toLocaleString(
-      //       "pt-BR",
-      //       {
-      //         style: "currency",
-      //         currency: "BRL",
-      //       }
-      //     )}|Custo cartório: ${dados_survey.resultado_holding.inventario_cartorio.toLocaleString(
-      //       "pt-BR",
-      //       { style: "currency", currency: "BRL" }
-      //     )}|Horários advocatícios: ${dados_survey.resultado_holding.inventario_consultoria.toLocaleString(
-      //       "pt-BR",
-      //       { style: "currency", currency: "BRL" }
-      //     )}|Total: ${dados_survey.resultado_holding.inventario_total.toLocaleString(
-      //       "pt-BR",
-      //       { style: "currency", currency: "BRL" }
-      //     )}||Diferença entre holding e inventário: ${dados_survey.resultado_holding.total_geral.toLocaleString(
-      //       "pt-BR",
-      //       { style: "currency", currency: "BRL" }
-      //     )}`;
-
-      //     break;
-      // }
-
-      // const lead = {
-      //   name: dados_usuario.name,
-      //   email: dados_usuario.email,
-      //   phone: dados_usuario.phone,
-      //   origin: originChanged,
-      //   result: result,
-      // };
-      // console.log("LEAD", lead);
+      const lead = {
+        origin: originChanged,
+        result: result,
+        ...dados_lead,
+      };
       // await axios.post(
       //   "https://rafae4699.c44.integrator.host/totem/lead/create",
       //   lead,
@@ -178,21 +205,29 @@ export default function GlobalContextProvider({ children }) {
       //     },
       //   }
       // );
-
-      resetForm();
-      setIsSubmitting(false);
+      console.log("LEAD COMPLETO: ", lead);
+      sessionStorage.setItem("lead_info", JSON.stringify(lead));
     } catch (error) {
       setIsSubmitting(false);
-      console.error("Erro ao salvar o usuário:", error);
+      console.error("Erro ao salvar o lead:", error);
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
   // Certifica se os campos do input estão com erros ou vazios
-  const hasEmptyInputs =
-    inputValue.email === "" ||
-    inputValue.telefone === "" ||
-    inputValue.nome === "";
-  const hasInputErrors = errors.nome || errors.email || errors.telefone;
+  const hasEmptyInputs = Object.values(inputValue).some(
+    (value) =>
+      value === "" ||
+      (typeof value === "object" && Object.keys(value).length === 0)
+  );
+
+  const hasInputErrors =
+    errors.nome ||
+    errors.email ||
+    errors.telefone ||
+    errors.empresa ||
+    errors.vendedor;
 
   const values = {
     respostasRh,
@@ -220,7 +255,13 @@ export default function GlobalContextProvider({ children }) {
     holdinginventarioResult,
     resultadoHolding,
     setResultadoHolding,
+    handleSubmitUserData,
     isSubmitting,
+    showModal,
+    closeModal,
+    setShowModal,
+    hasSavedData,
+    handleSetShowModal,
   };
   return (
     <GlobalContext.Provider value={values}>{children}</GlobalContext.Provider>

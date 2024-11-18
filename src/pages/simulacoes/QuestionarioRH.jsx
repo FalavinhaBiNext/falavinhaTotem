@@ -11,10 +11,19 @@ import MainButton from "../../components/UI/MainButton";
 import { QuestionarioElementoMultiplo } from "../../components/QuestionarioElemento";
 import useRefreshDetector from "../../hooks/useRefreshDetector";
 import MainPageTitle from "../../components/UI/MainPageTitle";
+import PopupModal from "../../components/UI/PopupModal";
 
 export default function QuestionarioRH() {
-  const { respostasRh, setRespostasRh, hasInputErrors, isSubmitting } =
-    useContext(GlobalContext);
+  const {
+    respostasRh,
+    setRespostasRh,
+    hasInputErrors,
+    isSubmitting,
+    showModal,
+    closeModal,
+    handleSetShowModal,
+    hasSavedData,
+  } = useContext(GlobalContext);
 
   const { handleCheckRefresh } = useRefreshDetector();
   const navigate = useNavigate();
@@ -47,8 +56,19 @@ export default function QuestionarioRH() {
     );
   };
 
+  const handleSubmitValues = () => {
+    if (!showModal && !hasSavedData) {
+      return handleSetShowModal(true);
+    }
+    navigate("/resultado-rh");
+  };
+
   return (
     <>
+      {showModal && (
+        <PopupModal showModal={showModal} closeModal={closeModal} />
+      )}
+
       <MainHeader redirect={"/solucoes"}>
         <MainPageTitle title={"Faça uma pesquisa sobre sua empresa"} />
       </MainHeader>
@@ -63,7 +83,7 @@ export default function QuestionarioRH() {
 
           <MainButton
             className={"md:max-w-[470px] max-w-none"}
-            onClick={() => navigate("/resultado-rh")}
+            onClick={handleSubmitValues}
             disabled={!isAllInputsChecked() || isSubmitting}
           >
             Ver resultado

@@ -1,3 +1,4 @@
+import { useContext, useEffect } from "react";
 import MainHeader from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import FooterApp from "../../components/Footer";
@@ -9,9 +10,18 @@ import { solucoes } from "../../utils/conteudo_paginas";
 import QRCodeIcons from "../../components/UI/QRCodeIcons";
 import MainPageTitle from "../../components/UI/MainPageTitle";
 import PalavraChave from "../../components/UI/PalavraChave";
+import { GlobalContext } from "../../context/GlobalContextProvider";
+import PopupModal from "../../components/UI/PopupModal";
 
 export default function Servicos() {
+  const { showModal, closeModal, setShowModal } = useContext(GlobalContext);
   const { titulo, texto, topicos } = solucoes;
+
+  useEffect(() => {
+    const showPopUp = sessionStorage.getItem("show_popup");
+    setShowModal(showPopUp !== "false");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // links dos botões
   const options = [
@@ -30,6 +40,9 @@ export default function Servicos() {
 
   return (
     <>
+      {showModal && (
+        <PopupModal showModal={showModal} closeModal={closeModal} />
+      )}
       <MainHeader>
         <MainPageTitle title={titulo} />
       </MainHeader>
