@@ -1,10 +1,9 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import MainHeader from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import fundo from "../../assets/image/FundoHolding.png";
 import FramerMotion from "../../components/UI/FramerMotion";
-import Formulario from "../../components/Formulario";
 import FooterApp from "../../components/Footer";
 import QuestionarioHoldingState from "../../states/QuestionarioHoldingState";
 import { numberFormatter } from "../../utils/formatters";
@@ -12,13 +11,12 @@ import MainButton from "../../components/UI/MainButton";
 import { GlobalContext } from "../../context/GlobalContextProvider";
 import { useNavigate } from "react-router-dom";
 import useRefreshDetector from "../../hooks/useRefreshDetector";
+import MainPageTitle from "../../components/UI/MainPageTitle";
 
 export default function QuestionarioHolding() {
-  const [isFormVisible, setIsFormVisible] = useState(false);
   const { holdingValues, setHoldingValues, holdinginventarioResult } =
     QuestionarioHoldingState();
-  const { hasEmptyInputs, setResultadoHolding, isSubmitting } =
-    useContext(GlobalContext);
+  const { setResultadoHolding, isSubmitting } = useContext(GlobalContext);
   const { handleCheckRefresh } = useRefreshDetector();
   const navigate = useNavigate();
 
@@ -49,16 +47,16 @@ export default function QuestionarioHolding() {
   return (
     <>
       <MainHeader redirect={"/solucoes"}>
-        <h1 className="title">Pesquisa de holding</h1>
+        <MainPageTitle title={"Pesquisa de Holding"} />
       </MainHeader>
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <Formulario setIsFormVisible={setIsFormVisible} />
-
-          <form className="form" style={{ margin: "40px 0 40px" }}>
-            <article className="holding-questionario">
-              <h2 className="holding-questionario__title">Holding</h2>
+          <form className="flex flex-col gap-8 mb-10 md:max-w-[768px] max-w-none mx-auto">
+            <article className="border-2 border-primary_color rounded-[20px] shadow-bx-1 bg-transparent p-6">
+              <h2 className="text-2xl text-light_color mb-5 tracking-[2px]">
+                Holding
+              </h2>
               <TextInput
                 title="Valor do imóvel:"
                 nome="valor_imovel"
@@ -73,8 +71,10 @@ export default function QuestionarioHolding() {
               />
             </article>
 
-            <article className="holding-questionario">
-              <h2 className="holding-questionario__title">Inventário</h2>
+            <article className="border-2 border-primary_color rounded-[20px] shadow-bx-1 bg-transparent p-6">
+              <h2 className="text-2xl text-light_color mb-5 tracking-[2px]">
+                Inventário
+              </h2>
               <TextInput
                 title="Valor do inventário:"
                 nome="inventario"
@@ -89,23 +89,19 @@ export default function QuestionarioHolding() {
               />
             </article>
           </form>
+
+          <MainButton
+            type="submit"
+            className={"md:max-w-[470px] max-w-none"}
+            onClick={handleSubmitValues}
+            disabled={emptyValueFields || isSubmitting}
+          >
+            Calcular
+          </MainButton>
         </FramerMotion>
       </HeroApp>
 
-      <FooterApp>
-        <MainButton
-          type="submit"
-          className="botao"
-          onClick={handleSubmitValues}
-          disabled={
-            (isFormVisible && hasEmptyInputs) ||
-            emptyValueFields ||
-            isSubmitting
-          }
-        >
-          Calcular
-        </MainButton>
-      </FooterApp>
+      <FooterApp />
     </>
   );
 }

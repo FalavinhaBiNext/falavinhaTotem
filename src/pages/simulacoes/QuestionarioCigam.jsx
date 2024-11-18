@@ -167,7 +167,7 @@ export default function QuestionarioCigam() {
           </div>
           <MainButton
             type="button"
-            className="botao"
+            className={"md:max-w-[470px] max-w-none"}
             onClick={handleSubmitValues}
             disabled={
               (isFormVisible && hasEmptyInputs) ||

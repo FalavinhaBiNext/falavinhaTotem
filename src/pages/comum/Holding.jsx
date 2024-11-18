@@ -7,8 +7,10 @@ import routes from "../../routes";
 import MainPageTitle from "../../components/UI/MainPageTitle";
 import FooterApp from "../../components/Footer";
 import { holding } from "../../utils/conteudo_paginas";
+import useScreenSize from "../../hooks/useScreenSize";
 
 const Holding = () => {
+  const { screenSize } = useScreenSize();
   const { titulo, subtitulo, texto, topicos } = holding;
 
   const options = [
@@ -51,7 +53,10 @@ const Holding = () => {
             ))}
           </ul>
 
-          <ButtonLinks options={options} />
+          <ButtonLinks
+            options={options}
+            style={{ maxWidth: screenSize.width > 768 ? "470px" : "100%" }}
+          />
         </FramerMotion>
       </HeroApp>
 

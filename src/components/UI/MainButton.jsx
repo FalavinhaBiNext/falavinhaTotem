@@ -7,7 +7,9 @@ export default function MainButton(props) {
 
   const buttonDefaultStyles = `py-4 px-6 mx-auto min-h-10 w-full flex justify-center items-center bg-primary_color rounded-[10px]
  text-light_color font-bold text-base cursor-pointer text-center tracking-[inherit]
- disabled:opacity-50 disabled:box-shadow-none disabled:transform-none shadow-bx-1`;
+ disabled:opacity-50 disabled:box-shadow-none disabled:transform-none shadow-bx-1 ${
+   disabled ? "pointer-events-none" : "pointer-events-auto"
+ }`;
 
   return (
     <motion.button

@@ -73,7 +73,7 @@ export default function QuestionarioRH() {
 
       <FooterApp>
         <MainButton
-          className="botao"
+          className={"md:max-w-[470px] max-w-none"}
           onClick={() => navigate("/resultado-rh")}
           disabled={
             (isFormVisible && hasEmptyInputs) ||

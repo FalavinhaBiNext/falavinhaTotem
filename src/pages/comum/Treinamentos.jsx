@@ -11,8 +11,10 @@ import gifComputer from "../../assets/gifs/computer.gif";
 import gifVideo from "../../assets/gifs/video.gif";
 import gifEngajamento from "../../assets/gifs/engajamento.gif";
 import MainPageTitle from "../../components/UI/MainPageTitle";
+import useScreenSize from "../../hooks/useScreenSize";
 
 const Treinamentos = () => {
+  const { screenSize } = useScreenSize();
   const options = [{ name: "CONHEÇA NOSSOS CURSOS", route: routes.cursos }];
 
   const data = {
@@ -87,8 +89,10 @@ const Treinamentos = () => {
               </li>
             ))}
           </ul>
-
-          <ButtonLinks options={options} />
+          <ButtonLinks
+            options={options}
+            style={{ maxWidth: screenSize.width > 768 ? "470px" : "100%" }}
+          />
         </FramerMotion>
       </HeroApp>
 

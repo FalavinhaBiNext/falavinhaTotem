@@ -7,11 +7,11 @@ import MainHeader from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import FramerMotion from "../../components/UI/FramerMotion";
 import FooterApp from "../../components/Footer";
-import Formulario from "../../components/Formulario";
 import MainButton from "../../components/UI/MainButton";
 import QuestionarioTributarioState from "../../states/QuestionarioTributarioState";
 import fundo from "../../assets/image/FundoTributario.png";
 import useRefreshDetector from "../../hooks/useRefreshDetector";
+import MainPageTitle from "../../components/UI/MainPageTitle";
 
 const selectAtividades = [
   { value: 1, label: "Comércio" },
@@ -26,10 +26,8 @@ const selectAtividades = [
 ];
 
 export default function QuestionarioTributario() {
-  const { hasEmptyInputs, setResultadoTributario, isSubmitting } =
-    useContext(GlobalContext);
+  const { setResultadoTributario, isSubmitting } = useContext(GlobalContext);
   const [show, setShow] = useState(true);
-  const [isFormVisible, setIsFormVisible] = useState(false);
   const navigate = useNavigate();
   const { handleCheckRefresh } = useRefreshDetector();
 
@@ -150,58 +148,44 @@ export default function QuestionarioTributario() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const pageBtnStyle = `py-2 px-6  mx-auto min-h-10 w-full flex justify-center items-center 
+   bg-primary_color rounded-[10px] text-light_color font-bold text-base cursor-pointer text-center
+  `;
+
   return (
     <>
       <MainHeader redirect={"/solucoes"}>
-        <h1 className="title">Questionário Tributario</h1>
+        <MainPageTitle title={"Questionário Tributario"} />
       </MainHeader>
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <Formulario setIsFormVisible={setIsFormVisible} />
-
           <form
-            className="form"
+            className="flex flex-col gap-8 mb-10 md:max-w-[768px] max-w-none mx-auto"
             onSubmit={handleSubmitValues}
-            style={{ marginTop: "10px", padding: "15px" }}
           >
-            <div
-              className="page-tributario_paginacao"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <div className="page-tributario_paginacao_item">
-                <p
-                  onClick={handleShow}
-                  style={{
-                    border: show == true ? "1px solid white" : "none",
-                    fontWeight: show == true ? "bold" : "normal",
-                  }}
+            <div className="flex items-center justify-end gap-2 max-w-[768px] md:mr-0 mx-auto">
+              {[true, false].map((page, index) => (
+                <button
+                  key={index}
+                  className={`${pageBtnStyle} ${
+                    page === show ? "font-bold border border-white" : ""
+                  }`}
+                  onClick={() => setShow(page)}
+                  type="button"
                 >
-                  1
-                </p>
-                <p
-                  onClick={handleShow}
-                  style={{
-                    border: show != true ? "1px solid white" : "none",
-                    fontWeight: show != true ? "bold" : "normal",
-                  }}
-                >
-                  2
-                </p>
-              </div>
+                  {index + 1}
+                </button>
+              ))}
             </div>
 
             {show && (
-              <div>
+              <div className="flex flex-col gap-4">
                 <label
                   htmlFor="tributacao"
                   className="input-label input-label__select"
                 >
-                  <span>Tributação: (Obrigatório)</span>
+                  Tributação: (Obrigatório)
                   <select
                     className="input-element"
                     name="tributacao"
@@ -210,7 +194,7 @@ export default function QuestionarioTributario() {
                     onChange={handleChange}
                   >
                     <option value="" disabled>
-                      Selecione o Tipo de Tributação
+                      Selecione
                     </option>
                     <option value={1}>Lucro real</option>
                     <option value={2}>Lucro presumido</option>
@@ -222,7 +206,7 @@ export default function QuestionarioTributario() {
                   htmlFor="atividade"
                   className="input-label input-label__select"
                 >
-                  <span>Atividade: (Obrigatório)</span>
+                  Atividade: (Obrigatório)
                   <select
                     className="input-element"
                     name="atividade"
@@ -231,7 +215,7 @@ export default function QuestionarioTributario() {
                     onChange={handleChange}
                   >
                     <option value={""} disabled>
-                      Selecione Uma Atividade
+                      Selecione
                     </option>
                     {selectAtividades.map((item) => (
                       <option value={item.value} key={item.value}>
@@ -250,7 +234,7 @@ export default function QuestionarioTributario() {
                   }
                   onChange={handleChange}
                   type="number"
-                  placeholder="Digite seu Faturamento Mensal Aproximado"
+                  placeholder="Digite um valor aproximado"
                 />
 
                 <TextInput
@@ -259,7 +243,7 @@ export default function QuestionarioTributario() {
                   value={numberFormatter(taxValues.num_funcionarios)}
                   onChange={handleChange}
                   type="number"
-                  placeholder="Digite a Quantidade de Funcionários"
+                  placeholder="Digite um valor aproximado"
                 />
                 <TextInput
                   title="Valor da Folha de Pagamento:"
@@ -270,15 +254,15 @@ export default function QuestionarioTributario() {
                   }
                   onChange={handleChange}
                   type="number"
-                  placeholder="Digite o Valor Aproximado da Folha de Pagamento"
+                  placeholder="Digite um valor aproximado"
                 />
               </div>
             )}
 
             {!show && (
-              <div>
+              <div className="flex flex-col gap-4">
                 <TextInput
-                  title="Média das Despesas Anual:"
+                  title="Média das Despesas Anuais:"
                   nome="dispesa_anual"
                   type="number"
                   value={
@@ -286,7 +270,7 @@ export default function QuestionarioTributario() {
                     `R$ ${numberFormatter(taxValues.dispesa_anual)}`
                   }
                   onChange={handleChange}
-                  placeholder="Digite um Valor Aproximado"
+                  placeholder="Digite um valor aproximado"
                 />
                 <TextInput
                   title="Patrimônio Líquido:"
@@ -297,10 +281,10 @@ export default function QuestionarioTributario() {
                     `R$ ${numberFormatter(taxValues.patrimonio_liquido)}`
                   }
                   onChange={handleChange}
-                  placeholder="Digite um Valor Aproximado"
+                  placeholder="Digite um valor aproximado"
                 />
                 <TextInput
-                  title="Lucro da empresa:"
+                  title="Lucro da Empresa:"
                   nome="lucro_empresa"
                   type="number"
                   value={
@@ -308,7 +292,7 @@ export default function QuestionarioTributario() {
                     `R$ ${numberFormatter(taxValues.lucro_empresa)}`
                   }
                   onChange={handleChange}
-                  placeholder="Digite um valor Aproximado"
+                  placeholder="Digite um valor aproximado"
                 />
                 <TextInput
                   title="Gastos com Inovação e Tecnologia:"
@@ -319,13 +303,13 @@ export default function QuestionarioTributario() {
                     `R$ ${numberFormatter(taxValues.gastos_inovacao)}`
                   }
                   onChange={handleChange}
-                  placeholder="Digite um Valor Aproximado"
+                  placeholder="Digite um valor aproximado"
                 />
                 <label
                   htmlFor="importacoes"
                   className="input-label input-label__select"
                 >
-                  <span>Se importa ou exporta:</span>
+                  Importa ou Exporta?:
                   <select
                     className="input-element"
                     name="importacoes"
@@ -340,9 +324,9 @@ export default function QuestionarioTributario() {
                 </label>
 
                 {importacoes && (
-                  <div>
+                  <>
                     <TextInput
-                      title="Média de Importações por Ano: (Opcional)"
+                      title="Média de Importações por ano: (Opcional)"
                       nome="importacoes_anuais"
                       value={
                         taxValues.importacoes_anuais &&
@@ -350,10 +334,10 @@ export default function QuestionarioTributario() {
                       }
                       onChange={handleChange}
                       type="number"
-                      placeholder="Digite um Valor Aproximado em Importações"
+                      placeholder="Digite um valor aproximado"
                     />
                     <TextInput
-                      title="Média de Exportações por Ano: (Opcional)"
+                      title="Média de Exportações por ano: (Opcional)"
                       nome="exportacoes_anuais"
                       value={
                         taxValues.exportacoes_anuais &&
@@ -361,68 +345,26 @@ export default function QuestionarioTributario() {
                       }
                       onChange={handleChange}
                       type="number"
-                      placeholder="Digite um Valor Aproximado de Exportações"
+                      placeholder="Digite um valor aproximado"
                     />
-                  </div>
+                  </>
                 )}
               </div>
             )}
-            <br />
-
-            {/* <div className="page-tributario_paginacao">
-              <div style={{ width: 100 }}>
-                {!show && (
-                  <button onClick={() => setShow(!show)}>Anterior</button>
-                )}
-              </div>
-              <div className="page-tributario_paginacao_item">
-                <p
-                  style={{
-                    border: show == true ? "1px solid white" : "none",
-                    fontWeight: show == true ? "bold" : "normal",
-                  }}
-                >
-                  1
-                </p>
-                <p
-                  style={{
-                    border: show != true ? "1px solid white" : "none",
-                    fontWeight: show != true ? "bold" : "normal",
-                  }}
-                >
-                  2
-                </p>
-              </div>
-              <div style={{ width: 100 }}>
-                {show && (
-                  <button onClick={() => setShow(!show)}>Próximo</button>
-                )}
-              </div>
-            </div> */}
           </form>
+
+          <MainButton
+            type={show ? "button" : "submit"}
+            className={"md:max-w-[470px] max-w-none"}
+            onClick={show ? handleShow : handleSubmitValues}
+            disabled={!show && (emptyValueFields || isSubmitting)}
+          >
+            {show ? "Próximo" : "Calcular"}
+          </MainButton>
         </FramerMotion>
       </HeroApp>
 
-      <FooterApp>
-        {show === true ? (
-          <button className="botao" onClick={handleShow}>
-            Proximo
-          </button>
-        ) : (
-          <MainButton
-            type="submit"
-            className="botao"
-            onClick={handleSubmitValues}
-            disabled={
-              (isFormVisible && hasEmptyInputs) ||
-              emptyValueFields ||
-              isSubmitting
-            }
-          >
-            Calcular
-          </MainButton>
-        )}
-      </FooterApp>
+      <FooterApp />
     </>
   );
 }
@@ -439,7 +381,7 @@ const TextInput = ({ title, nome, value, onChange, placeholder, disabled }) => {
 
   return (
     <label htmlFor={nome} className="input-label">
-      <span>{title}</span>
+      {title}
       <input
         className="input-element"
         name={nome}

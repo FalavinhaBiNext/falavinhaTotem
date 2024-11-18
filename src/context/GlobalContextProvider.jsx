@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
+import axios from "axios";
 import { createContext, useState } from "react";
 import { useFormik } from "formik";
 import { phoneMask, moneyConverter } from "../utils/formatters";
 import { validationSchema } from "../utils/validators";
 import { useGetSurvey } from "../hooks/useGetSurvey";
+
 import QuestionarioHoldingState from "../states/QuestionarioHoldingState";
-import axios from "axios";
 
 export const GlobalContext = createContext();
 export default function GlobalContextProvider({ children }) {

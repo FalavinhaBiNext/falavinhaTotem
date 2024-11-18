@@ -7,8 +7,10 @@ import ButtonLinks from "../../components/UI/ButtonLinks";
 import FramerMotion from "../../components/UI/FramerMotion";
 import MainPageTitle from "../../components/UI/MainPageTitle";
 import { contabilidade } from "../../utils/conteudo_paginas";
+import useScreenSize from "../../hooks/useScreenSize";
 
 function Contabilidade() {
+  const { screenSize } = useScreenSize();
   const { titulo, subtitulo, texto, topicos } = contabilidade;
 
   // links dos botões
@@ -49,7 +51,10 @@ function Contabilidade() {
             ))}
           </ul>
 
-          <ButtonLinks options={options} />
+          <ButtonLinks
+            options={options}
+            style={{ maxWidth: screenSize.width > 768 ? "470px" : "100%" }}
+          />
         </FramerMotion>
       </HeroApp>
 
