@@ -1,4 +1,4 @@
-import HeaderApp from "../../components/Header";
+import MainHeader from "../../components/Header";
 import FooterApp from "../../components/Footer";
 import FramerMotion from "../../components/UI/FramerMotion";
 import HeroApp from "../../components/Hero";
@@ -12,9 +12,9 @@ const biContent = `https://app.powerbi.com/view?r=eyJrIjoiODA2NjYzNWEtYjVlMi00ZW
 function DashContabilidade() {
   return (
     <>
-      <HeaderApp>
+      <MainHeader>
         <MainPageTitle title="DASHBOARD BI" />
-      </HeaderApp>
+      </MainHeader>
 
       <HeroApp fundo={fundo}>
         <FramerMotion>

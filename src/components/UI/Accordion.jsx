@@ -1,18 +1,13 @@
-import { useState, useRef, useCallback } from "react";
 import PropTypes from "prop-types";
+import useAccordion from "../../hooks/useAccordion";
 
 export default function Accordion({ sliced, background }) {
-  const [activeIndex, setActiveIndex] = useState(null);
-  const handleToggle = useCallback((index) => {
-    setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
-  }, []);
+  const { activeIndex, handleToggle, contentRef } = useAccordion(sliced);
 
   if (!sliced) return null;
 
   return sliced.map(({ name, description, item }, index) => {
     const isActive = activeIndex === index;
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const contentRef = useRef(null);
 
     const contentStyle = {
       height: isActive ? contentRef?.current?.scrollHeight : 0,

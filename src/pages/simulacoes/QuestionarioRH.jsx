@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import HeaderApp from "../../components/Header";
+import MainHeader from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import FooterApp from "../../components/Footer";
 import FramerMotion from "../../components/UI/FramerMotion";
@@ -55,9 +55,9 @@ export default function QuestionarioRH() {
 
   return (
     <>
-      <HeaderApp redirect={"/solucoes"}>
+      <MainHeader redirect={"/solucoes"}>
         <h1 className="title">Faça uma pesquisa sobre sua empresa</h1>
-      </HeaderApp>
+      </MainHeader>
 
       <HeroApp fundo={imagem}>
         <FramerMotion>

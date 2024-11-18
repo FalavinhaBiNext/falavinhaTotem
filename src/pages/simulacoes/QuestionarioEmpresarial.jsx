@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import HeaderApp from "../../components/Header";
+import MainHeader from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import fundo from "../../assets/image/ConsultoriaEmpresarial.png";
 import FramerMotion from "../../components/UI/FramerMotion";
@@ -55,9 +55,9 @@ export default function QuestionarioEmpresarial() {
 
   return (
     <>
-      <HeaderApp redirect={"/solucoes"}>
+      <MainHeader redirect={"/solucoes"}>
         <h1 className="title">Faça uma pesquisa sobre sua empresa</h1>
-      </HeaderApp>
+      </MainHeader>
 
       <HeroApp fundo={fundo}>
         <FramerMotion>

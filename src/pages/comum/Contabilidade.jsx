@@ -1,4 +1,4 @@
-import HeaderApp from "../../components/Header";
+import MainHeader from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import fundo from "../../assets/image/FundoContabilidade.png";
 import FooterApp from "../../components/Footer";
@@ -18,9 +18,9 @@ function Contabilidade() {
 
   return (
     <>
-      <HeaderApp redirect={"/solucoes"}>
+      <MainHeader redirect={"/solucoes"}>
         <MainPageTitle title={titulo} />
-      </HeaderApp>
+      </MainHeader>
 
       <HeroApp fundo={fundo}>
         <FramerMotion>

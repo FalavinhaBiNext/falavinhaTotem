@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import HeaderApp from "../../components/Header";
+import MainHeader from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import FooterApp from "../../components/Footer";
 import MainButton from "../../components/UI/MainButton";
@@ -11,7 +11,7 @@ function HomePage() {
 
   return (
     <>
-      <HeaderApp />
+      <MainHeader />
 
       <HeroApp>
         <VideoPlayer />

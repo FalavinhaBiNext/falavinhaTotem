@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import HeaderApp from "../../components/Header";
+import MainHeader from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import fundo from "../../assets/image/FundoHolding.png";
 import FramerMotion from "../../components/UI/FramerMotion";
@@ -48,9 +48,9 @@ export default function QuestionarioHolding() {
 
   return (
     <>
-      <HeaderApp redirect={"/solucoes"}>
+      <MainHeader redirect={"/solucoes"}>
         <h1 className="title">Pesquisa de holding</h1>
-      </HeaderApp>
+      </MainHeader>
 
       <HeroApp fundo={fundo}>
         <FramerMotion>

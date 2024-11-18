@@ -1,6 +1,6 @@
 import MainButton from "../../components/UI/MainButton";
 import FooterApp from "../../components/Footer";
-import HeaderApp from "../../components/Header";
+import MainHeader from "../../components/Header";
 import Main from "../../components/Main";
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +16,7 @@ export default function NotFound() {
 
   return (
     <>
-      <HeaderApp />
+      <MainHeader />
       <Main>
         <div style={{ margin: "auto" }}>
           <h1 style={notFoundText}>Página não encontrada</h1>

@@ -1,4 +1,4 @@
-import HeaderApp from "../../components/Header";
+import MainHeader from "../../components/Header";
 import FooterApp from "../../components/Footer";
 import FramerMotion from "../../components/UI/FramerMotion";
 import HeroApp from "../../components/Hero";
@@ -13,9 +13,9 @@ QwIiwidCI6Ijk2ZjUxYjBhLTMwNDAtNDgzZi04Yjc2LTExODQ4YmZkZTRmYiJ9&navContentPaneEna
 function DashboardContabilidade() {
   return (
     <>
-      <HeaderApp>
+      <MainHeader>
         <MainPageTitle title="DASHBOARD BI" />
-      </HeaderApp>
+      </MainHeader>
 
       <HeroApp fundo={fundo}>
         <FramerMotion>

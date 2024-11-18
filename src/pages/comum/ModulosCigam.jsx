@@ -1,5 +1,4 @@
-import { useState } from "react";
-import HeaderApp from "../../components/Header";
+import MainHeader from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import FooterApp from "../../components/Footer";
 import fundo from "../../assets/image/FundoCigam.png";
@@ -9,26 +8,16 @@ import { modulosCigam } from "../../services/db";
 import Accordion from "../../components/UI/Accordion";
 import MainButton from "../../components/UI/MainButton";
 import MainPageTitle from "../../components/UI/MainPageTitle";
+import useAccordion from "../../hooks/useAccordion";
 
 const ModulosCigam = () => {
-  const [page, setPage] = useState(0);
-  const fieldsPage = 3;
-  const start = page * fieldsPage;
-  const end = start + fieldsPage;
-  const sliced = modulosCigam.slice(start, end);
-
-  const nextPage = () => {
-    if (end < modulosCigam.length) setPage(page + 1);
-  };
-  const prevPage = () => {
-    if (start > 0) setPage(page - 1);
-  };
+  const { sliced, nextPage, prevPage, page, end } = useAccordion(modulosCigam);
 
   return (
     <>
-      <HeaderApp redirect={"/cigam"}>
+      <MainHeader redirect={"/cigam"}>
         <MainPageTitle image={logoCigam} />
-      </HeaderApp>
+      </MainHeader>
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
@@ -61,34 +50,6 @@ const ModulosCigam = () => {
             )}
           </div>
         </FramerMotion>
-        {/* <FramerMotion>
-          <div>
-            <h2 className="subtitulo">MODULOS CIGAM</h2>
-          </div>
-          <div className="container-accordion">
-            {sliced.map((item, index) => (
-              <Accordion
-                name={item.name}
-                item={item.item}
-                key={index}
-                background={"#ff7811"}
-                cardFundo={"#1B1F24"}
-              />
-            ))}
-          </div>
-          <div className="accordion-button">
-            {page === 0 ? null : (
-              <button className="botao" onClick={prevPage}>
-                Anterior
-              </button>
-            )}
-            {end >= modulosCigam.length ? null : (
-              <button className="botao" onClick={nextPage}>
-                Próximo
-              </button>
-            )}
-          </div>
-        </FramerMotion> */}
       </HeroApp>
 
       <FooterApp />

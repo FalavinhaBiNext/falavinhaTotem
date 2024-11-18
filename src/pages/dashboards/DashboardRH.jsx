@@ -1,4 +1,4 @@
-import HeaderApp from "../../components/Header";
+import MainHeader from "../../components/Header";
 import FooterApp from "../../components/Footer";
 import HeroApp from "../../components/Hero";
 import FramerMotion from "../../components/UI/FramerMotion";
@@ -15,9 +15,9 @@ function DashboardFinanceiro() {
 
   return (
     <>
-      <HeaderApp>
+      <MainHeader>
         <MainPageTitle title="DASHBOARD BI RH" />
-      </HeaderApp>
+      </MainHeader>
 
       <HeroApp fundo={fundo}>
         <FramerMotion>

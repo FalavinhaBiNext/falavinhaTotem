@@ -1,4 +1,4 @@
-import HeaderApp from "../../components/Header";
+import MainHeader from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import fundo from "../../assets/image/Treinamento.png";
 import FramerMotion from "../../components/UI/FramerMotion";
@@ -51,9 +51,9 @@ const Treinamentos = () => {
 
   return (
     <>
-      <HeaderApp redirect={"/solucoes"}>
+      <MainHeader redirect={"/solucoes"}>
         <MainPageTitle title={data.titulo} />
-      </HeaderApp>
+      </MainHeader>
 
       <HeroApp fundo={fundo}>
         <FramerMotion>

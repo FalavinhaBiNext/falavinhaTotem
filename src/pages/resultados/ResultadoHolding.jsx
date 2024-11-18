@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { moneyConverter } from "../../utils";
 import { GlobalContext } from "../../context/GlobalContextProvider";
-import HeaderApp from "../../components/Header";
+import MainHeader from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import FramerMotion from "../../components/UI/FramerMotion";
 import FooterApp from "../../components/Footer";
@@ -60,9 +60,9 @@ export default function ResultadoHolding() {
   return (
     <>
       <ConfettiAnimation />
-      <HeaderApp redirect={"/holding"}>
+      <MainHeader redirect={"/holding"}>
         <h1 className="title">Resultado holding</h1>
-      </HeaderApp>
+      </MainHeader>
 
       <HeroApp fundo={fundo}>
         <FramerMotion>

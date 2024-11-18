@@ -1,5 +1,4 @@
-import { useState } from "react";
-import HeaderApp from "../../components/Header";
+import MainHeader from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import FooterApp from "../../components/Footer";
 import fundo from "../../assets/image/Treinamento.png";
@@ -8,26 +7,16 @@ import { cursos } from "../../services/db";
 import Accordion from "../../components/UI/Accordion";
 import MainPageTitle from "../../components/UI/MainPageTitle";
 import MainButton from "../../components/UI/MainButton";
+import useAccordion from "../../hooks/useAccordion";
 
 const Cursos = () => {
-  const [page, setPage] = useState(0);
-  const fieldsPage = 3;
-  const start = page * fieldsPage;
-  const end = start + fieldsPage;
-  const sliced = cursos.slice(start, end);
-
-  const nextPage = () => {
-    if (end < cursos.length) setPage(page + 1);
-  };
-  const prevPage = () => {
-    if (start > 0) setPage(page - 1);
-  };
+  const { sliced, nextPage, prevPage, page, end } = useAccordion(cursos);
 
   return (
     <>
-      <HeaderApp redirect={"/treinamentos"}>
+      <MainHeader redirect={"/treinamentos"}>
         <MainPageTitle title="CURSOS GRUPO FALAVINHA NEXT" />
-      </HeaderApp>
+      </MainHeader>
       <HeroApp fundo={fundo}>
         <FramerMotion>
           <section className="mb-10">

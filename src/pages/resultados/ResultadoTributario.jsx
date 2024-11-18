@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { GlobalContext } from "../../context/GlobalContextProvider";
 import { useNavigate } from "react-router-dom";
-import HeaderApp from "../../components/Header";
+import MainHeader from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import FramerMotion from "../../components/UI/FramerMotion";
 import FooterApp from "../../components/Footer";
@@ -38,9 +38,9 @@ export default function ResultadoTributario() {
     <>
       {hasValidData && <ConfettiAnimation />}
 
-      <HeaderApp redirect={"/tributario"}>
+      <MainHeader redirect={"/tributario"}>
         <h1 className="title">Resultado tributário</h1>
-      </HeaderApp>
+      </MainHeader>
 
       <HeroApp fundo={fundo}>
         <FramerMotion>

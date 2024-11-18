@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import HeaderApp from "../../components/Header";
+import MainHeader from "../../components/Header";
 import MainButton from "../../components/UI/MainButton";
 import HeroApp from "../../components/Hero";
 import FramerMotion from "../../components/UI/FramerMotion";
@@ -14,6 +14,9 @@ import QuestionarioCigamState from "../../states/QuestionarioCigamState";
 import gifWinner from "../../assets/gifs/winner.gif";
 import useRefreshDetector from "../../hooks/useRefreshDetector";
 import gifCheck from "../../assets/gifs/check.gif";
+import MainPageTitle from "../../components/UI/MainPageTitle";
+import logoCigam from "../../assets/image/LogoCigam.png";
+
 export default function QuestionarioCigam() {
   const navigate = useNavigate();
   const { handleCheckRefresh } = useRefreshDetector();
@@ -26,12 +29,10 @@ export default function QuestionarioCigam() {
     produtividade_hora,
     produtividade_financeira,
     roi_meses_ano,
-    roi_anual,
-    roi_mensal,
     salario_hora,
     folha_pagamento,
   } = QuestionarioCigamState();
-  const isValidValue = (val) => (isNaN(val) || !isFinite(val) ? "" : val);
+  // const isValidValue = (val) => (isNaN(val) || !isFinite(val) ? "" : val);
   const [isFormVisible, setIsFormVisible] = useState(false);
   const emptyValueFields =
     cigamValues.usuarios === "" ||
@@ -73,14 +74,19 @@ export default function QuestionarioCigam() {
 
   return (
     <>
-      <HeaderApp redirect={"/solucoes"}>
-        <h1 className="title">Faça uma pesquisa sobre sua empresa</h1>
-      </HeaderApp>
+      <MainHeader redirect={"/solucoes"}>
+        <MainPageTitle image={logoCigam} />
+      </MainHeader>
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <Formulario setIsFormVisible={setIsFormVisible} />
-          <form className="form">
+          <section className="mt-0 mb-10 sm:mt-10">
+            <h2 className="pb-3 text-xl leading-6 text-center text-light_color font-gilroyLight">
+              Faça uma pesquisa sobre sua empresa
+            </h2>
+          </section>
+
+          <form className="grid gap-5 mb-10 grid-cols-standard2">
             <TextInput
               title="Usuários:"
               nome="usuarios"
@@ -116,9 +122,8 @@ export default function QuestionarioCigam() {
             />
             <label
               htmlFor="situacao_atual"
-              className="input-label input-label__select"
+              className="input-label input-label__select input-label__select--cigam"
             >
-              <span>Situação atual:</span>
               <select
                 className="input-element"
                 name="situacao_atual"
@@ -127,84 +132,32 @@ export default function QuestionarioCigam() {
                 onChange={handleChange}
               >
                 <option value="" disabled>
-                  Selecione
+                  Situação atual
                 </option>
                 <option value={15}>ERP Grande porte</option>
                 <option value={20}>ERP Pequeno porte</option>
                 <option value={30}>Não possui ERP/Micro ERP</option>
               </select>
             </label>
-            {/* OUTPUTS
-            <TextInput
-              title="ROI mensal:"
-              nome="roi_mensal"
-              type="text"
-              id="roi_mensal"
-              value={moneyConverter(isValidValue(roi_mensal))}
-              onChange={handleChange}
-              placeholder="R$ 0,00"
-              newClassName="input-element__output"
-              isReadOnly={true}
-            />
-
-            <TextInput
-              title="ROI anual - GP:"
-              nome="roi_anual"
-              type="text"
-              id="roi_anual"
-              value={moneyConverter(isValidValue(roi_anual))}
-              onChange={handleChange}
-              placeholder="R$ 0,00"
-              newClassName="input-element__output"
-              isReadOnly={true}
-            />
-
-            <TextInput
-              title="ROI anual - GP:"
-              nome="folha_pagamento"
-              type="text"
-              id="folha_pagamento"
-              value={moneyConverter(isValidValue(folha_pagamento))}
-              onChange={handleChange}
-              placeholder="R$ 0,00"
-              newClassName="input-element__output"
-              isReadOnly={true}
-            />
-
-            <TextInput
-              title="Salário/Hora:"
-              nome="salario_hora"
-              type="text"
-              id="salario_hora"
-              value={moneyConverter(isValidValue(salario_hora))}
-              onChange={handleChange}
-              placeholder="R$ 0,00"
-              newClassName="input-element__output"
-              isReadOnly={true}
-            />
-
-            <TextInput
-              title="Ano/Meses para ROI:"
-              nome="tempo_roi"
-              type="text"
-              id="tempo_roi"
-              value={isValidValue(roi_meses_ano.toFixed(1)).replace(".", ",")}
-              onChange={handleChange}
-              placeholder="Tempo para ROI"
-              newClassName="input-element__output"
-              isReadOnly={true}
-            /> */}
-            <br />
           </form>
-          <div className="consultoria-rh">
-            <div className="consultoria-rh__item">
+
+          <div className="grid gap-5 mb-10 grid-cols-standard2">
+            <div
+              className="flex flex-col items-start justify-start gap-2 p-6 text-left
+                  w-full border-2 border-primary_color rounded-[20px] shadow-bx-1 
+                  bg-transparent text-light_color min-h-[200px]"
+            >
               <img src={gifWinner} alt="Winner" className="icon-topicos_rh" />
               <p>
                 Premiado como Melhor ERP para médias e Grandes empresas pelo B2B
                 STACK
               </p>
             </div>
-            <div className="consultoria-rh__item">
+            <div
+              className="flex flex-col items-start justify-start gap-2 p-6 text-left
+                  w-full border-2 border-primary_color rounded-[20px] shadow-bx-1 
+                  bg-transparent text-light_color min-h-[200px]"
+            >
               <img src={gifCheck} alt="Winner" className="icon-topicos_rh" />
               <p>
                 Único ERP de grande porte que usa tecnologia LOW CODE - à prova
@@ -212,24 +165,23 @@ export default function QuestionarioCigam() {
               </p>
             </div>
           </div>
+          <MainButton
+            type="button"
+            className="botao"
+            onClick={handleSubmitValues}
+            disabled={
+              (isFormVisible && hasEmptyInputs) ||
+              hasInputErrors ||
+              emptyValueFields ||
+              isSubmitting
+            }
+          >
+            Calcular
+          </MainButton>
         </FramerMotion>
       </HeroApp>
 
-      <FooterApp footerFixed>
-        <MainButton
-          type="button"
-          className="botao"
-          onClick={handleSubmitValues}
-          disabled={
-            (isFormVisible && hasEmptyInputs) ||
-            hasInputErrors ||
-            emptyValueFields ||
-            isSubmitting
-          }
-        >
-          Calcular
-        </MainButton>
-      </FooterApp>
+      <FooterApp></FooterApp>
     </>
   );
 }

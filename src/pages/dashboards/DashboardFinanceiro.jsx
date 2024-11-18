@@ -1,4 +1,4 @@
-import HeaderApp from "../../components/Header";
+import MainHeader from "../../components/Header";
 import FooterApp from "../../components/Footer";
 import HeroApp from "../../components/Hero";
 import FramerMotion from "../../components/UI/FramerMotion";
@@ -11,9 +11,9 @@ const biContent = `https://app.powerbi.com/view?r=eyJrIjoiMmIzNTQ4ZWItMTYzZS00M2
 function DashboardFinanceiro() {
   return (
     <>
-      <HeaderApp>
+      <MainHeader>
         <MainPageTitle title="DASHBOARD BI" />
-      </HeaderApp>
+      </MainHeader>
 
       <HeroApp fundo={fundo}>
         <FramerMotion>

@@ -1,4 +1,4 @@
-import HeaderApp from "../../components/Header";
+import MainHeader from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import FooterApp from "../../components/Footer";
 import imagem from "../../assets/image/Servicos2.png";
@@ -30,9 +30,9 @@ export default function Servicos() {
 
   return (
     <>
-      <HeaderApp>
+      <MainHeader>
         <MainPageTitle title={titulo} />
-      </HeaderApp>
+      </MainHeader>
 
       <HeroApp fundo={imagem}>
         <FramerMotion>

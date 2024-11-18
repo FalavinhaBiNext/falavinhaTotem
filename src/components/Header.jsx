@@ -4,7 +4,7 @@ import logo from "../assets/image/LogoFalavinhaCTT.png";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 import useScrollEvent from "../hooks/useScrollEvent";
 
-const HeaderApp = ({ children, redirect }) => {
+const MainHeader = ({ children, redirect }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -60,9 +60,9 @@ const HeaderApp = ({ children, redirect }) => {
   );
 };
 
-HeaderApp.propTypes = {
+MainHeader.propTypes = {
   children: PropTypes.node,
   redirect: PropTypes.string,
 };
 
-export default HeaderApp;
+export default MainHeader;

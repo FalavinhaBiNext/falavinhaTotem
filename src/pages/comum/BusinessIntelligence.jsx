@@ -1,4 +1,4 @@
-import HeaderApp from "../../components/Header";
+import MainHeader from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import FramerMotion from "../../components/UI/FramerMotion";
 import fundo from "../../assets/image/FundoBI.png";
@@ -24,9 +24,9 @@ export default function BusinessIntelligence() {
 
   return (
     <>
-      <HeaderApp>
+      <MainHeader>
         <MainPageTitle title={titulo} />
-      </HeaderApp>
+      </MainHeader>
 
       <HeroApp fundo={fundo}>
         <FramerMotion>

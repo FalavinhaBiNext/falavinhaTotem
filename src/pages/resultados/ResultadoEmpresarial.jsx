@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../context/GlobalContextProvider";
-import HeaderApp from "../../components/Header";
+import MainHeader from "../../components/Header";
 import fundo from "../../assets/image/ConsultoriaEmpresarial.png";
 import HeroApp from "../../components/Hero";
 import FramerMotion from "../../components/UI/FramerMotion";
@@ -35,9 +35,9 @@ export default function ResultadoEmpresarial() {
     <>
       <ConfettiAnimation />
 
-      <HeaderApp redirect={"/consultoria-empresarial"}>
+      <MainHeader redirect={"/consultoria-empresarial"}>
         <h1 className="title-result">Resultado</h1>
-      </HeaderApp>
+      </MainHeader>
 
       <HeroApp fundo={fundo}>
         <FramerMotion>

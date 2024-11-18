@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { GlobalContext } from "../../context/GlobalContextProvider";
 import { useNavigate } from "react-router-dom";
-import HeaderApp from "../../components/Header";
+import MainHeader from "../../components/Header";
 import HeroApp from "../../components/Hero";
 import FramerMotion from "../../components/UI/FramerMotion";
 import imagem from "../../assets/image/AssessoriaTributaria.png";
@@ -61,9 +61,9 @@ export default function ResultadoCigam() {
   return (
     <>
       <ConfettiAnimation />
-      <HeaderApp redirect={"/cigam"}>
+      <MainHeader redirect={"/cigam"}>
         <h1 className="title">Resultado CIGAM</h1>
-      </HeaderApp>
+      </MainHeader>
 
       <HeroApp fundo={imagem}>
         <FramerMotion>
