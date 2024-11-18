@@ -8,7 +8,6 @@ import FramerMotion from "../../components/UI/FramerMotion";
 import FooterApp from "../../components/Footer";
 import fundo from "../../assets/image/FundoCigam.png";
 import { GlobalContext } from "../../context/GlobalContextProvider";
-import Formulario from "../../components/Formulario";
 import { numberFormatter } from "../../utils/formatters";
 import QuestionarioCigamState from "../../states/QuestionarioCigamState";
 import gifWinner from "../../assets/gifs/winner.gif";
@@ -20,8 +19,7 @@ import logoCigam from "../../assets/image/LogoCigam.png";
 export default function QuestionarioCigam() {
   const navigate = useNavigate();
   const { handleCheckRefresh } = useRefreshDetector();
-  const { hasEmptyInputs, hasInputErrors, setResultadoCigam, isSubmitting } =
-    useContext(GlobalContext);
+  const { setResultadoCigam, isSubmitting } = useContext(GlobalContext);
   const {
     cigamValues,
     setCigamValues,
@@ -32,8 +30,6 @@ export default function QuestionarioCigam() {
     salario_hora,
     folha_pagamento,
   } = QuestionarioCigamState();
-  // const isValidValue = (val) => (isNaN(val) || !isFinite(val) ? "" : val);
-  const [isFormVisible, setIsFormVisible] = useState(false);
   const emptyValueFields =
     cigamValues.usuarios === "" ||
     cigamValues.salario_medio === "" ||
@@ -169,12 +165,7 @@ export default function QuestionarioCigam() {
             type="button"
             className={"md:max-w-[470px] max-w-none"}
             onClick={handleSubmitValues}
-            disabled={
-              (isFormVisible && hasEmptyInputs) ||
-              hasInputErrors ||
-              emptyValueFields ||
-              isSubmitting
-            }
+            disabled={emptyValueFields || isSubmitting}
           >
             Calcular
           </MainButton>
@@ -187,7 +178,6 @@ export default function QuestionarioCigam() {
 }
 
 const TextInput = ({
-  title,
   nome,
   value,
   onChange,
