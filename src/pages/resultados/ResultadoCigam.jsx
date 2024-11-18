@@ -6,8 +6,9 @@ import HeroApp from "../../components/Hero";
 import FramerMotion from "../../components/UI/FramerMotion";
 import imagem from "../../assets/image/AssessoriaTributaria.png";
 import FooterApp from "../../components/Footer";
-import { numberFormatter } from "../../utils";
+import { numberFormatter } from "../../utils/formatters";
 import ConfettiAnimation from "../../components/UI/ConfettiAnimation";
+import MainPageTitle from "../../components/UI/MainPageTitle";
 
 export default function ResultadoCigam() {
   const {
@@ -62,7 +63,7 @@ export default function ResultadoCigam() {
     <>
       <ConfettiAnimation />
       <MainHeader redirect={"/cigam"}>
-        <h1 className="title">Resultado CIGAM</h1>
+        <MainPageTitle title={"Resultado CIGAM"} />
       </MainHeader>
 
       <HeroApp fundo={imagem}>
