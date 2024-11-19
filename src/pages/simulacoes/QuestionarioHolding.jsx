@@ -13,7 +13,9 @@ import { useNavigate } from "react-router-dom";
 import useRefreshDetector from "../../hooks/useRefreshDetector";
 import MainPageTitle from "../../components/UI/MainPageTitle";
 import PopupModal from "../../components/UI/PopupModal";
+import { formularioStyle } from "../../style/sharedStyle";
 
+const { labelStyle, inputStyle } = formularioStyle();
 export default function QuestionarioHolding() {
   const { holdingValues, setHoldingValues, holdinginventarioResult } =
     QuestionarioHoldingState();
@@ -55,6 +57,19 @@ export default function QuestionarioHolding() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const dataValues = [
+    {
+      title: "Holding",
+      name: "valor_imovel",
+      value: holdingValues.valor_imovel,
+    },
+    {
+      title: "Inventário",
+      name: "inventario",
+      value: holdingValues.inventario,
+    },
+  ];
+
   return (
     <>
       {showModal && (
@@ -67,42 +82,25 @@ export default function QuestionarioHolding() {
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <form className="flex flex-col gap-8 mb-10 md:max-w-[768px] max-w-none mx-auto">
-            <article className="border-2 border-primary_color rounded-[20px] shadow-bx-1 bg-transparent p-6">
-              <h2 className="text-2xl text-light_color mb-5 tracking-[2px]">
-                Holding
-              </h2>
-              <TextInput
-                title="Valor do imóvel:"
-                nome="valor_imovel"
-                type="text"
-                id="valor_imovel"
-                value={
-                  holdingValues.valor_imovel &&
-                  `R$ ${numberFormatter(holdingValues.valor_imovel)}`
-                }
-                onChange={handleChange}
-                placeholder="Digite um valor"
-              />
-            </article>
-
-            <article className="border-2 border-primary_color rounded-[20px] shadow-bx-1 bg-transparent p-6">
-              <h2 className="text-2xl text-light_color mb-5 tracking-[2px]">
-                Inventário
-              </h2>
-              <TextInput
-                title="Valor do inventário:"
-                nome="inventario"
-                type="text"
-                id="inventario"
-                value={
-                  holdingValues.inventario &&
-                  `R$ ${numberFormatter(holdingValues.inventario)}`
-                }
-                onChange={handleChange}
-                placeholder="Digite um valor"
-              />
-            </article>
+          <form className="flex flex-col gap-8 sm:gap-10 mb-10 md:max-w-[768px] max-w-none mx-auto">
+            {dataValues.map(({ title, name, value }, index) => (
+              <article
+                className="border-2 border-primary_color rounded-[20px] shadow-bx-1 bg-transparent py-8 px-6"
+                key={index}
+              >
+                <h2 className="text-xl text-light_color mb-2 tracking-[2px] uppercase">
+                  {title}
+                </h2>
+                <TextInput
+                  name={name}
+                  type="text"
+                  id={name}
+                  value={value && `R$ ${numberFormatter(value)}`}
+                  onChange={handleChange}
+                  placeholder="Digite um valor"
+                />
+              </article>
+            ))}
           </form>
 
           <MainButton
@@ -121,34 +119,24 @@ export default function QuestionarioHolding() {
   );
 }
 
-const TextInput = ({
-  title,
-  nome,
-  value,
-  onChange,
-  placeholder,
-  newClassName,
-}) => (
-  <label htmlFor={nome} className="input-label">
-    <span>{title}</span>
+const TextInput = ({ name, value, onChange }) => (
+  <label htmlFor={name} className={labelStyle}>
     <input
-      className={`input-element ${newClassName}`}
-      name={nome}
-      placeholder={placeholder}
+      className={inputStyle}
+      name={name}
       autoComplete="off"
       value={value || ""}
-      id={nome}
+      id={name}
       onChange={onChange}
+      placeholder="Digite um valor"
     />
   </label>
 );
 
 TextInput.propTypes = {
-  title: PropTypes.string,
-  nome: PropTypes.string,
+  name: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
   id: PropTypes.string,
-  newClassName: PropTypes.string,
 };

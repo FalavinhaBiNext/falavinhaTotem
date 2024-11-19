@@ -13,6 +13,7 @@ import fundo from "../../assets/image/FundoTributario.png";
 import useRefreshDetector from "../../hooks/useRefreshDetector";
 import MainPageTitle from "../../components/UI/MainPageTitle";
 import PopupModal from "../../components/UI/PopupModal";
+import { formularioStyle } from "../../style/sharedStyle";
 
 const selectAtividades = [
   { value: 1, label: "Comércio" },
@@ -26,6 +27,12 @@ const selectAtividades = [
   { value: 9, label: "Farmácias" },
 ];
 
+const { labelStyle, inputStyle, labelSelectStyle, selectOptionStyle } =
+  formularioStyle();
+// STYLES
+const selectLabelStyle = `${labelSelectStyle} after:top-[48px]`;
+const selectInputStyle = `${inputStyle} appearance-none cursor-pointer`;
+const titleStyle = `text-base font-bold text-light_color leading-[20px] tracking-[1px] pb-1`;
 export default function QuestionarioTributario() {
   const {
     setResultadoTributario,
@@ -159,9 +166,15 @@ export default function QuestionarioTributario() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const pageBtnStyle = `py-2 px-6  mx-auto min-h-10 w-full flex justify-center items-center 
-   bg-primary_color rounded-[10px] text-light_color font-bold text-base cursor-pointer text-center
-  `;
+  const taxOptions = [
+    { value: 1, label: "Lucro real" },
+    { value: 2, label: "Lucro presumido" },
+    { value: 0, label: "Simples" },
+  ];
+  const inportExportOptions = [
+    { value: true, label: "Sim" },
+    { value: false, label: "Não" },
+  ];
 
   return (
     <>
@@ -176,61 +189,52 @@ export default function QuestionarioTributario() {
       <HeroApp fundo={fundo}>
         <FramerMotion>
           <form className="flex flex-col gap-8 mb-10 md:max-w-[768px] max-w-none mx-auto">
-            <div className="flex items-center justify-end gap-2 max-w-[768px] md:mr-0 mx-auto">
-              {[true, false].map((page, index) => (
-                <button
-                  key={index}
-                  className={`${pageBtnStyle} ${
-                    page === show ? "font-bold border border-white" : ""
-                  }`}
-                  onClick={() => setShow(page)}
-                  type="button"
-                >
-                  {index + 1}
-                </button>
-              ))}
-            </div>
+            <PaginationButton {...{ show, setShow }} />
 
             {show && (
               <div className="flex flex-col gap-4">
-                <label
-                  htmlFor="tributacao"
-                  className="input-label input-label__select"
-                >
-                  Tributação: (Obrigatório)
+                <label htmlFor="tributacao" className={selectLabelStyle}>
+                  <span className={titleStyle}>Tributação: (Obrigatório)</span>
                   <select
-                    className="input-element"
+                    className={selectInputStyle}
                     name="tributacao"
                     id="tributacao"
                     value={taxValues.tributacao}
                     onChange={handleChange}
                   >
-                    <option value="" disabled>
+                    <option value="" disabled className={selectOptionStyle}>
                       Selecione
                     </option>
-                    <option value={1}>Lucro real</option>
-                    <option value={2}>Lucro presumido</option>
-                    <option value={0}>Simples</option>
+                    {taxOptions.map((option) => (
+                      <option
+                        className={selectOptionStyle}
+                        value={option.value}
+                        key={option.label}
+                      >
+                        {option.label}
+                      </option>
+                    ))}
                   </select>
                 </label>
 
-                <label
-                  htmlFor="atividade"
-                  className="input-label input-label__select"
-                >
-                  Atividade: (Obrigatório)
+                <label htmlFor="atividade" className={selectLabelStyle}>
+                  <span className={titleStyle}>Atividade: (Obrigatório)</span>
                   <select
-                    className="input-element"
+                    className={selectInputStyle}
                     name="atividade"
                     id="atividade"
                     value={taxValues.atividade}
                     onChange={handleChange}
                   >
-                    <option value={""} disabled>
+                    <option value={""} disabled className={selectOptionStyle}>
                       Selecione
                     </option>
                     {selectAtividades.map((item) => (
-                      <option value={item.value} key={item.value}>
+                      <option
+                        value={item.value}
+                        key={item.value}
+                        className={selectOptionStyle}
+                      >
                         {item.label}
                       </option>
                     ))}
@@ -317,21 +321,27 @@ export default function QuestionarioTributario() {
                   onChange={handleChange}
                   placeholder="Digite um valor aproximado"
                 />
-                <label
-                  htmlFor="importacoes"
-                  className="input-label input-label__select"
-                >
-                  Importa ou Exporta?:
+                <label htmlFor="importacoes" className={selectLabelStyle}>
+                  <span className={titleStyle}>Importa ou Exporta?:</span>
                   <select
-                    className="input-element"
+                    className={selectInputStyle}
                     name="importacoes"
                     id="importacoes"
                     value={importacoes}
                     onChange={(e) => setImportacoes(e.target.value === "true")}
                   >
-                    <option value={false}>Selecione (Opcional)</option>
-                    <option value={true}>Sim</option>
-                    <option value={false}>Não</option>
+                    <option value={false} className={selectOptionStyle}>
+                      Selecione (Opcional)
+                    </option>
+                    {inportExportOptions.map((option) => (
+                      <option
+                        className={selectOptionStyle}
+                        value={option.value}
+                        key={option.label}
+                      >
+                        {option.label}
+                      </option>
+                    ))}
                   </select>
                 </label>
 
@@ -382,7 +392,8 @@ export default function QuestionarioTributario() {
 }
 
 // COMPONENTE DO INPUT DE TEXTO OU NÚMERO
-const TextInput = ({ title, nome, value, onChange, placeholder, disabled }) => {
+const TextInput = (props) => {
+  const { title, nome, value, onChange, placeholder, disabled } = props;
   const inputRef = useRef(null);
   useEffect(() => {
     if (disabled && inputRef.current && value) {
@@ -392,10 +403,10 @@ const TextInput = ({ title, nome, value, onChange, placeholder, disabled }) => {
   }, [disabled, nome, onChange, value]);
 
   return (
-    <label htmlFor={nome} className="input-label">
-      {title}
+    <label htmlFor={nome} className={labelStyle}>
+      <span className={titleStyle}>{title}</span>
       <input
-        className="input-element"
+        className={inputStyle}
         name={nome}
         id={nome}
         placeholder={placeholder}
@@ -408,7 +419,6 @@ const TextInput = ({ title, nome, value, onChange, placeholder, disabled }) => {
     </label>
   );
 };
-
 TextInput.propTypes = {
   title: PropTypes.string,
   nome: PropTypes.string,
@@ -416,4 +426,33 @@ TextInput.propTypes = {
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
+};
+
+// BOTÃO DE PAGINAÇÃO
+const PaginationButton = ({ show, setShow }) => {
+  const pageBtnStyle = `py-2 px-6  mx-auto min-h-10 w-full flex justify-center items-center 
+   bg-primary_color rounded-[10px] text-light_color font-bold text-base cursor-pointer text-center
+  `;
+
+  return (
+    <div className="flex items-center justify-end gap-2 max-w-[768px] md:mr-0 mx-auto">
+      {[true, false].map((page, index) => (
+        <button
+          key={index}
+          className={`${pageBtnStyle} ${
+            page === show ? "font-bold border border-white" : ""
+          }`}
+          onClick={() => setShow(page)}
+          type="button"
+        >
+          {index + 1}
+        </button>
+      ))}
+    </div>
+  );
+};
+
+PaginationButton.propTypes = {
+  show: PropTypes.bool,
+  setShow: PropTypes.func,
 };
