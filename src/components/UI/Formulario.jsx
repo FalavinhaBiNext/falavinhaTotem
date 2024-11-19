@@ -1,14 +1,15 @@
 import PropTypes from "prop-types";
 import { useContext } from "react";
 import { GlobalContext } from "../../context/GlobalContextProvider";
-import InputText from "./InputText";
 import gifAvatar from "../../assets/gifs/avatar.gif";
 import gifTel from "../../assets/gifs/tel.gif";
 import gifEmail from "../../assets/gifs/email.gif";
 import gifEmpresa from "../../assets/gifs/empresa.gif";
 import gifTeam from "../../assets/gifs/team.gif";
-import InputSelect from "./InputSelect";
+import { formularioStyle } from "../../style/sharedStyle";
 
+const { inputStyle, errorMessageStyle, labelStyle, selectOptionStyle } =
+  formularioStyle();
 export default function Formulario() {
   const { errors, touched, handleBlur, handleChange, inputValue, phoneMask } =
     useContext(GlobalContext);
@@ -89,24 +90,22 @@ export default function Formulario() {
     },
   ];
 
-  function errorAlert(val) {
-    return errors[val] && touched[val] ? "input-element--alert" : "";
-  }
-
   return (
-    <form className="form">
-      <h2 className="form__title">QUEREMOS LHE CONHECER MELHOR</h2>
+    <form className="flex flex-col gap-[10px] px-0 pt-2 sm:pt-4 pb-8 w-full">
+      <h2 className="text-lg sm:text-2xl font-[inherit] text-dark_color text-center mb-1 uppercase font-normal">
+        Queremos lhe conhecer melhor
+      </h2>
       {inputs.map((input) => (
         <div className="input-wrapper" key={input.id}>
           <img
             src={input.icon}
-            className="w-[30px] sm:w-[40px] h-[30px] sm:h-[40px]"
+            className="sm:w-[40px] sm:h-[40px] w-[30px] h-[30px]"
             alt=""
           />
           {input.type !== "select" ? (
-            <InputText {...input} phoneMask={phoneMask} />
+            <ElementoInput {...input} phoneMask={phoneMask} />
           ) : (
-            <InputSelect {...input} errorAlert={errorAlert} />
+            <ElementoSelect {...input} />
           )}
         </div>
       ))}
@@ -116,4 +115,88 @@ export default function Formulario() {
 
 Formulario.propTypes = {
   setIsFormVisible: PropTypes.func,
+};
+
+const ElementoInput = (props) => {
+  const { name, type, id, title, phoneMask } = props;
+  const { inputValue, handleChange, handleBlur, errors, touched } =
+    useContext(GlobalContext);
+
+  return (
+    <label htmlFor={id} className={labelStyle} key={id}>
+      <input
+        className={inputStyle}
+        type={type}
+        name={name}
+        id={id}
+        placeholder={title}
+        autoComplete="off"
+        value={
+          type === "tel"
+            ? phoneMask(inputValue[name] || "")
+            : inputValue[name] || ""
+        }
+        maxLength={type === "tel" ? 15 : undefined}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        style={{ borderColor: errors[name] && touched[name] ? "#e74c3c" : "" }}
+      />
+      {errors[name] && touched[name] && (
+        <span className={errorMessageStyle}>{errors[name]}</span>
+      )}
+    </label>
+  );
+};
+
+ElementoInput.propTypes = {
+  title: PropTypes.string,
+  phoneMask: PropTypes.func,
+  name: PropTypes.string,
+  type: PropTypes.string,
+  id: PropTypes.string,
+};
+
+const ElementoSelect = (props) => {
+  const { title, name, options } = props;
+  const { inputValue, handleChange, handleBlur, errors, touched } =
+    useContext(GlobalContext);
+
+  return (
+    <label htmlFor={name} className="input-label input-label--custom">
+      <select
+        className={`${inputStyle} appearance-none cursor-pointer`}
+        name={name}
+        id={name}
+        onChange={handleChange}
+        value={inputValue[name]}
+        onBlur={handleBlur}
+        style={{ borderColor: errors[name] && touched[name] ? "#e74c3c" : "" }}
+      >
+        <option value="" disabled className={selectOptionStyle}>
+          {title}
+        </option>
+        {options
+          .sort((a, b) => a.label.localeCompare(b.label))
+          .map((option) => (
+            <option
+              value={option.value}
+              key={option.label}
+              className={selectOptionStyle}
+            >
+              {option.label}
+            </option>
+          ))}
+      </select>
+      {errors[name] && touched[name] && (
+        <span className={errorMessageStyle}>{errors[name]}</span>
+      )}
+    </label>
+  );
+};
+
+ElementoSelect.propTypes = {
+  title: PropTypes.string,
+  name: PropTypes.string,
+  id: PropTypes.string,
+  options: PropTypes.array,
 };

@@ -12,7 +12,7 @@ export default function InputText(props) {
   return (
     <label htmlFor={id} className={labelStyle} key={id}>
       <input
-        className={`${inputStyle}  `}
+        className={inputStyle}
         type={type}
         name={name}
         id={id}
@@ -40,5 +40,5 @@ InputText.propTypes = {
   type: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  phoneMask: PropTypes.func.isRequired,
+  phoneMask: PropTypes.func,
 };

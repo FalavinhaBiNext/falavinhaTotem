@@ -7,7 +7,8 @@ export default function InputSelect(props) {
   const { title, name, options } = props;
   const { inputValue, handleChange, handleBlur, errors, touched } =
     useContext(GlobalContext);
-  const { inputStyle, errorMessageStyle, labelSelectStyle } = formularioStyle();
+  const { inputStyle, errorMessageStyle, labelSelectStyle, selectOptionStyle } =
+    formularioStyle();
 
   return (
     <label htmlFor={name} className={labelSelectStyle}>
@@ -20,14 +21,14 @@ export default function InputSelect(props) {
         onBlur={handleBlur}
         style={{ borderColor: errors[name] && touched[name] ? "#e74c3c" : "" }}
       >
-        <option value={""} disabled>
+        <option value="" disabled>
           {title}
         </option>
         {options
           .sort((a, b) => a.label.localeCompare(b.label))
           .map((option) => (
             <option
-              className="text-base font-semibold text-dark_color font-[inherit] leading-[14px] py-[3px]"
+              className={selectOptionStyle}
               value={option.value}
               key={option.label}
             >

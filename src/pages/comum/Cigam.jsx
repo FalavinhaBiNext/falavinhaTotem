@@ -15,8 +15,8 @@ const Cigam = () => {
 
   // links dos botões
   const options = [
-    { name: "FAÇA UMA SIMULAÇÃO", route: routes.questionarioCigam },
     { name: "MODULOS CIGAM", route: routes.modulosCigam },
+    { name: "FAÇA UMA SIMULAÇÃO", route: routes.questionarioCigam },
   ];
   return (
     <>

@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { GlobalContext } from "../../context/GlobalContextProvider";
 import MainHeader from "../../components/Header";
 import MainButton from "../../components/UI/MainButton";
 import HeroApp from "../../components/Hero";
 import FramerMotion from "../../components/UI/FramerMotion";
 import FooterApp from "../../components/Footer";
 import fundo from "../../assets/image/FundoCigam.png";
-import { GlobalContext } from "../../context/GlobalContextProvider";
 import { numberFormatter } from "../../utils";
 import QuestionarioCigamState from "../../states/QuestionarioCigamState";
 import gifWinner from "../../assets/gifs/winner.gif";
@@ -16,7 +16,10 @@ import gifCheck from "../../assets/gifs/check.gif";
 import MainPageTitle from "../../components/UI/MainPageTitle";
 import logoCigam from "../../assets/image/LogoCigam.png";
 import PopupModal from "../../components/UI/PopupModal";
+import { formularioStyle } from "../../style/sharedStyle";
 
+const { labelStyle, inputStyle, labelSelectStyle, selectOptionStyle } =
+  formularioStyle();
 export default function QuestionarioCigam() {
   const navigate = useNavigate();
   const { handleCheckRefresh } = useRefreshDetector();
@@ -38,6 +41,7 @@ export default function QuestionarioCigam() {
     salario_hora,
     folha_pagamento,
   } = QuestionarioCigamState();
+
   const emptyValueFields =
     cigamValues.usuarios === "" ||
     cigamValues.salario_medio === "" ||
@@ -78,6 +82,12 @@ export default function QuestionarioCigam() {
     handleCheckRefresh();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const options = [
+    { value: 15, label: "ERP Grande porte" },
+    { value: 20, label: "ERP Pequeno porte" },
+    { value: 30, label: "Tassio LeiteNão possui ERP/Micro ERP" },
+  ];
 
   return (
     <>
@@ -131,25 +141,11 @@ export default function QuestionarioCigam() {
               onChange={handleChange}
               placeholder="Valor de implementação"
             />
-            <label
-              htmlFor="situacao_atual"
-              className="input-label input-label__select input-label__select--cigam"
-            >
-              <select
-                className="input-element"
-                name="situacao_atual"
-                id="situacao_atual"
-                value={cigamValues.situacao_atual}
-                onChange={handleChange}
-              >
-                <option value="" disabled>
-                  Situação atual
-                </option>
-                <option value={15}>ERP Grande porte</option>
-                <option value={20}>ERP Pequeno porte</option>
-                <option value={30}>Não possui ERP/Micro ERP</option>
-              </select>
-            </label>
+            <SelectInput
+              cigamValues={cigamValues}
+              handleChange={handleChange}
+              options={options}
+            />
           </form>
 
           <div className="grid gap-5 mb-10 grid-cols-standard2">
@@ -187,23 +183,15 @@ export default function QuestionarioCigam() {
         </FramerMotion>
       </HeroApp>
 
-      <FooterApp></FooterApp>
+      <FooterApp />
     </>
   );
 }
 
-const TextInput = ({
-  nome,
-  value,
-  onChange,
-  placeholder,
-  newClassName,
-  isReadOnly,
-}) => (
-  <label htmlFor={nome} className="input-label">
-    {/* <span>{title}</span> */}
+const TextInput = ({ nome, value, onChange, placeholder, isReadOnly }) => (
+  <label htmlFor={nome} className={labelStyle}>
     <input
-      className={`input-element ${newClassName}`}
+      className={inputStyle}
       name={nome}
       placeholder={placeholder}
       autoComplete="off"
@@ -224,4 +212,45 @@ TextInput.propTypes = {
   id: PropTypes.string,
   newClassName: PropTypes.string,
   isReadOnly: PropTypes.bool,
+};
+
+const SelectInput = (props) => {
+  const { cigamValues, handleChange, options } = props;
+
+  return (
+    <label htmlFor="situacao_atual" className={labelSelectStyle}>
+      <select
+        className={`${inputStyle} appearance-none cursor-pointer`}
+        name="situacao_atual"
+        id="situacao_atual"
+        value={cigamValues.situacao_atual}
+        onChange={handleChange}
+      >
+        <option value="" disabled>
+          Situação atual
+        </option>
+        {options.map((option) => (
+          <option
+            className={selectOptionStyle}
+            value={option.value}
+            key={option.label}
+          >
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+};
+
+SelectInput.propTypes = {
+  cigamValues: PropTypes.object.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
+    }).isRequired
+  ).isRequired,
 };

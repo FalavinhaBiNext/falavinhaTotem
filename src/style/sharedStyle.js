@@ -6,6 +6,7 @@ export const formularioStyle = () => {
     const labelSelectStyle = `appearance-none w-full text-base curso-pointer after:w-[5px] after:content-[''] 
     after:absolute after:top-[48%] after:right-[13px] after:pointer-events-none after:border-[5px] after:border-solid
      after:border-transparent after:border-t-black_color relative py-[3px]`;
+    const selectOptionStyle = `text-base font-semibold text-dark_color font-[inherit] leading-[14px] py-[3px]`
     const errorMessageStyle = `text-[0.8rem] text-error_color font-[inherit] leading-[14px] pt-[2px] font-semibold`
 
 
@@ -15,6 +16,6 @@ export const formularioStyle = () => {
         labelStyle,
         inputStyle,
         errorMessageStyle,
-        labelSelectStyle
+        labelSelectStyle, selectOptionStyle
     };
 };
