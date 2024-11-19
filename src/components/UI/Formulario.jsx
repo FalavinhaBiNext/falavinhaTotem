@@ -1,11 +1,13 @@
 import PropTypes from "prop-types";
 import { useContext } from "react";
 import { GlobalContext } from "../../context/GlobalContextProvider";
+import InputText from "./InputText";
 import gifAvatar from "../../assets/gifs/avatar.gif";
 import gifTel from "../../assets/gifs/tel.gif";
 import gifEmail from "../../assets/gifs/email.gif";
 import gifEmpresa from "../../assets/gifs/empresa.gif";
 import gifTeam from "../../assets/gifs/team.gif";
+import InputSelect from "./InputSelect";
 
 export default function Formulario() {
   const { errors, touched, handleBlur, handleChange, inputValue, phoneMask } =
@@ -14,7 +16,7 @@ export default function Formulario() {
   const inputs = [
     {
       title: "Nome",
-      nome: "nome",
+      name: "nome",
       type: "text",
       id: "nome",
       value: inputValue.nome || "",
@@ -26,7 +28,7 @@ export default function Formulario() {
     },
     {
       title: "Telefone",
-      nome: "telefone",
+      name: "telefone",
       type: "tel",
       id: "telefone",
       value: inputValue.telefone || "",
@@ -38,7 +40,7 @@ export default function Formulario() {
     },
     {
       title: "Email",
-      nome: "email",
+      name: "email",
       type: "email",
       id: "email",
       value: inputValue.email || "",
@@ -50,7 +52,7 @@ export default function Formulario() {
     },
     {
       title: "Empresa",
-      nome: "empresa",
+      name: "empresa",
       type: "text",
       id: "empresa",
       value: inputValue.empresa || "",
@@ -62,7 +64,7 @@ export default function Formulario() {
     },
     {
       title: "Vendendor",
-      nome: "vendedor",
+      name: "vendedor",
       type: "select",
       id: "vendedor",
       value: inputValue.vendedor || "",
@@ -96,15 +98,15 @@ export default function Formulario() {
       <h2 className="form__title">QUEREMOS LHE CONHECER MELHOR</h2>
       {inputs.map((input) => (
         <div className="input-wrapper" key={input.id}>
-          <img src={input.icon} className="w-[40px] h-[40px]" alt="" />
+          <img
+            src={input.icon}
+            className="w-[30px] sm:w-[40px] h-[30px] sm:h-[40px]"
+            alt=""
+          />
           {input.type !== "select" ? (
-            <ElementoInput
-              {...input}
-              phoneMask={phoneMask}
-              errorAlert={errorAlert}
-            />
+            <InputText {...input} phoneMask={phoneMask} />
           ) : (
-            <ElementoSelect {...input} errorAlert={errorAlert} />
+            <InputSelect {...input} errorAlert={errorAlert} />
           )}
         </div>
       ))}
@@ -114,87 +116,4 @@ export default function Formulario() {
 
 Formulario.propTypes = {
   setIsFormVisible: PropTypes.func,
-};
-
-const ElementoInput = (props) => {
-  const { nome, type, id, title, phoneMask, errorAlert } = props;
-  const { inputValue, handleChange, handleBlur, errors, touched } =
-    useContext(GlobalContext);
-
-  return (
-    <label htmlFor={id} className="input-label" key={id}>
-      <input
-        className={`input-element ${errorAlert(nome)}`}
-        type={type}
-        name={nome}
-        id={id}
-        placeholder={title}
-        autoComplete="off"
-        value={
-          type === "tel"
-            ? phoneMask(inputValue[nome] || "")
-            : inputValue[nome] || ""
-        }
-        maxLength={type === "tel" ? 15 : undefined}
-        onChange={handleChange}
-        onBlur={handleBlur}
-      />
-      {errors[nome] && touched[nome] && (
-        <span className="error-message">{errors[nome]}</span>
-      )}
-    </label>
-  );
-};
-
-ElementoInput.propTypes = {
-  title: PropTypes.string,
-  phoneMask: PropTypes.func,
-  nome: PropTypes.string,
-  type: PropTypes.string,
-  id: PropTypes.string,
-  errorAlert: PropTypes.func,
-};
-
-const ElementoSelect = (props) => {
-  const { title, nome, options, errorAlert } = props;
-  const { inputValue, handleChange, handleBlur, errors, touched } =
-    useContext(GlobalContext);
-
-  return (
-    <label htmlFor={nome} className="input-label input-label--custom">
-      <select
-        className={`input-element ${errorAlert(nome)}`}
-        name={nome}
-        id={nome}
-        onChange={handleChange}
-        value={inputValue[nome]}
-        onBlur={handleBlur}
-        onTouchStart={handleBlur}
-        onTouchEnd={handleBlur}
-        onFocus={handleBlur}
-      >
-        <option value={""} disabled>
-          {title}
-        </option>
-        {options
-          .sort((a, b) => a.label.localeCompare(b.label))
-          .map((option) => (
-            <option value={option.value} key={option.label}>
-              {option.label}
-            </option>
-          ))}
-      </select>
-      {errors[nome] && touched[nome] && (
-        <span className="error-message">{errors[nome]}</span>
-      )}
-    </label>
-  );
-};
-
-ElementoSelect.propTypes = {
-  title: PropTypes.string,
-  nome: PropTypes.string,
-  id: PropTypes.string,
-  options: PropTypes.array,
-  errorAlert: PropTypes.func,
 };
