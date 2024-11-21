@@ -41,7 +41,7 @@ export default function ResultadoEmpresarial() {
       <ConfettiAnimation />
 
       <MainHeader redirect={"/consultoria-empresarial"}>
-        <MainPageTitle title={"Resultado"} />
+        <MainPageTitle title={"Resultado Empresarial"} />
       </MainHeader>
 
       <HeroApp fundo={fundo}>

@@ -16,7 +16,7 @@ export default {
 
         // success_color: '#07bc0c',
         // warning_color: '#f1c40f',
-        error_color: '#e74c3c',
+        error_color: '#e62410',
       },
       boxShadow: {
         'bx-1': '0px 10px 15px rgba(0, 0, 0, 0.3)',
