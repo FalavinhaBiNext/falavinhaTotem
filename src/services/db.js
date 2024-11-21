@@ -398,9 +398,9 @@ export const modulosCigam = [
         item: `Aummento nas vendas através de uma ferramenta de BIG DATA já integrada com áreas de CRM e ERP. 
       Diferente de outras soluções, o Pesquisa de Mercado não limita o número de empresas importadas e nem 
       cobra valores adicionais a partir de um número de extrações. Ou seja: liberdade para sua empresa crescer!` }
-    ]
+    ],
+    id: 1
   },
-
   {
     name: "Open banking",
     item: [
@@ -410,9 +410,9 @@ export const modulosCigam = [
       principais ( informação de produtos e serviços, pagamentos e recebimentos instantâneos, compartilhamento 
       de informações em tempo real), a solução CIGAM já possui todas as movimentações disponíveis para os principais 
       bancos brasileiros.` }
-    ]
+    ],
+    id: 2
   },
-
   {
     name: "Inteligência de mercado",
     item: [
@@ -420,9 +420,9 @@ export const modulosCigam = [
         item: `Aumento nas vendas e no market share da sua empresa através de identificação de regiões atrativas, 
       juntando CNAEs e empresas daquela região. Está com uma boa performance em certa cidade, mas não é representativo em outra? 
       Com o Inteligência de Mercado você tem essa análise há poucos cliques de distância!` },
-    ]
+    ],
+    id: 3
   },
-
   {
     name: "Pré-nota",
     item: [
@@ -430,9 +430,9 @@ export const modulosCigam = [
         item: `Automatize o processamento de notas fiscais em nome da sua empresa e facilite o seu dia a dia! 
       A solução de Pré-Nota da CIGAM permite a validação e gerenciamento de notas fiscais e agiliza o processo de 
       compras ao fornecer detalhes sobre os itens, dados da transportadora, valores de impostos e ordem de compra.` }
-    ]
+    ],
+    id: 4
   },
-
   {
     name: "Estratégia de preços",
     item: [
@@ -441,18 +441,18 @@ export const modulosCigam = [
       distribuição, obrigações fiscais e outros itens que incidem nos custos. Faça negociações em tempo real, sabendo 
       exatamente qual a rentabilidade de um item, grupo de itens ou pedidos. Mais controle, mais margem e mais rentabilidade 
       para a sua empresa!` }
-    ]
+    ],
+    id: 5
   },
-
   {
     name: "Planejamento orçamentário",
     item: [
       {
         item: `Tenha uma projeção de cenários futuros da sua empresa, levando em conta custos e receitas. Com o planejamento 
       orçamentário CIGAM, você tem segurança e confiança nasinformações atuais para uma melhoria futura.` }
-    ]
+    ],
+    id: 6
   },
-
   {
     name: "Gestão de resultados",
     item: [
@@ -461,16 +461,17 @@ export const modulosCigam = [
       Com posse dessas informações em tempo real é possível tomar decisões mais rápidas e assertivas. 
       Para além de indicadores ou dashboards com informações estáticas, a solução possibilita entrar no detalhe das 
       informações que compõem o resultado.` }
-    ]
+    ],
+    id: 7
   },
-
   {
     name: "Regra fiscal",
     item: [
       {
         item: `Toda a segurança fiscal que sua empresa precisa, para evitar riscos ou aumento de custos desnecessários. 
       Através das soluções fiscais da CIGAM, você tem segurança e facilidade no dia a dia fiscal da sua empresa.` },
-    ]
+    ],
+    id: 8
   },
   {
     name: "BI Nativo",
@@ -479,9 +480,9 @@ export const modulosCigam = [
         item: `Com o BI (Business Intelligence), você terá gestão à vista, com acesso aos indicadores da empresa em tempo real, 
       de qualquer lugar (Mobile). Muitas ferramentas de mercado, possuem BI integrado, mas não nativo. Com o BI CIGAM sendo
        nativo, há maior integração e maior facilidade em criar novas análises, indicadores e dashboards.` }
-    ]
+    ],
+    id: 9
   },
-
   {
     name: "CRM Nativo",
     item: [
@@ -489,9 +490,9 @@ export const modulosCigam = [
         item: `Gerencie seus agendamentos e controle todas as etapas da venda de forma ágil, em uma única tela, com dados e 
       tabelas variados. Com a solução de CRM CIGAM sendo nativa, é possível otimizar ainda mais suas integrações, desde o 
       follow up do fundo de vendas, até a parte de pedido, dashboards e emissões de relatórios.` }
-    ]
+    ],
+    id: 10
   },
-
   {
     name: "Portais",
     item: [
@@ -500,9 +501,9 @@ export const modulosCigam = [
       análise de resultados, vendas e movimentações feitas de maneira segura e prática. São vários Portais que te entregam 
       uma visão total de seu Ecossistema Empresarial, integrando fornecedores, representantes, clientes e todos os seus 
       colaboradores, com ganhos de comunicação e produtividade.` }
-    ]
+    ],
+    id: 11
   },
-
   {
     name: "personalização de tela",
     item: [
@@ -510,7 +511,8 @@ export const modulosCigam = [
         item: `A personalização de telas entrega para o usuário uma otimização do seu trabalho, através da possibilidade de 
       editar as telas do sistema. Com a opção de renomear e ocultar campos e botões, alterar fonte, tamanho e cor, entre outras 
       opções, entrega uma solução simples, rápida e fácil que ajudará na operação e absorção do conhecimento.` }
-    ]
+    ],
+    id: 12
   },
 
 ]

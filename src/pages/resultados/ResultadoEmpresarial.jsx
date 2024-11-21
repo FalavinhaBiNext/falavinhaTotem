@@ -44,7 +44,7 @@ export default function ResultadoEmpresarial() {
             </h2>
           </article>
 
-          <div className="flex flex-col items-center justify-center gap-4 py-6 sm:py-8">
+          <div className="flex flex-col items-center justify-center gap-4 py-6 sm:py-8 md:max-w-[768px] max-w-none mx-auto">
             <span className="flex gap-3 sm:gap-5">
               {YellowStar(resultado_pesquisa?.icon)}
             </span>

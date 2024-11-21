@@ -1,68 +1,89 @@
+import { useState, useRef, useLayoutEffect } from "react";
 import PropTypes from "prop-types";
-import useAccordion from "../../hooks/useAccordion";
 
-export default function Accordion({ sliced, background }) {
-  const { activeIndex, handleToggle, contentRef } = useAccordion(sliced);
+export default function Accordion({ background, sliced }) {
+  const [activeIndex, setActiveIndex] = useState(null);
+  const [contentHeights, setContentHeights] = useState({});
+  const contentRefs = useRef([]);
 
-  if (!sliced) return null;
+  const handleToggle = (index) => {
+    setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
+  };
 
-  return sliced.map(({ name, description, item }, index) => {
-    const isActive = activeIndex === index;
+  useLayoutEffect(() => {
+    const newHeights = {};
+    contentRefs.current.forEach((ref, index) => {
+      if (ref) {
+        newHeights[index] = ref.scrollHeight;
+      }
+    });
+    setContentHeights(newHeights);
+  }, [sliced]);
 
-    const contentStyle = {
-      height: isActive ? contentRef?.current?.scrollHeight : 0,
-      overflow: "hidden",
-      transition: "height 0.3s ease-in-out",
-      backgroundColor: "#1b1f24",
-    };
+  //ESTILOS
+  const accordionListStyle = `border-b border-[#ddd] rounded-[10px] overflow-hidden shadow-bx-1`;
+  const accordionButtonStyle = `flex items-center p-4 cursor-pointer w-full min-h-[60px] gap-1
+   text-left text-sm uppercase text-light_color font-gilroyLight sm:text-base focus:outline-none`;
 
-    const listItemStyle = {
-      backgroundColor: isActive ? background : "transparent",
-      minHeight: "60px",
-      transition: "background-color 0.3s ease-in-out",
-    };
-    return (
-      <li
-        key={index}
-        className="border-b border-[#ddd] rounded-[10px] overflow-hidden shadow-bx-1"
-      >
-        <div
-          className="flex items-center p-4 cursor-pointer"
-          onClick={() => handleToggle(index)}
-          style={listItemStyle}
-        >
-          <h5 className="text-sm uppercase text-light_color font-gilroyLight sm:text-base">
-            {name}
-          </h5>
-          <span className="ml-auto text-sm transition-all duration-300 ease-in-out text-light_color font-gilroyLight">
-            {isActive ? "Fechar" : "Saiba mais"}
-          </span>
-        </div>
+  return (
+    <ul className="flex flex-col flex-1 w-full gap-6">
+      {sliced.map(({ name, description, item }, index) => {
+        const isActive = activeIndex === index;
+        const contentHeight = isActive ? contentHeights[index] || 0 : 0;
 
-        <div style={contentStyle} ref={contentRef}>
-          <div className="p-4 text-light_color">
-            {description && (
-              <h4 className="pb-4 text-base sm:text-lg">{description}</h4>
-            )}
-            {item?.length > 1 ? (
-              <ul className="flex flex-col gap-2">
-                {item.map((item, itemIndex) => (
-                  <li
-                    className="text-sm sm:text-base"
-                    key={item.item + itemIndex}
-                  >
-                    &#x2714; {item.item}
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="text-sm sm:text-base">{item?.[0]?.item}</p>
-            )}
-          </div>
-        </div>
-      </li>
-    );
-  });
+        return (
+          <li className={accordionListStyle} key={name}>
+            <button
+              className={accordionButtonStyle}
+              style={{
+                backgroundColor: isActive ? background : "transparent",
+              }}
+              type="button"
+              onClick={() => handleToggle(index)}
+            >
+              {name}
+              <span className="ml-auto text-xs normal-case sm:text-sm">
+                {isActive ? "Fechar" : "Saiba mais"}
+              </span>
+            </button>
+            <div
+              className="relative overflow-hidden bg-dark_color
+               transition-[height] duration-300 ease-in-out
+              "
+              style={{
+                height: `${contentHeight}px`,
+              }}
+            >
+              <div
+                className="p-4 text-light_color"
+                ref={(ref) => (contentRefs.current[index] = ref)}
+              >
+                {description && (
+                  <h4 className="pb-4 text-base sm:text-lg">{description}</h4>
+                )}
+                {item?.length > 1 ? (
+                  <ul className="flex flex-col gap-3 sm:gap-2">
+                    {item.map((item, itemIndex) => (
+                      <li
+                        className="text-sm sm:text-base"
+                        key={item.item + itemIndex}
+                      >
+                        &#x2714; {item.item}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  item?.[0]?.item && (
+                    <p className="text-sm sm:text-base">{item[0].item}</p>
+                  )
+                )}
+              </div>
+            </div>
+          </li>
+        );
+      })}
+    </ul>
+  );
 }
 
 Accordion.propTypes = {
@@ -70,7 +91,12 @@ Accordion.propTypes = {
     PropTypes.shape({
       name: PropTypes.string,
       description: PropTypes.string,
-      item: PropTypes.array,
+      item: PropTypes.arrayOf(
+        PropTypes.shape({
+          item: PropTypes.string,
+        })
+      ),
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     })
   ),
   background: PropTypes.string,

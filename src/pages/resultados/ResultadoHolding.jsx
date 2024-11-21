@@ -71,34 +71,36 @@ export default function ResultadoHolding() {
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          {data.map(({ title, items }) => (
-            <div className={containerStyle} key={title}>
-              <h3 className="text-2xl uppercase sm:text-3xl text-light_color font-gilroyLight">
-                Resultado {title}
-              </h3>
+          <div className="md:max-w-[768px] max-w-none mx-auto">
+            {data.map(({ title, items }) => (
+              <div className={containerStyle} key={title}>
+                <h3 className="text-2xl uppercase sm:text-3xl text-light_color font-gilroyLight">
+                  Resultado {title}
+                </h3>
 
-              <ul className="flex flex-col gap-1 sm:gap-2">
-                {items.map((item) => (
-                  <li className="text-base text-start" key={item.title}>
-                    {item.title}:{" "}
-                    <span className="text-xl font-semibold">
-                      {moneyConverter(item.value)}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-          <h4 className="text-light_color text-xl sm:text-2xl font-bold tracking-[1.5px]">
-            Diferença entre Holding e Inventário:{" "}
-            <span
-              className={`${
-                resultadoHolding.total_geral < 0 && "text-error_color"
-              } sm:text-3xl text-2xl`}
-            >
-              {moneyConverter(resultadoHolding.total_geral)}
-            </span>
-          </h4>
+                <ul className="flex flex-col gap-1 sm:gap-2">
+                  {items.map((item) => (
+                    <li className="text-base text-start" key={item.title}>
+                      {item.title}:{" "}
+                      <span className="text-xl font-semibold">
+                        {moneyConverter(item.value)}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+            <h4 className="text-light_color text-xl sm:text-2xl font-bold tracking-[1.5px]">
+              Diferença entre Holding e Inventário:{" "}
+              <span
+                className={`${
+                  resultadoHolding.total_geral < 0 && "text-error_color"
+                } sm:text-3xl text-2xl`}
+              >
+                {moneyConverter(resultadoHolding.total_geral)}
+              </span>
+            </h4>
+          </div>
         </FramerMotion>
       </HeroApp>
 

@@ -35,7 +35,7 @@ const MainHeader = ({ children, redirect }) => {
       <div className="flex items-center justify-between pt-3">
         <Link to="/" className="logo" onClick={handleClearUserData}>
           <img
-            className="max-w-[35vw] md:max-w-[180px] relative z-[10000]"
+            className="max-w-[35vw] sm:max-w-[180px] md:max-w-[150px] relative z-[10000]"
             src={logo}
             title="Falavinha Next"
             alt="Falavinha Next"

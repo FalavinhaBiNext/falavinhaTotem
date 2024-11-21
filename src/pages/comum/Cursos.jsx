@@ -8,6 +8,7 @@ import Accordion from "../../components/UI/Accordion";
 import MainPageTitle from "../../components/UI/MainPageTitle";
 import MainButton from "../../components/UI/MainButton";
 import useAccordion from "../../hooks/useAccordion";
+import PaginationButtons from "../../components/UI/PaginationButtons";
 
 const Cursos = () => {
   const { sliced, nextPage, prevPage, page, end } = useAccordion(cursos);
@@ -25,27 +26,16 @@ const Cursos = () => {
             </h2>
           </section>
 
-          <ul className="flex flex-col gap-4 mb-10">
+          <div className="md:max-w-[768px] max-w-none mx-auto">
             <Accordion sliced={sliced} background={"#0f3355"} />
-          </ul>
 
-          <div className="flex justify-center gap-x-6 gap-y-4">
-            {page > 0 && (
-              <MainButton
-                onClick={prevPage}
-                className={"md:max-w-[470px] max-w-none"}
-              >
-                &#x2190; Anterior
-              </MainButton>
-            )}
-            {end < cursos.length && (
-              <MainButton
-                onClick={nextPage}
-                className={"md:max-w-[470px] max-w-none"}
-              >
-                Próximo &#x2192;
-              </MainButton>
-            )}
+            <PaginationButtons
+              page={page}
+              end={end}
+              nextPage={nextPage}
+              prevPage={prevPage}
+              data={cursos}
+            />
           </div>
         </FramerMotion>
       </HeroApp>

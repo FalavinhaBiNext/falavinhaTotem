@@ -6,9 +6,9 @@ import logoCigam from "../../assets/image/LogoCigam.png";
 import FramerMotion from "../../components/UI/FramerMotion";
 import { modulosCigam } from "../../services/db";
 import Accordion from "../../components/UI/Accordion";
-import MainButton from "../../components/UI/MainButton";
 import MainPageTitle from "../../components/UI/MainPageTitle";
 import useAccordion from "../../hooks/useAccordion";
+import PaginationButtons from "../../components/UI/PaginationButtons";
 
 const ModulosCigam = () => {
   const { sliced, nextPage, prevPage, page, end } = useAccordion(modulosCigam);
@@ -27,27 +27,16 @@ const ModulosCigam = () => {
             </h2>
           </section>
 
-          <ul className="flex flex-col gap-4 mb-10">
+          <div className="md:max-w-[768px] max-w-none mx-auto">
             <Accordion sliced={sliced} background={"#ff7811"} />
-          </ul>
 
-          <div className="flex justify-center gap-x-6 gap-y-4">
-            {page > 0 && (
-              <MainButton
-                onClick={prevPage}
-                className={"md:max-w-[470px] max-w-none"}
-              >
-                &#x2190; Anterior
-              </MainButton>
-            )}
-            {end < modulosCigam.length && (
-              <MainButton
-                onClick={nextPage}
-                className={"md:max-w-[470px] max-w-none"}
-              >
-                Próximo &#x2192;
-              </MainButton>
-            )}
+            <PaginationButtons
+              page={page}
+              end={end}
+              nextPage={nextPage}
+              prevPage={prevPage}
+              data={modulosCigam}
+            />
           </div>
         </FramerMotion>
       </HeroApp>

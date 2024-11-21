@@ -55,7 +55,7 @@ export default function ResultadoCigam() {
   // STYLES
   const blocksListStyle = `flex flex-col gap-5 mb-[30px] md:max-w-[768px] max-w-none mx-auto`;
   const blockStyle = `w-full flex flex-col justify-center items-center p-[15px] rounded-[10px] 
-  shadow-bx-1 bg-[#ff5200f2] font-gilroyBold tracking-[1.2px] text-light_color min-h-[100px]`;
+  shadow-bx-1 bg-[#ff5200f2] font-[inherit] font-semibold tracking-[1.2px] text-light_color min-h-[100px]`;
   const customBlockStyle = `min-h-[200px] gap-[10px]`;
   const resultListStyle = (val) =>
     `${blockStyle} ${val ? customBlockStyle : ""}`;
