@@ -1,10 +1,7 @@
 @import url("./global.css");
-@import url("./home.css");
 @import url("./surveyRadios.css");
-@import url("./surveySigam.css");
 @import url("./surveyTributario.css");
 @import url("./surveyHolding.css");
-@import url("./formulario.css");
 @import url("./iframe.css");
 
 @tailwind base;

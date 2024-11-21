@@ -1,9 +1,0 @@
-.home-video {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100vh;
-  object-fit: fill;
-  margin: auto;
-  max-width: 1520px;
-}

@@ -5,9 +5,9 @@ const containerStyle = `flex flex-col gap-8 mb-10 md:max-w-[768px] max-w-none mx
 const surveyListStyle = `flex flex-col text-start bg-[#005d604d] p-5 rounded-[20px] shadow-bx-1`;
 const surveyListQuestionsStyle = `flex flex-col gap-[5px] font-gilroyThin tracking-[2px]`;
 const radioLabelStyle = `flex gap-2 text-base text-light_color p-[5px] items-center h-[inherit] font-gilroyLight cursor-pointer
- before:content-[''] before:bg-tranparent before:rounded-full before:border-[2px] before:border-[#b4b4b4] 
- before:inline-block before:w-[16px] before:h-[16px] before:min-w-[16px] before:relative before:top-0 before:mt-0
-before:align-top before:text-center before:transition before:ease-in-out duration-300
+  before:content-[''] before:bg-tranparent before:rounded-full before:border-[2px] before:border-[#b4b4b4] 
+  before:inline-block before:w-[18px] before:h-[18px] before:min-w-[18px] before:relative before:top-0 before:mt-0
+  before:align-top before:text-center before:transition before:ease-in-out duration-300
 `;
 export function QuestionarioElementoMultiplo({
   respostas,

@@ -8,8 +8,13 @@ import gifEmpresa from "../../assets/gifs/empresa.gif";
 import gifTeam from "../../assets/gifs/team.gif";
 import { formularioStyle } from "../../style/sharedStyle";
 
-const { inputStyle, errorMessageStyle, labelStyle, selectOptionStyle } =
-  formularioStyle();
+const {
+  inputStyle,
+  errorMessageStyle,
+  labelStyle,
+  selectOptionStyle,
+  labelSelectStyle,
+} = formularioStyle();
 export default function Formulario() {
   const { errors, touched, handleBlur, handleChange, inputValue, phoneMask } =
     useContext(GlobalContext);
@@ -96,7 +101,10 @@ export default function Formulario() {
         Queremos lhe conhecer melhor
       </h2>
       {inputs.map((input) => (
-        <div className="input-wrapper" key={input.id}>
+        <div
+          className="flex items-center gap-1 rounded-[10px] px-2 bg-[#4b5052]"
+          key={input.id}
+        >
           <img
             src={input.icon}
             className="sm:w-[40px] sm:h-[40px] w-[30px] h-[30px]"
@@ -162,9 +170,9 @@ const ElementoSelect = (props) => {
     useContext(GlobalContext);
 
   return (
-    <label htmlFor={name} className="input-label input-label--custom">
+    <label htmlFor={name} className={labelSelectStyle}>
       <select
-        className={`${inputStyle} appearance-none cursor-pointer`}
+        className={`${inputStyle} appearance-none cursor-pointer `}
         name={name}
         id={name}
         onChange={handleChange}
