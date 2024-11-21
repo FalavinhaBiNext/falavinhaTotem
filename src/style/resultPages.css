@@ -1,4 +1,4 @@
-.title-result {
+/* .title-result {
   font-family: "Gilroy-thin";
   font-size: 2.5rem;
   color: #fff;
@@ -6,29 +6,13 @@
   letter-spacing: 5px;
   padding-bottom: 10px;
   text-align: center;
-}
+} */
 
 .title_result_page {
   font-family: "Gilroy-bold";
   font-size: 3rem;
   letter-spacing: 10px;
   padding: 5px;
-}
-
-.icon-result-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-  gap: 5px;
-}
-
-.icon-result-container > svg {
-  padding: auto;
-  color: yellow;
-  height: 4.5rem;
-  width: 4.5rem;
 }
 
 .message_result_page {

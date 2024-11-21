@@ -6,8 +6,6 @@ export const perguntasSurveyRh = [
     id: 1,
     text: `Você já está familiarizado com os conceitos de turnover e rotatividade, 
     mas sabe como a análise preditiva pode ajudar a reduzir essas taxas em até 30% em grandes empresas?`,
-    //TEXTO RESUMIDO PARA PERGUNTA
-    //Você sabe como a análise preditiva pode reduzir o turnover em até 30% nas empresas?
     options: [
       { value: 4, label: `Sim, usamos análise preditiva com sucesso.` },
       {
@@ -22,8 +20,7 @@ export const perguntasSurveyRh = [
   {
     id: 2,
     text: ` Você sabe como a inteligência artificial está sendo usada para otimizar processos de 
-    recrutamento e seleção em empresas de ponta atualmente?
-    `,
+    recrutamento e seleção em empresas de ponta atualmente?`,
     options: [
       { value: 4, label: `Sim, usamos IA amplamente com bons resultados.` },
       { value: 3, label: `Usamos IA em algumas áreas.` },
@@ -37,9 +34,6 @@ export const perguntasSurveyRh = [
     text: `Você já aplicou a análise de pessoas (people analytics) 
     para prever a retenção de talentos, ou ainda está usando métodos 
     tradicionais para tomar essas decisões?`,
-    // TEXO RESUMIDO PARA PERGUNTA
-    // Já usa people analytics para prever retenção de talentos ou ainda recorre a métodos tradicionais?
-
     options: [
       { value: 4, label: `Sim, usamos people analytics com sucesso.` },
       { value: 3, label: `Estamos começando a usar com alguns resultados.` },
@@ -278,7 +272,7 @@ export const respostasSurveyEmpresarial = [
     mensagem: `Pela amostragem realizada, a empresa encontra-se em um nível intermediário de maturidade no conjunto 
     das áreas analisadas. Recomenda-se a aplicação de Diagnóstico na sua versão completa, para entender em que áreas 
     estão as possibilidades de melhorias, realizada por um Consultor de Negócios. Uma consultoria pode ajudar a
-     empresa a melhorar seus níveis de maturidade, para que obtenha melhores resultados e possa expandir seus negócios`,
+     empresa a melhorar seus níveis de maturidade, para que obtenha melhores resultados e possa expandir seus negócios.`,
   },
   {
     max: 40,
@@ -288,7 +282,7 @@ export const respostasSurveyEmpresarial = [
     mensagem: `Pela amostragem realizada, a empresa encontra-se em um nível básico de maturidade no conjunto das áreas analisadas. 
     Recomenda-se a aplicação de Diagnóstico na sua versão completa, para entender em que áreas estão os principais problemas, 
     realizada por um Consultor de Negócios. Uma consultoria pode ajudar a empresa a melhorar seus níveis de maturidade, 
-    para que obtenha melhores resultados e possa expandir seus negócios`,
+    para que obtenha melhores resultados e possa expandir seus negócios.`,
   },
 ];
 
@@ -400,83 +394,122 @@ export const modulosCigam = [
   {
     name: "PESQUISA DE MERCADO",
     item: [
-      { item: "Aummento nas vendas através de uma ferramenta de BIG DATA já integrada com áreas de CRM e ERP. Diferente de outras soluções, o Pesquisa de Mercado não limita o número de empresas importadas e nem cobra valores adicionais a partir de um número de extrações. Ou seja: liberdade para sua empresa crescer!" }
+      {
+        item: `Aummento nas vendas através de uma ferramenta de BIG DATA já integrada com áreas de CRM e ERP. 
+      Diferente de outras soluções, o Pesquisa de Mercado não limita o número de empresas importadas e nem 
+      cobra valores adicionais a partir de um número de extrações. Ou seja: liberdade para sua empresa crescer!` }
     ]
   },
 
   {
     name: "OPEN BANKING",
     item: [
-      { item: "Com mais segurança nas operações e mais tempo para gerir o seu negócio, o Open Banking reduz o tempo investido nas movimentações com o banco, permitindo uma parametrização direta no CIGAM. Com três pilares principais ( informação de produtos e serviços, pagamentos e recebimentos instantâneos, compartilhamento de informações em tempo real), a solução CIGAM já possui todas as movimentações disponíveis para os principais bancos brasileiros." }
+      {
+        item: `Com mais segurança nas operações e mais tempo para gerir o seu negócio, o Open Banking reduz o tempo 
+      investido nas movimentações com o banco, permitindo uma parametrização direta no CIGAM. Com três pilares 
+      principais ( informação de produtos e serviços, pagamentos e recebimentos instantâneos, compartilhamento 
+      de informações em tempo real), a solução CIGAM já possui todas as movimentações disponíveis para os principais 
+      bancos brasileiros.` }
     ]
   },
 
   {
     name: "INTELIGÊNCIA DE MERCADO",
     item: [
-      { item: "Aumento nas vendas e no market share da sua empresa através de identificação de regiões atrativas, juntando CNAEs e empresas daquela região. Está com uma boa performance em certa cidade, mas não é representativo em outra? Com o Inteligência de Mercado você tem essa análise há poucos cliques de distância!" },
+      {
+        item: `Aumento nas vendas e no market share da sua empresa através de identificação de regiões atrativas, 
+      juntando CNAEs e empresas daquela região. Está com uma boa performance em certa cidade, mas não é representativo em outra? 
+      Com o Inteligência de Mercado você tem essa análise há poucos cliques de distância!` },
     ]
   },
 
   {
     name: "PRÉ-NOTA",
     item: [
-      { item: "Automatize o processamento de notas fiscais em nome da sua empresa e facilite o seu dia a dia! A solução de Pré-Nota da CIGAM permite a validação e gerenciamento de notas fiscais e agiliza o processo de compras ao fornecer detalhes sobre os itens, dados da transportadora, valores de impostos e ordem de compra." }
+      {
+        item: `Automatize o processamento de notas fiscais em nome da sua empresa e facilite o seu dia a dia! 
+      A solução de Pré-Nota da CIGAM permite a validação e gerenciamento de notas fiscais e agiliza o processo de 
+      compras ao fornecer detalhes sobre os itens, dados da transportadora, valores de impostos e ordem de compra.` }
     ]
   },
 
   {
     name: "ESTRATÉGIA DE PREÇOS",
     item: [
-      { item: "Sua empresa terá um incremento nas margens praticadas, com dados em tempo real de custos de produção, distribuição, obrigações fiscais e outros itens que incidem nos custos. Faça negociações em tempo real, sabendo exatamente qual a rentabilidade de um item, grupo de itens ou pedidos. Mais controle, mais margem e mais rentabilidade para a sua empresa!" }
+      {
+        item: `Sua empresa terá um incremento nas margens praticadas, com dados em tempo real de custos de produção, 
+      distribuição, obrigações fiscais e outros itens que incidem nos custos. Faça negociações em tempo real, sabendo 
+      exatamente qual a rentabilidade de um item, grupo de itens ou pedidos. Mais controle, mais margem e mais rentabilidade 
+      para a sua empresa!` }
     ]
   },
 
   {
     name: "PLANEJAMENTO ORÇAMENTÁRIO",
     item: [
-      { item: "Tenha uma projeção de cenários futuros da sua empresa, levando em conta custos e receitas. Com o planejamento orçamentário CIGAM, você tem segurança e confiança nasinformações atuais para uma melhoria futura." }
+      {
+        item: `Tenha uma projeção de cenários futuros da sua empresa, levando em conta custos e receitas. Com o planejamento 
+      orçamentário CIGAM, você tem segurança e confiança nasinformações atuais para uma melhoria futura.` }
     ]
   },
 
   {
     name: "GESTÃO DE RESULTADOS",
     item: [
-      { item: "Gestão com monitoramento do ponto de equilibro diário, por unidade de resultado, negócio ou visão. Com posse dessas informações em tempo real é possível tomar decisões mais rápidas e assertivas. Para além de indicadores ou dashboards com informações estáticas, a solução possibilita entrar no detalhe das informações que compõem o resultado." }
+      {
+        item: `Gestão com monitoramento do ponto de equilibro diário, por unidade de resultado, negócio ou visão. 
+      Com posse dessas informações em tempo real é possível tomar decisões mais rápidas e assertivas. 
+      Para além de indicadores ou dashboards com informações estáticas, a solução possibilita entrar no detalhe das 
+      informações que compõem o resultado.` }
     ]
   },
 
   {
     name: "REGRA FISCAL",
     item: [
-      { item: "Toda a segurança fiscal que sua empresa precisa, para evitar riscos ou aumento de custos desnecessários. Através das soluções fiscais da CIGAM, você tem segurança e facilidade no dia a dia fiscal da sua empresa." },
+      {
+        item: `Toda a segurança fiscal que sua empresa precisa, para evitar riscos ou aumento de custos desnecessários. 
+      Através das soluções fiscais da CIGAM, você tem segurança e facilidade no dia a dia fiscal da sua empresa.` },
     ]
   },
   {
     name: "BI NATIVO",
     item: [
-      { item: "Com o BI (Business Intelligence), você terá gestão à vista, com acesso aos indicadores da empresa em tempo real, de qualquer lugar (Mobile). Muitas ferramentas de mercado, possuem BI integrado, mas não nativo. Com o BI CIGAM sendo nativo, há maior integração e maior facilidade em criar novas análises, indicadores e dashboards" }
+      {
+        item: `Com o BI (Business Intelligence), você terá gestão à vista, com acesso aos indicadores da empresa em tempo real, 
+      de qualquer lugar (Mobile). Muitas ferramentas de mercado, possuem BI integrado, mas não nativo. Com o BI CIGAM sendo
+       nativo, há maior integração e maior facilidade em criar novas análises, indicadores e dashboards.` }
     ]
   },
 
   {
     name: "CRM NATIVO",
     item: [
-      { item: "Gerencie seus agendamentos e controle todas as etapas da venda de forma ágil, em uma única tela, com dados e tabelas variados. Com a solução de CRM CIGAM sendo nativa, é possível otimizar ainda mais suas integrações, desde o follow up do fundo de vendas, até a parte de pedido, dashboards e emissões de relatórios" }
+      {
+        item: `Gerencie seus agendamentos e controle todas as etapas da venda de forma ágil, em uma única tela, com dados e 
+      tabelas variados. Com a solução de CRM CIGAM sendo nativa, é possível otimizar ainda mais suas integrações, desde o 
+      follow up do fundo de vendas, até a parte de pedido, dashboards e emissões de relatórios.` }
     ]
   },
 
   {
     name: "PORTAIS",
     item: [
-      { item: "Os Portais CIGAM permitem que você faça a gestão da sua empresa em qualquer hora e de qualquer lugar, com análise de resultados, vendas e movimentações feitas de maneira segura e prática. São vários Portais que te entregam uma visão total de seu Ecossistema Empresarial, integrando fornecedores, representantes, clientes e todos os seus colaboradores, com ganhos de comunicação e produtividade." }
+      {
+        item: `Os Portais CIGAM permitem que você faça a gestão da sua empresa em qualquer hora e de qualquer lugar, com 
+      análise de resultados, vendas e movimentações feitas de maneira segura e prática. São vários Portais que te entregam 
+      uma visão total de seu Ecossistema Empresarial, integrando fornecedores, representantes, clientes e todos os seus 
+      colaboradores, com ganhos de comunicação e produtividade.` }
     ]
   },
 
   {
     name: "PERSONALIZAÇÃO DE TELA",
     item: [
-      { item: "A personalização de telas entrega para o usuário uma otimização do seu trabalho, através da possibilidade de editar as telas do sistema. Com a opção de renomear e ocultar campos e botões, alterar fonte, tamanho e cor, entre outras opções, entrega uma solução simples, rápida e fácil que ajudará na operação e absorção do conhecimento." }
+      {
+        item: `A personalização de telas entrega para o usuário uma otimização do seu trabalho, através da possibilidade de 
+      editar as telas do sistema. Com a opção de renomear e ocultar campos e botões, alterar fonte, tamanho e cor, entre outras 
+      opções, entrega uma solução simples, rápida e fácil que ajudará na operação e absorção do conhecimento.` }
     ]
   },
 
