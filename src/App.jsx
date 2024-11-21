@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Loader from "./components/UI/Loader";
 import UseKeepOnTop from "./hooks/useKeepOnTop";
+import useIdleRedirect from "./hooks/useIdleRedirect";
 
 // PÁGINAS DASHBOARD
 const DashboardContabilidade = lazy(() =>
@@ -66,16 +67,13 @@ const Cursos = lazy(() => import("./pages/comum/Cursos"));
 const ModulosCigam = lazy(() => import("./pages/comum/ModulosCigam"));
 const NotFound = lazy(() => import("./pages/comum/NotFound"));
 
-// import SideMenuPage from "./pages/comum/SideMenuPage";
-const SideMenuPage = lazy(() => import("./pages/comum/SideMenuPage"));
-
 function App() {
-  // const RedirectHomepage = () => useIdleRedirect("/");
+  const RedirectHomepage = () => useIdleRedirect("/");
   return (
     <AnimatePresence>
       <Router>
         <UseKeepOnTop />
-        {/* <RedirectHomepage /> */}
+        <RedirectHomepage />
         <Suspense fallback={<Loader />}>
           <Routes>
             {[
@@ -139,8 +137,6 @@ function App() {
                 element: <QuestionarioHolding />,
               },
               { path: "/resultado-holding", element: <ResultadoHolding /> },
-
-              { path: "/sidemenu", element: <SideMenuPage /> },
               { path: "*", element: <NotFound /> },
             ].map(({ path, element }) => (
               <Route key={path} path={path} element={element} />
