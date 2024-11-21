@@ -7,8 +7,8 @@ import HeroApp from "../../components/Hero";
 import FramerMotion from "../../components/UI/FramerMotion";
 import FooterApp from "../../components/Footer";
 import ConfettiAnimation from "../../components/UI/ConfettiAnimation";
-import { IoStar } from "react-icons/io5";
 import MainPageTitle from "../../components/UI/MainPageTitle";
+import YellowStar from "../../components/UI/YellowStar";
 
 export default function ResultadoEmpresarial() {
   const navigate = useNavigate();
@@ -25,17 +25,6 @@ export default function ResultadoEmpresarial() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resultado_pesquisa, porcentagem, navigate]);
 
-  // Estrelas
-  const renderStars = (icon) => {
-    const starCount = Math.min(Math.max(icon, 1), 5);
-    return Array.from({ length: starCount }, (_, index) => (
-      <IoStar
-        className="w-12 h-12 text-yellow-500 sm:w-16 sm:h-16"
-        key={index}
-      />
-    ));
-  };
-
   return (
     <>
       <ConfettiAnimation />
@@ -46,21 +35,23 @@ export default function ResultadoEmpresarial() {
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <article className="text-xl text-light_color py-[50px] font-gilroyThin md:max-w-[768px] max-w-none mx-auto">
+          <article className="text-xl text-light_color pt-8 font-gilroyThin md:max-w-[768px] max-w-none mx-auto">
             <h2 className="text-2xl text-center text-light_color">
               O nível de maturidade da sua empresa é: <br />
               <span className="inline-block pt-4 text-3xl font-bold uppercase sm:pt-6 sm:text-5xl">
                 {resultado_pesquisa?.maturidade}
               </span>
             </h2>
-            <div className="flex flex-row items-center justify-center gap-3 py-8 sm:py-10 sm:gap-5">
-              {renderStars(resultado_pesquisa?.icon)}
-            </div>
+          </article>
 
+          <div className="flex flex-col items-center justify-center gap-4 py-6 sm:py-8">
+            <span className="flex gap-3 sm:gap-5">
+              {YellowStar(resultado_pesquisa?.icon)}
+            </span>
             <p className="text-base sm:text-lg text-light_color">
               {resultado_pesquisa?.mensagem}
             </p>
-          </article>
+          </div>
         </FramerMotion>
       </HeroApp>
 

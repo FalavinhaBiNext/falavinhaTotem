@@ -30,13 +30,7 @@ export default function QuestionarioRH() {
 
   // Limpa a respostas do survey do RH ao carregar a página
   useEffect(() => {
-    if (Object.keys(respostasRh).length > 0) {
-      setRespostasRh({});
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
+    setRespostasRh({});
     handleCheckRefresh();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

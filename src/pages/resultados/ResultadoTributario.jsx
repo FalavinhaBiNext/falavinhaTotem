@@ -15,7 +15,8 @@ export default function ResultadoTributario() {
 
   useEffect(() => {
     if (resultadoTributario.length === 0) {
-      navigate("/questionario-tributario");
+      // navigate("/questionario-tributario");
+      console.log("redirect");
     } else {
       handleGetSurveyData("tributário");
     }

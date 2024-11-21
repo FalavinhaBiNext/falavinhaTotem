@@ -42,7 +42,7 @@ export const perguntasSurveyRh = [
         value: 1,
         label: `Dependemos de métodos tradicionais, mas conhecemos o conceito.`,
       },
-      { value: 0, label: "Não usamos nem estamos cientes dis" },
+      { value: 0, label: "Não usamos nem estamos cientes disso." },
     ],
   },
   {
@@ -121,7 +121,7 @@ export const respostasSurveyRh = [
   {
     min: 0,
     max: 5,
-    titulo: "OPORTUNIDADE DE MELHORIA IDENTIFICADA",
+    titulo: "Oportunidade de melhoria identificada",
     mensagem: `A empresa enfrenta desafios consideráveis em suas práticas
     de RH e precisa de uma gestão mais eficiente.`,
     icon: 2,
@@ -289,7 +289,7 @@ export const respostasSurveyEmpresarial = [
 // CURSOS GRUPO FALAVINHA NEXT
 export const cursos = [
   {
-    name: "FORMAR LÍDERES DE ELITE",
+    name: "Formar líderes de elite",
     description: "Crie seu 'BOPE' Organizacional",
     item: [
       { item: "Identificação e Desenvolvimento de Talentos Internos." },
@@ -300,7 +300,7 @@ export const cursos = [
     ]
   },
   {
-    name: "A REVOLUÇÃO DA IA",
+    name: "A revolução da I.A.",
     description: "Transformando Negócios e Redefinindo Estratégias Empresariais",
     item: [
       { item: "Integração de IA nos processos de negócios." },
@@ -311,7 +311,7 @@ export const cursos = [
     ]
   },
   {
-    name: "DELEGAÇÃO ESTRATÉGICA",
+    name: "Delegação estratégica",
     description: "Maximizando Desempenho e Resultados Organizacionais",
     item: [
       { item: "Princípios Fundamentais da Delegação Estratégica" },
@@ -322,7 +322,7 @@ export const cursos = [
     ]
   },
   {
-    name: "FERRAMENTAS ESSENCIAIS PARA IMPULSIONAR AS VENDAS",
+    name: "Ferramentas essenciais para impulsionar as vendas",
     description: "",
     item: [
       { item: "Automação de Marketing" },
@@ -333,7 +333,7 @@ export const cursos = [
     ]
   },
   {
-    name: "GESTÃO DE CONFLITOS",
+    name: "Gestão de conflitos",
     description: "Transformando Desafios em Oportunidades",
     item: [
       { item: "Entendendo as Causas dos Conflitos." },
@@ -344,7 +344,7 @@ export const cursos = [
     ]
   },
   {
-    name: "PROCESSOS DOS TRABALHOS",
+    name: "Processos dos trabalhos",
     description: "Como Evitar Passivos Trabalhistas",
     item: [
       { item: "Identificação de Riscos Trabalhistas Comuns." },
@@ -355,7 +355,7 @@ export const cursos = [
     ]
   },
   {
-    name: "CONTABILIDADE GERENCIAL",
+    name: "Contabilidade gerencial",
     description: "Tomando Decisões Baseadas em Dados.",
     item: [
       { item: "Ferramentas de Contabilidade Gerencial para Análise de Desempenho." },
@@ -366,7 +366,7 @@ export const cursos = [
     ]
   },
   {
-    name: "GESTÃO DE RISCOS",
+    name: "Gestão de riscos",
     description: "Protegendo o Patrimônio da Empresa",
     item: [
       { item: "Identificação e Avaliação de Riscos Financeiros." },
@@ -377,7 +377,7 @@ export const cursos = [
     ]
   },
   {
-    name: "HOLDING FAMILIAR ",
+    name: "Holding familiar ",
     description: "Proteção e Sucessão Patrimonial",
     item: [
       { item: "Estruturação de uma Holding Familiar: Passos Iniciais." },
@@ -392,7 +392,7 @@ export const cursos = [
 // MODULOS CIGAM
 export const modulosCigam = [
   {
-    name: "PESQUISA DE MERCADO",
+    name: "Pesquisa de mercado",
     item: [
       {
         item: `Aummento nas vendas através de uma ferramenta de BIG DATA já integrada com áreas de CRM e ERP. 
@@ -402,7 +402,7 @@ export const modulosCigam = [
   },
 
   {
-    name: "OPEN BANKING",
+    name: "Open banking",
     item: [
       {
         item: `Com mais segurança nas operações e mais tempo para gerir o seu negócio, o Open Banking reduz o tempo 
@@ -414,7 +414,7 @@ export const modulosCigam = [
   },
 
   {
-    name: "INTELIGÊNCIA DE MERCADO",
+    name: "Inteligência de mercado",
     item: [
       {
         item: `Aumento nas vendas e no market share da sua empresa através de identificação de regiões atrativas, 
@@ -424,7 +424,7 @@ export const modulosCigam = [
   },
 
   {
-    name: "PRÉ-NOTA",
+    name: "Pré-nota",
     item: [
       {
         item: `Automatize o processamento de notas fiscais em nome da sua empresa e facilite o seu dia a dia! 
@@ -434,7 +434,7 @@ export const modulosCigam = [
   },
 
   {
-    name: "ESTRATÉGIA DE PREÇOS",
+    name: "Estratégia de preços",
     item: [
       {
         item: `Sua empresa terá um incremento nas margens praticadas, com dados em tempo real de custos de produção, 
@@ -445,7 +445,7 @@ export const modulosCigam = [
   },
 
   {
-    name: "PLANEJAMENTO ORÇAMENTÁRIO",
+    name: "Planejamento orçamentário",
     item: [
       {
         item: `Tenha uma projeção de cenários futuros da sua empresa, levando em conta custos e receitas. Com o planejamento 
@@ -454,7 +454,7 @@ export const modulosCigam = [
   },
 
   {
-    name: "GESTÃO DE RESULTADOS",
+    name: "Gestão de resultados",
     item: [
       {
         item: `Gestão com monitoramento do ponto de equilibro diário, por unidade de resultado, negócio ou visão. 
@@ -465,7 +465,7 @@ export const modulosCigam = [
   },
 
   {
-    name: "REGRA FISCAL",
+    name: "Regra fiscal",
     item: [
       {
         item: `Toda a segurança fiscal que sua empresa precisa, para evitar riscos ou aumento de custos desnecessários. 
@@ -473,7 +473,7 @@ export const modulosCigam = [
     ]
   },
   {
-    name: "BI NATIVO",
+    name: "BI Nativo",
     item: [
       {
         item: `Com o BI (Business Intelligence), você terá gestão à vista, com acesso aos indicadores da empresa em tempo real, 
@@ -483,7 +483,7 @@ export const modulosCigam = [
   },
 
   {
-    name: "CRM NATIVO",
+    name: "CRM Nativo",
     item: [
       {
         item: `Gerencie seus agendamentos e controle todas as etapas da venda de forma ágil, em uma única tela, com dados e 
@@ -493,7 +493,7 @@ export const modulosCigam = [
   },
 
   {
-    name: "PORTAIS",
+    name: "Portais",
     item: [
       {
         item: `Os Portais CIGAM permitem que você faça a gestão da sua empresa em qualquer hora e de qualquer lugar, com 
@@ -504,7 +504,7 @@ export const modulosCigam = [
   },
 
   {
-    name: "PERSONALIZAÇÃO DE TELA",
+    name: "personalização de tela",
     item: [
       {
         item: `A personalização de telas entrega para o usuário uma otimização do seu trabalho, através da possibilidade de 
