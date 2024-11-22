@@ -1,31 +1,34 @@
 import PropTypes from "prop-types";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import HeaderApp from "../../components/Header";
-import Botoes from "../../components/Botoes";
+import { GlobalContext } from "../../context/GlobalContextProvider";
+import MainHeader from "../../components/Header";
+import MainButton from "../../components/UI/MainButton";
 import HeroApp from "../../components/Hero";
-import FramerMotion from "../../components/FramerMotion";
+import FramerMotion from "../../components/UI/FramerMotion";
 import FooterApp from "../../components/Footer";
 import fundo from "../../assets/image/FundoCigam.png";
-import { GlobalContext } from "../../context/GlobalContextProvider";
 import { numberFormatter } from "../../utils";
 import QuestionarioCigamState from "../../states/QuestionarioCigamState";
 import gifWinner from "../../assets/gifs/winner.gif";
 import useRefreshDetector from "../../hooks/useRefreshDetector";
 import gifCheck from "../../assets/gifs/check.gif";
-import PopupModal from "../../components/PopupModal";
+import MainPageTitle from "../../components/UI/MainPageTitle";
+import logoCigam from "../../assets/image/LogoCigam.png";
+import PopupModal from "../../components/UI/PopupModal";
+import { formularioStyle } from "../../style/sharedStyle";
 
+const { labelStyle, inputStyle, labelSelectStyle, selectOptionStyle } =
+  formularioStyle();
 export default function QuestionarioCigam() {
   const navigate = useNavigate();
   const { handleCheckRefresh } = useRefreshDetector();
   const {
-    hasEmptyInputs,
-    hasInputErrors,
     setResultadoCigam,
     isSubmitting,
     showModal,
-    closeModal,
     hasSavedData,
+    closeModal,
     handleSetShowModal,
   } = useContext(GlobalContext);
   const {
@@ -35,8 +38,6 @@ export default function QuestionarioCigam() {
     produtividade_hora,
     produtividade_financeira,
     roi_meses_ano,
-    roi_anual,
-    roi_mensal,
     salario_hora,
     folha_pagamento,
   } = QuestionarioCigamState();
@@ -64,7 +65,6 @@ export default function QuestionarioCigam() {
     if (!showModal && !hasSavedData) {
       return handleSetShowModal(true);
     }
-
     setResultadoCigam({
       ...cigamValues,
       folha_pagamento,
@@ -82,19 +82,31 @@ export default function QuestionarioCigam() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const options = [
+    { value: 15, label: "ERP Grande porte" },
+    { value: 20, label: "ERP Pequeno porte" },
+    { value: 30, label: "Tassio LeiteNão possui ERP/Micro ERP" },
+  ];
+
   return (
     <>
       {showModal && (
         <PopupModal showModal={showModal} closeModal={closeModal} />
       )}
 
-      <HeaderApp redirect={"/servicos"}>
-        <h1 className="title">Faça uma pesquisa sobre sua empresa</h1>
-      </HeaderApp>
+      <MainHeader redirect={"/solucoes"}>
+        <MainPageTitle image={logoCigam} />
+      </MainHeader>
 
       <HeroApp fundo={fundo}>
         <FramerMotion>
-          <form className="form">
+          <section className="mt-0 mb-10 sm:mt-10">
+            <h2 className="pb-3 text-xl leading-6 text-center text-light_color font-gilroyLight">
+              Faça uma pesquisa sobre sua empresa
+            </h2>
+          </section>
+
+          <form className="grid gap-5 mb-10 grid-cols-standard2">
             <TextInput
               title="Usuários:"
               nome="usuarios"
@@ -128,97 +140,30 @@ export default function QuestionarioCigam() {
               onChange={handleChange}
               placeholder="Valor de implementação"
             />
-            <label
-              htmlFor="situacao_atual"
-              className="input-label input-label__select"
-            >
-              <span>Situação atual:</span>
-              <select
-                className="input-element"
-                name="situacao_atual"
-                id="situacao_atual"
-                value={cigamValues.situacao_atual}
-                onChange={handleChange}
-              >
-                <option value="" disabled>
-                  Selecione
-                </option>
-                <option value={15}>ERP Grande porte</option>
-                <option value={20}>ERP Pequeno porte</option>
-                <option value={30}>Não possui ERP/Micro ERP</option>
-              </select>
-            </label>
-            {/* OUTPUTS
-            <TextInput
-              title="ROI mensal:"
-              nome="roi_mensal"
-              type="text"
-              id="roi_mensal"
-              value={moneyConverter(isValidValue(roi_mensal))}
-              onChange={handleChange}
-              placeholder="R$ 0,00"
-              newClassName="input-element__output"
-              isReadOnly={true}
+            <SelectInput
+              cigamValues={cigamValues}
+              handleChange={handleChange}
+              options={options}
             />
-
-            <TextInput
-              title="ROI anual - GP:"
-              nome="roi_anual"
-              type="text"
-              id="roi_anual"
-              value={moneyConverter(isValidValue(roi_anual))}
-              onChange={handleChange}
-              placeholder="R$ 0,00"
-              newClassName="input-element__output"
-              isReadOnly={true}
-            />
-
-            <TextInput
-              title="ROI anual - GP:"
-              nome="folha_pagamento"
-              type="text"
-              id="folha_pagamento"
-              value={moneyConverter(isValidValue(folha_pagamento))}
-              onChange={handleChange}
-              placeholder="R$ 0,00"
-              newClassName="input-element__output"
-              isReadOnly={true}
-            />
-
-            <TextInput
-              title="Salário/Hora:"
-              nome="salario_hora"
-              type="text"
-              id="salario_hora"
-              value={moneyConverter(isValidValue(salario_hora))}
-              onChange={handleChange}
-              placeholder="R$ 0,00"
-              newClassName="input-element__output"
-              isReadOnly={true}
-            />
-
-            <TextInput
-              title="Ano/Meses para ROI:"
-              nome="tempo_roi"
-              type="text"
-              id="tempo_roi"
-              value={isValidValue(roi_meses_ano.toFixed(1)).replace(".", ",")}
-              onChange={handleChange}
-              placeholder="Tempo para ROI"
-              newClassName="input-element__output"
-              isReadOnly={true}
-            /> */}
-            <br />
           </form>
-          <div className="consultoria-rh">
-            <div className="consultoria-rh__item">
+
+          <div className="grid gap-5 mb-10 grid-cols-standard2">
+            <div
+              className="flex flex-col items-start justify-start gap-2 p-6 text-left
+                  w-full border-2 border-primary_color rounded-[20px] shadow-bx-1 
+                  bg-transparent text-light_color min-h-[200px]"
+            >
               <img src={gifWinner} alt="Winner" className="icon-topicos_rh" />
               <p>
                 Premiado como Melhor ERP para médias e Grandes empresas pelo B2B
                 STACK
               </p>
             </div>
-            <div className="consultoria-rh__item">
+            <div
+              className="flex flex-col items-start justify-start gap-2 p-6 text-left
+                  w-full border-2 border-primary_color rounded-[20px] shadow-bx-1 
+                  bg-transparent text-light_color min-h-[200px]"
+            >
               <img src={gifCheck} alt="Winner" className="icon-topicos_rh" />
               <p>
                 Único ERP de grande porte que usa tecnologia LOW CODE - à prova
@@ -226,34 +171,26 @@ export default function QuestionarioCigam() {
               </p>
             </div>
           </div>
+          <MainButton
+            type="button"
+            className={"md:max-w-[470px] max-w-none"}
+            onClick={handleSubmitValues}
+            disabled={emptyValueFields || isSubmitting}
+          >
+            Calcular
+          </MainButton>
         </FramerMotion>
       </HeroApp>
 
-      <FooterApp footerFixed>
-        <Botoes
-          type="button"
-          className="botao"
-          onClick={handleSubmitValues}
-          disabled={emptyValueFields || isSubmitting}
-        >
-          Calcular
-        </Botoes>
-      </FooterApp>
+      <FooterApp />
     </>
   );
 }
 
-const TextInput = ({
-  nome,
-  value,
-  onChange,
-  placeholder,
-  newClassName,
-  isReadOnly,
-}) => (
-  <label htmlFor={nome} className="input-label">
+const TextInput = ({ nome, value, onChange, placeholder, isReadOnly }) => (
+  <label htmlFor={nome} className={labelStyle}>
     <input
-      className={`input-element ${newClassName}`}
+      className={inputStyle}
       name={nome}
       placeholder={placeholder}
       autoComplete="off"
@@ -274,4 +211,45 @@ TextInput.propTypes = {
   id: PropTypes.string,
   newClassName: PropTypes.string,
   isReadOnly: PropTypes.bool,
+};
+
+const SelectInput = (props) => {
+  const { cigamValues, handleChange, options } = props;
+
+  return (
+    <label htmlFor="situacao_atual" className={labelSelectStyle}>
+      <select
+        className={`${inputStyle} appearance-none cursor-pointer`}
+        name="situacao_atual"
+        id="situacao_atual"
+        value={cigamValues.situacao_atual}
+        onChange={handleChange}
+      >
+        <option value="" disabled>
+          Situação atual
+        </option>
+        {options.map((option) => (
+          <option
+            className={selectOptionStyle}
+            value={option.value}
+            key={option.label}
+          >
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+};
+
+SelectInput.propTypes = {
+  cigamValues: PropTypes.object.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
+    }).isRequired
+  ).isRequired,
 };

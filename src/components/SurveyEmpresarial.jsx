@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useContext, useEffect } from "react";
 import { GlobalContext } from "../context/GlobalContextProvider";
 import { useNavigate } from "react-router-dom";
-import Botoes from "./Botoes";
+import MainButton from "./UI/MainButton";
 import { perguntasSurveyRh } from "../services/db";
 
 export default function SurveyEmpresarial({ hasUserData }) {
@@ -62,9 +62,9 @@ export default function SurveyEmpresarial({ hasUserData }) {
         </li>
       ))}
 
-      <Botoes className="botao" onClick={handleSubmitSurvey}>
+      <MainButton className="botao" onClick={handleSubmitSurvey}>
         Ver resultado
-      </Botoes>
+      </MainButton>
     </ul>
   );
 }

@@ -1,13 +1,14 @@
 import { useContext, useEffect } from "react";
 import { GlobalContext } from "../../context/GlobalContextProvider";
 import { useNavigate } from "react-router-dom";
-import HeaderApp from "../../components/Header";
+import MainHeader from "../../components/Header";
 import HeroApp from "../../components/Hero";
-import FramerMotion from "../../components/FramerMotion";
-import imagem from "../../assets/image/FundoTributario.png";
+import FramerMotion from "../../components/UI/FramerMotion";
+import imagem from "../../assets/image/AssessoriaTributaria.png";
 import FooterApp from "../../components/Footer";
 import { numberFormatter } from "../../utils";
-import ConfettiAnimation from "../../components/ConfettiAnimation";
+import ConfettiAnimation from "../../components/UI/ConfettiAnimation";
+import MainPageTitle from "../../components/UI/MainPageTitle";
 
 export default function ResultadoCigam() {
   const {
@@ -51,40 +52,45 @@ export default function ResultadoCigam() {
       ]
     : [];
 
-  const noDataToShowStyle = {
-    textAlign: "center",
-    color: "#fff",
-    fontSize: "1.5rem",
-    marginTop: "100px",
-  };
+  // STYLES
+  const blocksListStyle = `flex flex-col gap-5 mb-[30px] md:max-w-[768px] max-w-none mx-auto`;
+  const blockStyle = `w-full flex flex-col justify-center items-center p-[15px] rounded-[10px] 
+  shadow-bx-1 bg-[#ff5200f2] font-[inherit] font-semibold tracking-[1.2px] text-light_color min-h-[100px]`;
+  const customBlockStyle = `min-h-[200px] gap-[10px]`;
+  const resultListStyle = (val) =>
+    `${blockStyle} ${val ? customBlockStyle : ""}`;
+  const resultValueStyle = (val) =>
+    `${
+      val ? "text-4xl sm:text-5xl" : "text-2xl sm:text-3xl"
+    } whitespace-nowrap overflow-hidden overflow-ellipsis max-w-[-webkit-fill-available]`;
 
   return (
     <>
       <ConfettiAnimation />
-      <HeaderApp redirect={"/cigam"}>
-        <h1 className="title">Resultado CIGAM</h1>
-      </HeaderApp>
+
+      <MainHeader redirect={"/cigam"}>
+        <MainPageTitle title={"Resultado CIGAM"} />
+      </MainHeader>
 
       <HeroApp fundo={imagem}>
         <FramerMotion>
           {roiData.length > 0 ? (
-            <ul className="roi-list">
+            <ul className={blocksListStyle}>
               {roiData.map((item, index) => (
-                <li
-                  className={`roi-list__item ${
-                    item.customSize ? "roi-list__item--custom" : ""
-                  }`}
-                  key={index}
-                >
-                  <h2 className="roi-list__title">{item.value}</h2>
-                  <h3 className="roi-list__value">
+                <li className={resultListStyle(item.customSize)} key={index}>
+                  <h2 className={resultValueStyle(item.customSize)}>
+                    {item.value}
+                  </h2>
+                  <h3 className="text-base text-center sm:text-lg">
                     {item.title || "Ganho produtividade financeira anual"}
                   </h3>
                 </li>
               ))}
             </ul>
           ) : (
-            <h2 style={noDataToShowStyle}>Sem dados para exibir</h2>
+            <h2 className="text-2xl text-center text-light_color mt-28">
+              Não há dados disponíveis
+            </h2>
           )}
         </FramerMotion>
       </HeroApp>

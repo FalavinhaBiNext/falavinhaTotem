@@ -1,7 +1,7 @@
 const routes = {
   home: "/",
-  servicos: "/servicos",
-  bi: "/BI",
+  servicos: "/solucoes",
+  bisinessIntelligence: "/business-intelligence",
   tributario: "/tributario",
   contabilidade: "/contabilidade",
   consultoriRh: "/consultoriaRH",

@@ -1,0 +1,12 @@
+export { default as Home } from "./Home";
+export { default as Cigam } from "./Cigam";
+export { default as ConsultoriaEmpresarial } from "./ConsultoriaEmpresarial";
+export { default as ConsultoriaRH } from "./ConsultoriaRH";
+export { default as Contabilidade } from "./Contabilidade";
+export { default as Cursos } from "./Cursos";
+export { default as Holding } from "./Holding";
+export { default as ModulosCigam } from "./ModulosCigam";
+export { default as Servicos } from "./Servicos";
+export { default as Tributario } from "./Tributario";
+export { default as Treinamentos } from "./Treinamentos";
+export { default as NotFound } from "./NotFound";
