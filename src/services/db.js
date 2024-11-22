@@ -98,51 +98,33 @@ export const respostasSurveyRh = [
     min: 18,
     max: 24,
     titulo: "Excelente Gestão de RH!",
-<<<<<<< HEAD
-    mensagem: `Parabéns! Sua empresa demonstra práticas de RH excepcionais. Podemos ajudar a levar sua gestão de RH ao próximo nível com soluções inovadoras e personalizadas para otimização contínua e inovação estratégica.`,
-=======
     mensagem: `Parabéns! Sua empresa demonstra práticas de RH excepcionais. Podemos ajudar a levar sua gestão de RH 
     ao próximo nível com soluções inovadoras e personalizadas para otimização contínua e inovação estratégica.`,
->>>>>>> giovaneTotem2.0
     icon: 5,
   },
   {
     min: 12,
     max: 17,
     titulo: "Boa Gestão de RH",
-<<<<<<< HEAD
-    mensagem: `Sua empresa possui uma base sólida em práticas de RH. Podemos colaborar para fortalecer áreas específicas e implementar melhorias que maximizem o potencial de sua equipe e aumentem a eficiência organizacional.`,
-=======
     mensagem: `Sua empresa possui uma base sólida em práticas de RH. Podemos colaborar para fortalecer áreas específicas e
      implementar melhorias que maximizem o potencial de sua equipe e aumentem a eficiência organizacional`,
->>>>>>> giovaneTotem2.0
     icon: 4,
   },
   {
     min: 6,
     max: 11,
-<<<<<<< HEAD
-    titulo: "Gestão de RH Mediana ",
-    mensagem: `Identificamos algumas áreas críticas que podem se beneficiar de melhorias. Nossa consultoria pode oferecer estratégias personalizadas para enfrentar esses desafios e transformar suas práticas de RH em um diferencial competitivo.`,
-=======
     titulo: "Gestão de RH Mediana",
     mensagem: `Identificamos algumas áreas críticas que podem se beneficiar de melhorias. Nossa consultoria pode 
     oferecer estratégias personalizadas para enfrentar esses desafios e transformar suas práticas de RH em um 
     diferencial competitivo.`,
->>>>>>> giovaneTotem2.0
     icon: 3,
   },
   {
     min: 0,
     max: 5,
-<<<<<<< HEAD
-    titulo: "Gestão de RH Precária ",
-    mensagem: `Sua empresa enfrenta desafios significativos em gestão de RH. Estamos aqui para ajudar com intervenções urgentes e soluções abrangentes que estabelecerão uma base sólida para o crescimento e sucesso futuros.`,
-=======
     titulo: "Gestão de RH Precária",
     mensagem: `Sua empresa enfrenta desafios significativos em gestão de RH. Estamos aqui para ajudar com intervenções 
     urgentes e soluções abrangentes que estabelecerão uma base sólida para o crescimento e sucesso futuros.`,
->>>>>>> giovaneTotem2.0
     icon: 2,
   },
 ];
@@ -343,11 +325,7 @@ export const respostasSurveyEmpresarial = [
 // CURSOS GRUPO FALAVINHA NEXT
 export const cursos = [
   {
-<<<<<<< HEAD
-    name: "FORMAR LÍDERES DE ELITE",
-=======
     name: "Formar líderes de elite",
->>>>>>> giovaneTotem2.0
     description: "Crie seu 'BOPE' Organizacional",
     item: [
       { item: "Identificação e Desenvolvimento de Talentos Internos." },
@@ -358,11 +336,7 @@ export const cursos = [
     ]
   },
   {
-<<<<<<< HEAD
-    name: "A REVOLUÇÃO DA IA",
-=======
     name: "A revolução da I.A.",
->>>>>>> giovaneTotem2.0
     description: "Transformando Negócios e Redefinindo Estratégias Empresariais",
     item: [
       { item: "Integração de IA nos processos de negócios." },
@@ -373,11 +347,7 @@ export const cursos = [
     ]
   },
   {
-<<<<<<< HEAD
-    name: "DELEGAÇÃO ESTRATÉGICA",
-=======
     name: "Delegação estratégica",
->>>>>>> giovaneTotem2.0
     description: "Maximizando Desempenho e Resultados Organizacionais",
     item: [
       { item: "Princípios Fundamentais da Delegação Estratégica" },
@@ -399,11 +369,7 @@ export const cursos = [
     ]
   },
   {
-<<<<<<< HEAD
-    name: "GESTÃO DE CONFLITOS",
-=======
     name: "Gestão de conflitos",
->>>>>>> giovaneTotem2.0
     description: "Transformando Desafios em Oportunidades",
     item: [
       { item: "Entendendo as Causas dos Conflitos." },
@@ -425,11 +391,7 @@ export const cursos = [
     ]
   },
   {
-<<<<<<< HEAD
-    name: "CONTABILIDADE GERENCIAL",
-=======
     name: "Contabilidade gerencial",
->>>>>>> giovaneTotem2.0
     description: "Tomando Decisões Baseadas em Dados.",
     item: [
       { item: "Ferramentas de Contabilidade Gerencial para Análise de Desempenho." },
@@ -440,11 +402,7 @@ export const cursos = [
     ]
   },
   {
-<<<<<<< HEAD
-    name: "GESTÃO DE RISCOS",
-=======
     name: "Gestão de riscos",
->>>>>>> giovaneTotem2.0
     description: "Protegendo o Patrimônio da Empresa",
     item: [
       { item: "Identificação e Avaliação de Riscos Financeiros." },
@@ -455,11 +413,7 @@ export const cursos = [
     ]
   },
   {
-<<<<<<< HEAD
-    name: "HOLDING FAMILIAR ",
-=======
     name: "Holding familiar ",
->>>>>>> giovaneTotem2.0
     description: "Proteção e Sucessão Patrimonial",
     item: [
       { item: "Estruturação de uma Holding Familiar: Passos Iniciais." },
@@ -476,17 +430,12 @@ export const modulosCigam = [
   {
     name: "Pesquisa de mercado",
     item: [
-<<<<<<< HEAD
-      {item: "Aumento nas vendas através de uma ferramenta de BIG DATA já integrada com áreas de CRM e ERP. Diferente de outras soluções, o Pesquisa de Mercado não limita o número de empresas importadas e nem cobra valores adicionais a partir de um número de extrações. Ou seja: liberdade para sua empresa crescer!"}
-    ] 
-=======
       {
         item: `Aummento nas vendas através de uma ferramenta de BIG DATA já integrada com áreas de CRM e ERP. 
       Diferente de outras soluções, o Pesquisa de Mercado não limita o número de empresas importadas e nem 
       cobra valores adicionais a partir de um número de extrações. Ou seja: liberdade para sua empresa crescer!` }
     ],
     id: 1
->>>>>>> giovaneTotem2.0
   },
   {
     name: "Open banking",
