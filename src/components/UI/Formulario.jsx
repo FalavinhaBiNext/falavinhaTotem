@@ -69,7 +69,7 @@ export default function Formulario() {
       icon: gifEmpresa,
     },
     {
-      title: "Vendendor",
+      title: "Vendedor",
       name: "vendedor",
       type: "select",
       id: "vendedor",

@@ -49,6 +49,9 @@ export default function ResultadoRH() {
     },
   ];
 
+  // ESTILOS
+  const containerStyle = `grid grid-cols-standard2 justify-between full gap-10 lg:gap-6 pt-[30px] 
+   md:max-w-[768px] max-w-none mx-auto`;
   return (
     <>
       <ConfettiAnimation />
@@ -59,19 +62,19 @@ export default function ResultadoRH() {
 
       <HeroApp fundo={imagem}>
         <FramerMotion>
-          <article className="pt-8 mb-20 text-xl text-light_color font-gilroyThin">
+          <article className="pt-8 mb-20 text-xl text-light_color font-gilroyThin md:max-w-[768px] max-w-none mx-auto">
             <h2 className="pb-8 text-5xl text-center font-gilroyBold">
               {titulo}
             </h2>
             <span className="flex justify-center gap-3 mb-8 sm:gap-5">
               {YellowStar(icon)}
             </span>{" "}
-            <p className="text-xl lg:text-2xl text-light_color">
+            <p className="text-xl text-center sm:text-left lg:text-2xl text-light_color">
               {resultMessage}
             </p>
           </article>
 
-          <div className="grid grid-cols-standard2 justify-between full gap-10 lg:gap-6 py-[30px] ">
+          <div className={containerStyle}>
             {improvementsSuggestion.map(({ title, icon, improvements }) => (
               <article
                 className="w-full lg:w-max text-light_color lg:last:justify-self-end justify-self-auto"

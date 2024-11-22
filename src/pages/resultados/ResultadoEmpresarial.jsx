@@ -48,7 +48,7 @@ export default function ResultadoEmpresarial() {
             <span className="flex gap-3 sm:gap-5">
               {YellowStar(resultado_pesquisa?.icon)}
             </span>
-            <p className="text-base sm:text-lg text-light_color">
+            <p className="text-base text-center sm:text-lg text-light_color sm:text-left">
               {resultado_pesquisa?.mensagem}
             </p>
           </div>

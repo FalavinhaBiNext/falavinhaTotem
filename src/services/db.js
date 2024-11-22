@@ -97,36 +97,72 @@ export const respostasSurveyRh = [
   {
     min: 18,
     max: 24,
-    titulo: "Excelente Gestão!",
-    mensagem: `A empresa demonstra uma forte capacidade de integrar tecnologias avançadas e práticas modernas de RH, 
-    garantindo eficiência e conformidade em todos os processos.`,
+    titulo: "Excelente Gestão de RH!",
+    mensagem: `Parabéns! Sua empresa demonstra práticas de RH excepcionais. Podemos ajudar a levar sua gestão de RH 
+    ao próximo nível com soluções inovadoras e personalizadas para otimização contínua e inovação estratégica.`,
     icon: 5,
   },
   {
     min: 12,
     max: 17,
-    titulo: "Boa Gestão",
-    mensagem: `A empresa está bem posicionada em termos de práticas de RH, 
-    mas ainda pode melhorar em algumas informações para alcançar a excelência.`,
+    titulo: "Boa Gestão de RH",
+    mensagem: `Sua empresa possui uma base sólida em práticas de RH. Podemos colaborar para fortalecer áreas específicas e
+     implementar melhorias que maximizem o potencial de sua equipe e aumentem a eficiência organizacional`,
     icon: 4,
   },
   {
     min: 6,
     max: 11,
-    titulo: "Gestão de RH Média",
-    mensagem: `A empresa possui práticas de RH que atendem aos requisitos básicos, 
-    mas há várias áreas que necessitam de melhorias significativas.`,
+    titulo: "Gestão de RH Mediana",
+    mensagem: `Identificamos algumas áreas críticas que podem se beneficiar de melhorias. Nossa consultoria pode 
+    oferecer estratégias personalizadas para enfrentar esses desafios e transformar suas práticas de RH em um 
+    diferencial competitivo.`,
     icon: 3,
   },
   {
     min: 0,
     max: 5,
-    titulo: "Oportunidade de melhoria identificada",
-    mensagem: `A empresa enfrenta desafios consideráveis em suas práticas
-    de RH e precisa de uma gestão mais eficiente.`,
+    titulo: "Gestão de RH Precária",
+    mensagem: `Sua empresa enfrenta desafios significativos em gestão de RH. Estamos aqui para ajudar com intervenções 
+    urgentes e soluções abrangentes que estabelecerão uma base sólida para o crescimento e sucesso futuros.`,
     icon: 2,
   },
 ];
+
+// export const respostasSurveyRh = [
+//   {
+//     min: 18,
+//     max: 24,
+//     titulo: "Excelente Gestão!",
+//     mensagem: `A empresa demonstra uma forte capacidade de integrar tecnologias avançadas e práticas modernas de RH, 
+//     garantindo eficiência e conformidade em todos os processos.`,
+//     icon: 5,
+//   },
+//   {
+//     min: 12,
+//     max: 17,
+//     titulo: "Boa Gestão",
+//     mensagem: `A empresa está bem posicionada em termos de práticas de RH, 
+//     mas ainda pode melhorar em algumas informações para alcançar a excelência.`,
+//     icon: 4,
+//   },
+//   {
+//     min: 6,
+//     max: 11,
+//     titulo: "Gestão de RH Média",
+//     mensagem: `A empresa possui práticas de RH que atendem aos requisitos básicos, 
+//     mas há várias áreas que necessitam de melhorias significativas.`,
+//     icon: 3,
+//   },
+//   {
+//     min: 0,
+//     max: 5,
+//     titulo: "Oportunidade de melhoria identificada",
+//     mensagem: `A empresa enfrenta desafios consideráveis em suas práticas
+//     de RH e precisa de uma gestão mais eficiente.`,
+//     icon: 2,
+//   },
+// ];
 
 
 // Perguntas para o survey do empresarial

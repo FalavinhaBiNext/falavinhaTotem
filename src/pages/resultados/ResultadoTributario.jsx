@@ -31,7 +31,7 @@ export default function ResultadoTributario() {
     val !== 0 && val !== "0" && val !== null && !isNaN(val);
 
   // ESTILOS
-  const valuesBlockStyle = `flex flex-col w-full h-full sm:min-h-[175px] min-h-[150px] font-[inherit] 
+  const valuesBlockStyle = `flex flex-col w-full h-full sm:min-h-[160px] min-h-[150px] font-[inherit] 
   text-light_color shadow-bx-1 border-b-[1px] border-light_color rounded-[10px] bg-[#005d601a] p-6`;
 
   return (
