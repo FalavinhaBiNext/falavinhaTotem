@@ -5,13 +5,20 @@ import FramerMotion from "../../components/UI/FramerMotion";
 import fundo from "../../assets/image/FundoBI.png";
 import MainPageTitle from "../../components/UI/MainPageTitle";
 import DashboardBILayout from "../../components/UI/DashboadBILayout";
+import useScreenSize from "../../hooks/useScreenSize";
 
-const biContent = `https://app.powerbi.com/view?r=eyJrIjoiNDAyM2RkYmQtOWM2Mi00NTljLWFiZjEtNmMwZWI2Y2IxYzU5IiwidCI6Ijk2ZjUxYjBhLTMwNDAtNDgzZi04Yjc2LTExODQ4YmZkZTRmYiJ9`;
+const biContentTotem = `https://app.powerbi.com/view?r=eyJrIjoiNDAyM2RkYmQtOWM2Mi00NTljLWFiZjEtNmMwZWI2Y2IxYzU5IiwidCI6Ijk2ZjUxYjBhLTMwNDAtNDgzZi04Yjc2LTExODQ4YmZkZTRmYiJ9`;
+
+const biContentWeb = `https://app.powerbi.com/view?r=eyJrIjoiYjYwZDUxZDktNGJkNS00MjIyLThlNTQtNzc3MGE5YzcyMTVhIiwidCI6Ijk2ZjUxYjBhLTMwNDAtNDgzZi04Yjc2LTExODQ4YmZkZTRmYiJ9
+&navContentPaneEnabled=false`;
 
 function DashboardFinanceiro() {
   // const motionStyle = {
   //   backgroundColor: "#009499",
   // };
+
+  const { screenSize } = useScreenSize();
+  const biContent = screenSize.width > 768 ? biContentWeb : biContentTotem;
 
   return (
     <>
