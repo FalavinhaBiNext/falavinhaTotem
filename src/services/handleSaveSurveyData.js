@@ -1,4 +1,24 @@
-export default function handleSaveSurveyData({
+
+import { apiUrl, axiosInstance } from "./api";
+
+export async function handleSaveLeadData({ dados_lead, setIsSubmitting, resetForm }) {
+  try {
+    setIsSubmitting(true);
+    await axiosInstance.post(apiUrl, dados_lead, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    sessionStorage.setItem("user_info", JSON.stringify(dados_lead));
+  } catch (error) {
+    console.error("Erro ao salvar o lead:", error);
+  } finally {
+    setIsSubmitting(false);
+    resetForm();
+  }
+}
+
+export async function handleSaveSurveyData({
   resultadoCigam,
   resultadoHolding,
   handleGetSurveyEmpresarial,
@@ -9,6 +29,7 @@ export default function handleSaveSurveyData({
   setIsSubmitting,
   origemUsuario,
   dados_lead,
+  resetForm
 }) {
   try {
     setIsSubmitting(true);
@@ -98,21 +119,22 @@ export default function handleSaveSurveyData({
       result: result,
       ...dados_lead,
     };
-    // await axios.post(
-    //   "https://rafae4699.c44.integrator.host/totem/lead/create",
-    //   lead,
-    //   {
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   }
-    // );
-    console.log("LEAD COMPLETO: ", lead);
+    await axiosInstance.post(
+      apiUrl,
+      lead,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     sessionStorage.setItem("lead_info", JSON.stringify(lead));
   } catch (error) {
     setIsSubmitting(false);
     console.error("Erro ao salvar o lead:", error);
   } finally {
     setIsSubmitting(false);
+    resetForm();
   }
 }
+
