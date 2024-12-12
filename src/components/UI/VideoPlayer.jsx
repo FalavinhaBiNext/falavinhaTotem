@@ -1,5 +1,5 @@
 import { useState } from "react";
-import video from "../../assets/video/video.mp4";
+import video from "../../assets/video/NovaSede.mp4";
 
 export default function VideoPlayer() {
   const [isMuted, setIsMuted] = useState(true);

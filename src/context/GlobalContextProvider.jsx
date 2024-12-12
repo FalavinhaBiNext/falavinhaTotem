@@ -1,11 +1,13 @@
 import PropTypes from "prop-types";
 import { createContext, useState, useEffect } from "react";
-import axios from "axios";
 import { useFormik } from "formik";
 import { phoneMask, moneyConverter, validationSchema } from "../utils";
 import { useGetSurvey } from "../hooks/useGetSurvey";
 import QuestionarioHoldingState from "../states/QuestionarioHoldingState";
-import handleSaveSurveyData from "../services/handleSaveSurveyData";
+import {
+  handleSaveSurveyData,
+  handleSaveLeadData,
+} from "../services/handleSaveSurveyData";
 
 export const GlobalContext = createContext();
 export default function GlobalContextProvider({ children }) {
@@ -92,23 +94,18 @@ export default function GlobalContextProvider({ children }) {
     seller: inputValue.vendedor || savedData.seller,
   };
 
-  // função para salvar dados do lead
-  async function handleSubmitUserData() {
-    try {
-      setIsSubmitting(true);
-      console.log("LEAD BÁSICO: ", dados_lead);
-      sessionStorage.setItem("user_info", JSON.stringify(dados_lead));
-    } catch (error) {
-      console.error("Erro ao salvar o lead:", error);
-    } finally {
-      setIsSubmitting(false);
-      resetForm();
-    }
+  // FUNÇÃO PARA SALVAR DADOS DO LEAD
+  function handleSubmitUserData() {
+    return handleSaveLeadData({
+      dados_lead,
+      setIsSubmitting,
+      resetForm,
+    });
   }
 
-  //  função para salvar todas as informações sobre o lead no servidor
-  async function handleGetSurveyData(origemUsuario) {
-    handleSaveSurveyData({
+  // FUNÇÃO PARA SALVAR O LEAD NO SERVIDOR (ELA FOI CRIADA NA PASTA 'handleSaveSurveyData')
+  function handleGetSurveyData(origemUsuario) {
+    return handleSaveSurveyData({
       resultadoCigam,
       resultadoHolding,
       handleGetSurveyEmpresarial,
@@ -119,6 +116,7 @@ export default function GlobalContextProvider({ children }) {
       setIsSubmitting,
       origemUsuario,
       dados_lead,
+      resetForm,
     });
   }
 
